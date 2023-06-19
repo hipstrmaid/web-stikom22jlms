@@ -24,3 +24,7 @@ Route::get('/matkul/matkul-saya', function () {
 Route::get('/matkul/preview', function () {
     return view('frontend.pages.matkul-preview');
 });
+
+Route::get('/matkul/belajar', function () {
+    return view('frontend.pages.matkul-belajar');
+});

@@ -7,14 +7,17 @@ module.exports = {
       "./node_modules/flowbite/**/*.js"
     ],
     theme: {
-        colors: {
-            'black': '#04060A'
-        },
+      fontFamily: {
+        'passion': ['Passion One', 'cursive'],
+        'poppins': ['Poppins', 'sans-serif'],
+      },
+      colors: {
+        'black': '#04060A'
+      },
       extend: {},
     },
     plugins: [
-        require('flowbite-typography'),
-        require('flowbite/plugin')
+      require('flowbite-typography'),
+      require('flowbite/plugin')
     ],
-
   }

@@ -22,7 +22,7 @@
                 <ul class="space-y-1">
                     <li>
                         <a href="/"
-                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg text-white dark:text-white bg-black group">
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg text-white dark:text-white bg-gray-900 group">
                             <svg aria-hidden="true"
                                 class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
