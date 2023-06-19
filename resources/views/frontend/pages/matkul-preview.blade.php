@@ -4,27 +4,34 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-4 mb-4 h-46">
 
             <div class="col-span-1">
-                <div class="bg-white border border-gray-200 rounded-t shadow dark:border-gray-700 dark:bg-gray-800">
+                <div class="bg-white border border-gray-200 rounded-t shadow dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-gray-900 dark:text-white py-2 px-4 font-bold">Detail Mata Kuliah</h5>
                 </div>
-                <div class="bg-white text-sm border border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+                <div class="bg-white text-sm border border-gray-200 dark:border-gray-900 dark:bg-gray-800">
                     <ul class="grid w-full gap-2 mt-4 mb-4">
+
                         <li class="flex items-center">
                             <i class="fa-solid fa-user ml-4 dark:text-white"></i>
                             <p class="dark:text-white px-2">Dosen : Etika Purnamasari</p>
                         </li>
+
                         <li class="flex items-center">
                             <i class="fa-solid fa-calendar ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">14/10/2001</p>
+                            <p class="dark:text-white px-2">Selasa</p>
                         </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-clock ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">16</p>
+                            <p class="dark:text-white px-2">14:55</p>
                         </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-users ml-4 dark:text-white"></i>
+                            <p class="dark:text-white px-2">22</p>
+                        </li>
+
                     </ul>
 
                 </div>
-                <div class="bg-white border border-gray-200 rounded-b shadow dark:border-gray-700 dark:bg-gray-800">
+                <div class="bg-white border border-gray-200 rounded-b shadow dark:border-gray-900 dark:bg-gray-800">
                     <div class="p-2">
                         <a href="/matkul/preview"
                             class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
