@@ -14,15 +14,15 @@ This repository contains a Laravel project integrated with Tailwind CSS. Follow 
 
 1. Clone the repository to your local machine:
 
-   composer install
-   npm install
-   php artisan key:generate
-   php artisan migrate
+   -composer install
+   -npm install
+   -php artisan key:generate
+   -php artisan migrate
 
    
 2. Jalankan:
-   php artisan serve
-   npm run dev
+   -php artisan serve
+   -npm run dev
 
 
 Feel free to customize the steps, dependencies, and additional sections as needed for your specific project.
