@@ -32,3 +32,15 @@ Route::get('/matkul/pertemuan', function () {
 Route::get('/matkul/pertemuan/belajar', function () {
     return view('frontend.pages.matkul-belajar');
 });
+
+Route::get('/matkul/dosen', function () {
+    return view('frontend.pages.dosen.matkul-dosen');
+});
+
+Route::get('/matkul/edit-matkul', function () {
+    return view('frontend.pages.dosen.matkul.matkul-edit');
+});
+
+Route::get('/matkul/edit-jadwal', function () {
+    return view('frontend.pages.dosen.matkul.matkul-jadwal');
+});

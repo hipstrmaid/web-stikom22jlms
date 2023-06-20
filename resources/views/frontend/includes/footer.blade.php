@@ -1,4 +1,4 @@
-<footer class="md:ml-64 mt-auto bg-white dark:bg-gray-900">
+<footer class="md:ml-64 bg-white dark:bg-gray-900">
     <hr class="border-gray-200 dark:border-gray-700" />
     <div class="mx-auto max-w-screen-xl p-4 py-6">
 
