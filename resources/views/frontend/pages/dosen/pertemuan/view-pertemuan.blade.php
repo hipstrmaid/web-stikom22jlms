@@ -1,7 +1,7 @@
 @extends('frontend.app')
 @section('content')
     <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Mata Kuliah Saya</h1>
+        List Pertemuan</h1>
     <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -43,40 +43,45 @@
     </nav>
 
 
-    <div class="row">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 h-46 mb-4">
-
-            <div class="max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('assets/img/course1.jpg') }}" alt="" />
-                </a>
-                <div class="p-5">
-                    <span
-                        class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">SISTEM
-                        INFORMASI</span>
-                    <a href="#">
-                        <h5 class="my-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pemrogramana
-                            Berbasis Objek</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
-                        acquisitions of 2021 so far, in reverse chronological order.</p>
-
-
-                    <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2.5 dark:bg-gray-700">
-                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="/matkul/pertemuan"
-                            class="inline-flex w-full items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-800"><i
-                                class="fa-solid fa-pen-to-square mr-2"></i> Edit Mata Kuliah
-                        </a>
-                    </div>
-                </div>
+    <div class="grid grid-cols-1 mb-5">
+        <ul class="flex bg-gray-200 dark:bg-gray-900">
+            <div class="flex items-center dark:border-gray-900 dark:bg-gray-900">
+                <i class="fa-solid fa-lock ml-4 dark:text-white"></i>
+                <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold">Mata
+                    Kuliah</h5>
             </div>
+            <div
+                class="flex items-center  bg-white border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800 ">
+                <i class="fa-solid fa-address-card ml-4 dark:text-white"></i>
+                <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold"><a
+                        href="/matkul/tambah-pertemuan">Pertemuan</a></h5>
+            </div>
+            <div class="flex items-center dark:border-gray-900 dark:bg-gray-900">
+                <i class="fa-solid fa-users ml-4 dark:text-white"></i>
+                <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold">Peserta</h5>
+            </div>
+        </ul>
 
+        <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
+            <ul class="flex grid gap-2 mb-4 p-5">
+                <li class="flex">
+                    <a href="/matkul/pertemuan/belajar" class="w-full">
+                        {{-- <span class="border border-gray-300 py-1 px-6 mr-2 font-bold text-md rounded-lg">1</span> --}}
+                        <h1 class="bg-gray-200 border rounded-l-lg  border-gray-300 w-full py-2 px-3 text-bold">
+                            Pertemuan 1:
+                            Instalasi
+                            Photoshop</h1>
 
-
+                    </a>
+                    <a href="/dosen/edit-pertemuan" class="flex items-center justify-center bg-blue-400 p-2 rounded-r-lg">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <h1 class="ml-1 text-sm font-bold">Edit</h1>
+                    </a>
+                </li>
+            </ul>
 
         </div>
+
+
     </div>
 @endsection

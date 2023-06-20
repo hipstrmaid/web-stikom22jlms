@@ -18,29 +18,41 @@ Route::get('/', function () {
 });
 
 Route::get('/matkul/matkul-saya', function () {
-    return view('frontend.pages.matkul-saya');
+    return view('frontend.pages.mahasiswa.matkul-mahasiswa');
 });
 
 Route::get('/matkul/preview', function () {
-    return view('frontend.pages.matkul-preview');
+    return view('frontend.pages.mahasiswa.mahasiswa-preview');
 });
 
 Route::get('/matkul/pertemuan', function () {
-    return view('frontend.pages.matkul-pertemuan');
+    return view('frontend.pages.mahasiswa.mahasiswa-pertemuan');
 });
 
 Route::get('/matkul/pertemuan/belajar', function () {
-    return view('frontend.pages.matkul-belajar');
+    return view('frontend.pages.mahasiswa.mahasiswa-belajar');
 });
 
-Route::get('/matkul/dosen', function () {
+Route::get('/dosen/matkul', function () {
     return view('frontend.pages.dosen.matkul-dosen');
 });
 
-Route::get('/matkul/edit-matkul', function () {
-    return view('frontend.pages.dosen.matkul.matkul-edit');
+Route::get('/dosen/edit-matkul', function () {
+    return view('frontend.pages.dosen.matkul.edit-matkul');
 });
 
-Route::get('/matkul/edit-jadwal', function () {
-    return view('frontend.pages.dosen.matkul.matkul-jadwal');
+Route::get('/dosen/edit-pertemuan', function () {
+    return view('frontend.pages.dosen.pertemuan.edit-pertemuan');
+});
+
+Route::get('/dosen/tambah-matkul', function () {
+    return view('frontend.pages.dosen.matkul.tambah-matkul');
+});
+
+Route::get('/dosen/pertemuan', function () {
+    return view('frontend.pages.dosen.pertemuan.view-pertemuan');
+});
+
+Route::get('/dosen/tambah-pertemuan', function () {
+    return view('frontend.pages.dosen.pertemuan.tambah-pertemuan');
 });
