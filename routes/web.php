@@ -28,3 +28,7 @@ Route::get('/matkul/preview', function () {
 Route::get('/matkul/pertemuan', function () {
     return view('frontend.pages.matkul-pertemuan');
 });
+
+Route::get('/matkul/pertemuan/belajar', function () {
+    return view('frontend.pages.matkul-belajar');
+});

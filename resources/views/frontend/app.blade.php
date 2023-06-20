@@ -24,23 +24,18 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-<body class="font-poppins">
-    <div class="antialiased bg-gray-50 dark:bg-gray-900">
+<body class="font-poppins bg-gray-100 dark:bg-gray-900">
+    <div class="antialiased">
         @include('frontend.includes.header')
         @include('frontend.includes.sidebar')
 
         <main class=" md:ml-64 h-auto pt-20">
-
             <div class="container px-5">
                 @yield('content')
             </div>
-            @include('frontend.includes.footer')
         </main>
-
-
-
-
     </div>
+    @include('frontend.includes.footer')
     <script src="{{ asset('js/darkmode.js') }}"></script>
 </body>
 

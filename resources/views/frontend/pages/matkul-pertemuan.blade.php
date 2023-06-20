@@ -25,7 +25,7 @@
                     <li>
                         <h2 id="accordion-collapse-heading-1">
                             <button type="button"
-                                class="flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                class="rounded-lg flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                 data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
                                 aria-controls="accordion-collapse-body-1">
                                 <span><i class="fa-solid fa-circle-exclamation mr-2"
@@ -83,10 +83,10 @@
                     <li>
                         <h2 id="accordion-collapse-heading-2">
                             <button type="button"
-                                class="flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                class="rounded-lg flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
                                 data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                                 aria-controls="accordion-collapse-body-2">
-                                <span><i class="fa-solid fa-right-from-bracket mr-2"></i>Pertemuan</span>
+                                <span><i class="fa-solid fa-list-ul mr-2"></i>Pertemuan</span>
                                 <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor"
                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
@@ -136,12 +136,15 @@
         <div class="col-span-2 order-1 lg:order-2">
             <div class="grid lg:grid-cols-1">
                 <div class="col mb-4 shadow">
-                    <div class="bg-white border border-gray-200 rounded-t shadow dark:border-gray-900 dark:bg-gray-800">
-                        <h5 class="text-gray-900 dark:text-white py-2 px-4 font-bold text-center">Pertemuan Terakhir</h5>
+                    <div class="bg-white border border-gray-200 shadow dark:border-gray-900 ">
+                        <h5
+                            class="text-gray-900 dark:text-white py-2 px-4 font-bold text-center bg-gray-200 dark:bg-gray-800">
+                            Pertemuan
+                            Terakhir</h5>
                     </div>
                     <div class="bg-white border border-gray-200 shadow dark:border-gray-900 dark:bg-gray-800">
                         <div class="p-2">
-                            <a href="/matkul/preview"
+                            <a href="/matkul/pertemuan/belajar"
                                 class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-900 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-green-800">
                                 Pertemuan 16
                             </a>
@@ -150,8 +153,11 @@
                     </div>
                 </div>
                 <div class="col shadow">
-                    <div class="bg-white border border-gray-200 rounded-t dark:border-gray-900 dark:bg-gray-800">
-                        <h5 class="text-gray-900 dark:text-white py-2 px-4 font-bold text-center">Dosen Pengampu</h5>
+                    <div class="bg-white border border-gray-200 rounded-t dark:border-gray-900 ">
+                        <h5
+                            class="text-gray-900 dark:text-white py-2 px-4 font-bold text-center bg-gray-200 dark:bg-gray-800">
+                            Dosen
+                            Pengampu</h5>
                     </div>
                     <div
                         class="flex justify-center bg-white p-4 border border-gray-200  dark:border-gray-900 dark:bg-gray-800">
