@@ -51,8 +51,11 @@
                     <img class="rounded-t-lg" src="{{ asset('assets/img/course1.jpg') }}" alt="" />
                 </a>
                 <div class="p-5">
+                    <span
+                        class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">SISTEM
+                        INFORMASI</span>
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pemrogramana
+                        <h5 class="my-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pemrogramana
                             Berbasis Objek</h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
@@ -63,7 +66,7 @@
                         <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
                     </div>
                     <div class="panel-footer">
-                        <a href="/matkul/belajar"
+                        <a href="/matkul/pertemuan"
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Belajar
                             <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
