@@ -6,6 +6,10 @@ body {
     min-height: 100vh;
 }
 
+footer {
+    margin-top: auto;
+}
+
 .img-profile {
     width: 200px;
     height: 200px;

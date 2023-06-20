@@ -37,6 +37,7 @@
     </div>
     @include('frontend.includes.footer')
     <script src="{{ asset('js/darkmode.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
 </body>
 
 </html>

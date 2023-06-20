@@ -1,0 +1,9 @@
+            <div class="flex items-center dark:border-gray-900 dark:bg-gray-900">
+                <i class="fa-solid fa-address-card ml-4 dark:text-white"></i>
+                <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold"><a
+                        href="/matkul/tambah-pertemuan">Pertemuan</a></h5>
+            </div>
+            <div class="flex items-center dark:border-gray-900 dark:bg-gray-900">
+                <i class="fa-solid fa-users ml-4 dark:text-white"></i>
+                <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold">Peserta</h5>
+            </div>
