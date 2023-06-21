@@ -84,9 +84,9 @@
                         <h2 id="accordion-collapse-heading-2">
                             <button type="button"
                                 class="rounded-lg flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
-                                data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
+                                data-accordion-target="#accordion-collapse-body-2" aria-expanded="true"
                                 aria-controls="accordion-collapse-body-2">
-                                <span><i class="fa-solid fa-list-ul mr-2"></i>Pertemuan</span>
+                                <span><i class="fa-solid fa-list-ul mr-2"></i>Apa yang akan anda pelajari</span>
                                 <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor"
                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
