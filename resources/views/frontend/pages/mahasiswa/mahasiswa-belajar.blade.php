@@ -5,7 +5,7 @@
         <div class="col-span-6">
             <div class="content">
                 <article class="dark:text-white">
-                    <h1 class="text-4xl font-bold mb-4 pt-4 lg:pt-0">Topic 1</h1>
+                    <h1 class="text-4xl font-bold mb-4 pt-4 lg:pt-0">Installasi Photoshop</h1>
                     <div class="video-player mt-2 mb-2">
                         <iframe class="w-full max-w-full" height="300" src="https://www.youtube.com/embed/lPJVi797U"
                             title="YouTube video player" frameborder="0"
@@ -13,11 +13,8 @@
                             allowfullscreen></iframe>
                     </div>
                     <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
-                        <p>Make better videos with the ultimate course on video production, planning, cinematography,
-                            editing & distribution.</p>
-                        <p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their
-                            dry-transfer sheets, and again during the 90s as desktop publishers bundled the text with their
-                            software.</p>
+                        <p>Pada pertemuan kali ini kita akan menginstall photoshop.</p>
+                        <p>Video di atas akan menjelaskan tahap tahap penginstalan photoshop.</p>
                     </div>
 
                     <div id="accordion-collapse" class="bg-white dark:bg-gray-800 shadow" data-accordion="collapse">
