@@ -93,7 +93,7 @@
                     </div>
                     <div class="bg-white border border-gray-200 shadow dark:border-gray-900 dark:bg-gray-800">
                         <div class="p-2">
-                            <a href="/matkul/pertemuan/belajar"
+                            <a href="/matkul/pertemuan"
                                 class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-900 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-green-800">
                                 Masuk
                             </a>

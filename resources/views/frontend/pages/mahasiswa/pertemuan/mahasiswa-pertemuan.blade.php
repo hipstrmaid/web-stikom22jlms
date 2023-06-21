@@ -134,7 +134,7 @@
                                 <div class="p-5 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
 
                                     <ul
-                                        class="w-full text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                        class="w-full text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-800 dark:text-white">
                                         <li>
                                             <a href="#" aria-current="true"
                                                 class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
