@@ -17,20 +17,20 @@ Route::get('/', function () {
     return view('frontend.pages.dashboard');
 });
 
+Route::get('/matkul/preview', function () {
+    return view('frontend.pages.matkul-preview');
+});
+
 Route::get('/matkul/matkul-saya', function () {
     return view('frontend.pages.mahasiswa.matkul-mahasiswa');
 });
 
-Route::get('/matkul/preview', function () {
-    return view('frontend.pages.mahasiswa.mahasiswa-preview');
-});
-
 Route::get('/matkul/pertemuan', function () {
-    return view('frontend.pages.mahasiswa.mahasiswa-pertemuan');
+    return view('frontend.pages.mahasiswa.pertemuan.mahasiswa-pertemuan');
 });
 
 Route::get('/matkul/pertemuan/belajar', function () {
-    return view('frontend.pages.mahasiswa.mahasiswa-belajar');
+    return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar');
 });
 
 Route::get('/dosen/matkul', function () {
