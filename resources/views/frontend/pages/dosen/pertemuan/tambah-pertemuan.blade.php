@@ -63,12 +63,22 @@
             <ul class="grid w-full gap-2 mb-4 p-5">
                 <form>
                     <div class="mb-6">
-                        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Judul
-                            Topik</label>
+                        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white"><span>Pertemuan
+                                1 : </span>Judul pertemuan</label>
                         <input type="email" id="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="cth. Pengenalan Adobe Photoshop" required>
                     </div>
+
+                    <div class="mb-6">
+
+                        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Deskripsi</label>
+                        <textarea id="message" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder=""></textarea>
+
+                    </div>
+
                     <div class="mb-6">
                         <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Link
                             Youtube</label>
@@ -85,14 +95,7 @@
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF
                             (MAX. 800x400px).</p>
                     </div>
-                    <div class="mb-6">
 
-                        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Deskripsi</label>
-                        <textarea id="message" rows="4"
-                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Sedikit deskripsi tentang mata kuliah ini..."></textarea>
-
-                    </div>
 
                     <div class="mb-6">
 
