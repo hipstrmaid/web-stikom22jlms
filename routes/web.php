@@ -25,6 +25,18 @@ Route::get('/matkul/matkul-saya', function () {
     return view('frontend.pages.matkul');
 });
 
+Route::get('/forum', function () {
+    return view('frontend.pages.forum');
+});
+
+Route::get('/forum/view', function () {
+    return view('frontend.pages.forum-view');
+});
+
+Route::get('/forum/diskusi', function () {
+    return view('frontend.pages.forum-diskusi');
+});
+
 Route::get('/matkul/pertemuan', function () {
     return view('frontend.pages.mahasiswa.pertemuan.mahasiswa-pertemuan');
 });
