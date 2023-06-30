@@ -22,7 +22,7 @@ Route::get('/matkul/preview', function () {
 });
 
 Route::get('/matkul/matkul-saya', function () {
-    return view('frontend.pages.mahasiswa.matkul-mahasiswa');
+    return view('frontend.pages.matkul');
 });
 
 Route::get('/matkul/pertemuan', function () {
