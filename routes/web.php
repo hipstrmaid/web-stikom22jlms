@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
+
 Route::get('/login', function () {
     return view('auth.login');
 });
+
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', function () {
     return view('frontend.pages.dashboard');
@@ -73,7 +85,3 @@ Route::get('/dosen/pertemuan', function () {
 Route::get('/dosen/tambah-pertemuan', function () {
     return view('frontend.pages.dosen.pertemuan.tambah-pertemuan');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
