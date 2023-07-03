@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('frontend.pages.dashboard');
+    return view('frontend.auth.login');
 });
+
+// Route::get('/', function () {
+//     return view('frontend.pages.dashboard');
+// });
 
 Route::get('/matkul/preview', function () {
     return view('frontend.pages.matkul-preview');
