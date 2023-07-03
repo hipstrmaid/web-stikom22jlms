@@ -22,3 +22,11 @@ footer {
     height: 100%;
     object-fit: cover;
 }
+
+.dot {
+    content: "";
+    height: 4px;
+    width: 4px;
+    background: rgba(0, 0, 0, 0.89);
+    border-radius: 100%;
+}

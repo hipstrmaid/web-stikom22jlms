@@ -61,6 +61,94 @@
                             </button>
                         </a>
                     </li>
+                    <hr>
+                    <li>
+                        <button type="button"
+                            class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="dropdown-pages-2" data-collapse-toggle="dropdown-pages-2">
+                            <i class="fas fa-book"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Data Umum</span>
+                            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <ul id="dropdown-pages-2" class="hidden py-2">
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mata
+                                    Kuliah</a>
+                            </li>
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Pertemuan</a>
+                            </li>
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Prodi</a>
+                            </li>
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Semester</a>
+                            </li>
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Materi</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <hr>
+                    <li>
+                        <button type="button"
+                            class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="dropdown-pages-3" data-collapse-toggle="dropdown-pages-3">
+                            <i class="fas fa-book"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Data User</span>
+                            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <ul id="dropdown-pages-3" class="hidden py-2">
+                            <li class="flex items-center pl-10">
+                                <i class="fa-solid fa-plus"></i>
+                                <a href="/user/tambah"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tambah
+                                    User</a>
+                            </li>
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mahasiswa</a>
+                            </li>
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dosen</a>
+                            </li>
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">BAAK</a>
+                            </li>
+                            <li class="flex items-center pl-10">
+                                <span class="dot"></span>
+                                <a href="/matkul/matkul-saya"
+                                    class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Admin</a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </aside>

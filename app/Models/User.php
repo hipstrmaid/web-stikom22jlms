@@ -7,20 +7,34 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function getRoleNameAttribute()
+    {
+        if ($this->role) {
+            return $this->role->nama_role;
+        }
+
+        return null;
+    }
+
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+        'id',
     ];
 
     /**

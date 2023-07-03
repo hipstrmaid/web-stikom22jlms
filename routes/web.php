@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
+
 
 
 /*
@@ -15,7 +18,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
+Route::resource('user', UserController::class);
+Route::resource('mahasiswa', MahasiswaController::class);
 
 
 Route::get('/login', function () {
@@ -25,6 +29,14 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
+
+
+Route::get('/admin', function () {
+    return view('admin.admin-dashboard');
+});
+
+
+
 
 Auth::routes();
 

@@ -1,4 +1,4 @@
-@extends('frontend.app')
+@extends('app')
 @section('content')
     <div class="content-head flex justify-between">
         <h1
