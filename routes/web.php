@@ -13,16 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('frontend.pages.dashboard');
+    return view('auth.login');
 });
+
+// Route::get('/', function () {
+//     return view('frontend.pages.dashboard');
+// });
 
 Route::get('/matkul/preview', function () {
     return view('frontend.pages.matkul-preview');
 });
 
 Route::get('/matkul/matkul-saya', function () {
-    return view('frontend.pages.mahasiswa.matkul-mahasiswa');
+    return view('frontend.pages.matkul');
+});
+
+Route::get('/forum', function () {
+    return view('frontend.pages.forum');
+});
+
+Route::get('/forum/view', function () {
+    return view('frontend.pages.forum-view');
+});
+
+Route::get('/forum/diskusi', function () {
+    return view('frontend.pages.forum-diskusi');
 });
 
 Route::get('/matkul/pertemuan', function () {

@@ -26,8 +26,8 @@
 
 <body class="font-poppins bg-gray-100 dark:bg-gray-900">
     <div class="antialiased">
-        @include('frontend.includes.header')
-        @include('frontend.includes.sidebar')
+        @include('includes.header')
+        @include('includes.sidebar')
 
         <main class=" md:ml-64 h-auto pt-20">
             <div class="container px-5">
@@ -35,7 +35,7 @@
             </div>
         </main>
     </div>
-    @include('frontend.includes.footer')
+    @include('includes.footer')
     <script src="{{ asset('js/darkmode.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
 </body>

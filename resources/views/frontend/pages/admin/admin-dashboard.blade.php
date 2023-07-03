@@ -1,15 +1,7 @@
 @extends('frontend.app')
 @section('content')
-    <div class="content-head flex justify-between">
-        <h1
-            class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-            Mata Kuliah Saya</h1>
-        <a href="/matkul/tambah-matkul"><button type="button"
-                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i
-                    class="fa-solid fa-plus"></i> Tambah</button></a>
-
-    </div>
-
+    <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+        Dashboard</h1>
     <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -54,16 +46,14 @@
     <div class="row">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 h-46 mb-4">
 
+
             <div class="max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <img class="rounded-t-lg" src="{{ asset('assets/img/course1.jpg') }}" alt="" />
                 </a>
                 <div class="p-5">
-                    <span
-                        class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">SISTEM
-                        INFORMASI</span>
                     <a href="#">
-                        <h5 class="my-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pemrogramana
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pemrogramana
                             Berbasis Objek</h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
@@ -74,9 +64,9 @@
                         <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
                     </div>
                     <div class="panel-footer">
-                        <a href="/matkul/pertemuan"
-                            class="inline-flex w-full items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-800"><i
-                                class="fa-solid fa-pen-to-square mr-2"></i> Edit Mata Kuliah
+                        <a href="/matkul/preview"
+                            class="inline-flex justify-center w-full  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Detail
                         </a>
                     </div>
                 </div>

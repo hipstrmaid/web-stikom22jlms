@@ -1,7 +1,15 @@
 @extends('frontend.app')
 @section('content')
-    <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Mata Kuliah Saya</h1>
+    <div class="content-head flex justify-between">
+        <h1
+            class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+            Mata Kuliah Saya</h1>
+        <a href="/dosen/tambah-matkul"><button type="button"
+                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i
+                    class="fa-solid fa-plus"></i> Tambah</button></a>
+
+    </div>
+
     <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -54,16 +62,6 @@
                     <span
                         class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">SISTEM
                         INFORMASI</span>
-                    {{-- <span
-                        class="bg-yellow-100 text-yellow-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-400 border border-yellow-400">
-                        <svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Senin, 14:55
-                    </span> --}}
                     <a href="#">
                         <h5 class="my-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pemrogramana
                             Berbasis Objek</h5>
@@ -76,16 +74,21 @@
                         <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
                     </div>
                     <div class="panel-footer">
-                        <a href="/matkul/pertemuan/belajar"
-                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Belajar
-                            <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
+
+                        <button
+                            class="w-full px-3 py-2 text-sm font-medium text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <a href="/matkul/pertemuan" class="inline-flex  items-center"><i
+                                    class="fa-solid fa-pen-to-square mr-2"></i> Edit Mata Kuliah
+                            </a>
+                        </button>
+
+                        <button
+                            class="w-full px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <a href="/matkul/pertemuan/belajar" class=" inline-flex items-center">
+                                Belajar
+                            </a>
+                        </button>
+
                     </div>
                 </div>
             </div>

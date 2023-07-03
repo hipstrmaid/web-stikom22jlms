@@ -1,5 +1,5 @@
 <nav
-    class="bg-white border-b border-grey-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+    class="bg-blue-10 text-white drop-shadow-lg px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
     <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
             <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
@@ -20,8 +20,8 @@
                 </svg>
                 <span class="sr-only">Toggle sidebar</span>
             </button>
-            <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
-                <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 h-8" alt="Flowbite Logo" />
+            <a href="#" class="flex items-center justify-between mr-4">
+                <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 h-8" alt="STIKOM Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM-LMS</span>
             </a>
         </div>

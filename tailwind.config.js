@@ -12,7 +12,12 @@ module.exports = {
         'poppins': ['Poppins', 'sans-serif'],
       },
       colors: {
-        'black': '#04060A'
+        blue: {
+            10: '#133B60'
+        },
+        gray: {
+            10: '#263238'
+        }
       },
       extend: {},
     },
