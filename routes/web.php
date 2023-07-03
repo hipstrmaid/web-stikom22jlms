@@ -73,3 +73,7 @@ Route::get('/dosen/pertemuan', function () {
 Route::get('/dosen/tambah-pertemuan', function () {
     return view('frontend.pages.dosen.pertemuan.tambah-pertemuan');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
