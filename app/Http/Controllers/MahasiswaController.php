@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -11,6 +12,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
+        // $users = User::with('role')->get();
+        // return view('admin.user.user-view', ['users' => $users]);
+        $mahasiswa = Mahasiswa::all();
+        return view('admin.mahasiswa.create-mahasiswa', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
@@ -18,7 +23,6 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.mahasiswa.create-mahasiswa');
     }
 
     /**

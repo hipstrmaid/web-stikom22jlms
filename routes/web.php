@@ -18,33 +18,35 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::resource('user', UserController::class);
-Route::resource('mahasiswa', MahasiswaController::class);
-
-
+// Routes accessible by guests
 Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/register', function () {
-    return view('auth.register');
+// Routes accessible by authenticated users only
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.admin-dashboard');
+    });
+
+    Route::resource('user', UserController::class);
+    Route::resource('mahasiswa', MahasiswaController::class);
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
+// Public route
+Route::get('/', function () {
+    return view('welcome');
+})->middleware('guest');
 
-Route::get('/admin', function () {
-    return view('admin.admin-dashboard');
-});
-
-
-
-
+// Laravel authentication routes
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('frontend.pages.dashboard');
 });
+
 
 Route::get('/matkul/preview', function () {
     return view('frontend.pages.matkul-preview');

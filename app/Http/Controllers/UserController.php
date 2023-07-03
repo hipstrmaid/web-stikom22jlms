@@ -40,11 +40,6 @@ class UserController extends Controller
         $password = 'password123';
         $roleId = $request->input('role_id');
 
-        // $user = new User();
-        // $user->username = $username;
-        // $user->password = Hash::make($password);
-        // $user->role_id = $roleId;
-        // $user->save();
         User::create([
             'nim_mhs' => $nim,
             'username' => $username,

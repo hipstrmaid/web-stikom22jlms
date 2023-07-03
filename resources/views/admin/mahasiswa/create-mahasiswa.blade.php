@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
     <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Buat User</h1>
+        Daftar Mahasiswa</h1>
     <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -104,7 +104,7 @@
             <div class="w-full panel-head flex items-center p-4">
 
                 <div class="flex flex-col w-full  dark:text-gray-50 dark:text-gray-400">
-                    <h1 class="text-2xl font-bold">Data Mahasiswa</h1>
+                    <h1 class="text-2xl font-bold">Tabel Mahasiswa</h1>
                 </div>
                 <button class="flex items-center p-2 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-600">
 
@@ -169,39 +169,51 @@
                                 Id
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                NIM/NIDN
+                                FOTO
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Username
+                                NAMA
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Password
+                                NIM
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Edit
+                                PRODI
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                USER_ID
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
 
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple MacBook Pro 17"
-                            </th>
-                            <td class="px-6 py-4">
-                                Silver
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop
-                            </td>
-                            <td class="px-6 py-4">
-                                $2999
-                            </td>
-                            <td class="px-6 py-4 text-left">
-                                <a href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
+                    <tbody>
+                        @foreach ($mahasiswa as $mhs)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $mhs->id }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $mhs->foto }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $mhs->nama }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $mhs->nim }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $mhs->prodi }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $mhs->user_id }}
+                                </td>
+                                <td class="px-6 py-4 text-left">
+                                    <a href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                </td>
+                        @endforeach
                         </tr>
 
 
