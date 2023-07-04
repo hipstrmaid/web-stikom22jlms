@@ -9,8 +9,8 @@ class Semester extends Model
 {
     use HasFactory;
 
-    public function matkuls()
-    {
-        return $this->hasMany(Matkul::class);
-    }
+    // public function matkuls()
+    // {
+    //     return $this->hasMany(Matkul::class);
+    // }
 }

@@ -26,8 +26,8 @@ class Matkul extends Model
         return $this->belongsTo(Dosen::class, 'dosen_id');
     }
 
-    public function semester()
-    {
-        return $this->hasOne(Semester::class, 'id', 'semester_id');
-    }
+    // public function semester()
+    // {
+    //     return $this->hasMany(Semester::class, 'id', 'semester_id');
+    // }
 }

@@ -53,7 +53,7 @@ class MatkulController extends Controller
         $semester_id = $request->input('semester_id');
         $hari = $request->input('hari');
 
-        $userId = Auth::user()->nim_mhs;
+        $userId = Auth::user()->id;
 
         $videoId = extractVideo($video_url);
 
