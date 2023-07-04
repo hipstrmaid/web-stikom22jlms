@@ -1,0 +1,35 @@
+.unclickable {
+    pointer-events: none;
+}
+#seek-slider {
+    position: relative;
+}
+#seek-slider-tooltip {
+    position: absolute;
+    top: -30px;
+    background-color: #000;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+#seek-slider:hover #seek-slider-tooltip {
+    display: block;
+}
+#controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+#pause-button,
+#volume-button,
+#subtitle-button {
+    background-color: #000;
+    color: #fff;
+    padding: 8px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+}

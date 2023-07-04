@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('semester_id');
             // $table->unsignedBigInteger('prodi_id');
             $table->string('nama_matkul');
-            $table->string('video_url');
+            $table->string('video_url')->nullable();
             $table->string('deskripsi');
             $table->string('gambar');
             $table->string('hari');

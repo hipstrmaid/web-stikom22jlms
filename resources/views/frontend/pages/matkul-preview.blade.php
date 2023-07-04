@@ -5,19 +5,16 @@
         <div class="col-span-6 order-2 lg:order-1">
             <div class="content">
                 <article class="dark:text-white">
-                    <h1 class="text-4xl font-bold mb-4 pt-4 lg:pt-0">Pemrograman Berbasis Objek</h1>
+                    <h1 class="text-4xl font-bold mb-4 pt-4 lg:pt-0">{{ $matkul->nama_matkul }}</h1>
                     <div class="video-player mt-2 mb-2">
-                        <iframe class="w-full max-w-full" height="300" src="https://www.youtube.com/embed/lPJVi797Uy0"
-                            title="YouTube video player" frameborder="0"
+                        {{-- <iframe class="w-full max-w-full" height="300"
+                            src="https://www.youtube.com/embed/{{ $matkul->video_url }}" title="YouTube video player"
+                            frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
+                            allowfullscreen></iframe> --}}
                         <div class="content-text tracking-normal text-gray-900 dark:text-gray-400 mt-2">
-                            <p>Make better videos with the ultimate course on video production, planning, cinematography,
-                                editing & distribution.</p>
-                            <p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their
-                                dry-transfer sheets, and again during the 90s as desktop publishers bundled the text with
-                                their
-                                software.</p>
+                            <p>{{ $matkul->deskripsi }}</p>
+
                         </div>
                     </div>
                 </article>
@@ -111,7 +108,7 @@
                     <div
                         class="flex justify-center bg-white p-4 border border-gray-200  dark:border-gray-900 dark:bg-gray-800">
                         <div class="img-profile">
-                            <img src="{{ asset('assets/img/profile2.jpg') }}" alt="user photo" />
+                            <img src="{{ asset($matkul->dosen->foto) }}" alt="user photo" />
                         </div>
                     </div>
                     <div class="bg-white text-sm border border-gray-200 rounded-b dark:border-gray-900 dark:bg-gray-800">
@@ -119,12 +116,12 @@
 
                             <li class="flex items-center">
                                 <i class="fa-solid fa-user ml-4 dark:text-white"></i>
-                                <p class="dark:text-white px-2">Dosen : Angelina Jolie</p>
+                                <p class="dark:text-white px-2">{{ $matkul->dosen->nama }}</p>
                             </li>
 
                             <li class="flex items-center">
                                 <i class="fa-solid fa-calendar ml-4 dark:text-white"></i>
-                                <p class="dark:text-white px-2">Selasa</p>
+                                <p class="dark:text-white px-2">{{ $matkul->hari }}</p>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa-solid fa-clock ml-4 dark:text-white"></i>

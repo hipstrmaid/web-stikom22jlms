@@ -54,18 +54,7 @@ class MatkulController extends Controller
         $hari = $request->input('hari');
 
         $userId = Auth::user()->id;
-
         $videoId = extractVideo($video_url);
-
-        // Matkul::create([
-        //     'nama_matkul' => $nama_matkul,
-        //     'dosen_id' => $userId,
-        //     'semester_id' => $semester_id,
-        //     'video_url' => $videoId,
-        //     'deskripsi' => $deskripsi,
-        //     'gambar' => $gambar,
-        //     'hari' => $hari,
-        // ]);
 
         $matkul = new Matkul;
         $matkul->nama_matkul = $nama_matkul;
@@ -87,7 +76,9 @@ class MatkulController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $matkul = Matkul::findOrFail($id);
+        $matkul->load('dosen');
+        return view('frontend.pages.matkul-preview', compact('matkul'));
     }
 
     /**

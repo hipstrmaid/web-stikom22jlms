@@ -22,7 +22,7 @@
                     <div class="p-5">
                         <span
                             class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $matkul->hari }}</span>
-                        <a href="#">
+                        <a href="{{ route('matkul.show', ['matkul' => $matkul->id]) }}">
                             <h5 class="my-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 {{ $matkul->nama_matkul }}</h5>
                         </a>

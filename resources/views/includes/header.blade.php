@@ -79,7 +79,7 @@
                     @if (auth()->check() && auth()->user()->role_id == 2)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
-                                <a href="#"
+                                <a href="{{ route('dosen.editProfile', Auth::id()) }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
                                     Settings</a>
                             </li>
