@@ -63,7 +63,7 @@
                                 </button>
                             </a>
                         </li>
-                        @if (auth()->user()->role_id == 1)
+                        @if (auth()->user()->role_id == 4)
                             <hr>
                             <li>
                                 <button type="button"
@@ -81,29 +81,35 @@
                                 <ul id="dropdown-pages-2" class="hidden py-2">
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="/matkul/matkul-saya"
+                                        <a href="#"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mata
                                             Kuliah</a>
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="/matkul/matkul-saya"
+                                        <a href="#"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Pertemuan</a>
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="/matkul/matkul-saya"
-                                            class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Prodi</a>
-                                    </li>
-                                    <li class="flex items-center pl-10">
-                                        <span class="dot"></span>
-                                        <a href="/matkul/matkul-saya"
+                                        <a href="#"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Semester</a>
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="/matkul/matkul-saya"
+                                        <a href="#"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Materi</a>
+                                    </li>
+                                    <li class="flex items-center pl-10">
+                                        <span class="dot"></span>
+                                        <a href="#"
+                                            class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Prodi</a>
+                                    </li>
+
+                                    <li class="flex items-center pl-10">
+                                        <span class="dot"></span>
+                                        <a href="{{ route('role.index') }}"
+                                            class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Role</a>
                                     </li>
 
                                 </ul>
@@ -136,7 +142,7 @@
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="/matkul/matkul-saya"
+                                        <a href="#"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dosen</a>
                                     </li>
                                     <li class="flex items-center pl-10">
@@ -146,7 +152,7 @@
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="/matkul/matkul-saya"
+                                        <a href="{{ route('admin.index') }}"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Admin</a>
                                     </li>
                                 </ul>

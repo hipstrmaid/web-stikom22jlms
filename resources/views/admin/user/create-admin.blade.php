@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Daftar Admin</h1>
-
     <div class="row flex flex-col">
         @if (Session::has('success'))
             <div id="toast-success"
@@ -65,7 +62,7 @@
             <div class="w-full panel-head flex items-center p-4">
 
                 <div class="flex flex-col w-full  dark:text-gray-50 dark:text-gray-400">
-                    <h1 class="text-2xl font-bold">Tabel Mahasiswa</h1>
+                    <h1 class="text-2xl font-bold">Tabel Admin</h1>
                 </div>
                 <button class="flex items-center p-2 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-600">
 
@@ -75,7 +72,7 @@
                             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                                 class="block flex  items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded    text-sm px-2 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button">
-                                <i class="fa-solid fa-plus"></i><span>Mahasiswa</span>
+                                <i class="fa-solid fa-plus"></i><span>Admin</span>
                             </button>
                             <!-- Main modal -->
                             <div id="authentication-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
@@ -101,11 +98,11 @@
                                                 @csrf
                                                 <div>
                                                     <label for="nim"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIM</label>
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIM/NIDN</label>
                                                     <input type="text" name="nim" id="nim"
                                                         class="@error('nim') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                                        placeholder="cth. 1920557xx" required>
-                                                    <input type="hidden" name="role_id" value="1">
+                                                        required>
+                                                    <input type="hidden" name="role_id" value="4">
                                                 </div>
                                                 <button type="submit"
                                                     class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Daftarkan</button>
@@ -135,12 +132,6 @@
                                 NAMA
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                NIM
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                PRODI
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 USER_ID
                             </th>
                         </tr>
@@ -159,12 +150,6 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $admin->nama }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $admin->nim }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $admin->prodi }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $admin->user_id }}

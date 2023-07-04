@@ -55,6 +55,14 @@
                         <span class="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span>
                         <span class="block text-sm text-gray-900 truncate dark:text-white">name@flowbite.com</span>
                     </div>
+                    @if (auth()->check() && auth()->user()->role_id == 4)
+                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="{{ route('admin.index') }}"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
+                            </li>
+                        </ul>
+                    @endif
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="#"
@@ -66,10 +74,8 @@
                         <li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
-
-
                                 <button type="submit"
-                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Log
+                                    class="text-start rounded-b rounded-lg w-full py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Log
                                     out</button>
 
                             </form>

@@ -11,10 +11,10 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $roles = [
-            ['nama_role' => 'Mahasiswa'],
-            ['nama_role' => 'Dosen'],
-            ['nama_role' => 'BAAK'],
-            ['nama_role' => 'Admin'],
+            ['nama_role' => 'Mahasiswa', 'created_at' => now()],
+            ['nama_role' => 'Dosen', 'created_at' => now()],
+            ['nama_role' => 'BAAK', 'created_at' => now()],
+            ['nama_role' => 'Admin', 'created_at' => now()],
             // Add more role records as needed
         ];
 
