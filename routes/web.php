@@ -24,7 +24,11 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
-    Route::resource('/admin', AdminController::class);
+    // Routes for admins
+    Route::middleware(['admin'])->group(function () {
+        Route::resource('admin', AdminController::class);
+        // Add more admin-specific routes here
+    });
 
 
     Route::get('/dashboard', function () {

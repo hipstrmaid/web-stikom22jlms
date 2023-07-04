@@ -32,7 +32,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nim' => ['required', 'unique:users,nim_mhs', 'min:10', 'max:10'],
+            'nim' => ['required', 'unique:users,nim_mhs', 'max:10'],
         ]);
 
         $nim = $request->input('nim');
