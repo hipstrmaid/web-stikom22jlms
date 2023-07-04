@@ -39,21 +39,51 @@
                         fill-rule="evenodd" clip-rule="evenodd"></path>
                 </svg>
             </button>
+            @php
+                use Illuminate\Support\Facades\Auth;
+                use Illuminate\Support\Facades\Storage;
+            @endphp
+
             @auth
                 <button type="button"
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                     <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full"
-                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
-                        alt="user photo" />
+
+                    @auth
+                        @if (Auth::user()->dosen)
+                            @if (Auth::user()->dosen->foto)
+                                <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->dosen->foto) }}"
+                                    alt="Dosen Foto">
+                            @endif
+                        @elseif (Auth::user()->mahasiswa)
+                            @if (Auth::user()->mahasiswa->foto)
+                                <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->mahasiswa->foto) }}"
+                                    alt="Mahasiswa Foto">
+                            @endif
+                        @endif
+                    @endauth
+
+
+
                 </button>
                 <!-- Dropdown menu -->
                 <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
                     id="dropdown">
                     <div class="py-3 px-4">
-                        <span class="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span>
-                        <span class="block text-sm text-gray-900 truncate dark:text-white">name@flowbite.com</span>
+                        @auth
+                            @if (Auth::user()->dosen)
+                                <span
+                                    class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
+                                <span
+                                    class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
+                            @elseif (Auth::user()->mahasiswa)
+                                <span
+                                    class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
+                                <span
+                                    class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
+                            @endif
+                        @endauth
                     </div>
                     @if (auth()->check() && auth()->user()->role_id == 4)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
@@ -79,7 +109,7 @@
                     @if (auth()->check() && auth()->user()->role_id == 2)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
-                                <a href="{{ route('dosen.editProfile', Auth::id()) }}"
+                                <a href="{{ route('dosen.viewProfile', Auth::id()) }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
                                     Settings</a>
                             </li>

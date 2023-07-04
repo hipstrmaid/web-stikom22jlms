@@ -7,11 +7,11 @@
                 <article class="dark:text-white">
                     <h1 class="text-4xl font-bold mb-4 pt-4 lg:pt-0">{{ $matkul->nama_matkul }}</h1>
                     <div class="video-player mt-2 mb-2">
-                        {{-- <iframe class="w-full max-w-full" height="300"
+                        <iframe class="w-full max-w-full" height="400"
                             src="https://www.youtube.com/embed/{{ $matkul->video_url }}" title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe> --}}
+                            allowfullscreen></iframe>
                         <div class="content-text tracking-normal text-gray-900 dark:text-gray-400 mt-2">
                             <p>{{ $matkul->deskripsi }}</p>
 
@@ -108,7 +108,8 @@
                     <div
                         class="flex justify-center bg-white p-4 border border-gray-200  dark:border-gray-900 dark:bg-gray-800">
                         <div class="img-profile">
-                            <img src="{{ asset($matkul->dosen->foto) }}" alt="user photo" />
+                            <img src="{{ Storage::url($matkul->dosen->foto) }}" alt="Dosen Foto">
+
                         </div>
                     </div>
                     <div class="bg-white text-sm border border-gray-200 rounded-b dark:border-gray-900 dark:bg-gray-800">

@@ -7,6 +7,7 @@ use App\Models\Matkul;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Termwind\Components\Dd;
 
 class MatkulController extends Controller
 {
@@ -41,7 +42,7 @@ class MatkulController extends Controller
             'nama_matkul' => 'required',
             'video_url' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'required',
+            'gambar' => 'required|file',
             'semester_id' => 'required',
             'hari' => 'required',
         ]);
@@ -49,9 +50,13 @@ class MatkulController extends Controller
         $nama_matkul = $request->input('nama_matkul');
         $video_url = $request->input('video_url');
         $deskripsi = $request->input('deskripsi');
-        $gambar = $request->input('gambar');
         $semester_id = $request->input('semester_id');
         $hari = $request->input('hari');
+
+        $gambar = $request->file('gambar'); // Use file() instead of input()
+
+        $gambarPath = $gambar->store('public/fotos'); // Store the file
+
 
         $userId = Auth::user()->id;
         $videoId = extractVideo($video_url);
@@ -62,13 +67,13 @@ class MatkulController extends Controller
         $matkul->semester_id = $semester_id;
         $matkul->video_url = $videoId;
         $matkul->deskripsi = $deskripsi;
-        $matkul->gambar = $gambar;
+        $matkul->gambar = $gambarPath;
         $matkul->hari = $hari;
         $matkul->save();
 
         Session::flash('success');
 
-        return redirect()->back();
+        return redirect(route('dashboard.index'));
     }
 
     /**

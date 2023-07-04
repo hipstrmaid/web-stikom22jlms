@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class DosenController extends Controller
 {
@@ -129,7 +131,6 @@ class DosenController extends Controller
     public function updateProfile(Request $request, string $id)
     {
 
-
         // Validate the input data
         $request->validate([
             'nama' => 'required',
@@ -161,7 +162,7 @@ class DosenController extends Controller
 
             $dosen->save();
 
-            return redirect()->route('dashboard.index')->with('success', 'Dosen data updated successfully.');
+            return redirect()->route('dosen.viewProfile')->with('success', 'Dosen data updated successfully.');
         } else {
             // Create a new Dosen record
             $newDosen = new Dosen();
@@ -179,7 +180,14 @@ class DosenController extends Controller
 
             $newDosen->save();
 
-            return redirect()->route('dashboard.index')->with('success', 'Dosen data updated successfully.');
+            return redirect()->route('dosen.viewProfile')->with('success', 'Dosen data updated successfully.');
         }
+    }
+
+    public function viewProfile(string $id)
+    {
+        $userId = Auth::id();
+        $dosen = Dosen::find($userId);
+        return view('frontend.pages.dosen.profile.view-profile', compact('dosen'));
     }
 }
