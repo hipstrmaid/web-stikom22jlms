@@ -130,10 +130,9 @@
                                 </button>
                                 <ul id="dropdown-pages-3" class="hidden py-2">
                                     <li class="flex items-center pl-10">
-                                        <i class="fa-solid fa-plus"></i>
+                                        <span class="dot"></span>
                                         <a href="{{ route('user.index') }}"
-                                            class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tambah
-                                            User</a>
+                                            class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">User</a>
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>

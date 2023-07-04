@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class MahasiswaController extends Controller
 {
@@ -23,6 +26,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
+        return view('frontend.profile.create-profile');
     }
 
     /**
@@ -30,7 +34,20 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nama' => 'required',
+            'nim' => 'required',
+            'foto' => 'required',
+            'prodi_id' => 'required',
+        ]);
+
+        $data['user_id'] = Auth::id(); // Assign the authenticated user's ID to the user_id field
+
+        Mahasiswa::create($data);
+
+        Session::flash('success');
+
+        return redirect()->back();
     }
 
     /**
@@ -63,5 +80,17 @@ class MahasiswaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function updateData()
+    {
+    }
+
+    public function viewProfile()
+    {
+        $userId = Auth::id(); // Get the ID of the currently authenticated user
+        $mahasiswa = Mahasiswa::where('user_id', $userId)->firstOrFail();
+        $nim = $mahasiswa->user->nim;
+        return view('frontend.profile.view-profile', ['mahasiswa' => $mahasiswa, 'nim' => $nim]);
     }
 }

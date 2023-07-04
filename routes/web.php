@@ -40,6 +40,7 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
+    Route::get('/mahasiswa/{mahasiswa}/profile', [MahasiswaController::class, 'viewProfile'])->name('mahasiswa.viewProfile');
 
     // Routes for admins
     Route::middleware(['admin'])->group(function () {

@@ -63,13 +63,25 @@
                             </li>
                         </ul>
                     @endif
-                    <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                        <li>
-                            <a href="#"
-                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
-                                Settings</a>
-                        </li>
-                    </ul>
+                    @if (auth()->check() && auth()->user()->role_id == 1)
+                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="{{ route('mahasiswa.viewProfile', Auth::id()) }}"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
+                                    Settings</a>
+                            </li>
+                        </ul>
+                    @endif
+                    @if (auth()->check() && auth()->user()->role_id == 2)
+                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="#"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
+                                    Settings</a>
+                            </li>
+                        </ul>
+                    @endif
+
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

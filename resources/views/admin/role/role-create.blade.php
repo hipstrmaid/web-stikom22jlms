@@ -76,7 +76,6 @@
                                 </td>
 
                                 <td class="px-2 py-4 text-left flex gap-2">
-
                                     <!-- Form for updating a Role -->
                                     <form class="space-y-6" action="{{ route('role.update', $role->id) }}" method="POST">
                                         <button data-modal-target="authentication-modal-1"
