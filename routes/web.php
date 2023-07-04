@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -38,9 +40,20 @@ Auth::routes();
 
 // Routes accessible by authenticated users only
 Route::middleware('auth')->group(function () {
+    Route::get('/user/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.indexMahasiswa');
+    Route::get('/user/dosen', [UserController::class, 'indexDosen'])->name('user.indexDosen');
     Route::resource('user', UserController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
+    Route::resource('dosen', DosenController::class);
+    Route::resource('matkul', MatkulController::class);
+
+
+
+
     Route::get('/mahasiswa/{mahasiswa}/profile', [MahasiswaController::class, 'viewProfile'])->name('mahasiswa.viewProfile');
+    Route::put('/mahasiswa/{mahasiswa}/edit', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
+
+
 
     // Routes for admins
     Route::middleware(['admin'])->group(function () {

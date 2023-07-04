@@ -12,15 +12,15 @@
                     </div>
                 @endif
                 <div class="bg-white border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
-                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="/matkul/edit-pertemuan">Edit Profile</a></h5>
+                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a href="#">Edit Profile</a>
+                    </h5>
                 </div>
-
             </ul>
 
             <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
                 <ul class="grid w-full gap-2 mb-4 p-5">
-                    <form action="{{ route('mahasiswa.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.edit', $mahasiswa->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6 gap-4">
                             <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white"><span>Nama</label>
@@ -37,7 +37,7 @@
                         </div>
                         <label for="semester" class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Program
                             Studi</label>
-                        <select id="prodi" name="prodi_id"
+                        <select id="prodi" name="prodi_id" required
                             class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Pilih Prodi</option>
                             <option value="1">Sistem Informasi</option>

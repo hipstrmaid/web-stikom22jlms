@@ -136,12 +136,12 @@
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="{{ route('mahasiswa.index') }}"
+                                        <a href="{{ route('user.indexMahasiswa') }}"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mahasiswa</a>
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="#"
+                                        <a href="{{ route('user.indexDosen') }}"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dosen</a>
                                     </li>
                                     <li class="flex items-center pl-10">

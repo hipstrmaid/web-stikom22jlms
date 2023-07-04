@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Dosen;
+use App\Models\Mahasiswa;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -81,5 +83,17 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function indexMahasiswa()
+    {
+        $mahasiswa = Mahasiswa::all();
+        return view('admin.mahasiswa.create-mahasiswa', ['mahasiswa' => $mahasiswa]);
+    }
+
+    public function indexDosen()
+    {
+        $dosen = Dosen::all();
+        return view('admin.user.create-dosen', ['dosens' => $dosen]);
     }
 }

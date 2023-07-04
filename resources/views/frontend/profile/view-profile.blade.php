@@ -11,7 +11,7 @@
                 </div>
                 <div class="dark:border-gray-900 dark:bg-gray-900">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('mahasiswa.create') }}">Edit
+                            href="{{ route('mahasiswa.edit', $mahasiswa) }}">Edit
                             Profile</a></h5>
                 </div>
             </ul>
@@ -29,26 +29,26 @@
                         <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white"><span>NIM/NIDN</label>
                         <input type="email" id="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ $mhs->user->nim_mhs }}" disabled>
+                            value="{{ $mahasiswa->user->nim_mhs }}" disabled>
                     </div>
                     <div class="mb-3 gap-4">
                         <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white"><span>Username</label>
                         <input type="email" id="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ $mhs->user->username }}" disabled>
+                            value="{{ $mahasiswa->user->username }}" disabled>
                     </div>
                     <div class="mb-3 gap-4">
                         <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white"><span>Nama</label>
                         <input type="email" id="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ $mhs->nama }}" disabled>
+                            value="{{ $mahasiswa->nama }}" disabled>
                     </div>
 
                     <div class="mb-3 gap-4">
                         <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white"><span>Prodi</label>
                         <input type="email" id="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ $mhs->prodi->nama_prodi }}" disabled>
+                            value="{{ $mahasiswa->prodi->nama_prodi }}" disabled>
                     </div>
                 </ul>
 

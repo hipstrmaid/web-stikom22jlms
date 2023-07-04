@@ -17,8 +17,6 @@ class MahasiswaController extends Controller
     {
         // // $users = User::with('role')->get();
         // // return view('admin.user.user-view', ['users' => $users]);
-        // $mahasiswa = Mahasiswa::all();
-        // return view('admin.mahasiswa.create-mahasiswa', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
@@ -38,7 +36,6 @@ class MahasiswaController extends Controller
     {
         $data = $request->validate([
             'nama' => 'required',
-            'nim' => 'required',
             'foto' => 'required',
             'prodi_id' => 'required',
         ]);
@@ -57,36 +54,39 @@ class MahasiswaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $userId = Auth::id();
+        $mahasiswa = Mahasiswa::where('user_id', $userId)->firstOrFail();
+        $nim = $mahasiswa->user->nim;
+
+        return view('frontend.profile.view-profile', compact('mahasiswa'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    // Controller method
+    public function edit($id)
     {
-        //
+        $mahasiswa = Mahasiswa::findOrFail($id);
+
+        return view('frontend.profile.edit-profile', compact('mahasiswa'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Mahasiswa $mahasiswa)
     {
         $request->validate([
             'nama' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'foto' => 'required'
+            'nim' => 'required',
+            'prodi_id' => 'required',
         ]);
 
-        $id_mahasiswa = Auth::id();
-        $mahasiswa = Mahasiswa::findOrFail($id_mahasiswa);
-
         $mahasiswa->nama = $request->input('nama');
-        $mahasiswa->nusername = $request->input('nim');
-        $mahasiswa->password = $request->input('password');
-        $mahasiswa->foto = $request->input('foto');
+        $mahasiswa->nim = $request->input('nim');
+        $mahasiswa->prodi_id = $request->input('prodi_id');
 
         $mahasiswa->save();
 
@@ -107,8 +107,10 @@ class MahasiswaController extends Controller
 
     public function viewProfile()
     {
-        $id_mahasiswa = Auth::id();
-        $mahasiswa = Mahasiswa::find($id_mahasiswa); // Mengambil id dari Auth
-        return view('frontend.profile.view-profile', ['mhs' => $mahasiswa]);
+        $userId = Auth::id();
+        $mahasiswa = Mahasiswa::where('user_id', $userId)->firstOrFail();
+        $nim = $mahasiswa->user->nim;
+
+        return view('frontend.profile.view-profile', compact('mahasiswa'));
     }
 }

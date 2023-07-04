@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('enrolls', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('mhs_id');
+            $table->unsignedBigInteger('dosen_id');
+            $table->foreign('mhs_id')->references('id')->on('enrolls');
+            $table->foreign('dosen_id')->references('id')->on('enrolls');
             $table->timestamps();
         });
     }

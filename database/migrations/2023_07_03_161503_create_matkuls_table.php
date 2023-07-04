@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('matkuls', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('dosen_id');
+            $table->unsignedBigInteger('semester_id');
+            // $table->unsignedBigInteger('prodi_id');
+            $table->string('nama_matkul');
+            $table->string('video_url');
+            $table->string('deskripsi');
+            $table->string('gambar');
+            $table->string('hari');
+            $table->foreign('dosen_id')->references('id')->on('matkuls');
+            $table->foreign('semester_id')->references('id')->on('matkuls');
+            // $table->foreign('prodi_id')->references('id')->on('matkuls');
+
+
             $table->timestamps();
         });
     }

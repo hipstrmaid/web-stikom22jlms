@@ -4,10 +4,11 @@
         <h1
             class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
             Mata Kuliah Saya</h1>
-        <a href="/dosen/tambah-matkul"><button type="button"
-                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i
-                    class="fa-solid fa-plus"></i> Tambah</button></a>
-
+        @if (auth()->check() && auth()->user()->role_id == 2)
+            <a href="{{ route('matkul.create') }}"><button type="button"
+                    class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i
+                        class="fa-solid fa-plus"></i> Tambah</button></a>
+        @endif
     </div>
 
     <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
@@ -75,20 +76,21 @@
                     </div>
                     <div class="panel-footer">
 
+
                         <button
                             class="w-full px-3 py-2 text-sm font-medium text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             <a href="/matkul/pertemuan" class="inline-flex  items-center"><i
                                     class="fa-solid fa-pen-to-square mr-2"></i> Edit Mata Kuliah
                             </a>
                         </button>
-
-                        <button
-                            class="w-full px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            <a href="/matkul/pertemuan/belajar" class=" inline-flex items-center">
-                                Belajar
-                            </a>
-                        </button>
-
+                        @if (auth()->check() && auth()->user()->role_id == 1)
+                            <button
+                                class="w-full px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <a href="/matkul/pertemuan/belajar" class=" inline-flex items-center">
+                                    Belajar
+                                </a>
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>

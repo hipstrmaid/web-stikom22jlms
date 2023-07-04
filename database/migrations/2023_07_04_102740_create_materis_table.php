@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dosens', function (Blueprint $table) {
+        Schema::create('materis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('foto');
+            $table->unsignedBigInteger('pertemuan_id');
+            $table->string('nama_file');
+            $table->string('path_file');
+            $table->string('tipe_file');
+            $table->foreign('pertemuan_id')->references('id')->on('materis');
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('dosens');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dosens');
+        Schema::dropIfExists('materis');
     }
 };
