@@ -10,10 +10,24 @@ class Matkul extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'dosen_id',
+        'semester_id',
+        'nama_matkul',
+        'video_url',
+        'deskripsi',
+        'gambar',
+        'hari',
+    ];
+
 
     public function dosen()
     {
         return $this->belongsTo(Dosen::class, 'dosen_id');
+    }
+
+    public function semester()
+    {
+        return $this->hasOne(Semester::class, 'id', 'semester_id');
     }
 }

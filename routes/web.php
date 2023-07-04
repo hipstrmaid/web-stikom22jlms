@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
@@ -8,8 +9,7 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
-
-
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +40,7 @@ Auth::routes();
 
 // Routes accessible by authenticated users only
 Route::middleware('auth')->group(function () {
+    Route::resource('dashboard', DashboardController::class);
     Route::get('/user/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.indexMahasiswa');
     Route::get('/user/dosen', [UserController::class, 'indexDosen'])->name('user.indexDosen');
     Route::resource('user', UserController::class);
@@ -62,9 +63,9 @@ Route::middleware('auth')->group(function () {
         // Add more admin-specific routes here
     });
 
-    Route::get('/dashboard', function () {
-        return view('frontend.pages.dashboard');
-    });
+    // Route::get('/dashboard', function () {
+    //     return view('frontend.pages.dashboard');
+    // });
 });
 
 Route::get('/', function () {

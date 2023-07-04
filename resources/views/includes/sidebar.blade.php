@@ -21,7 +21,7 @@
                 </form>
                 <ul class="space-y-1">
                     <li>
-                        <a href="/"
+                        <a href="{{ route('dashboard.index') }}"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white dark:bg-gray-900 bg-gray-200 group">
                             <i class="fas fa-tachometer-alt"></i>
                             <span class="ml-3">Dashboard</span>
@@ -44,7 +44,7 @@
                             </button>
                             <ul id="dropdown-pages" class="hidden py-2">
                                 <li class="flex items-center">
-                                    <a href="/matkul/matkul-saya"
+                                    <a href="{{ route('matkul.index') }}"
                                         class="p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mata
                                         Kuliah Saya</a>
                                 </li>

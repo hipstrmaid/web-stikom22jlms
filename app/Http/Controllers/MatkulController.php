@@ -15,7 +15,11 @@ class MatkulController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.matkul');
+        // $matkuls = Matkul::all();
+        $dosen_id = Auth::id(); // Assuming you have the dosen_id available
+        $matkuls = Matkul::where('dosen_id', $dosen_id)->get();
+
+        return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
     }
 
     /**
@@ -49,18 +53,30 @@ class MatkulController extends Controller
         $semester_id = $request->input('semester_id');
         $hari = $request->input('hari');
 
-
+        $userId = Auth::user()->nim_mhs;
 
         $videoId = extractVideo($video_url);
-        Matkul::create([
-            'nama_matkul' => $nama_matkul,
-            'dosen_id' => $data,
-            'video_url' => $videoId,
-            'deskripsi' => $deskripsi,
-            'gambar' => $gambar,
-            'semester_id' => $semester_id,
-            'hari' => $hari,
-        ]);
+
+        // Matkul::create([
+        //     'nama_matkul' => $nama_matkul,
+        //     'dosen_id' => $userId,
+        //     'semester_id' => $semester_id,
+        //     'video_url' => $videoId,
+        //     'deskripsi' => $deskripsi,
+        //     'gambar' => $gambar,
+        //     'hari' => $hari,
+        // ]);
+
+        $matkul = new Matkul;
+        $matkul->nama_matkul = $nama_matkul;
+        $matkul->dosen_id = $userId;
+        $matkul->semester_id = $semester_id;
+        $matkul->video_url = $videoId;
+        $matkul->deskripsi = $deskripsi;
+        $matkul->gambar = $gambar;
+        $matkul->hari = $hari;
+        $matkul->save();
+
         Session::flash('success');
 
         return redirect()->back();
