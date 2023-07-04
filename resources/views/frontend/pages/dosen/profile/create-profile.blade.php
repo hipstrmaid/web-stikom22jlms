@@ -13,7 +13,8 @@
 
             <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
                 <ul class="grid w-full gap-2 mb-4 p-5">
-                    <form action="{{ route('dosen.update', Auth::id()) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dosen.updateProfile', Auth::id()) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-6 gap-4">
