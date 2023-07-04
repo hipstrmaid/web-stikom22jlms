@@ -9,6 +9,12 @@ class Role extends Model
 {
     protected $guard = 'id';
 
+    protected $fillable = [
+        'nama_role',
+        // other fillable attributes
+    ];
+
+
     public function users()
     {
         return $this->hasMany(User::class, 'role_id');

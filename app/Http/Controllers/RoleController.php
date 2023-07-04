@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Session\Session;
 
 class RoleController extends Controller
 {
@@ -29,7 +30,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_role' => ['required'],
+        ]);
+
+        $nama_role = $request->input('nama_role');
+
+        Role::create([
+            'nama_role' => $nama_role,
+            'created_at' => now(),
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -53,14 +65,35 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Find the role by ID
+        $role = Role::findOrFail($id);
+
+        // Validate the request data
+        $validatedData = $request->validate([
+            'nama_role' => 'required|string|max:255',
+            // Add more validation rules as needed
+        ]);
+
+        // Update the role with the validated data
+        $role->update($validatedData);
+
+        // Redirect or return a response
+        return redirect()->route('roles.index')->with('success', 'Role updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        // Find the user by ID
+        $role = Role::findOrFail($id);
+
+        // Perform the deletion
+        $role->delete();
+
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'User deleted successfully');
     }
 }
