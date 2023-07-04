@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $guard = 'id';
-
     protected $fillable = [
         'nama_role',
         // other fillable attributes

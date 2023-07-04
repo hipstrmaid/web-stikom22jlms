@@ -42,11 +42,6 @@ class MatkulController extends Controller
             'hari' => 'required',
         ]);
 
-        $id_dosen = Auth::id();
-        $dosen_id = Dosen::find($id_dosen); // Mengambil id dari Auth
-
-
-
         $nama_matkul = $request->input('nama_matkul');
         $video_url = $request->input('video_url');
         $deskripsi = $request->input('deskripsi');
@@ -57,10 +52,9 @@ class MatkulController extends Controller
 
 
         $videoId = extractVideo($video_url);
-
         Matkul::create([
             'nama_matkul' => $nama_matkul,
-            'dosen_id' => $dosen_id,
+            'dosen_id' => $data,
             'video_url' => $videoId,
             'deskripsi' => $deskripsi,
             'gambar' => $gambar,

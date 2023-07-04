@@ -13,4 +13,9 @@ class Dosen extends Model
     {
         return $this->hasMany(Matkul::class, 'dosen_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

@@ -15,12 +15,17 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'role_id');
+        return $this->belongsTo(Role::class);
     }
 
     public function mahasiswa()
     {
         return $this->hasOne(Mahasiswa::class);
+    }
+
+    public function dosen()
+    {
+        return $this->hasOne(Dosen::class);
     }
 
 
