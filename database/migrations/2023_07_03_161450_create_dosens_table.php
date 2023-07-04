@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('dosens', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('nama');
+            $table->string('nidn');
+            $table->string('foto');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('dosens');
         });
     }
 

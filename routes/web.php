@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +24,8 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
+    Route::resource('/admin', AdminController::class);
 
-    Route::get('/admin', function () {
-        return view('admin.admin-dashboard');
-    });
 
     Route::get('/dashboard', function () {
         return view('frontend.pages.dashboard');
@@ -36,10 +35,6 @@ Route::middleware('auth')->group(function () {
 
 // Routes accessible by guest users only
 Route::middleware('guest')->group(function () {
-    Route::get('/matkul/preview', function () {
-        return view('frontend.pages.matkul-preview');
-    });
-
     Route::get('/guest', function () {
         return view('frontend.pages.guest.dashboard');
     });

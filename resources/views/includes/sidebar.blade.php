@@ -63,7 +63,7 @@
                                 </button>
                             </a>
                         </li>
-                        @if (auth()->user()->role_id == 2)
+                        @if (auth()->user()->role_id == 1)
                             <hr>
                             <li>
                                 <button type="button"
