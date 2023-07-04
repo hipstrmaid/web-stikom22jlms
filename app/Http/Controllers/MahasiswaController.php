@@ -15,10 +15,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        // $users = User::with('role')->get();
-        // return view('admin.user.user-view', ['users' => $users]);
-        $mahasiswa = Mahasiswa::all();
-        return view('admin.mahasiswa.create-mahasiswa', ['mahasiswa' => $mahasiswa]);
+        // // $users = User::with('role')->get();
+        // // return view('admin.user.user-view', ['users' => $users]);
+        // $mahasiswa = Mahasiswa::all();
+        // return view('admin.mahasiswa.create-mahasiswa', ['mahasiswa' => $mahasiswa]);
     }
 
     /**
@@ -26,7 +26,9 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('frontend.profile.create-profile');
+        $id_mahasiswa = Auth::id();
+        $mahasiswa = Mahasiswa::find($id_mahasiswa); // Mengambil id dari Auth
+        return view('frontend.profile.create-profile', ['edit' => $mahasiswa]);
     }
 
     /**
@@ -71,7 +73,24 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'foto' => 'required'
+        ]);
+
+        $id_mahasiswa = Auth::id();
+        $mahasiswa = Mahasiswa::findOrFail($id_mahasiswa);
+
+        $mahasiswa->nama = $request->input('nama');
+        $mahasiswa->nusername = $request->input('nim');
+        $mahasiswa->password = $request->input('password');
+        $mahasiswa->foto = $request->input('foto');
+
+        $mahasiswa->save();
+
+        return redirect()->back()->with('success', 'Mahasiswa updated successfully.');
     }
 
     /**
@@ -88,9 +107,8 @@ class MahasiswaController extends Controller
 
     public function viewProfile()
     {
-        $userId = Auth::id(); // Get the ID of the currently authenticated user
-        $mahasiswa = Mahasiswa::where('user_id', $userId)->firstOrFail();
-        $nim = $mahasiswa->user->nim;
-        return view('frontend.profile.view-profile', ['mahasiswa' => $mahasiswa, 'nim' => $nim]);
+        $id_mahasiswa = Auth::id();
+        $mahasiswa = Mahasiswa::find($id_mahasiswa); // Mengambil id dari Auth
+        return view('frontend.profile.view-profile', ['mhs' => $mahasiswa]);
     }
 }

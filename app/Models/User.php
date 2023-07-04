@@ -18,6 +18,12 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id');
     }
 
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class);
+    }
+
+
     public function getRoleNameAttribute()
     {
         if ($this->role) {
