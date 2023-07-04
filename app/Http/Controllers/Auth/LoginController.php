@@ -24,11 +24,12 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout', 'guestLogin');
     }
 
-    public function username()
+    public function guestLogin()
     {
-        return 'username';
+
+        return redirect()->route('home'); // Redirect to the home page or any other desired page after guest login
     }
 }

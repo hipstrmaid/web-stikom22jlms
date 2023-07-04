@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 @section('content')
     <div class="grid grid-cols-1 lg:grid-cols-8 mb-4 lg:gap-4">
 

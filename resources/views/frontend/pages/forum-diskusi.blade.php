@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 @section('content')
     <div class="row flex flex-col gap-4">
         <div class="grid mb-4 bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">

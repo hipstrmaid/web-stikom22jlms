@@ -18,84 +18,42 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Routes accessible by guests
-Route::get('/login', function () {
-    return view('auth.login');
-});
 
 // Routes accessible by authenticated users only
 Route::middleware('auth')->group(function () {
+    Route::resource('user', UserController::class);
+    Route::resource('mahasiswa', MahasiswaController::class);
+
     Route::get('/admin', function () {
         return view('admin.admin-dashboard');
     });
 
-    Route::resource('user', UserController::class);
-    Route::resource('mahasiswa', MahasiswaController::class);
+    Route::get('/dashboard', function () {
+        return view('frontend.pages.dashboard');
+    });
+});
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Routes accessible by guest users only
+Route::middleware('guest')->group(function () {
+    Route::get('/matkul/preview', function () {
+        return view('frontend.pages.matkul-preview');
+    });
+
+    Route::get('/guest', function () {
+        return view('frontend.pages.guest.dashboard');
+    });
+});
+
+
+Route::get('/', function () {
+    return view('welcome');
 });
 
 // Public route
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('guest');
+Route::get('/login', function () {
+    return view('auth.login');
+});
 
 // Laravel authentication routes
 Auth::routes();
-
-Route::get('/dashboard', function () {
-    return view('frontend.pages.dashboard');
-});
-
-
-Route::get('/matkul/preview', function () {
-    return view('frontend.pages.matkul-preview');
-});
-
-Route::get('/matkul/matkul-saya', function () {
-    return view('frontend.pages.matkul');
-});
-
-Route::get('/forum', function () {
-    return view('frontend.pages.forum');
-});
-
-Route::get('/forum/view', function () {
-    return view('frontend.pages.forum-view');
-});
-
-Route::get('/forum/diskusi', function () {
-    return view('frontend.pages.forum-diskusi');
-});
-
-Route::get('/matkul/pertemuan', function () {
-    return view('frontend.pages.mahasiswa.pertemuan.mahasiswa-pertemuan');
-});
-
-Route::get('/matkul/pertemuan/belajar', function () {
-    return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar');
-});
-
-Route::get('/dosen/matkul', function () {
-    return view('frontend.pages.dosen.matkul-dosen');
-});
-
-Route::get('/dosen/edit-matkul', function () {
-    return view('frontend.pages.dosen.matkul.edit-matkul');
-});
-
-Route::get('/dosen/edit-pertemuan', function () {
-    return view('frontend.pages.dosen.pertemuan.edit-pertemuan');
-});
-
-Route::get('/dosen/tambah-matkul', function () {
-    return view('frontend.pages.dosen.matkul.tambah-matkul');
-});
-
-Route::get('/dosen/pertemuan', function () {
-    return view('frontend.pages.dosen.pertemuan.view-pertemuan');
-});
-
-Route::get('/dosen/tambah-pertemuan', function () {
-    return view('frontend.pages.dosen.pertemuan.tambah-pertemuan');
-});

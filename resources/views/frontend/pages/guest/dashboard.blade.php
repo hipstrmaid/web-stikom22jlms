@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Learning Management System</h1>
+        Selamat Datang, Guest</h1>
     <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -45,11 +45,35 @@
 
     <div class="row">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 h-46 mb-4">
-            @if (session('status'))
-                <div class="text-lg font-bold" role="alert">
-                    {{ session('status') }}
+
+
+            <div class="max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg" src="{{ asset('assets/img/course1.jpg') }}" alt="" />
+                </a>
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pemrogramana
+                            Berbasis Objek</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
+                        acquisitions of 2021 so far, in reverse chronological order.</p>
+
+
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2.5 dark:bg-gray-700">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="/matkul/preview"
+                            class="inline-flex justify-center w-full  px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Detail
+                        </a>
+                    </div>
                 </div>
-            @endif
+            </div>
+
+
+
 
         </div>
     </div>
