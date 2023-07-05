@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
+use App\Models\Mahasiswa;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -55,10 +56,9 @@ Route::middleware('auth')->group(function () {
     route::get("/dosen/{id}/view", [DosenController::class, 'viewProfile'])->name('dosen.viewProfile');
 
 
-
-    Route::get('/mahasiswa/{mahasiswa}/profile', [MahasiswaController::class, 'viewProfile'])->name('mahasiswa.viewProfile');
-    Route::put('/mahasiswa/{mahasiswa}/edit', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
-
+    route::get("/mahasiswa/{id}/profile", [Mahasiswa::class, 'editProfile'])->name('mahasiswa.editProfile');
+    route::put("/mahasiswa/{id}/edit-profile", [Mahasiswa::class, 'updateProfile'])->name('mahasiswa.updateProfile');
+    route::get("/mahasiswa/{id}/view", [Mahasiswa::class, 'viewProfile'])->name('mahasiswa.viewProfile');
 
 
     // Routes for admins
@@ -67,10 +67,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('role', RoleController::class);
         // Add more admin-specific routes here
     });
-
-    // Route::get('/dashboard', function () {
-    //     return view('frontend.pages.dashboard');
-    // });
 });
 
 Route::get('/', function () {

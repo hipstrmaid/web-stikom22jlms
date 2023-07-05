@@ -54,11 +54,11 @@ class MahasiswaController extends Controller
      */
     public function show(string $id)
     {
-        $userId = Auth::id();
-        $mahasiswa = Mahasiswa::where('user_id', $userId)->firstOrFail();
-        $nim = $mahasiswa->user->nim;
+        // $userId = Auth::id();
+        // $mahasiswa = Mahasiswa::where('user_id', $userId)->firstOrFail();
+        // $nim = $mahasiswa->user->nim;
 
-        return view('frontend.profile.view-profile', compact('mahasiswa'));
+        // return view('frontend.profile.view-profile', compact('mahasiswa'));
     }
 
     /**
@@ -67,9 +67,9 @@ class MahasiswaController extends Controller
     // Controller method
     public function edit($id)
     {
-        $mahasiswa = Mahasiswa::findOrFail($id);
+        // $mahasiswa = Mahasiswa::findOrFail($id);
 
-        return view('frontend.profile.edit-profile', compact('mahasiswa'));
+        // return view('frontend.profile.edit-profile', compact('mahasiswa'));
     }
 
 
@@ -104,13 +104,77 @@ class MahasiswaController extends Controller
     public function updateData()
     {
     }
-
-    public function viewProfile()
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function editProfile(string $id)
     {
         $userId = Auth::id();
-        $mahasiswa = Mahasiswa::where('user_id', $userId)->firstOrFail();
-        $nim = $mahasiswa->user->nim;
+        $mahasiswa = Mahasiswa::find($userId);
+        return view('frontend.pages.mahasiswa.profile.create-profile', compact('mahasiswa'));
+    }
 
-        return view('frontend.profile.view-profile', compact('mahasiswa'));
+    public function updateProfile(Request $request, string $id)
+    {
+
+        // Validate the input data
+        $request->validate([
+            'nama' => 'required',
+            'foto' => 'required|file',
+            'prodi_id' => 'required',
+            // Add more validation rules for other fields if needed
+        ]);
+
+        // Retrieve the authenticated user
+        $user = Auth::user();
+
+        // Get the user's ID
+        $userID = $user->id;
+
+        // Find the corresponding Dosen record based on the authenticated user
+        $Mahasiswa = Mahasiswa::where('user_id', $userID)->first();
+
+        if ($Mahasiswa) {
+            // Update the existing Dosen data
+            $Mahasiswa->nama = $request->input('nama');
+
+            // Handle the file upload and update the "foto" field
+            if ($request->hasFile('foto')) {
+                $foto = $request->file('foto');
+                $fotoPath = $foto->store('public/fotos'); // Store the file in storage/app/public/fotos
+                $Mahasiswa->foto = $fotoPath;
+            }
+
+            // Update other fields as needed
+
+            $Mahasiswa->save();
+
+            return redirect()->route('mahasiswa.viewProfile', ['id' => $Mahasiswa->id])->with('success', 'Dosen data updated successfully.');
+        } else {
+            // Create a new Dosen record
+            $newMhs = new Mahasiswa();
+            $newMhs->nama = $request->input('nama');
+
+            // Handle the file upload and set the "foto" field
+            if ($request->hasFile('foto')) {
+                $foto = $request->file('foto');
+                $fotoPath = $foto->store('public/fotos'); // Store the file in storage/app/public/fotos
+                $newMhs->foto = $fotoPath;
+            }
+
+            $newMhs->user_id = $userID;
+            // Set other fields as needed
+
+            $newMhs->save();
+
+            return redirect()->route('mahasiswa.viewProfile')->with('success', 'Mahasiswa data updated successfully.');
+        }
+    }
+
+    public function viewProfile(string $id)
+    {
+        $userId = Auth::id();
+        $mahasiswa = Mahasiswa::find($userId);
+        return view('frontend.pages.mahasiswa.profile.view-profile', compact('mahasiswa'));
     }
 }

@@ -61,7 +61,16 @@
                                 <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->mahasiswa->foto) }}"
                                     alt="Mahasiswa Foto">
                             @endif
+                        @elseif (Auth::user()->admin)
+                            @if (Auth::user()->admin->foto)
+                                <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/profile.jpg') }}"
+                                    alt="Mahasiswa Foto">
+                            @endif
+                        @else
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
                         @endif
+
+
                     @endauth
 
 
@@ -79,9 +88,12 @@
                                     class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
                             @elseif (Auth::user()->mahasiswa)
                                 <span
-                                    class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
+                                    class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->nama }}</span>
                                 <span
                                     class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
+                            @else
+                                <span class="block text-sm font-semibold text-gray-900 dark:text-white">Nama</span>
+                                <span class="block text-sm text-gray-900 truncate dark:text-white">NIM/NIDN</span>
                             @endif
                         @endauth
                     </div>
@@ -94,7 +106,6 @@
                         </ul>
                     @endif
 
-
                     @if (auth()->check() && auth()->user()->role_id == 1)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
@@ -105,11 +116,10 @@
                         </ul>
                     @endif
 
-
                     @if (auth()->check() && auth()->user()->role_id == 2)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
-                                <a href="{{ route('dosen.viewProfile', Auth::id()) }}"
+                                <a href="{{ route('dosen.editProfile', Auth::id()) }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
                                     Settings</a>
                             </li>
@@ -132,7 +142,7 @@
             @endauth
             @guest
                 <button type="button"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a
+                    class="text-white bg-blue-600 dark:bg-green-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a
                         href="/login">Login</a>
                     <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">

@@ -7,12 +7,12 @@
             <ul class="flex bg-gray-200 dark:bg-gray-900">
                 <div class="bg-white border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.viewProfile', Auth::id()) }}">Profil</a>
+                            href="{{ route('mahasiswa.viewProfile', Auth::id()) }}">Profil</a>
                     </h5>
                 </div>
                 <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.editProfile', Auth::id()) }}">Edit Profile</a>
+                            href="{{ route('mahasiswa.editProfile', Auth::id()) }}">Edit Profile</a>
                     </h5>
                 </div>
             </ul>
@@ -26,8 +26,8 @@
                                 <div class="w-full px-4">
                                     <div class="py-5 px-5">
                                         <div class="img-profile">
-                                            @isset($dosen->foto)
-                                                <img src="{{ Storage::url($dosen->foto) }}" alt="Dosen Foto">
+                                            @isset($mahasiswa->foto)
+                                                <img src="{{ Storage::url($mahasiswa->foto) }}" alt="Dosen Foto">
                                             @else
                                                 <img src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
                                             @endisset
@@ -38,13 +38,13 @@
                             </div>
                             <div class="text-left mt-2 pb-4">
                                 <h3 class="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                                    {{ $dosen->nama ?? 'Nama' }}
+                                    {{ $mahasiswa->nama ?? 'Nama' }}
                                 </h3>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                                    {{ $dosen->user->nim_mhs ?? 'Nim/Nidn' }}
+                                    {{ $mahasiswa->user->nim_mhs ?? 'Nim/Nidn' }}
                                 </div>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                                    {{ $dosen->user->role->nama_role ?? 'Role' }}
+                                    {{ $mahasiswa->user->role->nama_role ?? 'Role' }}
                                 </div>
 
                             </div>

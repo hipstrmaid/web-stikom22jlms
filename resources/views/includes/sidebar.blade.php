@@ -27,6 +27,13 @@
                             <span class="ml-3">Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white group">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span class="ml-3">Calendar</span>
+                        </a>
+                    </li>
                     @auth
 
                         <li>
@@ -157,6 +164,21 @@
                                 </ul>
                             </li>
                         @endif
+                        {{-- <ul class="space-y-1">
+                            <li class="flex">
+                                <form action="{{ route('logout') }}" method="POST" class="w-full">
+                                    @csrf
+                                    <button type="submit"
+                                        class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        <span class="flex-1 ml-3 text-left whitespace-nowrap">Logout</span>
+                                    </button>
+
+                                </form>
+
+                            </li>
+                        </ul> --}}
                     @endauth
 
                 </ul>

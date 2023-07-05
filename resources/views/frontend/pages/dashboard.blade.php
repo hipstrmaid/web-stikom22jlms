@@ -2,8 +2,8 @@
 @section('content')
     <x-content-title>Dashboard</x-content-title>
     <x-breadcrumbs></x-breadcrumbs>
-    <div id="accordion-flush" data-accordion="collapse"
-        data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+    <div id="accordion-flush" class="" data-accordion="collapse"
+        data-active-classes="dark:bg-gray-900 text-gray-900 dark:text-white"
         data-inactive-classes="text-gray-500 dark:text-gray-400">
         <h2 id="accordion-flush-heading-1">
             <button type="button"
@@ -26,7 +26,7 @@
                             <div
                                 class="max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                 <a href="#">
-                                    <img class="rounded-t-lg" src="{{ asset('assets/img/course1.jpg') }}" alt="" />
+                                    <img class="rounded-t-lg" src="{{ Storage::url($matkul->gambar) }}" alt="thumbnail" />
                                 </a>
                                 <div class="p-5">
                                     <span

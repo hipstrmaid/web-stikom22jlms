@@ -77,4 +77,8 @@
 
         </div>
     </div>
+
+    <div class="row">
+        <div id='calendar' class="dark:bg-gray-700 dark:text-white bg-white mt-5 p-5 w-full rounded"></div>
+    </div>
 @endsection
