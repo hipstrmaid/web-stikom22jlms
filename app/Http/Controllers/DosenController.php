@@ -74,8 +74,8 @@ class DosenController extends Controller
      */
     public function editProfile(string $id)
     {
-        $userId = Auth::id();
-        $dosen = Dosen::find($userId);
+        $dosen = Auth::id();
+        // $dosen = Dosen::find($userId);
         return view('frontend.pages.dosen.profile.create-profile', compact('dosen'));
     }
 

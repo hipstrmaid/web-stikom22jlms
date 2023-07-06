@@ -18,6 +18,14 @@ module.exports = {
         gray: {
             10: '#263238'
         }
+        ,
+        brown: {
+            10: '#fff4af',
+            "button": '#B78103',
+            "bg" :"#533e2d",
+            400 :"#ddca7d"
+
+        },
       },
       extend: {},
     },

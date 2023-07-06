@@ -21,22 +21,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Passion+One&family=Poppins:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/index.global.min.js'></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="https://www.youtube.com/player_api"></script>
     <link rel="stylesheet" href="{{ asset('css/video.css') }}">
-    <script src="
-        https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js
-        "></script>
+    <script src="{{ asset('js/calendar.js') }}"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
-            });
-            calendar.render();
-        });
-    </script>
+
 </head>
 
 <body class="font-poppins bg-gray-100 dark:bg-gray-900">

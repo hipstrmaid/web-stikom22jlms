@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->unsignedBigInteger('role_id'); // Updated data type to unsigned big integer
-            $table->timestamps();
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->timestamps();
         });
     }
 

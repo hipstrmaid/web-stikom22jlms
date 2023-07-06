@@ -22,55 +22,42 @@
                 <ul class="space-y-1">
                     <li>
                         <a href="{{ route('dashboard.index') }}"
-                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white dark:bg-gray-900 bg-gray-200 group">
+                            class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 dark:text-white dark:bg-gray-900 group">
                             <i class="fas fa-tachometer-alt"></i>
                             <span class="ml-3">Dashboard</span>
                         </a>
                     </li>
+                    @auth
+                        <li>
+                            <a href="{{ route('matkul.index') }}"
+                                class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg dark:text-white group"><i
+                                    class="fas fa-book"></i><span class="ml-3">Mata
+                                    Kuliah</span></a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg dark:text-white group"><i
+                                    class="fas fa-book"></i><span class="ml-3">Tugas</span></a>
+                        </li>
+                        <li>
+                            <a href="/forum">
+                                <button type="button"
+                                    class="flex items-center p-2 w-full text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                    <i class="fas fa-comments"></i>
+                                    <span class="flex-1 ml-2 text-left whitespace-nowrap">Forum</span>
+                                </button>
+                            </a>
+                        </li>
+                    @endauth
                     <li>
-                        <a href="#"
-                            class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white group">
+                        <a href="/calendar"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 dark:text-white group">
                             <i class="fa-solid fa-calendar-days"></i>
                             <span class="ml-3">Calendar</span>
                         </a>
                     </li>
                     @auth
-
-                        <li>
-                            <button type="button"
-                                class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                aria-controls="dropdown-pages" data-collapse-toggle="dropdown-pages">
-                                <i class="fas fa-book"></i>
-                                <span class="flex-1 ml-3 text-left whitespace-nowrap">Mata Kuliah</span>
-                                <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                            <ul id="dropdown-pages" class="hidden py-2">
-                                <li class="flex items-center">
-                                    <a href="{{ route('matkul.index') }}"
-                                        class="p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mata
-                                        Kuliah Saya</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tugas</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="/forum">
-                                <button type="button"
-                                    class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                                    <i class="fas fa-comments"></i>
-                                    <span class="flex-1 ml-3 text-left whitespace-nowrap">Forum</span>
-                                </button>
-                            </a>
-                        </li>
-                        @if (auth()->user()->role_id == 4)
+                        @if (request()->is('admin'))
                             <hr>
                             <li>
                                 <button type="button"
@@ -164,23 +151,7 @@
                                 </ul>
                             </li>
                         @endif
-                        {{-- <ul class="space-y-1">
-                            <li class="flex">
-                                <form action="{{ route('logout') }}" method="POST" class="w-full">
-                                    @csrf
-                                    <button type="submit"
-                                        class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-
-                                        <i class="fa-solid fa-right-from-bracket"></i>
-                                        <span class="flex-1 ml-3 text-left whitespace-nowrap">Logout</span>
-                                    </button>
-
-                                </form>
-
-                            </li>
-                        </ul> --}}
                     @endauth
-
                 </ul>
             </div>
         </aside>

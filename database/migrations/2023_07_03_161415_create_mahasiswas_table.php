@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('foto');
             $table->unsignedBigInteger('prodi_id');
             $table->unsignedBigInteger('user_id');
-            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('mahasiswas');
             $table->foreign('prodi_id')->references('id')->on('prodis');
+            $table->timestamps();
         });
     }
 

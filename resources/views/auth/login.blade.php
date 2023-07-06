@@ -27,19 +27,19 @@
 <body class="font-poppins bg-gray-100 dark:bg-gray-900">
     <section class="grid grid-cols-1 lg:grid-cols-8 flex w-full p-0">
         <div class="col-span-5">
-            <img class="h-0 w-0 lg:w-full lg:h-full object-cover" src="{{ asset('assets/img/login-image.jpg') }}"
+            <img class="h-0 w-0 lg:w-full lg:h-full object-cover" src="{{ asset('assets/img/wide-1.jpeg') }}"
                 alt="brand">
         </div>
         <div class="col-span-3">
-            <div class="flex justify-center items-center mx-auto sm:h-screen lg:py-0">
+            <div class="flex flex-col justify-center items-center mx-auto sm:h-screen lg:py-0 my-2">
+                <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 h-24" alt="STIKOM Logo" />
                 <div class="w-full dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex flex-col justify-center items-center pt-4">
-                        <a href="#" class="flex items-center justify-between mr-4">
-                            <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 h-8" alt="STIKOM Logo" />
+                        <a href="/" class="flex items-center justify-between mr-4">
                             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22
-                                Januari</span>
+                                Januari Kendari</span>
                         </a>
-                        <p class="text-sm font-bold">Learning Management System</p>
+                        <p class="text-md font-bold">Learning Management System</p>
                     </div>
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1
@@ -84,7 +84,7 @@
                             @enderror
                             <div class="flex flex-col items-center gap-4">
                                 <button type="submit"
-                                    class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
+                                    class="w-full text-white bg-brown-bg hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
 
                                 <a href="/guest"
                                     class="w-full text-black bg-gray-200 shadow shadow-md hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login

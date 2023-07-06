@@ -12,7 +12,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $matkuls = Matkul::all();
+        $matkuls = Matkul::all()->groupBy('semester_id');
         return view('frontend.pages.dashboard', ['matkuls' => $matkuls]);
     }
 

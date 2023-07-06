@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Models\Dosen;
+use App\Models\Semester;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Matkul extends Model
 {
     use HasFactory;
+    const EXCERPT_LENGTH = 80;
 
     protected $fillable = [
         'dosen_id',
@@ -19,6 +22,11 @@ class Matkul extends Model
         'gambar',
         'hari',
     ];
+
+    public function excerpt()
+    {
+        return Str::limit($this->deskripsi, Matkul::EXCERPT_LENGTH);
+    }
 
 
     public function dosen()
