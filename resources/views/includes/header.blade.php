@@ -9,9 +9,12 @@
                 <span class="sr-only">Toggle sidebar</span>
             </button>
             <a href="#" class="flex items-center justify-between mr-4">
-                <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 sm:h-12 h-8" alt="STIKOM Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22-LMS</span>
+                <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 sm:h-12 h-8 hidden sm:block"
+                    alt="STIKOM Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22
+                    J-LMS</span>
             </a>
+
         </div>
         <div class="flex items-center lg:order-2 gap-2">
             <button id="theme-toggle" type="button"
@@ -88,7 +91,7 @@
                     @if (auth()->check() && auth()->user()->role_id == 4)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
-                                <a href="{{ route('admin.index') }}"
+                                <a href="{{ route('user.index') }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
                             </li>
                         </ul>

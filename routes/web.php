@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\RoleController;
@@ -31,9 +32,7 @@ Route::get('/login', function () {
 
 // Routes accessible by guest users only
 Route::middleware('guest')->group(function () {
-    Route::get('/guest', function () {
-        return view('frontend.pages.guest.dashboard');
-    });
+    Route::resource('guest', GuestController::class);
 });
 
 // Laravel authentication routes

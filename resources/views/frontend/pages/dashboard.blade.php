@@ -4,31 +4,27 @@
     <x-breadcrumbs></x-breadcrumbs>
 
     <div class="list-matkul">
-        <div id="accordion-collapse" class="flex flex-col gap-3" data-accordion="collapse">
+        <div id="accordion-collapse" class="flex flex-col gap-2" data-accordion="collapse">
             @foreach ($matkuls as $semesterId => $semesterMatkuls)
-                @foreach ($semesterMatkuls as $matkul)
-                    <h2 id="accordion-collapse-heading-{{ $semesterId }}">
-                        <button type="button"
-                            class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-                            data-accordion-target="#accordion-collapse-body-{{ $semesterId }}"
-                            aria-controls="accordion-collapse-body-{{ $semesterId }}">
-                            <span>Mata Kuliah: Semester {{ $semesterId }}</span>
-                            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 5 5 1 1 5" />
-                            </svg>
-                        </button>
-                    </h2>
-                    <div id="accordion-collapse-body-{{ $semesterId }}" class="hidden"
-                        aria-labelledby="accordion-collapse-heading-{{ $semesterId }}">
-                        <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                            <div class="row">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-46 mb-4">
+                <h2 id="accordion-collapse-heading-{{ $semesterId }}">
+                    <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        data-accordion-target="#accordion-collapse-body-{{ $semesterId }}"
+                        aria-controls="accordion-collapse-body-{{ $semesterId }}">
+                        <span>Mata Kuliah: Semester {{ $semesterId }}</span>
+                        <x-arrow-down></x-arrow-down>
+                    </button>
+                </h2>
+                <div id="accordion-collapse-body-{{ $semesterId }}" class="hidden"
+                    aria-labelledby="accordion-collapse-heading-{{ $semesterId }}">
+                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                        <div class="row">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-2">
+                                @foreach ($semesterMatkuls as $matkul)
                                     <div
-                                        class="max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                        class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                         <a href="#">
-                                            <img class="rounded-t-lg border-b border-gray-200"
+                                            <img class="rounded-t-lg border-b border-gray-200 dark:border-gray-700"
                                                 src="{{ Storage::url($matkul->gambar) }}" alt="thumbnail" />
                                         </a>
                                         <div class="p-5">
@@ -58,18 +54,18 @@
 
                                                 <button
                                                     class="w-full px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                    <a href="/matkul/pertemuan/belajar" class=" inline-flex items-center">
+                                                    <a href="/matkul/pertemuan/belajar" class="inline-flex items-center">
                                                         Belajar
                                                     </a>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
             @endforeach
         </div>
     </div>
