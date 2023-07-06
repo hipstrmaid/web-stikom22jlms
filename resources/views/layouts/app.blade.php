@@ -21,12 +21,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Passion+One&family=Poppins:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/index.global.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/index.global.min.js'></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="https://www.youtube.com/player_api"></script>
     <link rel="stylesheet" href="{{ asset('css/video.css') }}">
     <script src="{{ asset('js/calendar.js') }}"></script>
+    <script src="{{ asset('js/index.global.min.js') }}"></script>
 
 
 </head>

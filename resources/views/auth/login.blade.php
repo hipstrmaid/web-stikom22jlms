@@ -91,11 +91,11 @@
                                     sebagai tamu</a>
                         </form>
                     </div>
-                    <div class="sign-up">
+                    {{-- <div class="sign-up">
                         <a href="#"
                             class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Belum
                             punya akun?</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
