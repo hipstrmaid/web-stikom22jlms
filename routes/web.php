@@ -41,14 +41,10 @@ Auth::routes();
 // Routes accessible by authenticated users only
 Route::middleware('auth')->group(function () {
     Route::resource('dashboard', DashboardController::class);
-    Route::get('/user/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.indexMahasiswa');
-    Route::get('/user/dosen', [UserController::class, 'indexDosen'])->name('user.indexDosen');
+    Route::resource('matkul', MatkulController::class);
     Route::resource('user', UserController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
-
-    Route::resource('matkul', MatkulController::class);
-
 
     route::get("/dosen/{id}/profile", [DosenController::class, 'editProfile'])->name('dosen.editProfile');
     route::put("/dosen/{id}/edit-profile", [DosenController::class, 'updateProfile'])->name('dosen.updateProfile');
@@ -64,6 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
         Route::resource('role', RoleController::class);
+        Route::get('/user/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.indexMahasiswa');
+        Route::get('/user/dosen', [UserController::class, 'indexDosen'])->name('user.indexDosen');
         // Add more admin-specific routes here
     });
 });
