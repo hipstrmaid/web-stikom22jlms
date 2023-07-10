@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\RoleController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\UserController;
-use App\Models\Mahasiswa;
+
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -42,26 +43,28 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('matkul', MatkulController::class);
-    Route::resource('user', UserController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
 
     route::get("/dosen/{id}/profile", [DosenController::class, 'editProfile'])->name('dosen.editProfile');
+    route::put("/dosen/{id}/store-profile", [DosenController::class, 'storeProfile'])->name('dosen.storeProfile');
     route::put("/dosen/{id}/edit-profile", [DosenController::class, 'updateProfile'])->name('dosen.updateProfile');
     route::get("/dosen/{id}/view", [DosenController::class, 'viewProfile'])->name('dosen.viewProfile');
 
-
-    route::get("/mahasiswa/{id}/profile", [Mahasiswa::class, 'editProfile'])->name('mahasiswa.editProfile');
-    route::put("/mahasiswa/{id}/edit-profile", [Mahasiswa::class, 'updateProfile'])->name('mahasiswa.updateProfile');
-    route::get("/mahasiswa/{id}/view", [Mahasiswa::class, 'viewProfile'])->name('mahasiswa.viewProfile');
+    route::put("/mahasiswa/{id}/edit-profile", [MahasiswaController::class, 'updateProfile'])->name('mahasiswa.updateProfile');
+    route::get("/mahasiswa/{id}/profile", [MahasiswaController::class, 'editProfile'])->name('mahasiswa.editProfile');
+    route::put("/mahasiswa/{id}/edit-profile", [MahasiswaController::class, 'updateProfile'])->name('mahasiswa.updateProfile');
+    route::get("/mahasiswa/{id}/view", [MahasiswaController::class, 'viewProfile'])->name('mahasiswa.viewProfile');
 
 
     // Routes for admins
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
         Route::resource('role', RoleController::class);
-        Route::get('/user/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.indexMahasiswa');
-        Route::get('/user/dosen', [UserController::class, 'indexDosen'])->name('user.indexDosen');
+        Route::resource('user', UserController::class)->except(['create']);
+        Route::get('/user/create/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.tambahMahasiswa');
+        Route::get('/user/create/dosen', [UserController::class, 'indexDosen'])->name('user.tambahDosen');
+        Route::get('/user/create/admin', [UserController::class, 'indexAdmin'])->name('user.tambahAdmin');
         // Add more admin-specific routes here
     });
 });

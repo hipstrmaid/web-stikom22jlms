@@ -10,11 +10,10 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        $admins = Admin::all();
-
-        return view('admin.user.create-admin', ['admins' => $admins]);
+        return view('admin.admin-dashboard');
     }
 
     /**

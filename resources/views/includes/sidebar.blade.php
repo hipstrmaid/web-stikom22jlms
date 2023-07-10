@@ -27,6 +27,13 @@
                             <span class="ml-3">Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/calendar"
+                            class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 dark:text-white group">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span class="ml-3">Calendar</span>
+                        </a>
+                    </li>
                     @auth
                         <li>
                             <a href="{{ route('matkul.index') }}"
@@ -49,15 +56,8 @@
                             </a>
                         </li>
                     @endauth
-                    <li>
-                        <a href="/calendar"
-                            class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 dark:text-white group">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <span class="ml-3">Calendar</span>
-                        </a>
-                    </li>
                     @auth
-                        @if (request()->is('admin'))
+                        @if (Auth::user()->role_id == 4)
                             <hr>
                             <li>
                                 <button type="button"
@@ -130,22 +130,17 @@
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="{{ route('user.indexMahasiswa') }}"
+                                        <a href="{{ route('user.tambahMahasiswa') }}"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Mahasiswa</a>
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="{{ route('user.indexDosen') }}"
+                                        <a href="{{ route('user.tambahDosen') }}"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dosen</a>
                                     </li>
                                     <li class="flex items-center pl-10">
                                         <span class="dot"></span>
-                                        <a href="/matkul/matkul-saya"
-                                            class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">BAAK</a>
-                                    </li>
-                                    <li class="flex items-center pl-10">
-                                        <span class="dot"></span>
-                                        <a href="{{ route('admin.index') }}"
+                                        <a href="{{ route('user.tambahAdmin') }}"
                                             class="p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Admin</a>
                                     </li>
                                 </ul>

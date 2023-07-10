@@ -40,64 +40,56 @@
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                     <span class="sr-only">Open user menu</span>
-
-                    @auth
-                        @if (Auth::user()->dosen)
-                            @if (Auth::user()->dosen->foto)
-                                <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->dosen->foto) }}"
-                                    alt="Dosen Foto">
-                            @endif
-                        @elseif (Auth::user()->mahasiswa)
-                            @if (Auth::user()->mahasiswa->foto)
-                                <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->mahasiswa->foto) }}"
-                                    alt="Mahasiswa Foto">
-                            @endif
-                        @elseif (Auth::user()->admin)
-                            @if (Auth::user()->admin->foto)
-                                <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/profile.jpg') }}"
-                                    alt="Mahasiswa Foto">
-                            @endif
-                        @else
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
+                    @if (Auth::user()->dosen)
+                        @if (Auth::user()->dosen->foto)
+                            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->dosen->foto) }}"
+                                alt="Dosen Foto">
                         @endif
-
-
-                    @endauth
-
-
-
+                    @elseif (Auth::user()->mahasiswa)
+                        @if (Auth::user()->mahasiswa->foto)
+                            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->mahasiswa->foto) }}"
+                                alt="Mahasiswa Foto">
+                        @endif
+                    @elseif (Auth::user()->admin)
+                        @if (Auth::user()->admin->foto)
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/profile.jpg') }}"
+                                alt="Mahasiswa Foto">
+                        @endif
+                    @else
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
+                    @endif
                 </button>
-                <!-- Dropdown menu -->
+                <!-- Mini iProfile Menu -->
                 <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
                     id="dropdown">
                     <div class="py-3 px-4">
-                        @auth
-                            @if (Auth::user()->dosen)
-                                <span
-                                    class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
-                                <span
-                                    class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
-                            @elseif (Auth::user()->mahasiswa)
-                                <span
-                                    class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->nama }}</span>
-                                <span
-                                    class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
-                            @else
-                                <span class="block text-sm font-semibold text-gray-900 dark:text-white">Nama</span>
-                                <span class="block text-sm text-gray-900 truncate dark:text-white">NIM/NIDN</span>
-                            @endif
-                        @endauth
+                        @if (Auth::user()->dosen)
+                            <span
+                                class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
+                            <span
+                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
+                        @elseif (Auth::user()->mahasiswa)
+                            <span
+                                class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->nama }}</span>
+                            <span
+                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
+                        @else
+                            <span class="block text-sm font-semibold text-gray-900 dark:text-white">Nama</span>
+                            <span class="block text-sm text-gray-900 truncate dark:text-white">NIM/NIDN</span>
+                        @endif
                     </div>
-                    @if (auth()->check() && auth()->user()->role_id == 4)
+                    <!-- Mini iProfile Menu -->
+
+                    @if (Auth::user()->role_id == 4)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
-                                <a href="{{ route('user.index') }}"
+                                <a href="{{ route('admin.index') }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
                             </li>
                         </ul>
                     @endif
 
-                    @if (auth()->check() && auth()->user()->role_id == 1)
+                    @if (Auth::user()->role_id == 1)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
                                 <a href="{{ route('mahasiswa.create', Auth::id()) }}"
@@ -106,16 +98,15 @@
                             </li>
                         </ul>
                     @endif
-                    @if (auth()->check() && auth()->user()->role_id == 2)
+                    @if (Auth::user()->role_id == 2)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
-                                <a href="{{ route('dosen.editProfile', Auth::id()) }}"
+                                <a href="{{ route('dosen.createProfile', Auth::id()) }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
                                     Settings</a>
                             </li>
                         </ul>
                     @endif
-
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -123,11 +114,9 @@
                                 <button type="submit"
                                     class="text-start rounded-b rounded-lg w-full py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Log
                                     out</button>
-
                             </form>
                         </li>
                     </ul>
-
                 </div>
             @endauth
             @guest

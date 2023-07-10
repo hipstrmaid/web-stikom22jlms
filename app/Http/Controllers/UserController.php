@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\User;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
@@ -95,5 +96,11 @@ class UserController extends Controller
     {
         $dosen = Dosen::all();
         return view('admin.user.create-dosen', ['dosens' => $dosen]);
+    }
+
+    public function indexAdmin()
+    {
+        $admin = Admin::all();
+        return view('admin.user.create-admin', ['admins' => $admin]);
     }
 }

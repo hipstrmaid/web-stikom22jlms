@@ -69,14 +69,52 @@ class DosenController extends Controller
         //
     }
 
+    public function storeProfile(Request $request)
+    {
+
+        $user = Auth::user();
+
+        // Get the user's ID
+        $userID = $user->id;
+        // Validate the form data
+        $form = $request->validate([
+            'input_nama' => 'required',
+            'input_foto' => 'required|file',
+            // Add validation rules for other fields
+        ]);
+
+        // Create a new instance of your model
+        $dosen = new Dosen;
+
+        // Set the values from the validated form data
+        $dosen->nama = $form['input_nama'];
+        // Handle the file upload and set the "foto" field
+        if ($request->hasFile('input_foto')) {
+            $foto = $request->file('input_foto');
+            $fotoPath = $foto->store('public/fotos'); // Store the file in storage/app/public/fotos
+            $dosen->foto = $fotoPath;
+        }
+        $dosen->user_id = $userID;
+        // Set values for other fields
+
+        // Save the model to the database
+        $dosen->save();
+
+
+        // Optionally, you can flash a success message to the session
+        // to display a success message on the redirected page
+
+        // Redirect to a specific route or URL
+        return redirect()->route('dosen.viewProfile');
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      */
-    public function editProfile(string $id)
+    public function editProfile()
     {
-        $dosen = Auth::id();
-        // $dosen = Dosen::find($userId);
-        return view('frontend.pages.dosen.profile.create-profile', compact('dosen'));
+        return view('frontend.pages.dosen.profile.create-profile');
     }
 
     public function updateProfile(Request $request, string $id)
