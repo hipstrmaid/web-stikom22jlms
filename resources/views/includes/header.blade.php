@@ -80,21 +80,12 @@
                     </div>
                     <!-- Mini iProfile Menu -->
 
-                    @if (Auth::user()->role_id == 4)
-                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                            <li>
-                                <a href="{{ route('admin.index') }}"
-                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
-                            </li>
-                        </ul>
-                    @endif
-
                     @if (Auth::user()->role_id == 1)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
                                 <a href="{{ route('mahasiswa.create', Auth::id()) }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
-                                    Settings</a>
+                                </a>
                             </li>
                         </ul>
                     @endif
@@ -103,16 +94,33 @@
                             <li>
                                 <a href="{{ route('dosen.createProfile', Auth::id()) }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
-                                    Settings</a>
+                                </a>
                             </li>
                         </ul>
                     @endif
+
+                    @if (Auth::user()->role_id == 4)
+                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="#"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="{{ route('admin.index') }}"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
+                            </li>
+                        </ul>
+                    @endif
+
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit"
-                                    class="text-start rounded-b rounded-lg w-full py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Log
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Log
                                     out</button>
                             </form>
                         </li>

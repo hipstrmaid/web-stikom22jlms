@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('foto');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('admins');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

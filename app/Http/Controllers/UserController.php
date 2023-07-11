@@ -32,7 +32,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         $request->validate([
             'nim' => ['required', 'unique:users,nim_mhs', 'max:10'],
@@ -43,12 +43,42 @@ class UserController extends Controller
         $password = 'password123';
         $roleId = $request->input('role_id');
 
-        User::create([
-            'nim_mhs' => $nim,
-            'username' => $username,
-            'password' => Hash::make($password),
-            'role_id' => $roleId
-        ]);
+        $user = new User;
+        $user->nim_mhs = $nim;
+        $user->username = $username;
+        $user->password = Hash::make($password);
+        $user->role_id = $roleId;
+        $user->save();
+
+        // Set the user_id only if the user record was successfully saved
+        if ($user->exists) {
+            if ($user->role_id == 1) {
+                $mahasiswa = new Mahasiswa();
+                $mahasiswa->nama = 'Mahasiswa';
+                $mahasiswa->foto = 'Foto anda';
+                $mahasiswa->prodi_id = 3;
+                $mahasiswa->user_id = $user->id;
+                $mahasiswa->save();
+            } elseif ($user->role_id == 2) {
+                $dosen = new Dosen();
+                $dosen->nama = 'Dosen';
+                $dosen->foto = 'Foto anda';
+                $dosen->user_id = $user->id;
+                $dosen->save();
+            } elseif ($user->role_id == 3) {
+                $dosen = new Dosen();
+                $dosen->nama = 'Dosen';
+                $dosen->foto = 'Foto anda';
+                $dosen->user_id = $user->id;
+                $dosen->save();
+            } elseif ($user->role_id == 4) {
+                $admin = new Admin();
+                $admin->nama = 'Admin';
+                $admin->foto = 'Foto anda';
+                $admin->user_id = $user->id;
+                $admin->save();
+            }
+        }
         Session::flash('success');
 
         return redirect()->back();

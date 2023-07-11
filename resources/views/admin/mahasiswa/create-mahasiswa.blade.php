@@ -126,19 +126,22 @@
                                 Id
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                NIM
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 FOTO
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 NAMA
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                NIM
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 PRODI
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 USER_ID
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                AKSI
                             </th>
                         </tr>
                     </thead>
@@ -152,13 +155,13 @@
                                     {{ $mhs->id }}
                                 </td>
                                 <td class="px-6 py-4">
+                                    {{ $mhs->user->nim_mhs }}
+                                </td>
+                                <td class="px-6 py-4">
                                     {{ $mhs->foto }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $mhs->nama }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $mhs->nim }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $mhs->prodi->nama_prodi }}

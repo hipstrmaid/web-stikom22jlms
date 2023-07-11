@@ -9,7 +9,7 @@ class Mahasiswa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'nim', 'foto', 'prodi_id', 'user_id'];
+    protected $fillable = ['nama', 'foto', 'prodi_id', 'user_id'];
 
     public function prodi()
     {

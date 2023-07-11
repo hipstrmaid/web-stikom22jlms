@@ -58,6 +58,7 @@
                 </button>
             </div>
         @enderror
+
         <div class="bg-white text-sm rounded-t dark:border-gray-900 dark:bg-gray-800">
             <div class="w-full panel-head flex items-center p-4">
 
@@ -100,9 +101,17 @@
                                                     <label for="nim"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIDN</label>
                                                     <input type="text" name="nim" id="nim"
-                                                        class="@error('nim') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                        class="@error('nim') is-invalid @enderror mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                         placeholder="cth. 1920557xx" required>
-                                                    <input type="hidden" name="role_id" value="2">
+
+                                                    <label for="countries"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                                    <select id="countries" name="role_id"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                        <option selected value="2">Dosen</option>
+                                                        <option value="3">BAAK</option>
+                                                    </select>
+                                                    {{-- <input type="hidden" name="role_id" value="2"> --}}
                                                 </div>
                                                 <button type="submit"
                                                     class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Daftarkan</button>
@@ -134,6 +143,9 @@
                             <th scope="col" class="px-6 py-3">
                                 USER_ID
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                AKSI
+                            </th>
                         </tr>
                     </thead>
 
@@ -153,7 +165,7 @@
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    {{ $dosen->user_id }}
+                                    {{ $dosen->user->role_id }}
                                 </td>
                                 <td class="px-6 py-4 text-left">
                                     <a href="#"

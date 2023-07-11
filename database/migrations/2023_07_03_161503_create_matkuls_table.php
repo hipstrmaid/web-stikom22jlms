@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->string('gambar');
             $table->string('hari');
-            $table->foreign('dosen_id')->references('id')->on('users');
+            $table->foreign('dosen_id')->references('id')->on('dosens');
             // $table->foreign('semester_id')->references('id')->on('semesters');
             // $table->foreign('prodi_id')->references('id')->on('matkuls');
 

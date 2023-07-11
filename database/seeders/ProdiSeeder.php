@@ -16,6 +16,7 @@ class ProdiSeeder extends Seeder
         $prodi = [
             ['nama_prodi' => 'Sistem Informasi', 'created_at' => now()],
             ['nama_prodi' => 'Teknik Computer', 'created_at' => now()],
+            ['nama_prodi' => 'Belum ada Prodi', 'created_at' => now()],
             // Add more role records as needed
         ];
 

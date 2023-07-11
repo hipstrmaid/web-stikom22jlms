@@ -46,10 +46,16 @@ Route::middleware('auth')->group(function () {
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
 
-    route::get("/dosen/{id}/profile", [DosenController::class, 'editProfile'])->name('dosen.editProfile');
-    route::put("/dosen/{id}/store-profile", [DosenController::class, 'storeProfile'])->name('dosen.storeProfile');
-    route::put("/dosen/{id}/edit-profile", [DosenController::class, 'updateProfile'])->name('dosen.updateProfile');
-    route::get("/dosen/{id}/view", [DosenController::class, 'viewProfile'])->name('dosen.viewProfile');
+    Route::controller(DosenController::class)->group(function () {
+        Route::get('/dosen/{id}/profile', 'editProfile')->name('dosen.editProfile');
+        Route::put('/dosen/{id}/store-profile', 'storeProfile')->name('dosen.storeProfile');
+        Route::put('/dosen/{id}/edit-profilee', 'updateProfile')->name('dosen.updateProfile');
+        Route::get('/dosen/{id}/view', 'viewProfile')->name('dosen.viewProfile');
+    });
+    // route::get("/dosen/{id}/profile", [DosenController::class, 'editProfile'])->name('dosen.editProfile');
+    // route::put("/dosen/{id}/store-profile", [DosenController::class, 'storeProfile'])->name('dosen.storeProfile');
+    // route::put("/dosen/{id}/edit-profile", [DosenController::class, 'updateProfile'])->name('dosen.updateProfile');
+    // route::get("/dosen/{id}/view", [DosenController::class, 'viewProfile'])->name('dosen.viewProfile');
 
     route::put("/mahasiswa/{id}/edit-profile", [MahasiswaController::class, 'updateProfile'])->name('mahasiswa.updateProfile');
     route::get("/mahasiswa/{id}/profile", [MahasiswaController::class, 'editProfile'])->name('mahasiswa.editProfile');
