@@ -12,7 +12,7 @@ class Dosen extends Model
 
     public function matkul()
     {
-        return $this->hasMany(Matkul::class, 'dosen_id');
+        return $this->hasMany(Matkul::class);
     }
 
     public function user()

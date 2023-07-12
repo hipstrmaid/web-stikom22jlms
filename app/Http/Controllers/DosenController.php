@@ -40,7 +40,7 @@ class DosenController extends Controller
     public function show(Dosen $dosen)
     {
         if ($dosen->user_id != auth()->id()) {
-            abort(403);
+            abort(403, 'Tidak boleh mengintip');
         }
         return view('frontend.pages.dosen.profile.view-profile', compact('dosen'));
     }
@@ -51,7 +51,7 @@ class DosenController extends Controller
     public function edit(Dosen $dosen)
     {
         if ($dosen->user_id != auth()->id()) {
-            abort(403);
+            abort(403, 'Tidak boleh mengintip');
         }
         return view('frontend.pages.dosen.profile.update-profile', compact('dosen'));
     }

@@ -88,7 +88,7 @@
                                 FOTO
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                NIDN
+                                USERNAME
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 NAMA
@@ -116,7 +116,7 @@
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    {{ $dosen->user->nim_mhs }}
+                                    {{ $dosen->user->username }}
                                 </td>
 
                                 <td class="px-6 py-4">

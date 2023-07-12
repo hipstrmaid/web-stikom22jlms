@@ -23,6 +23,7 @@ class MatkulController extends Controller
         return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -57,8 +58,7 @@ class MatkulController extends Controller
 
         $gambarPath = $gambar->store('public/fotos'); // Store the file
 
-
-        $userId = Auth::user()->id;
+        $userId = Auth::user()->dosen->id;
         $videoId = extractVideo($video_url);
 
         $matkul = new Matkul;

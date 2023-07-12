@@ -41,7 +41,7 @@
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                     <span class="sr-only">Open user menu</span>
                     @if (Auth::user()->dosen)
-                        @if (Auth::user()->dosen->foto)
+                        @if (Auth::user()->dosen->foto ?? 'Beluma ada foto')
                             <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->dosen->foto) }}"
                                 alt="Dosen Foto">
                         @endif
@@ -91,7 +91,7 @@
                     @if (Auth::user()->role_id == 2)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
-                                <a href="{{ route('dosen.createProfile', Auth::id()) }}"
+                                <a href="{{ route('dosen.edit', Auth::user()->dosen->id) }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
                                 </a>
                             </li>
