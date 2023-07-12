@@ -52,15 +52,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/dosen/{id}/edit-profilee', 'updateProfile')->name('dosen.updateProfile');
         Route::get('/dosen/{id}/view', 'viewProfile')->name('dosen.viewProfile');
     });
-    // route::get("/dosen/{id}/profile", [DosenController::class, 'editProfile'])->name('dosen.editProfile');
-    // route::put("/dosen/{id}/store-profile", [DosenController::class, 'storeProfile'])->name('dosen.storeProfile');
-    // route::put("/dosen/{id}/edit-profile", [DosenController::class, 'updateProfile'])->name('dosen.updateProfile');
-    // route::get("/dosen/{id}/view", [DosenController::class, 'viewProfile'])->name('dosen.viewProfile');
-
-    route::put("/mahasiswa/{id}/edit-profile", [MahasiswaController::class, 'updateProfile'])->name('mahasiswa.updateProfile');
-    route::get("/mahasiswa/{id}/profile", [MahasiswaController::class, 'editProfile'])->name('mahasiswa.editProfile');
-    route::put("/mahasiswa/{id}/edit-profile", [MahasiswaController::class, 'updateProfile'])->name('mahasiswa.updateProfile');
-    route::get("/mahasiswa/{id}/view", [MahasiswaController::class, 'viewProfile'])->name('mahasiswa.viewProfile');
 
 
     // Routes for admins

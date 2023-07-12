@@ -46,7 +46,7 @@
                                 alt="Dosen Foto">
                         @endif
                     @elseif (Auth::user()->mahasiswa)
-                        @if (Auth::user()->mahasiswa->foto)
+                        @if (Auth::user()->mahasiswa->foto ?? 'Beluma ada foto')
                             <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->mahasiswa->foto) }}"
                                 alt="Mahasiswa Foto">
                         @endif
@@ -79,11 +79,10 @@
                         @endif
                     </div>
                     <!-- Mini iProfile Menu -->
-
                     @if (Auth::user()->role_id == 1)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
-                                <a href="{{ route('mahasiswa.create', Auth::id()) }}"
+                                <a href="{{ route('mahasiswa.edit', Auth::user()->mahasiswa->id) }}"
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
                                 </a>
                             </li>

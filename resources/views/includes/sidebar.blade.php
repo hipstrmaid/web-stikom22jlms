@@ -55,6 +55,16 @@
                                 </button>
                             </a>
                         </li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Log
+                                    out</button>
+                            </form>
+                        </li>
+
+
                         @if (Auth::user()->role_id == 4)
                             <hr>
                             <li>

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('foto');
-            $table->unsignedBigInteger('prodi_id');
+            $table->string('nama')->nullable();
+            $table->string('foto')->nullable();
+            $table->unsignedBigInteger('prodi_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('prodi_id')->references('id')->on('prodis');
