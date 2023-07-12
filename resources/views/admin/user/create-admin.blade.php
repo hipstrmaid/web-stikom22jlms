@@ -134,6 +134,9 @@
                             <th scope="col" class="px-6 py-3">
                                 USER_ID
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                AKSI
+                            </th>
                         </tr>
                     </thead>
 
@@ -146,7 +149,8 @@
                                     {{ $admin->id }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $admin->foto }}
+                                    <img src="{{ Storage::url($admin->foto) }}" class="rounded-full w-8 h-8"
+                                        alt="foto-dosen">
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $admin->nama }}

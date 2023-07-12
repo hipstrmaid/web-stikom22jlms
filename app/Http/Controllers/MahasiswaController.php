@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,11 +49,11 @@ class MahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Mahasiswa $mahasiswa)
     {
-        // $this->authorize('show', $mahasiswa);
-        $mahasiswa = Mahasiswa::findOrFail($id);
-
+        if ($mahasiswa->user_id != auth()->id()) {
+            abort(403);
+        }
         return view('frontend.pages.mahasiswa.profile.view-profile', compact('mahasiswa'));
     }
 
@@ -62,10 +61,12 @@ class MahasiswaController extends Controller
      * Show the form for editing the specified resource.
      */
     // Controller method
-    public function edit(string $id)
+    public function edit(Mahasiswa $mahasiswa)
     {
-        $mahasiswa = Mahasiswa::findOrFail($id);
-        return view('frontend.pages.mahasiswa.profile.create-profile', compact('mahasiswa'));
+        if ($mahasiswa->user_id != auth()->id()) {
+            abort(403);
+        }
+        return view('frontend.pages.mahasiswa.profile.update-profile', compact('mahasiswa'));
     }
 
 

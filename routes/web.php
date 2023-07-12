@@ -46,20 +46,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
 
-    Route::controller(DosenController::class)->group(function () {
-        Route::get('/dosen/{id}/profile', 'editProfile')->name('dosen.editProfile');
-        Route::put('/dosen/{id}/store-profile', 'storeProfile')->name('dosen.storeProfile');
-        Route::put('/dosen/{id}/edit-profilee', 'updateProfile')->name('dosen.updateProfile');
-        Route::get('/dosen/{id}/view', 'viewProfile')->name('dosen.viewProfile');
-    });
-
-
     // Routes for admins
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
-        Route::controller(AdminController::class)->group(function () {
-            Route::get('/dosen/{id}/update-profile', 'updateProfile')->name('dosen.updateProfile');
-        });
+
         Route::resource('role', RoleController::class);
         Route::resource('user', UserController::class)->except(['create']);
         Route::get('/user/create/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.tambahMahasiswa');

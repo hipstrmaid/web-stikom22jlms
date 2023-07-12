@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Tabel User</h1>
+        List User</h1>
     <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -58,9 +58,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Id
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            {{-- <th scope="col" class="px-6 py-3">
                                 NIM/NIDN
-                            </th>
+                            </th> --}}
                             <th scope="col" class="px-6 py-3">
                                 Username
                             </th>
@@ -81,9 +81,9 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $user->id }}
                                 </td>
-                                <td class="px-6 py-4">
+                                {{-- <td class="px-6 py-4">
                                     {{ $user->nim_mhs }}
-                                </td>
+                                </td> --}}
                                 <td class="px-6 py-4">
                                     {{ $user->username }}
                                 </td>

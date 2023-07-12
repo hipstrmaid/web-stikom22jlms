@@ -7,12 +7,12 @@
             <ul class="flex bg-gray-200 dark:bg-gray-900">
                 <div class="bg-white border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.viewProfile', Auth::id()) }}">Profil</a>
+                            href="{{ route('dosen.show', ['dosen' => $dosen->id]) }}">Profil</a>
                     </h5>
                 </div>
                 <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.editProfile', Auth::id()) }}">Edit Profile</a>
+                            href="{{ route('dosen.edit', ['dosen' => $dosen->id]) }}">Edit Profile</a>
                     </h5>
                 </div>
             </ul>

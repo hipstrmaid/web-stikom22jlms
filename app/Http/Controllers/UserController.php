@@ -36,7 +36,6 @@ class UserController extends Controller
     {
         $request->validate([
             'nim' => ['required', 'unique:users,nim_mhs', 'max:10'],
-            'prodi_id' => ['required'],
         ]);
 
         $nim = $request->input('nim');

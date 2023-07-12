@@ -41,11 +41,15 @@
                                     {{ $mahasiswa->nama ?? 'Nama' }}
                                 </h3>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                                    {{ $mahasiswa->user->role->nama_role ?? 'Role' }}
+                                </div>
+                                <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                                     {{ $mahasiswa->user->nim_mhs ?? 'Nim/Nidn' }}
                                 </div>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                                    {{ $mahasiswa->user->role->nama_role ?? 'Role' }}
+                                    {{ $mahasiswa->prodi->nama_prodi ?? 'Nim/Nidn' }}
                                 </div>
+
 
                             </div>
 
