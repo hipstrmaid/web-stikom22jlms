@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-        Buat User</h1>
+        Tabel User</h1>
     <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -46,7 +46,7 @@
         <div class="bg-white text-sm rounded-t dark:border-gray-900 dark:bg-gray-800">
             <div class="w-full panel-head flex items-center p-4">
                 <div class="flex flex-col w-full  dark:text-gray-50 dark:text-gray-400">
-                    <h1 class="text-2xl font-bold">Tabel User</h1>
+                    <h1 class="text-2xl font-bold">Total: {{ $users->count() }}</h1>
                 </div>
             </div>
             <hr class="bg-gray-200 h-0.5 border-0 dark:bg-gray-700">

@@ -50,35 +50,35 @@ class UserController extends Controller
         $user->role_id = $roleId;
         $user->save();
 
-        // Set the user_id only if the user record was successfully saved
-        if ($user->exists) {
-            if ($user->role_id == 1) {
-                $mahasiswa = new Mahasiswa();
-                $mahasiswa->nama = 'Mahasiswa';
-                $mahasiswa->foto = 'Foto anda';
-                $mahasiswa->prodi_id = 3;
-                $mahasiswa->user_id = $user->id;
-                $mahasiswa->save();
-            } elseif ($user->role_id == 2) {
-                $dosen = new Dosen();
-                $dosen->nama = 'Dosen';
-                $dosen->foto = 'Foto anda';
-                $dosen->user_id = $user->id;
-                $dosen->save();
-            } elseif ($user->role_id == 3) {
-                $dosen = new Dosen();
-                $dosen->nama = 'Dosen';
-                $dosen->foto = 'Foto anda';
-                $dosen->user_id = $user->id;
-                $dosen->save();
-            } elseif ($user->role_id == 4) {
-                $admin = new Admin();
-                $admin->nama = 'Admin';
-                $admin->foto = 'Foto anda';
-                $admin->user_id = $user->id;
-                $admin->save();
-            }
-        }
+        // // Insert to the table according to the role id
+        // if ($user->exists) {
+        //     if ($user->role_id == 1) {
+        //         $mahasiswa = new Mahasiswa();
+        //         $mahasiswa->nama = 'Belum diisi';
+        //         $mahasiswa->foto = 'Foto anda';
+        //         $mahasiswa->prodi_id = 3;
+        //         $mahasiswa->user_id = $user->id;
+        //         $mahasiswa->save();
+        //     } elseif ($user->role_id == 2) {
+        //         $dosen = new Dosen();
+        //         $dosen->nama = 'Belum diisi';
+        //         $dosen->foto = 'Foto anda';
+        //         $dosen->user_id = $user->id;
+        //         $dosen->save();
+        //     } elseif ($user->role_id == 3) {
+        //         $dosen = new Dosen();
+        //         $dosen->nama = 'Belum diisi';
+        //         $dosen->foto = 'Foto anda';
+        //         $dosen->user_id = $user->id;
+        //         $dosen->save();
+        //     } elseif ($user->role_id == 4) {
+        //         $admin = new Admin();
+        //         $admin->nama = 'Belum diisi';
+        //         $admin->foto = 'Foto anda';
+        //         $admin->user_id = $user->id;
+        //         $admin->save();
+        //     }
+        // }
         Session::flash('success');
 
         return redirect()->back();
@@ -119,7 +119,7 @@ class UserController extends Controller
     public function indexMahasiswa()
     {
         $mahasiswa = Mahasiswa::all();
-        return view('admin.mahasiswa.create-mahasiswa', ['mahasiswa' => $mahasiswa]);
+        return view('admin.user.create-mahasiswa', ['mahasiswa' => $mahasiswa]);
     }
 
     public function indexDosen()

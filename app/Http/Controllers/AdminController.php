@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Admin;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -13,7 +14,13 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.admin-dashboard');
+        $user = User::all();
+        $mahasiswaTotal = User::where('role_id', 1)->count();
+        $dosenTotal = User::where('role_id', 2)->count();
+        $baakTotal = User::where('role_id', 3)->count();
+        $adminTotal = User::where('role_id', 4)->count();
+
+        return view('admin.admin-dashboard', compact('user', 'mahasiswaTotal', 'dosenTotal', 'baakTotal', 'adminTotal'));
     }
 
     /**
@@ -52,6 +59,11 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    public function updateProfile(Request $request, string $id)
     {
         //
     }

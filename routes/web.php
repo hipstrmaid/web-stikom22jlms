@@ -66,6 +66,9 @@ Route::middleware('auth')->group(function () {
     // Routes for admins
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
+        Route::controller(AdminController::class)->group(function () {
+            Route::get('/dosen/{id}/update-profile', 'updateProfile')->name('dosen.updateProfile');
+        });
         Route::resource('role', RoleController::class);
         Route::resource('user', UserController::class)->except(['create']);
         Route::get('/user/create/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.tambahMahasiswa');

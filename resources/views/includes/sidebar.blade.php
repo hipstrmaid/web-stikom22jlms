@@ -55,8 +55,6 @@
                                 </button>
                             </a>
                         </li>
-                    @endauth
-                    @auth
                         @if (Auth::user()->role_id == 4)
                             <hr>
                             <li>
@@ -147,6 +145,7 @@
                             </li>
                         @endif
                     @endauth
+
                 </ul>
             </div>
         </aside>

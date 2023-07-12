@@ -141,7 +141,7 @@
                                 NAMA
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                USER_ID
+                                ROLE
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 AKSI
@@ -165,7 +165,7 @@
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    {{ $dosen->user->role_id }}
+                                    {{ $dosen->user->role_name }}
                                 </td>
                                 <td class="px-6 py-4 text-left">
                                     <a href="#"
