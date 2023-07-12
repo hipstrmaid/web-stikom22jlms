@@ -16,8 +16,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        // // $users = User::with('role')->get();
-        // // return view('admin.user.user-view', ['users' => $users]);
+        //
     }
 
     /**
@@ -25,9 +24,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        // $id_mahasiswa = Auth::id();
-        // $mahasiswa = Mahasiswa::find($id_mahasiswa); // Mengambil id dari Auth
-        // return view('frontend.profile.create-profile', ['edit' => $mahasiswa]);
+        //
     }
 
     /**
@@ -35,19 +32,19 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'nama' => 'required',
-            'foto' => 'required',
-            'prodi_id' => 'required',
-        ]);
+        // $data = $request->validate([
+        //     'nama' => 'required',
+        //     'foto' => 'required',
+        //     'prodi_id' => 'required',
+        // ]);
 
-        $data['user_id'] = Auth::id(); // Assign the authenticated user's ID to the user_id field
+        // $data['user_id'] = Auth::id(); // Assign the authenticated user's ID to the user_id field
 
-        Mahasiswa::create($data);
+        // Mahasiswa::create($data);
 
-        Session::flash('success');
+        // Session::flash('success');
 
-        return redirect()->back();
+        // return redirect()->back();
     }
 
     /**
@@ -82,7 +79,6 @@ class MahasiswaController extends Controller
         $request->validate([
             'nama' => 'required',
             'foto' => 'nullable|file',
-            'prodi_id' => 'required',
             // Add more validation rules for other fields if needed
         ]);
 
@@ -96,7 +92,6 @@ class MahasiswaController extends Controller
 
         // Update the Mahasiswa record
         $mahasiswa->nama = $request->input('nama');
-        $mahasiswa->prodi_id = $request->input('prodi_id');
 
         // Handle the file upload and update the "foto" field if a new file is uploaded
         if ($request->hasFile('foto')) {
@@ -116,53 +111,5 @@ class MahasiswaController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function editProfile(string $id)
-    {
-        $userId = Auth::id();
-        $mahasiswa = Mahasiswa::find($userId);
-        return view('frontend.pages.mahasiswa.profile.create-profile', compact('mahasiswa'));
-    }
-
-    public function updateProfile(Request $request, string $id)
-    {
-        // Retrieve the authenticated user
-        $user = Auth::user();
-        // Get the user's ID
-        $id_user = $user->id;
-        // Validate the input data
-        $request->validate([
-            'nama' => 'required',
-            'foto' => 'required|file',
-            'prodi_id' => 'required',
-            // Add more validation rules for other fields if needed
-        ]);
-
-        $nama = $request->input('nama');
-        $foto = $request->file('foto');
-        $prodi = $request->input('prodi_id');
-        // Create a new Dosen record
-        $newMhs = new Mahasiswa();
-        $newMhs->nama = $nama;
-        // Handle the file upload and set the "foto" field
-        if ($request->hasFile('foto')) {
-            $fotoPath = $foto->store('public/fotos'); // Store the file in storage/app/public/fotos
-            $newMhs->foto = $fotoPath;
-        }
-        $newMhs->prodi_id = $prodi;
-        $newMhs->user_id = $id_user;
-        $newMhs->save();
-
-        return redirect()->route('mahasiswa.viewProfile')->with('success', 'Mahasiswa data updated successfully.');
-    }
-
-    public function viewProfile(string $id)
-    {
-        $mahasiswa = Mahasiswa::find($id);
-        return view('frontend.pages.mahasiswa.profile.view-profile', compact('mahasiswa'));
     }
 }

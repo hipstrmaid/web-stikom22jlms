@@ -36,12 +36,14 @@ class UserController extends Controller
     {
         $request->validate([
             'nim' => ['required', 'unique:users,nim_mhs', 'max:10'],
+            'prodi_id' => ['required'],
         ]);
 
         $nim = $request->input('nim');
         $username = $nim . '@stikom22j.com';
         $password = 'password123';
         $roleId = $request->input('role_id');
+        $prodi_id = $request->input('prodi_id');
 
         $user = new User;
         $user->nim_mhs = $nim;
@@ -56,7 +58,7 @@ class UserController extends Controller
                 $mahasiswa = new Mahasiswa();
                 // $mahasiswa->nama = 'Belum diisi';
                 // $mahasiswa->foto = 'Foto anda';
-                // $mahasiswa->prodi_id = 3;
+                $mahasiswa->prodi_id = $prodi_id;
                 $mahasiswa->user_id = $user->id;
                 $mahasiswa->save();
             } elseif ($user->role_id == 2) {
