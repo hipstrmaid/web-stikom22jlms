@@ -52,7 +52,9 @@ class MahasiswaController extends Controller
      */
     public function show(string $id)
     {
+        // $this->authorize('show', $mahasiswa);
         $mahasiswa = Mahasiswa::findOrFail($id);
+
         return view('frontend.pages.mahasiswa.profile.view-profile', compact('mahasiswa'));
     }
 
@@ -60,7 +62,7 @@ class MahasiswaController extends Controller
      * Show the form for editing the specified resource.
      */
     // Controller method
-    public function edit($id)
+    public function edit(string $id)
     {
         $mahasiswa = Mahasiswa::findOrFail($id);
         return view('frontend.pages.mahasiswa.profile.create-profile', compact('mahasiswa'));
