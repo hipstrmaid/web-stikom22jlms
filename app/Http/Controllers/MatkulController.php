@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
 use App\Models\Matkul;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +15,17 @@ class MatkulController extends Controller
      */
     public function index()
     {
-        // $matkuls = Matkul::all();
-        $dosen_id = Auth::id(); // Assuming you have the dosen_id available
-        $matkuls = Matkul::where('dosen_id', $dosen_id)->get();
+        $id = Auth::user()->dosen->id;
+        $matkuls = Matkul::where('dosen_id', $id)->get();
+
+        return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
+    }
+
+    public function indexmatkul(string $id)
+    {
+
+        $matkuls = Matkul::where('dosen_id', $id)->get();
+        @dd($matkuls);
 
         return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
     }

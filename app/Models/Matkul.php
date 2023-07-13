@@ -7,6 +7,7 @@ use App\Models\Semester;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
 class Matkul extends Model
 {
@@ -33,6 +34,7 @@ class Matkul extends Model
     {
         return $this->belongsTo(Dosen::class, 'dosen_id');
     }
+
 
     // public function semester()
     // {

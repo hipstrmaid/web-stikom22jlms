@@ -5,7 +5,7 @@
 
     <div class="list-matkul">
         <div id="accordion-collapse" class="flex flex-col gap-2" data-accordion="collapse">
-            @foreach ($matkuls as $semesterId => $semesterMatkuls)
+            @foreach ($matkuls as $semesterId => $matkulGroup)
                 <h2 id="accordion-collapse-heading-{{ $semesterId }}">
                     <button type="button"
                         class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -20,7 +20,7 @@
                     <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                         <div class="row">
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-2">
-                                @foreach ($semesterMatkuls as $matkul)
+                                @foreach ($matkulGroup as $matkul)
                                     <div
                                         class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                         <a href="#">
