@@ -16,7 +16,7 @@
                 </div>
             </ul>
 
-            <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
+            <div class="text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
                 <ul class="grid w-full gap-2 mb-4 p-5">
 
                     <div class="mb-3 gap-4">
