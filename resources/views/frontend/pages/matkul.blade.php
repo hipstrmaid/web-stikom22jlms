@@ -20,7 +20,7 @@
                 @foreach ($matkuls as $matkul)
                     <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
-                            <img class="rounded-t-lg border-b border-gray-200" src="{{ Storage::url($matkul->gambar) }}"
+                            <img class="rounded-t-lg border-b border-gray-200 h-auto" src="{{ Storage::url($matkul->gambar) }}"
                                 alt="thumbnail" />
                         </a>
                         <div class="p-5">

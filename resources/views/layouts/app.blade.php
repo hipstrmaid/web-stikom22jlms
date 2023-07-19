@@ -24,8 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="https://www.youtube.com/player_api"></script>
     <link rel="stylesheet" href="{{ asset('css/video.css') }}">
-    <script src="{{ asset('js/calendar.js') }}"></script>
-    <script src="{{ asset('js/index.global.min.js') }}"></script>
+
 
 
 </head>
@@ -43,8 +42,6 @@
     </div>
     @include('includes.footer')
     <script src="{{ asset('js/darkmode.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
-    <script src="{{ asset('js/video.js') }}"></script>
 </body>
 
 </html>

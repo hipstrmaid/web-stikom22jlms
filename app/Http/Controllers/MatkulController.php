@@ -21,14 +21,14 @@ class MatkulController extends Controller
         return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
     }
 
-    public function indexmatkul(string $id)
-    {
+    // public function indexmatkul(string $id)
+    // {
 
-        $matkuls = Matkul::where('dosen_id', $id)->get();
-        @dd($matkuls);
+    //     $matkuls = Matkul::where('dosen_id', $id)->get();
+    //     @dd($matkuls);
 
-        return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
-    }
+    //     return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
+    // }
 
 
     /**
