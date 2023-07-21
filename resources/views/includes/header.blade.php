@@ -30,11 +30,6 @@
                         fill-rule="evenodd" clip-rule="evenodd"></path>
                 </svg>
             </button>
-            @php
-                use Illuminate\Support\Facades\Auth;
-                use Illuminate\Support\Facades\Storage;
-            @endphp
-
             @auth
                 <button type="button"
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
