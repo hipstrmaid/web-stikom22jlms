@@ -20,26 +20,29 @@
                         </a>
                     </li>
                     @auth
-                        <li>
-                            <a href="{{ route('matkul.index') }}"
-                                class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg dark:text-white group"><i
-                                    class="fas fa-book"></i><span class="ml-3">Mata
-                                    Kuliah</span></a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg dark:text-white group"><i
-                                    class="fas fa-book"></i><span class="ml-3">Tugas</span></a>
-                        </li>
-                        <li>
-                            <a href="/forum">
-                                <button type="button"
-                                    class="flex items-center p-2 w-full text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                                    <i class="fas fa-comments"></i>
-                                    <span class="flex-1 ml-2 text-left whitespace-nowrap">Forum</span>
-                                </button>
-                            </a>
-                        </li>
+                        @if (in_array(Auth::user()->role_id, [1, 2]))
+                            <li>
+                                <a href="{{ route('matkul.index') }}"
+                                    class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg dark:text-white group"><i
+                                        class="fas fa-book"></i><span class="ml-3">Mata
+                                        Kuliah</span></a>
+                            </li>
+
+                            <li>
+                                <a href="#"
+                                    class="flex items-center p-2 text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg dark:text-white group"><i
+                                        class="fas fa-book"></i><span class="ml-3">Tugas</span></a>
+                            </li>
+                            <li>
+                                <a href="/forum">
+                                    <button type="button"
+                                        class="flex items-center p-2 w-full text-base font-medium text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                        <i class="fas fa-comments"></i>
+                                        <span class="flex-1 ml-2 text-left whitespace-nowrap">Forum</span>
+                                    </button>
+                                </a>
+                            </li>
+                        @endif
                         @if (Auth::user()->role_id == 4)
                             <hr>
                             <li>
@@ -91,12 +94,11 @@
 
                                 </ul>
                             </li>
-                            <hr>
                             <li>
                                 <button type="button"
                                     class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                                     aria-controls="dropdown-pages-3" data-collapse-toggle="dropdown-pages-3">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-users"></i>
                                     <span class="flex-1 ml-3 text-left whitespace-nowrap">Data User</span>
                                     <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
