@@ -1,5 +1,5 @@
 <nav
-    class="md:ml-64 bg-brown-bg text-white drop-shadow-md px-4 py-2.5 dark:bg-gray-800 sm:dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+    class="bg-brown-bg text-white drop-shadow-md px-4 py-2.5 dark:bg-gray-800 sm:dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
     <div class="flex flex-wrap justify-between items-center">
         <div class="flex justify-start items-center">
             <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
@@ -30,11 +30,6 @@
                         fill-rule="evenodd" clip-rule="evenodd"></path>
                 </svg>
             </button>
-            @php
-                use Illuminate\Support\Facades\Auth;
-                use Illuminate\Support\Facades\Storage;
-            @endphp
-
             @auth
                 <button type="button"
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
