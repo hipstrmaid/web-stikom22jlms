@@ -14,17 +14,18 @@ return new class extends Migration
         Schema::create('matkuls', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dosen_id');
-            $table->string('semester_id');
-            // $table->unsignedBigInteger('semester_id');
-            // $table->unsignedBigInteger('prodi_id');
+            // $table->string('semester_id');
+            $table->string('kode_matkul');
+            $table->unsignedBigInteger('semester_id');
+            $table->unsignedBigInteger('prodi_id');
             $table->string('nama_matkul');
             $table->string('video_url')->nullable();
             $table->string('deskripsi');
             $table->string('gambar');
             $table->string('hari');
             $table->foreign('dosen_id')->references('id')->on('dosens');
-            // $table->foreign('semester_id')->references('id')->on('semesters');
-            // $table->foreign('prodi_id')->references('id')->on('matkuls');
+            $table->foreign('semester_id')->references('id')->on('semesters');
+            $table->foreign('prodi_id')->references('id')->on('prodis');
 
 
             $table->timestamps();

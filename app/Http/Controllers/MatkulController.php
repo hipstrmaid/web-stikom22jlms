@@ -53,6 +53,7 @@ class MatkulController extends Controller
             'gambar' => 'required|file',
             'semester_id' => 'required',
             'hari' => 'required',
+            'prodi' => 'required',
         ]);
 
         $nama_matkul = $request->input('nama_matkul');
@@ -60,6 +61,8 @@ class MatkulController extends Controller
         $deskripsi = $request->input('deskripsi');
         $semester_id = $request->input('semester_id');
         $hari = $request->input('hari');
+        $prodi_id = $request->input('prodi');
+        $kode_mk = $request->input('kode_matkul');
 
         $gambar = $request->file('gambar'); // Use file() instead of input()
 
@@ -71,16 +74,21 @@ class MatkulController extends Controller
         $matkul = new Matkul;
         $matkul->nama_matkul = $nama_matkul;
         $matkul->dosen_id = $userId;
-        $matkul->semester_id = $semester_id;
         $matkul->video_url = $videoId;
         $matkul->deskripsi = $deskripsi;
         $matkul->gambar = $gambarPath;
+
+        $matkul->semester_id = $semester_id;
+        $matkul->prodi_id = $prodi_id;
         $matkul->hari = $hari;
+
+        $matkul->kode_matkul = $kode_mk;
         $matkul->save();
 
         Session::flash('success');
 
-        return redirect(route('dashboard.index'));
+        // return redirect(route('dashboard.index'));
+        return redirect('/matkul');
     }
 
     /**
