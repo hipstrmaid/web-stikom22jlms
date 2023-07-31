@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/calendar', function () {
     return view('frontend.pages.calendar');
