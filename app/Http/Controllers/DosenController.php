@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -56,6 +58,7 @@ class DosenController extends Controller
         return view('frontend.pages.dosen.profile.update-profile', compact('dosen'));
     }
 
+
     public function update(Request $request, Dosen $dosen)
     {
         // Retrieve the authenticated user
@@ -68,7 +71,7 @@ class DosenController extends Controller
             // Add more validation rules for other fields if needed
         ]);
 
-        // Find the corresponding Mahasiswa record
+        // Find the corresponding Dosen record
         $dosen = Dosen::where('user_id', $user->id)->first();
 
         if (!$dosen) {
@@ -89,6 +92,28 @@ class DosenController extends Controller
         $dosen->save();
 
         return redirect()->route('dosen.show', ['dosen' => $dosen->id])->with('success', 'Profile updated successfully.');
+    }
+
+
+    public function editPassword(User $user)
+    {
+        if ($user->id != auth()->id()) {
+            abort(403, 'Tidak boleh mengintip');
+        }
+        return view('frontend.pages.dosen.profile.update-password', compact('user'));
+    }
+
+    public function updatePassword(Request $request, User $dosen)
+    {
+        $request->validate([
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        $dosen->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('dosens.edit', $dosen)->with('success', 'Password updated successfully.');
     }
 
 

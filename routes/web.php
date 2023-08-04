@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/matkul/{matkul}/saya', [MatkulController::class, 'indexmatkul'])->name('matkul.indexmatkul');
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
+    Route::get('dosen/{user}/editPassword', [DosenController::class, 'editPassword'])->name('dosens.editPassword');
+    Route::put('dosen/{dosen}/updatePassword', [DosenController::class, 'updatePassword'])->name('dosens.updatePassword');
 
     // Routes for admins
     Route::middleware(['admin'])->group(function () {

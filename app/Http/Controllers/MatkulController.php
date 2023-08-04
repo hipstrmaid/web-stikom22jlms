@@ -6,7 +6,7 @@ use App\Models\Matkul;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Termwind\Components\Dd;
+use Illuminate\Support\Facades\Storage;
 
 class MatkulController extends Controller
 {
@@ -68,6 +68,9 @@ class MatkulController extends Controller
 
         $gambarPath = $gambar->store('public/fotos'); // Store the file
 
+
+
+
         $userId = Auth::user()->dosen->id;
         $videoId = extractVideo($video_url);
 
@@ -77,6 +80,11 @@ class MatkulController extends Controller
         $matkul->video_url = $videoId;
         $matkul->deskripsi = $deskripsi;
         $matkul->gambar = $gambarPath;
+
+        // Delete old photo if it exists and replace it with the new one
+        if ($matkul->gambar) {
+            Storage::delete($matkul->gambar); // Delete old photo
+        }
 
         $matkul->semester_id = $semester_id;
         $matkul->prodi_id = $prodi_id;
