@@ -108,6 +108,13 @@
                             </li>
                         </ul>
                     @endif
+                    <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                        <li>
+                            <a href="/user/preferences"
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Preferences
+                            </a>
+                        </li>
+                    </ul>
 
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>

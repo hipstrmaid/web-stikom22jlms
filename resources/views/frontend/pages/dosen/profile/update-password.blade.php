@@ -5,26 +5,26 @@
     <div class="row">
         <div class="grid grid-cols-1 mb-5">
             <ul class="flex bg-gray-200 dark:bg-gray-900">
-                {{-- <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
+                <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.show', ['dosen' => $dosen->id]) }}">Profil</a>
+                            href="{{ route('dosen.show', ['dosen' => Auth::user()->dosen->id]) }}">Profil</a>
                     </h5>
                 </div>
                 <div class="border  border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.edit', ['dosen' => $dosen->id]) }}">Edit Profile</a>
+                            href="{{ route('dosen.edit', ['dosen' => Auth::user()->dosen->id]) }}">Edit Profile</a>
                     </h5>
-                </div> --}}
+                </div>
                 <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
-                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosens.editPassword', ['user' => $user->id]) }}">Update Password</a>
+                    <h5 class="text-sm bg-white text-gray-900 dark:text-white py-2 px-4 font-bold"><a
+                            href="{{ route('dosens.editPassword', ['user' => Auth::user()->id]) }}">Update Password</a>
                     </h5>
                 </div>
             </ul>
 
             <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
                 <ul class="grid w-full gap-2 mb-4 p-5">
-                    <form action="{{ route('dosens.updatePassword', $user->id) }}" method="POST">
+                    <form action="{{ route('dosen.updatePassword', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="grid grid-cols-1 xl:grid-cols-5 gap-2 xl:gap-4">
@@ -34,6 +34,7 @@
                             </div>
                             <div class="col-span-1 xl:col-span-4">
                                 <input type="text" id="password" name="password"
+                                    value="{{ old('nama', $user->password) }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                         </div>

@@ -47,8 +47,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
     Route::get('dosen/{user}/editPassword', [DosenController::class, 'editPassword'])->name('dosens.editPassword');
-    Route::put('dosen/{dosen}/updatePassword', [DosenController::class, 'updatePassword'])->name('dosens.updatePassword');
-
+    Route::put('dosen/{user}/updatePassword', [DosenController::class, 'updatePassword'])->name('dosen.updatePassword');
+    Route::get('/user/preferences', function () {
+        return view('frontend.pages.preferences');
+    });
     // Routes for admins
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
@@ -59,6 +61,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/create/dosen', [UserController::class, 'indexDosen'])->name('user.tambahDosen');
         Route::get('/user/create/admin', [UserController::class, 'indexAdmin'])->name('user.tambahAdmin');
         // Add more admin-specific routes here
+
     });
 });
 

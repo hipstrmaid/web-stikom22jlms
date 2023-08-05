@@ -17,7 +17,7 @@
                 </div>
                 <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosens.editPassword', ['user' => $user->id]) }}">Update Password</a>
+                            href="{{ route('dosens.editPassword', ['user' => Auth::user()->id]) }}">Update Password</a>
                     </h5>
                 </div>
             </ul>

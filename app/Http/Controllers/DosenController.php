@@ -97,23 +97,23 @@ class DosenController extends Controller
 
     public function editPassword(User $user)
     {
-        if ($user->id != auth()->id()) {
-            abort(403, 'Tidak boleh mengintip');
-        }
+        // if ($dosen->user_id != auth()->id()) {
+        //     abort(403, 'Tidak boleh mengintip');
+        // }
         return view('frontend.pages.dosen.profile.update-password', compact('user'));
     }
 
-    public function updatePassword(Request $request, User $dosen)
+    public function updatePassword(Request $request, User $user)
     {
         $request->validate([
             'password' => 'required|confirmed|min:8',
         ]);
 
-        $dosen->update([
-            'password' => Hash::make($request->password),
+        $user->update([
+            'password' => $request->password,
         ]);
 
-        return redirect()->route('dosens.edit', $dosen)->with('success', 'Password updated successfully.');
+        return redirect()->route('dosens.editPassword', $user->id)->with('success', 'Password updated successfully.');
     }
 
 
