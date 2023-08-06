@@ -43,17 +43,19 @@
                                 <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Foto</label>
                             </div>
 
+                            @if ($dosen->foto)
+                                <div class="col-span-1 xl:col-span-4">
+                                    <img class="w-20 h-20 rounded-full" src="{{ Storage::url($dosen->foto) }}"
+                                        alt="Rounded avatar">
 
-                            <div class="col-span-1 xl:col-span-4">
-                                <img class="w-20 h-20 rounded-full" src="{{ Storage::url($dosen->foto) }}"
-                                    alt="Rounded avatar">
+                                </div>
 
-                            </div>
+                                <div class="col-span-1 xl:col-span-1">
+                                    <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Upload
+                                        Foto</label>
+                                </div>
+                            @endif
 
-                            <div class="col-span-1 xl:col-span-1">
-                                <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Upload
-                                    Foto</label>
-                            </div>
                             <div class="col-span-1 xl:col-span-4">
                                 <input name="foto"
                                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"

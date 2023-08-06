@@ -7,6 +7,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Models\Matkul;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,12 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('matkul', MatkulController::class);
+
+    Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
+
+
+
+
     Route::get('/matkul/{matkul}/saya', [MatkulController::class, 'indexmatkul'])->name('matkul.indexmatkul');
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);

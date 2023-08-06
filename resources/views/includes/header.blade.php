@@ -73,7 +73,18 @@
                             <span class="block text-sm text-gray-900 truncate dark:text-white">NIM/NIDN</span>
                         @endif
                     </div>
-                    <!-- Mini iProfile Menu -->
+
+                    <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                        <li>
+                            <a href="{{ route('edit-profile') }}"
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
+                            </a>
+                        </li>
+                    </ul>
+
+
+
+                    {{-- <!-- Mini iProfile Menu -->
                     @if (Auth::user()->role_id == 1)
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
@@ -107,7 +118,9 @@
                                     class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
                             </li>
                         </ul>
-                    @endif
+                    @endif --}}
+
+
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="/user/preferences"
