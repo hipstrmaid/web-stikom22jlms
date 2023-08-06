@@ -106,15 +106,30 @@ class DosenController extends Controller
     public function updatePassword(Request $request, User $user)
     {
         $request->validate([
-            'password' => 'required|confirmed|min:8',
+            'current_password' => 'required|current_password',
+            'password' => 'required|min:8',
         ]);
 
-        $user->update([
-            'password' => $request->password,
-        ]);
+        // Check if the provided current password matches the user's actual password
+        if (!Hash::check($request->input('current_password'), $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
 
-        return redirect()->route('dosens.editPassword', $user->id)->with('success', 'Password updated successfully.');
+
+        $password = $request->input('password');
+
+        // // Use setAttribute to set the password attribute directly
+        // $user->setAttribute('password', $password);
+
+        $user->password = Hash::make($password);
+
+        // Save the updated user record to the database
+        $user->save();
+
+        return redirect()->route('dosen.editPassword', $user->id)->with('success', 'Password updated successfully.');
     }
+
+
 
 
 

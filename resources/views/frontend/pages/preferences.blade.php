@@ -13,7 +13,7 @@
                     </li>
                     <li>
                         <a class="font-medium text-gray-600 dark:text-gray-500 hover:underline"
-                            href="{{ route('dosens.editPassword', ['user' => Auth::user()->id]) }}">Ganti
+                            href="{{ route('dosen.editPassword', ['user' => Auth::user()->id]) }}">Ganti
                             Password</a>
                     </li>
 

@@ -122,9 +122,11 @@
                                 class="block  py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
                                 @csrf
 
-                                <button type="submit">Log
-                                    out</button>
-                                </a>
+
+                                <button class="text-left w-full" type="submit">Logout</button>
+
+
+
                             </form>
                         </li>
                     </ul>

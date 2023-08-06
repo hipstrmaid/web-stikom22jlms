@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/matkul/{matkul}/saya', [MatkulController::class, 'indexmatkul'])->name('matkul.indexmatkul');
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
-    Route::get('dosen/{user}/editPassword', [DosenController::class, 'editPassword'])->name('dosens.editPassword');
+    Route::get('dosen/{user}/editPassword', [DosenController::class, 'editPassword'])->name('dosen.editPassword');
     Route::put('dosen/{user}/updatePassword', [DosenController::class, 'updatePassword'])->name('dosen.updatePassword');
     Route::get('/user/preferences', function () {
         return view('frontend.pages.preferences');
