@@ -4,29 +4,23 @@ This repository contains a Laravel project integrated with Tailwind CSS. Follow 
 
 ## Prerequisites
 
-- PHP (version X.X.X)
-- Composer (version X.X.X)
-- Node.js (version X.X.X)
-- npm (version X.X.X)
-- MySQL or any other supported database
+-   PHP (version 8.1)
+-   Composer (version X.X.X)
+-   Node.js (version X.X.X)
+-   npm (version X.X.X)
+-   MySQL
 
 ## Installation
 
 1. Clone the repository to your local machine:
 
-   - composer install
-   - npm install
-   - php artisan key:generate
-   - php artisan migrate
+    - composer install
+    - npm install
+    - php artisan key:generate
+    - php artisan migrate --seed
 
-   
 2. Jalankan:
-   - php artisan serve
-   - npm run dev
-
+    - php artisan serve
+    - npm run dev
 
 Feel free to customize the steps, dependencies, and additional sections as needed for your specific project.
-
-
-
-
