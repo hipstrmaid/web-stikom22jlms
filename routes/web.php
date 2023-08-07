@@ -64,9 +64,9 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('role', RoleController::class);
         Route::resource('user', UserController::class)->except(['create']);
-        Route::get('/user/create/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.tambahMahasiswa');
-        Route::get('/user/create/dosen', [UserController::class, 'indexDosen'])->name('user.tambahDosen');
-        Route::get('/user/create/admin', [UserController::class, 'indexAdmin'])->name('user.tambahAdmin');
+        Route::get('/admin/create/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.tambahMahasiswa');
+        Route::get('/admin/create/dosen', [UserController::class, 'indexDosen'])->name('user.tambahDosen');
+        Route::get('/admin/create/admin', [UserController::class, 'indexAdmin'])->name('user.tambahAdmin');
         // Add more admin-specific routes here
 
     });

@@ -103,23 +103,7 @@
                             </li>
                         </ul>
                     @endif
-
-                    @if (Auth::user()->role_id == 4)
-                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                            <li>
-                                <a href="#"
-                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                            <li>
-                                <a href="{{ route('admin.index') }}"
-                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
-                            </li>
-                        </ul>
-                    @endif --}}
-
+                    --}}
 
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
@@ -128,6 +112,15 @@
                             </a>
                         </li>
                     </ul>
+
+                    @if (Auth::user()->role_id == 4)
+                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="{{ route('admin.index') }}"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
+                            </li>
+                        </ul>
+                    @endif
 
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>

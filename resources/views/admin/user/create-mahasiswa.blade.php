@@ -2,10 +2,14 @@
 @section('content')
     <div class="row flex flex-col">
         @if (Session::has('success'))
-            <x-user-create-success></x-user-create-success>
+            <x-user-create-success>
+                <div class="ml-3 text-sm font-normal">Akun Berhasil dibuat.</div>
+            </x-user-create-success>
         @endif
         @error('nim')
-            <x-user-create-warning></x-user-create-warning>
+            <x-user-create-warning>
+                <div class="ml-3 text-sm font-normal">{{ $message }}</div>
+            </x-user-create-warning>
         @enderror
         <div class="bg-white text-sm rounded-t dark:border-gray-900 dark:bg-gray-800">
             <div class="w-full panel-head flex items-center p-4">
@@ -52,7 +56,7 @@
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIM
                                                         MAHASISWA</label>
                                                     <input type="text" name="nim" id="nim"
-                                                        class="@error('nim') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                         placeholder="cth. 1920557xx" required>
                                                     <input type="hidden" name="role_id" value="1">
                                                     <input type="hidden" name="prodi_id" value="1">
@@ -98,7 +102,7 @@
                                                     <label for="nim"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIM</label>
                                                     <input type="text" name="nim" id="nim"
-                                                        class="@error('nim') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                         placeholder="cth. 1920557xx" required>
                                                     <input type="hidden" name="role_id" value="1">
                                                     <input type="hidden" name="prodi_id" value="2">
@@ -116,74 +120,92 @@
                     </div>
                 </button>
             </div>
-            <hr class="bg-gray-200 h-0.5 border-0 dark:bg-gray-700">
-            <div class="relative overflow-x-auto shadow-md">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <div class="row flex flex-col">
+                <div class="bg-white text-sm dark:border-gray-900 dark:bg-gray-800">
+                    <div class="w-full panel-head flex items-center p-4">
+                        <div class="flex w-full gap-4  dark:text-gray-50 dark:text-gray-400">
+                            <h1 class="text-md font-bold">Sisfo:
+                                {{ \App\Models\Mahasiswa::where('prodi_id', 1)->count() }}</h1>
+                            <h1 class="text-md font-bold">Tekom:
+                                {{ \App\Models\Mahasiswa::where('prodi_id', 2)->count() }}</h1>
 
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Id
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                FOTO
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                NIM
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                NAMA
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                PRODI
-                            </th>
-                            {{-- <th scope="col" class="px-6 py-3">
-                                USER_ID
-                            </th> --}}
-                            <th scope="col" class="px-6 py-3">
-                                AKSI
-                            </th>
-                        </tr>
-                    </thead>
+                        </div>
+                    </div>
 
-                    <tbody>
-                        @foreach ($mahasiswa as $mhs)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <hr class="bg-gray-200 h-0.5 border-0 dark:bg-gray-700">
+                    <div class="relative overflow-x-auto shadow-md">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
-                                <td scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $mhs->id }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <img src="{{ Storage::url($mhs->foto) }}" class="rounded-full w-8 h-8"
-                                        alt="foto-mhs">
-                                </td>
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Id
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        FOTO
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        NIM
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        NAMA
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        PRODI
+                                    </th>
+                                    {{-- <th scope="col" class="px-6 py-3">
+                                        USER_ID
+                                    </th> --}}
+                                    <th scope="col" class="px-6 py-3">
+                                        AKSI
+                                    </th>
+                                </tr>
+                            </thead>
 
-                                <td class="px-6 py-4">
-                                    {{ $mhs->user->nim_mhs }}
-                                </td>
+                            <tbody>
+                                @foreach ($mahasiswa as $mhs)
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
 
-                                <td class="px-6 py-4">
-                                    {{ $mhs->nama }}
-                                </td>
+                                        <td scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{ $mhs->id }}
+                                        </td>
+                                        <td class="px-6 py-2">
+                                            <img src="{{ Storage::url($mhs->foto) }}" class="rounded-full w-8 h-8"
+                                                alt="foto-mhs">
+                                        </td>
 
-                                <td class="px-6 py-4">
-                                    {{ $mhs->prodi->nama_prodi }}
-                                </td>
-                                {{-- <td class="px-6 py-4">
-                                    {{ $mhs->user_id }}
-                                </td> --}}
-                                <td class="px-6 py-4 text-left">
-                                    <a href="#"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                </td>
-                        @endforeach
-                        </tr>
+                                        <td class="px-6 py-2">
+                                            {{ $mhs->user->nim_mhs }}
+                                        </td>
+
+                                        <td class="px-6 py-2">
+                                            {{ $mhs->nama }}
+                                        </td>
+
+                                        <td class="px-6 py-2">
+                                            {{ $mhs->prodi->nama_prodi }}
+                                        </td>
+                                        {{-- <td class="px-6 py-4">
+                                            {{ $mhs->user_id }}
+                                        </td> --}}
+                                        <td class="px-6 py-2 text-left">
+                                            <a href="#"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        </td>
+                                @endforeach
+                                </tr>
 
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
+
+
+
         </div>
     </div>
 @endsection

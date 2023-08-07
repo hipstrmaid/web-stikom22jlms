@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -35,7 +36,7 @@ class UserController extends Controller
     public function store(Request $request, User $user)
     {
         $request->validate([
-            'nim' => ['required', 'unique:users,nim_mhs', 'max:10'],
+            'nim' => ['required', 'unique:users,nim_mhs', 'max:10', 'numeric'],
         ]);
 
         $nim = $request->input('nim');
@@ -137,10 +138,11 @@ class UserController extends Controller
 
     public function editPassword(User $user)
     {
-        // if ($dosen->user_id != auth()->id()) {
-        //     abort(403, 'Tidak boleh mengintip');
-        // }
-        return view('frontend.pages.dosen.profile.update-password', compact('user'));
+        if (Auth::user()->id != $user->id) {
+            abort(403, 'Tidak boleh mengintip');
+        }
+
+        return view('frontend.pages.update-password', compact('user'));
     }
 
     public function updatePassword(Request $request, User $user)
@@ -166,6 +168,6 @@ class UserController extends Controller
         // Save the updated user record to the database
         $user->save();
 
-        return redirect()->route('dosen.editPassword', $user->id)->with('success', 'Password updated successfully.');
+        return redirect()->route('user.editPassword', $user->id)->with('success', 'Password updated successfully.');
     }
 }
