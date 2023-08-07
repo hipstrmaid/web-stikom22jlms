@@ -53,17 +53,17 @@
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
                             <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
+                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->dosen->nidn }}</span>
                         @elseif (Auth::user()->mahasiswa)
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->nama }}</span>
                             <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
+                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->mahasiswa->nim }}</span>
                         @elseif (Auth::user()->admin)
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->admin->nama }}</span>
                             <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->nim_mhs }}</span>
+                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->admin->nidn }}</span>
                         @else
                             <span class="block text-sm font-semibold text-gray-900 dark:text-white">Super Admin</span>
                         @endif

@@ -44,7 +44,7 @@
                                     {{ $mahasiswa->user->role->nama_role ?? 'Role' }}
                                 </div>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                                    {{ $mahasiswa->user->nim_mhs ?? 'Nim/Nidn' }}
+                                    {{ $mahasiswa->nim ?? 'Nim/Nidn' }}
                                 </div>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                                     {{ $mahasiswa->prodi->nama_prodi ?? 'Nim/Nidn' }}

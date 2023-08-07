@@ -120,7 +120,7 @@
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    {{ $dosen->user->nim_mhs }}
+                                    {{ $dosen->nidn }}
                                 </td>
 
                                 <td class="px-6 py-4">

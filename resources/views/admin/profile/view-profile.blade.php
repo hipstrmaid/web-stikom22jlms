@@ -41,7 +41,7 @@
                                     {{ $admin->nama ?? 'Nama' }}
                                 </h3>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                                    {{ $admin->user->nim_mhs ?? 'Nim/Nidn' }}
+                                    {{ $admin->nidn ?? 'Nim/Nidn' }}
                                 </div>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                                     {{ $admin->user->role->nama_role ?? 'Role' }}

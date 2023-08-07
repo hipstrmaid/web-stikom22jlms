@@ -176,7 +176,7 @@
                                         </td>
 
                                         <td class="px-6 py-2">
-                                            {{ $mhs->user->nim_mhs }}
+                                            {{ $mhs->nim }}
                                         </td>
 
                                         <td class="px-6 py-2">

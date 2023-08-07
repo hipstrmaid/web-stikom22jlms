@@ -81,10 +81,10 @@ class MatkulController extends Controller
         $matkul->deskripsi = $deskripsi;
         $matkul->gambar = $gambarPath;
 
-        // Delete old photo if it exists and replace it with the new one
-        if ($matkul->gambar) {
-            Storage::delete($matkul->gambar); // Delete old photo
-        }
+        // // Delete old photo if it exists and replace it with the new one
+        // if ($matkul->gambar) {
+        //     Storage::delete($matkul->gambar); // Delete old photo
+        // }
 
         $matkul->semester_id = $semester_id;
         $matkul->prodi_id = $prodi_id;

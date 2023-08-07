@@ -46,7 +46,7 @@
                                     {{ $dosen->nama ?? 'Nama' }}
                                 </h3>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                                    {{ $dosen->user->nim_mhs ?? 'Nim/Nidn' }}
+                                    {{ $dosen->nidn ?? 'Nim/Nidn' }}
                                 </div>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                                     {{ $dosen->user->role->nama_role ?? 'Role' }}
