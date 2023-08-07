@@ -46,8 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('matkul', MatkulController::class);
 
     Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
-    Route::get('user/{user}/editPassword', [UserController::class, 'editPassword'])->name('user.editPassword');
-    Route::put('user/{user}/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
+    Route::get('user/{user}/editPassword', [ProfileController::class, 'editPassword'])->name('user.editPassword');
+    Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');
 
 
 
@@ -58,10 +58,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/preferences', function () {
         return view('frontend.pages.preferences');
     });
+
+
     // Routes for admins
     Route::middleware(['admin'])->group(function () {
-        Route::resource('admin', AdminController::class);
 
+        Route::resource('admin', AdminController::class);
         Route::resource('role', RoleController::class);
         Route::resource('user', UserController::class)->except(['create']);
         Route::get('/admin/create/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.tambahMahasiswa');

@@ -15,13 +15,12 @@ class AdminController extends Controller
 
     public function index()
     {
-        $user = User::all();
         $mahasiswaTotal = User::where('role_id', 1)->count();
-        $adminTotal = User::where('role_id', 2)->count();
+        $dosenTotal = User::where('role_id', 2)->count();
         $baakTotal = User::where('role_id', 3)->count();
         $adminTotal = User::where('role_id', 4)->count();
 
-        return view('admin.admin-dashboard', compact('user', 'mahasiswaTotal', 'adminTotal', 'baakTotal', 'adminTotal'));
+        return view('admin.admin-dashboard', compact('mahasiswaTotal', 'dosenTotal', 'baakTotal', 'adminTotal'));
     }
 
     /**
@@ -56,6 +55,7 @@ class AdminController extends Controller
         if ($admin->user_id != auth()->id()) {
             abort(403, 'Tidak boleh mengintip');
         }
+
         return view('admin.profile.update-profile', compact('admin'));
     }
 

@@ -29,7 +29,7 @@
 
 </head>
 
-<body class="font-poppins bg-gray-50 dark:bg-gray-900">
+<body class="font-poppins bg-gray-100 dark:bg-gray-900">
     <div class="antialiased">
         @include('includes.header')
         @include('includes.sidebar')

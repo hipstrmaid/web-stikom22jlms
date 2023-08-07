@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('content')
-    <x-content-title>Update Profile</x-content-title>
+    <x-content-title>Ganti Password</x-content-title>
     <x-breadcrumbs></x-breadcrumbs>
     <div class="row">
         <div class="grid grid-cols-1 mb-5">
             <ul class="flex bg-gray-200 dark:bg-gray-900">
                 {{-- <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.show', ['dosen' => Auth::user()->dosen->id]) }}">Profil</a>
+                            href="{{ route('user.show', ['user' => Auth::user()->id]) }}">Profil</a>
                     </h5>
                 </div>
                 <div class="border  border-gray-200 border-b-0 rounded-t dark:border-gray-900">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.edit', ['dosen' => Auth::user()->dosen->id]) }}">Edit Profile</a>
+                            href="{{ route('user.edit', ['user' => Auth::user()->id]) }}">Edit Profile</a>
                     </h5>
                 </div> --}}
                 <div class="border bg-white border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">

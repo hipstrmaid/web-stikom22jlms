@@ -17,7 +17,7 @@
                 </div>
                 <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.editPassword', ['user' => Auth::user()->id]) }}">Update Password</a>
+                            href="{{ route('user.editPassword', ['user' => Auth::user()->id]) }}">Update Password</a>
                     </h5>
                 </div>
             </ul>
@@ -39,22 +39,23 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
 
-                            <div class="col-span-1 xl:col-span-1">
-                                <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Foto</label>
-                            </div>
+
 
                             @if ($dosen->foto)
+                                <div class="col-span-1 xl:col-span-1">
+                                    <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Foto</label>
+                                </div>
                                 <div class="col-span-1 xl:col-span-4">
                                     <img class="w-20 h-20 rounded-full" src="{{ Storage::url($dosen->foto) }}"
                                         alt="Rounded avatar">
 
                                 </div>
-
-                                <div class="col-span-1 xl:col-span-1">
-                                    <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Upload
-                                        Foto</label>
-                                </div>
                             @endif
+
+                            <div class="col-span-1 xl:col-span-1">
+                                <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Upload
+                                    Foto</label>
+                            </div>
 
                             <div class="col-span-1 xl:col-span-4">
                                 <input name="foto"
