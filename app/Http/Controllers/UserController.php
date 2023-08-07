@@ -133,4 +133,39 @@ class UserController extends Controller
         $admin = Admin::all();
         return view('admin.user.create-admin', ['admins' => $admin]);
     }
+
+
+    public function editPassword(User $user)
+    {
+        // if ($dosen->user_id != auth()->id()) {
+        //     abort(403, 'Tidak boleh mengintip');
+        // }
+        return view('frontend.pages.dosen.profile.update-password', compact('user'));
+    }
+
+    public function updatePassword(Request $request, User $user)
+    {
+        $request->validate([
+            'current_password' => 'required|current_password',
+            'password' => 'required|min:8',
+        ]);
+
+        // Check if the provided current password matches the user's actual password
+        if (!Hash::check($request->input('current_password'), $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+
+
+        $password = $request->input('password');
+
+        // // Use setAttribute to set the password attribute directly
+        // $user->setAttribute('password', $password);
+
+        $user->password = Hash::make($password);
+
+        // Save the updated user record to the database
+        $user->save();
+
+        return redirect()->route('dosen.editPassword', $user->id)->with('success', 'Password updated successfully.');
+    }
 }

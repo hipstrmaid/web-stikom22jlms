@@ -5,7 +5,7 @@
     <div class="row">
         <div class="grid grid-cols-1 mb-5">
             <ul class="flex bg-gray-200 dark:bg-gray-900">
-                <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
+                {{-- <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
                             href="{{ route('dosen.show', ['dosen' => Auth::user()->dosen->id]) }}">Profil</a>
                     </h5>
@@ -14,17 +14,17 @@
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
                             href="{{ route('dosen.edit', ['dosen' => Auth::user()->dosen->id]) }}">Edit Profile</a>
                     </h5>
-                </div>
+                </div> --}}
                 <div class="border bg-white border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-sm  text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('dosen.editPassword', ['user' => Auth::user()->id]) }}">Update Password</a>
+                            href="{{ route('user.editPassword', ['user' => Auth::user()->id]) }}">Update Password</a>
                     </h5>
                 </div>
             </ul>
             {{-- {{ print_r($errors->all()) }} --}}
             <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
                 <ul class="grid w-full gap-2 mb-4 p-5">
-                    <form action="{{ route('dosen.updatePassword', $user->id) }}" method="POST">
+                    <form action="{{ route('user.updatePassword', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="grid grid-cols-1 xl:grid-cols-5 gap-2 xl:gap-4">

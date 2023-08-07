@@ -11,7 +11,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         if ($user->role_id === 1) {
-            return redirect()->route('edit-mahasiswa-profile', ['id' => $user->mahasiswa->id]);
+            return redirect()->route('mahasiswa.edit',  $user->mahasiswa->id);
         } elseif ($user->role_id === 2) {
             return redirect()->route('dosen.edit', $user->dosen->id);
         } elseif ($user->role === 4) {

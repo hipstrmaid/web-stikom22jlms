@@ -46,15 +46,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('matkul', MatkulController::class);
 
     Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
-
+    Route::get('user/{user}/editPassword', [UserController::class, 'editPassword'])->name('user.editPassword');
+    Route::put('user/{user}/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 
 
 
     Route::get('/matkul/{matkul}/saya', [MatkulController::class, 'indexmatkul'])->name('matkul.indexmatkul');
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
-    Route::get('dosen/{user}/editPassword', [DosenController::class, 'editPassword'])->name('dosen.editPassword');
-    Route::put('dosen/{user}/updatePassword', [DosenController::class, 'updatePassword'])->name('dosen.updatePassword');
+
     Route::get('/user/preferences', function () {
         return view('frontend.pages.preferences');
     });

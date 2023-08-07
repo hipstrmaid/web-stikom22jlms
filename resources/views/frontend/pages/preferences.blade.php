@@ -8,12 +8,12 @@
                 <ul class="grid w-full gap-2 mb-4 p-5">
                     <li>
                         <a class="font-medium text-gray-600 dark:text-gray-500 hover:underline"
-                            href="{{ route('dosen.edit', ['dosen' => Auth::user()->dosen->id]) }}">Edit
+                            href="{{ route('edit-profile') }}">Edit
                             Profile</a>
                     </li>
                     <li>
                         <a class="font-medium text-gray-600 dark:text-gray-500 hover:underline"
-                            href="{{ route('dosen.editPassword', ['user' => Auth::user()->id]) }}">Ganti
+                            href="{{ route('user.editPassword', ['user' => Auth::user()->id]) }}">Ganti
                             Password</a>
                     </li>
 
