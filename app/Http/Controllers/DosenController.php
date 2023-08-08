@@ -66,7 +66,7 @@ class DosenController extends Controller
 
         // Validate the input data
         $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|string',
             'foto' => 'nullable|file',
             // Add more validation rules for other fields if needed
         ]);

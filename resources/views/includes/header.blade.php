@@ -4,7 +4,7 @@
         <div class="flex justify-start items-center">
             <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
                 aria-controls="drawer-navigation"
-                class="p-3 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                class="p-3 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-900 focus:bg-gray-900 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 <i class="fa-solid fa-bars text-gray-50"></i>
                 <span class="sr-only">Toggle sidebar</span>
             </button>
@@ -25,28 +25,32 @@
                     <span class="sr-only">Open user menu</span>
 
                     @if (Auth::user()->dosen)
-                        @if (Auth::user()->dosen->foto ?? 'Beluma ada foto')
+                        @isset(Auth::user()->dosen->foto)
                             <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->dosen->foto) }}"
-                                alt="Dosen Foto">
-                        @endif
+                                alt="Foto dosen">
+                        @else
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
+                        @endisset
                     @elseif (Auth::user()->mahasiswa)
-                        @if (Auth::user()->mahasiswa->foto ?? 'Beluma ada foto')
+                        @isset(Auth::user()->mahasiswa->foto)
                             <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->mahasiswa->foto) }}"
-                                alt="Mahasiswa Foto">
-                        @endif
+                                alt="Foto mahasiswa">
+                        @else
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
+                        @endisset
                     @elseif (Auth::user()->admin)
-                        @if (Auth::user()->admin->foto ?? 'Belum ada foto')
+                        @isset(Auth::user()->admin->foto)
                             <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->admin->foto) }}"
-                                alt="Mahasiswa Foto">
-                        @endif
-                    @else
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
+                                alt="Foto admin">
+                        @else
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
+                        @endisset
                     @endif
 
 
                 </button>
                 <!-- Mini iProfile Menu -->
-                <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+                <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded rounded-md divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                     id="dropdown">
                     <div class="py-3 px-4">
                         @if (Auth::user()->dosen)
@@ -79,19 +83,10 @@
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="/user/preferences"
-                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Preferences
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Settings
                             </a>
                         </li>
                     </ul>
-
-                    @if (Auth::user()->role_id == 4)
-                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                            <li>
-                                <a href="{{ route('admin.index') }}"
-                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
-                            </li>
-                        </ul>
-                    @endif
 
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
@@ -99,12 +94,21 @@
                                 @csrf
 
                                 <button
-                                    class="text-left w-full py-2 px-4 text-sm hover:text-blue-700 dark:hover:text-gray-100 dark:text-gray-400 dark:hover:text-white"
+                                    class="text-left w-full py-2 px-4 text-sm hover:text-red-500 hover:font-bold dark:hover:text-gray-100 dark:text-gray-400 dark:hover:text-white"
                                     type="submit">Logout</button>
 
                             </form>
                         </li>
                     </ul>
+
+                    {{-- @if (Auth::user()->role_id == 4)
+                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="{{ route('admin.index') }}"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
+                            </li>
+                        </ul>
+                    @endif --}}
                 </div>
             @endauth
             @guest

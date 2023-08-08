@@ -11,14 +11,14 @@
                     </h5>
                 </div>
                 <div class="">
-                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
+                    <h5 class="text-sm text-gray-500 dark:text-white py-2 px-4 font-bold"><a
                             href="{{ route('admin.edit', ['admin' => $admin->id]) }}">Edit Profile</a>
                     </h5>
                 </div>
             </ul>
 
 
-            <div class="bg-white text-sm border border-gray-200 dark:border-gray-900 dark:bg-gray-800">
+            <div class="bg-white text-sm border border-t-0 border-gray-200 dark:border-gray-900 dark:bg-gray-800">
                 <div class="w-full px-4">
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-lg mt-5">
                         <div class="px-6 dark:bg-gray-800 dark:text-white flex items-center">

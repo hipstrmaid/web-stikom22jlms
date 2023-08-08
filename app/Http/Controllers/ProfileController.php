@@ -15,7 +15,7 @@ class ProfileController extends Controller
 
         if ($user->role_id === 1) {
             return redirect()->route('mahasiswa.edit',  $user->mahasiswa->id);
-        } elseif ($user->role_id === 2) {
+        } elseif (array($user->role_id === [2, 3])) {
             return redirect()->route('dosen.edit', $user->dosen->id);
         } elseif ($user->role_id === 4) {
             return redirect()->route('admin.edit', $user->admin->id);

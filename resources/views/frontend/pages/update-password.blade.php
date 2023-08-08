@@ -2,22 +2,14 @@
 @section('content')
     <x-content-title>Ganti Password</x-content-title>
     <x-breadcrumbs></x-breadcrumbs>
+
+
     <div class="row">
         <div class="grid grid-cols-1 mb-5">
             <ul class="flex bg-gray-200 dark:bg-gray-900">
-                {{-- <div class="border border-gray-200 border-b-0 rounded-t dark:border-gray-900">
-                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('user.show', ['user' => Auth::user()->id]) }}">Profil</a>
-                    </h5>
-                </div>
-                <div class="border  border-gray-200 border-b-0 rounded-t dark:border-gray-900">
-                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('user.edit', ['user' => Auth::user()->id]) }}">Edit Profile</a>
-                    </h5>
-                </div> --}}
                 <div class="border bg-white border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-sm  text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('user.editPassword', ['user' => Auth::user()->id]) }}">Update Password</a>
+                            href="{{ route('user.editPassword', ['user' => Auth::user()->id]) }}">Ubah Password</a>
                     </h5>
                 </div>
             </ul>
@@ -27,40 +19,70 @@
                     <form action="{{ route('user.updatePassword', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="grid grid-cols-1 xl:grid-cols-5 gap-2 xl:gap-4">
+                        <div class="grid grid-cols-1 xl:grid-cols-8 gap-4 xl:gap-4 ">
+
                             <div class="col-span-1 xl:col-span-1">
-                                <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Password</label>
+                                <label
+                                    class="block text-sm font-medium text-blue-600 dark:text-white xl:text-right">Username</label>
                             </div>
-                            <div class="col-span-1 xl:col-span-4">
-                                <input type="password" id="password" name="current_password"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                            <div class="col-span-1 xl:col-span-7 relative z-0 w-full group ">
+                                <input type="text" id="username" disabled value="{{ old('nama', $user->username) }}"
+                                    class="block py-2.5 px-0 w-full font-bold text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " required />
+                                <label for="username"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                            </div>
+
+                            <div class="col-span-1 xl:col-span-1">
+                                <label
+                                    class="block text-sm font-medium text-blue-600 dark:text-white xl:text-right">Password</label>
+                            </div>
+
+                            <div class="col-span-1 xl:col-span-7 relative z-0 w-full group ">
+                                <input type="password" id="current_password" name="current_password"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " required />
+                                <label for="current_password"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
                                 @error('current_password')
                                     <p class="text-red-600"> {{ $message }}</p>
                                 @enderror
                             </div>
 
-
                             <div class="col-span-1 xl:col-span-1">
-                                <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Password
-                                    baru</label>
+                                <label class="block text-sm font-medium text-blue-600 dark:text-white xl:text-right">Ganti
+                                    Password</label>
                             </div>
-                            <div class="col-span-1 xl:col-span-4">
+
+                            <div class="col-span-1 xl:col-span-7 relative z-0 w-full group ">
                                 <input type="password" id="password" name="password"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " required />
+                                <label for="password"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password
+                                    baru</label>
                                 @error('password')
                                     <p class="text-red-600"> {{ $message }}</p>
                                 @enderror
                             </div>
+                            @if (session('success'))
+                                <div class="p-4 mb-4 mt-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                                    role="alert">
+                                    <span class="font-medium">Berhasil!</span> Password berhasil di ubah.
+                                </div>
+                            @endif
+                            <div class="col-span-1 xl:col-span-1">
+                                <label class="block"></label>
+                            </div>
+                            <div class="col-span-1 xl:col-span-7">
+                                <button type="submit"
+                                    class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
+                            </div>
                         </div>
 
-                        @if (session('success'))
-                            <div class="p-4 mb-4 mt-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-                                role="alert">
-                                <span class="font-medium">Berhasil!</span> Password berhasil di ubah.
-                            </div>
-                        @endif
-                        <button type="submit"
-                            class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
+
+
                     </form>
 
                 </ul>

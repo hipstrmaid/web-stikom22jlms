@@ -37,6 +37,14 @@ Route::middleware('guest')->group(function () {
     Route::resource('guest', GuestController::class);
 });
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/calendar', function () {
+    return view('frontend.pages.calendar');
+});
+
 // Laravel authentication routes
 Auth::routes();
 
@@ -72,12 +80,4 @@ Route::middleware('auth')->group(function () {
         // Add more admin-specific routes here
 
     });
-});
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/calendar', function () {
-    return view('frontend.pages.calendar');
 });

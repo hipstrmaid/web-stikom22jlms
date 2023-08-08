@@ -30,7 +30,7 @@
 
                             <li>
                                 <a href="#"
-                                    class="flex items-center p-2 px-4 text-base font-medium  dark:hover:bg-gray-900 rounded-lg  group"><i
+                                    class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900 rounded-lg  group"><i
                                         class="fas fa-book"></i><span class="ml-3">Tugas</span></a>
                             </li>
                             <li>

@@ -79,13 +79,16 @@
                                 Id
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                FOTO
+                                Email
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 NAMA
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 ROLE
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                FOTO
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 AKSI
@@ -101,9 +104,9 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $admin->id }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    <img src="{{ Storage::url($admin->foto) }}" class="rounded-full w-8 h-8"
-                                        alt="foto-dosen">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $admin->user->username }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $admin->nama }}
@@ -111,6 +114,16 @@
                                 <td class="px-6 py-4">
                                     {{ $admin->user->role_name }}
                                 </td>
+                                <td class="px-6 py-4">
+                                    @if ($admin->foto)
+                                        <img src="{{ Storage::url($admin->foto) }}" class="rounded-full w-8 h-8"
+                                            alt="foto-dosen">
+                                    @else
+                                        <img src="{{ asset('assets/img/user.png') }}" class="rounded-full w-8 h-8"
+                                            alt="default-foto">
+                                    @endif
+                                </td>
+
                                 <td class="px-6 py-4 text-left">
                                     <a href="#"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

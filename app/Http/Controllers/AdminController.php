@@ -15,12 +15,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $mahasiswaTotal = User::where('role_id', 1)->count();
-        $dosenTotal = User::where('role_id', 2)->count();
-        $baakTotal = User::where('role_id', 3)->count();
-        $adminTotal = User::where('role_id', 4)->count();
-
-        return view('admin.admin-dashboard', compact('mahasiswaTotal', 'dosenTotal', 'baakTotal', 'adminTotal'));
+        //
     }
 
     /**

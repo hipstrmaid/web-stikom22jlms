@@ -15,11 +15,6 @@
                             href="{{ route('dosen.edit', ['dosen' => $dosen->id]) }}">Edit Profile</a>
                     </h5>
                 </div>
-                <div class="">
-                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('user.editPassword', ['user' => Auth::user()->id]) }}">Update Password</a>
-                    </h5>
-                </div>
             </ul>
 
 

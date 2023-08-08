@@ -34,7 +34,7 @@
         @include('includes.header')
         @include('includes.sidebar')
 
-        <main class=" md:ml-64 h-auto pt-20">
+        <main class="md:ml-64 h-auto pt-20">
             <div class="container px-5">
                 @yield('content')
             </div>
