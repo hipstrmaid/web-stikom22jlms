@@ -6,7 +6,6 @@
                 aria-controls="drawer-navigation"
                 class="p-3 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-900 focus:bg-gray-900 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 <i class="fa-solid fa-bars text-gray-50"></i>
-                <span class="sr-only">Toggle sidebar</span>
             </button>
             <a href="#" class="flex items-center justify-between mr-4">
                 <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 sm:h-12 h-8 hidden sm:block"
@@ -17,7 +16,7 @@
 
         </div>
         <div class="flex items-center lg:order-2 gap-2">
-            @include('includes/_dark-mode')
+            @include('includes._dark-mode')
             @auth
                 <button type="button"
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -100,15 +99,6 @@
                             </form>
                         </li>
                     </ul>
-
-                    {{-- @if (Auth::user()->role_id == 4)
-                        <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-                            <li>
-                                <a href="{{ route('admin.index') }}"
-                                    class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Admin</a>
-                            </li>
-                        </ul>
-                    @endif --}}
                 </div>
             @endauth
             @guest

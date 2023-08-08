@@ -49,7 +49,7 @@ class MatkulController extends Controller
         $request->validate([
             'nama_matkul' => 'required',
             'video_url' => 'required',
-            'deskripsi' => 'required',
+            'deskripsi' => 'required|min:100',
             'gambar' => 'required|file',
             'semester_id' => 'required',
             'hari' => 'required',
