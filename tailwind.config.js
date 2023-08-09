@@ -23,9 +23,15 @@ module.exports = {
             10: '#fff4af',
             "button": '#B78103',
             "bg" :"#533e2d",
-            400 :"#ddca7d"
+            400 :"#ddca7d",
+
+
 
         },
+        coffe: {
+            'bg': '#212121',
+            'hover': '#141414'
+        }
       },
       extend: {},
     },

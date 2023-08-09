@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -35,7 +36,7 @@ class UserController extends Controller
     public function store(Request $request, User $user)
     {
         $request->validate([
-            'nim' => ['required', 'unique:users,nim_mhs', 'max:10'],
+            'nim' => ['required', 'unique:admins,nidn', 'unique:dosens,nidn', 'unique:mahasiswas,nim', 'numeric'],
         ]);
 
         $nim = $request->input('nim');
@@ -45,7 +46,7 @@ class UserController extends Controller
         $prodi_id = $request->input('prodi_id');
 
         $user = new User;
-        $user->nim_mhs = $nim;
+        // $user->nim_mhs = $nim;
         $user->username = $username;
         $user->password = Hash::make($password);
         $user->role_id = $roleId;
@@ -57,6 +58,7 @@ class UserController extends Controller
                 $mahasiswa = new Mahasiswa();
                 // $mahasiswa->nama = 'Belum diisi';
                 // $mahasiswa->foto = 'Foto anda';
+                $mahasiswa->nim = $nim;
                 $mahasiswa->prodi_id = $prodi_id;
                 $mahasiswa->user_id = $user->id;
                 $mahasiswa->save();
@@ -64,18 +66,21 @@ class UserController extends Controller
                 $dosen = new Dosen();
                 // $dosen->nama = 'Belum diisi';
                 // $dosen->foto = 'Foto anda';
+                $dosen->nidn = $nim;
                 $dosen->user_id = $user->id;
                 $dosen->save();
             } elseif ($user->role_id == 3) {
                 $dosen = new Dosen();
                 // $dosen->nama = 'Belum diisi';
                 // $dosen->foto = 'Foto anda';
+                $dosen->nidn = $nim;
                 $dosen->user_id = $user->id;
                 $dosen->save();
             } elseif ($user->role_id == 4) {
                 $admin = new Admin();
                 // $admin->nama = 'Belum diisi';
                 // $admin->foto = 'Foto anda';
+                $admin->nidn = $nim;
                 $admin->user_id = $user->id;
                 $admin->save();
             }
@@ -90,7 +95,6 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**

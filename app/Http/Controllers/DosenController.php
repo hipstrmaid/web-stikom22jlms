@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -56,6 +58,7 @@ class DosenController extends Controller
         return view('frontend.pages.dosen.profile.update-profile', compact('dosen'));
     }
 
+
     public function update(Request $request, Dosen $dosen)
     {
         // Retrieve the authenticated user
@@ -63,12 +66,12 @@ class DosenController extends Controller
 
         // Validate the input data
         $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|string',
             'foto' => 'nullable|file',
             // Add more validation rules for other fields if needed
         ]);
 
-        // Find the corresponding Mahasiswa record
+        // Find the corresponding Dosen record
         $dosen = Dosen::where('user_id', $user->id)->first();
 
         if (!$dosen) {

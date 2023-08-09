@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -14,13 +15,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $user = User::all();
-        $mahasiswaTotal = User::where('role_id', 1)->count();
-        $dosenTotal = User::where('role_id', 2)->count();
-        $baakTotal = User::where('role_id', 3)->count();
-        $adminTotal = User::where('role_id', 4)->count();
-
-        return view('admin.admin-dashboard', compact('user', 'mahasiswaTotal', 'dosenTotal', 'baakTotal', 'adminTotal'));
+        //
     }
 
     /**
@@ -39,33 +34,60 @@ class AdminController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Admin $admin)
     {
-        //
+        if ($admin->user_id != auth()->id()) {
+            abort(403, 'Tidak boleh mengintip');
+        }
+        return view('admin.profile.view-profile', compact('admin'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Admin $admin)
     {
-        //
+        if ($admin->user_id != auth()->id()) {
+            abort(403, 'Tidak boleh mengintip');
+        }
+
+        return view('admin.profile.update-profile', compact('admin'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    public function updateProfile(Request $request, string $id)
+    public function update(Request $request, Admin $admin)
     {
-        //
+        // Retrieve the authenticated user
+        $user = Auth::user();
+
+        // Validate the input data
+        $request->validate([
+            'nama' => 'required',
+            'foto' => 'nullable|file',
+            // Add more validation rules for other fields if needed
+        ]);
+
+        // Find the corresponding Admin record
+        $admin = Admin::where('user_id', $user->id)->first();
+
+        if (!$admin) {
+            // Handle the case where Mahasiswa record doesn't exist for the user
+            // Redirect or display an error message as needed
+        }
+
+        // Update the Mahasiswa record
+        $admin->nama = $request->input('nama');
+
+        // Handle the file upload and update the "foto" field if a new file is uploaded
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $fotoPath = $foto->store('public/fotos');
+            $admin->foto = $fotoPath;
+        }
+
+        $admin->save();
+
+        return redirect()->route('admin.show', ['admin' => $admin->id])->with('success', 'Profile updated successfully.');
     }
 
     /**

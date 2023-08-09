@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Matkul;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -12,11 +14,21 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $matkuls = Matkul::all()->groupBy('semester_id')->sortBy(function ($items, $key) {
-            return $key;
-        });
 
-        return view('frontend.pages.dashboard', ['matkuls' => $matkuls]);
+        if (Auth::user()->role_id == 2 || 1) {
+            $matkuls = Matkul::all()->groupBy('semester_id')->sortBy(function ($items, $key) {
+                return $key;
+            });
+
+            return view('frontend.pages.dashboard', ['matkuls' => $matkuls]);
+        } elseif (Auth::user()->role_id == 4) {
+            $mahasiswaTotal = User::where('role_id', 1)->count();
+            $dosenTotal = User::where('role_id', 2)->count();
+            $baakTotal = User::where('role_id', 3)->count();
+            $adminTotal = User::where('role_id', 4)->count();
+
+            return view('admin.admin-dashboard', compact('mahasiswaTotal', 'dosenTotal', 'baakTotal', 'adminTotal'));
+        }
     }
 
     /**

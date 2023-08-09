@@ -6,7 +6,7 @@ use App\Models\Matkul;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Termwind\Components\Dd;
+use Illuminate\Support\Facades\Storage;
 
 class MatkulController extends Controller
 {
@@ -49,10 +49,11 @@ class MatkulController extends Controller
         $request->validate([
             'nama_matkul' => 'required',
             'video_url' => 'required',
-            'deskripsi' => 'required',
+            'deskripsi' => 'required|min:100',
             'gambar' => 'required|file',
             'semester_id' => 'required',
             'hari' => 'required',
+            'prodi' => 'required',
         ]);
 
         $nama_matkul = $request->input('nama_matkul');
@@ -60,10 +61,15 @@ class MatkulController extends Controller
         $deskripsi = $request->input('deskripsi');
         $semester_id = $request->input('semester_id');
         $hari = $request->input('hari');
+        $prodi_id = $request->input('prodi');
+        $kode_mk = $request->input('kode_matkul');
 
         $gambar = $request->file('gambar'); // Use file() instead of input()
 
         $gambarPath = $gambar->store('public/fotos'); // Store the file
+
+
+
 
         $userId = Auth::user()->dosen->id;
         $videoId = extractVideo($video_url);
@@ -71,16 +77,26 @@ class MatkulController extends Controller
         $matkul = new Matkul;
         $matkul->nama_matkul = $nama_matkul;
         $matkul->dosen_id = $userId;
-        $matkul->semester_id = $semester_id;
         $matkul->video_url = $videoId;
         $matkul->deskripsi = $deskripsi;
         $matkul->gambar = $gambarPath;
+
+        // // Delete old photo if it exists and replace it with the new one
+        // if ($matkul->gambar) {
+        //     Storage::delete($matkul->gambar); // Delete old photo
+        // }
+
+        $matkul->semester_id = $semester_id;
+        $matkul->prodi_id = $prodi_id;
         $matkul->hari = $hari;
+
+        $matkul->kode_matkul = $kode_mk;
         $matkul->save();
 
         Session::flash('success');
 
-        return redirect(route('dashboard.index'));
+        // return redirect(route('dashboard.index'));
+        return redirect('/matkul');
     }
 
     /**

@@ -29,12 +29,12 @@
 
 </head>
 
-<body class="font-poppins bg-gray-50 dark:bg-gray-900">
+<body class="font-poppins bg-gray-100 dark:bg-gray-900">
     <div class="antialiased">
         @include('includes.header')
         @include('includes.sidebar')
 
-        <main class=" md:ml-64 h-auto pt-20">
+        <main class="md:ml-64 h-auto pt-20">
             <div class="container px-5">
                 @yield('content')
             </div>

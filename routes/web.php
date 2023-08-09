@@ -7,6 +7,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Models\Matkul;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,14 @@ Route::middleware('guest')->group(function () {
     Route::resource('guest', GuestController::class);
 });
 
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+Route::get('/calendar', function () {
+    return view('frontend.pages.calendar');
+});
+
 // Laravel authentication routes
 Auth::routes();
 
@@ -43,27 +52,32 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('matkul', MatkulController::class);
+
+    Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
+    Route::get('user/{user}/editPassword', [ProfileController::class, 'editPassword'])->name('user.editPassword');
+    Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');
+
+
+
     Route::get('/matkul/{matkul}/saya', [MatkulController::class, 'indexmatkul'])->name('matkul.indexmatkul');
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
 
+    Route::get('/user/preferences', function () {
+        return view('frontend.pages.preferences');
+    });
+
+
     // Routes for admins
     Route::middleware(['admin'])->group(function () {
-        Route::resource('admin', AdminController::class);
 
+        Route::resource('admin', AdminController::class);
         Route::resource('role', RoleController::class);
         Route::resource('user', UserController::class)->except(['create']);
-        Route::get('/user/create/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.tambahMahasiswa');
-        Route::get('/user/create/dosen', [UserController::class, 'indexDosen'])->name('user.tambahDosen');
-        Route::get('/user/create/admin', [UserController::class, 'indexAdmin'])->name('user.tambahAdmin');
+        Route::get('/admin/create/mahasiswa', [UserController::class, 'indexMahasiswa'])->name('user.tambahMahasiswa');
+        Route::get('/admin/create/dosen', [UserController::class, 'indexDosen'])->name('user.tambahDosen');
+        Route::get('/admin/create/admin', [UserController::class, 'indexAdmin'])->name('user.tambahAdmin');
         // Add more admin-specific routes here
+
     });
-});
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
-Route::get('/calendar', function () {
-    return view('frontend.pages.calendar');
 });

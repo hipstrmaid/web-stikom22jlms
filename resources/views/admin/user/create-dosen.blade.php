@@ -2,10 +2,14 @@
 @section('content')
     <div class="row flex flex-col">
         @if (Session::has('success'))
-            <x-user-create-success></x-user-create-success>
+            <x-user-create-success>
+                <div class="ml-3 text-sm font-normal">Akun Berhasil dibuat.</div>
+            </x-user-create-success>
         @endif
         @error('nim')
-            <x-user-create-warning></x-user-create-warning>
+            <x-user-create-warning>
+                <div class="ml-3 text-sm font-normal">{{ $message }}</div>
+            </x-user-create-warning>
         @enderror
         <div class="bg-white text-sm rounded-t dark:border-gray-900 dark:bg-gray-800">
             <div class="w-full panel-head flex items-center p-4">
@@ -88,7 +92,7 @@
                                 FOTO
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                USERNAME
+                                NIDN
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 NAMA
@@ -116,7 +120,7 @@
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    {{ $dosen->user->username }}
+                                    {{ $dosen->nidn }}
                                 </td>
 
                                 <td class="px-6 py-4">

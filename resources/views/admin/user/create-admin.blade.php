@@ -2,61 +2,14 @@
 @section('content')
     <div class="row flex flex-col">
         @if (Session::has('success'))
-            <div id="toast-success"
-                class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
-                role="alert">
-                <div
-                    class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Check icon</span>
-                </div>
+            <x-user-create-success>
                 <div class="ml-3 text-sm font-normal">Akun Berhasil dibuat.</div>
-                <button type="button"
-                    class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                    data-dismiss-target="#toast-success" aria-label="Close">
-                    <span class="sr-only">Close</span>
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
+            </x-user-create-success>
         @endif
         @error('nim')
-            <div id="toast-warning"
-                class="mb-5 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
-                role="alert">
-                <div
-                    class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Warning icon</span>
-                </div>
-                <div class="ml-3 text-sm font-normal">Akun Sudah ada!
-                </div>
-                <button type="button"
-                    class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                    data-dismiss-target="#toast-warning" aria-label="Close">
-                    <span class="sr-only">Close</span>
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
+            <x-user-create-warning>
+                <div class="ml-3 text-sm font-normal">{{ $message }}</div>
+            </x-user-create-warning>
         @enderror
         <div class="bg-white text-sm rounded-t dark:border-gray-900 dark:bg-gray-800">
             <div class="w-full panel-head flex items-center p-4">
@@ -92,15 +45,15 @@
                                             <span class="sr-only">Close modal</span>
                                         </button>
                                         <div class="px-6 py-6 lg:px-8">
-                                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Tambah Akun
-                                                Mahasiswa</h3>
+                                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Tambah Admin
+                                            </h3>
                                             <form class="space-y-6" action="{{ route('user.store') }}" method="POST">
                                                 @csrf
                                                 <div>
                                                     <label for="nim"
                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIM/NIDN</label>
                                                     <input type="text" name="nim" id="nim"
-                                                        class="@error('nim') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                         required>
                                                     <input type="hidden" name="role_id" value="4">
                                                 </div>
@@ -126,13 +79,16 @@
                                 Id
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                FOTO
+                                Email
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 NAMA
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                USER_ID
+                                ROLE
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                FOTO
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 AKSI
@@ -148,16 +104,26 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $admin->id }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    <img src="{{ Storage::url($admin->foto) }}" class="rounded-full w-8 h-8"
-                                        alt="foto-dosen">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $admin->user->username }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $admin->nama }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $admin->user_id }}
+                                    {{ $admin->user->role_name }}
                                 </td>
+                                <td class="px-6 py-4">
+                                    @if ($admin->foto)
+                                        <img src="{{ Storage::url($admin->foto) }}" class="rounded-full w-8 h-8"
+                                            alt="foto-dosen">
+                                    @else
+                                        <img src="{{ asset('assets/img/user.png') }}" class="rounded-full w-8 h-8"
+                                            alt="default-foto">
+                                    @endif
+                                </td>
+
                                 <td class="px-6 py-4 text-left">
                                     <a href="#"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
