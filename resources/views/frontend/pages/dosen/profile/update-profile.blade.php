@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <x-content-title>Update Profile</x-content-title>
-    {{ Breadcrumbs::render('editProfile') }}
+    {{ Breadcrumbs::render('dosenProfile') }}
     <div class="row">
         <div class="grid grid-cols-1 mb-5">
             <ul class="flex bg-gray-200 dark:bg-gray-900">

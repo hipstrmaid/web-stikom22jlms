@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <x-content-title>Preferences</x-content-title>
-    <x-breadcrumbs></x-breadcrumbs>
+    {{ Breadcrumbs::render('settings') }}
     <div class="row">
         <div class="grid grid-cols-1 mb-5">
             <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">

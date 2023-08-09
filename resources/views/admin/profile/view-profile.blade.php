@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
     <x-content-title>Edit Profile</x-content-title>
-    <x-breadcrumbs></x-breadcrumbs>
+    {{ Breadcrumbs::render('adminView') }}
     <div class="row">
         <div class="grid grid-cols-1 mb-5">
-            <ul class="flex bg-gray-200 dark:bg-gray-900">
-                <div class="bg-white border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
-                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
+            <ul class="flex bg-gray-200 dark:bg-gray-600">
+                <div class="bg-white dark:bg-gray-800">
+                    <h5 class="text-sm text-gray-500 dark:text-white py-2 px-4 font-bold"><a
                             href="{{ route('admin.show', ['admin' => $admin->id]) }}">Profil</a>
                     </h5>
                 </div>
-                <div class="">
-                    <h5 class="text-sm text-gray-500 dark:text-white py-2 px-4 font-bold"><a
+                <div class="border  border-gray-200 dark:border-gray-600  border-b-0 rounded-t ">
+                    <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
                             href="{{ route('admin.edit', ['admin' => $admin->id]) }}">Edit Profile</a>
                     </h5>
                 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <x-content-title>Ganti Password</x-content-title>
-    <x-breadcrumbs></x-breadcrumbs>
+    {{ Breadcrumbs::render('ubahPassword') }}
 
 
     <div class="row">

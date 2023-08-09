@@ -17,21 +17,56 @@ use Illuminate\Support\Facades\Auth;
 //     $trail->push('Home', route('home'));
 // });
 
+// Dashboard (Solo Route)
 Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('dashboard.index'));
 });
 
 
+
 // Dashboard > Profile
-Breadcrumbs::for('viewProfile', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('mahasiswaView', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard.index'); // Parent routes (Pilih salah solo route)
+    $trail->push('Profile', route('admin.show', ['admin' => Auth::user()->mahasiswa->id]));
+});
+
+Breadcrumbs::for('dosenView', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard.index');
-    $trail->push('Profile', route('user.index'));
+    $trail->push('Profile', route('admin.show', ['admin' => Auth::user()->dosen->id]));
+});
+
+Breadcrumbs::for('adminView', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard.index');
+    $trail->push('Profile', route('admin.show', ['admin' => Auth::user()->admin->id]));
 });
 
 // Dashboard > Edit Profile
-Breadcrumbs::for('editProfile', function (BreadcrumbTrail $trail) {
-    $trail->parent('dashboard.index');
+Breadcrumbs::for('adminProfile', function (BreadcrumbTrail $trail) {
+    $trail->parent('settings'); // Parent routes (Pilih salah solo route)
+    $trail->push('Edit Profile', route('user.edit', ['user' => Auth::user()->admin->id]));
+});
+
+
+Breadcrumbs::for('dosenProfile', function (BreadcrumbTrail $trail) {
+    $trail->parent('settings'); // Parent routes (Pilih salah solo route)
     $trail->push('Edit Profile', route('user.edit', ['user' => Auth::user()->dosen->id]));
+});
+
+Breadcrumbs::for('mahasiswaProfile', function (BreadcrumbTrail $trail) {
+    $trail->parent('settings'); // Parent routes (Pilih salah solo route)
+    $trail->push('Edit Profile', route('user.edit', ['user' => Auth::user()->mahasiswa->id]));
+});
+
+// Dashboard > Settings
+Breadcrumbs::for('settings', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard.index'); // Parent routes (Pilih salah solo route)
+    $trail->push('Settings', route('user.preferences'));
+});
+
+// Dashboard > Settings > Ganti Password
+Breadcrumbs::for('ubahPassword', function (BreadcrumbTrail $trail) {
+    $trail->parent('settings'); // Parent routes (Pilih salah solo route)
+    $trail->push('Ganti Password', route('user.editPassword', ['user' => Auth::user()->id]));
 });
 
 

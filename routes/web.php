@@ -65,7 +65,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/preferences', function () {
         return view('frontend.pages.preferences');
-    });
+    })->name('user.preferences');
+
 
 
     // Routes for admins
