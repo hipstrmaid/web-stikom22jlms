@@ -23,6 +23,17 @@ Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
 });
 
 
+// Dashboard > Mata Kuliah
+Breadcrumbs::for('matkul', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard.index'); // Parent routes (Pilih salah solo route)
+    $trail->push('Mata kuliah', route('matkul.index'));
+});
+
+// Dashboard > Mata Kuliah
+Breadcrumbs::for('tambahMatkul', function (BreadcrumbTrail $trail) {
+    $trail->parent('matkul'); // Parent routes (Pilih salah solo route)
+    $trail->push('Tambah', route('matkul.create'));
+});
 
 // Dashboard > Profile
 Breadcrumbs::for('mahasiswaView', function (BreadcrumbTrail $trail) {

@@ -1,5 +1,6 @@
 <div class="bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden">
-    <img class="w-full h-48 object-cover" src="{{ Storage::url($matkul->gambar) }}" alt="Course Image">
+    <img class="w-full h-48 object-cover border border-b dark:border-gray-800" src="{{ Storage::url($matkul->gambar) }}"
+        alt="Course Image">
     <div class="flex flex-col flex-grow">
         <div class="content p-4 flex flex-col gap-2">
             <div class="card-category">
@@ -12,7 +13,7 @@
             </div>
             <div class="card-title">
                 <a href="#">
-                    <p class="text-md font-semibold text-gray-800 dark:text-white hover:text-blue-900">
+                    <p class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">
                         {{ $matkul->nama_matkul }}</p>
                 </a>
             </div>

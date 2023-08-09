@@ -4,7 +4,7 @@
     <ol class="inline-flex items-center">
         @unless ($breadcrumbs->isEmpty())
             @foreach ($breadcrumbs as $breadcrumb)
-                <li class="inline-flex items-center">
+                <li class="inline-flex items-center text-xs">
                     @if (!is_null($breadcrumb->url) && !$loop->last)
                         <a href="{{ $breadcrumb->url }}"
                             class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
