@@ -75,8 +75,8 @@ class AdminController extends Controller
             // Redirect or display an error message as needed
         }
 
-        // Update the Mahasiswa record
-        $admin->nama = $request->input('nama');
+        // Membuat input menjadi lowercase lalu menguppercase first letter
+        $admin->nama = ucwords(strtolower($request->input('nama')));
 
         // Handle the file upload and update the "foto" field if a new file is uploaded
         if ($request->hasFile('foto')) {

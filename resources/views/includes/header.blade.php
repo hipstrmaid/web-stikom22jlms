@@ -56,17 +56,17 @@
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
                             <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->dosen->nidn }}</span>
+                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->dosen->user->username }}</span>
                         @elseif (Auth::user()->mahasiswa)
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->nama }}</span>
                             <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->mahasiswa->nim }}</span>
+                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->mahasiswa->user->username }}</span>
                         @elseif (Auth::user()->admin)
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->admin->nama }}</span>
                             <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->admin->nidn }}</span>
+                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->admin->user->username }}</span>
                         @else
                             <span class="block text-sm font-semibold text-gray-900 dark:text-white">Super Admin</span>
                         @endif
@@ -75,14 +75,18 @@
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="{{ route('edit-profile') }}"
-                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Profile
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"><i
+                                    class="fas fa-user mr-2"></i>
+                                Profile
                             </a>
                         </li>
                     </ul>
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="/user/preferences"
-                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Settings
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"><i
+                                    class="fas fa-cog mr-2"></i>
+                                Settings
                             </a>
                         </li>
                     </ul>
@@ -94,7 +98,8 @@
 
                                 <button
                                     class="text-left w-full py-2 px-4 text-sm hover:text-red-500 hover:font-bold dark:hover:text-gray-100 dark:text-gray-400 dark:hover:text-white"
-                                    type="submit">Logout</button>
+                                    type="submit"><i class="fas fa-sign-out-alt mr-2"></i>
+                                    Logout</button>
 
                             </form>
                         </li>

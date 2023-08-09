@@ -7,12 +7,14 @@
             <ul class="flex bg-gray-200 dark:bg-gray-900">
                 <div class="bg-white border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('mahasiswa.show', ['mahasiswa' => $mahasiswa->id]) }}">Profil</a>
+                            href="{{ route('mahasiswa.show', ['mahasiswa' => $mahasiswa->id]) }}"><i
+                                class="fas fa-user mr-2"></i>Profil</a>
                     </h5>
                 </div>
                 <div class="">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('mahasiswa.edit', ['mahasiswa' => $mahasiswa->id]) }}">Edit Profile</a>
+                            href="{{ route('mahasiswa.edit', ['mahasiswa' => $mahasiswa->id]) }}"><i
+                                class="fas fa-credit-card mr-2"></i>Edit Profile</a>
                     </h5>
                 </div>
             </ul>

@@ -12,7 +12,8 @@
     @endif
 
     <div class="col-span-1 xl:col-span-1">
-        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right">NIM</label>
+        <label
+            class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right hidden md:block">NIM</label>
     </div>
 
     <div class="col-span-1 xl:col-span-7 relative z-0 w-full group ">
@@ -25,7 +26,8 @@
     </div>
 
     <div class="col-span-1 xl:col-span-1">
-        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right">Prodi</label>
+        <label
+            class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right hidden md:block">Prodi</label>
     </div>
 
     <div class="col-span-1 xl:col-span-7 relative z-0 w-full group ">
@@ -39,7 +41,8 @@
 
 
     <div class="col-span-1 xl:col-span-1">
-        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right">Nama</label>
+        <label
+            class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right hidden md:block">Nama</label>
     </div>
 
 

@@ -8,8 +8,7 @@
         <div class="grid grid-cols-1 mb-5">
             <ul class="flex bg-gray-200 dark:bg-gray-900">
                 <div class="border bg-white border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
-                    <h5 class="text-sm  text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                            href="{{ route('user.editPassword', ['user' => Auth::user()->id]) }}">Ubah Password</a>
+                    <h5 class="text-sm  text-gray-900 dark:text-white py-2 px-4 font-bold">Ubah Password
                     </h5>
                 </div>
             </ul>
@@ -19,11 +18,11 @@
                     <form action="{{ route('user.updatePassword', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="grid grid-cols-1 xl:grid-cols-8 gap-4 xl:gap-4 ">
+                        <div class="grid grid-cols-1 xl:grid-cols-8 gap-4 xl:gap-4 p-3 ">
 
                             <div class="col-span-1 xl:col-span-1">
                                 <label
-                                    class="block text-sm font-medium text-blue-600 dark:text-white xl:text-right">Username</label>
+                                    class="block text-sm font-medium text-blue-600 dark:text-white xl:text-right hidden md:block">Email</label>
                             </div>
 
                             <div class="col-span-1 xl:col-span-7 relative z-0 w-full group ">
@@ -31,7 +30,7 @@
                                     class="block py-2.5 px-0 w-full font-bold text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " required />
                                 <label for="username"
-                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
                             </div>
 
                             <div class="col-span-1 xl:col-span-1">
@@ -63,11 +62,11 @@
                                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password
                                     baru</label>
                                 @error('password')
-                                    <p class="text-red-600"> {{ $message }}</p>
+                                    <p class="text-red-600"> {{ Str::ucfirst($message) }}</p>
                                 @enderror
                             </div>
                             @if (session('success'))
-                                <div class="p-4 mb-4 mt-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                                <div class="w-full p-4 mb-4 mt-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400"
                                     role="alert">
                                     <span class="font-medium">Berhasil!</span> Password berhasil di ubah.
                                 </div>

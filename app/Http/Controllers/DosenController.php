@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Dosen;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -78,9 +79,8 @@ class DosenController extends Controller
             // Handle the case where Mahasiswa record doesn't exist for the user
             // Redirect or display an error message as needed
         }
-
-        // Update the Mahasiswa record
-        $dosen->nama = $request->input('nama');
+        // Membuat input menjadi lowercase lalu menguppercase first letter
+        $dosen->nama = ucwords(strtolower($request->input('nama')));
 
         // Handle the file upload and update the "foto" field if a new file is uploaded
         if ($request->hasFile('foto')) {

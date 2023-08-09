@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <x-content-title>Dashboard</x-content-title> --}}
+    <x-content-title>Dashboard</x-content-title>
+    <x-breadcrumbs></x-breadcrumbs>
     <div class="list-matkul">
         <div id="accordion-collapse" class="flex flex-col gap-2" data-accordion="collapse">
             @foreach ($matkuls as $semesterId => $matkulGroup)
