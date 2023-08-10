@@ -3,7 +3,7 @@
     <main class="flex flex-col gap-2">
         <h1
             class="mb-1 mt-2 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-            Selamat Datang, Civitas Akademik</h1>
+            STIKOM 22 Januari Learning Management System</h1>
         <div id="alert-border-4"
             class="flex items-center p-4 mb-4 text-yellow-800 border-t-4 border-yellow-300 bg-yellow-50 dark:text-yellow-300 dark:bg-gray-800 dark:border-yellow-800"
             role="alert">
@@ -34,7 +34,25 @@
                             <div class="row">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-2">
                                     @foreach ($matkulGroup as $matkul)
-                                        @include('includes.card._dashboardcourse')
+                                        <div
+                                            class="bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden">
+                                            <img class="w-full h-48 object-cover border border-b dark:border-gray-800"
+                                                src="{{ Storage::url($matkul->gambar) }}" alt="Course Image">
+                                            <div class="p-4">
+                                                <h2 class="text-md font-semibold text-gray-800 dark:text-white mb-2">
+                                                    {{ $matkul->nama_matkul }}</h2>
+                                                <p class="text-sm leading-normal text-gray-600 dark:text-gray-400 mb-4">
+                                                    {{ $matkul->excerpt() }}</p>
+                                                <div class="">
+                                                    <div>
+                                                        <a href="/matkul/pertemuan/belajar"
+                                                            class="w-full inline-flex justify-center rounded px-3 py-2 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                            Belajar
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
