@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\ProfileController;
@@ -37,10 +38,7 @@ Route::middleware('guest')->group(function () {
     Route::resource('guest', GuestController::class);
 });
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/calendar', function () {
     return view('frontend.pages.calendar');
 });
