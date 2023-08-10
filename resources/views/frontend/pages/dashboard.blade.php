@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="bg-white">
+    <div class="nav">
         <x-content-title>Selamat datang, {{ Auth::user()->role->nama_role }}.</x-content-title>
         <x-breadcrumbs></x-breadcrumbs>
     </div>

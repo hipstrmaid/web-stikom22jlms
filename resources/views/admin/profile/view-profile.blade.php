@@ -10,7 +10,7 @@
                             href="{{ route('admin.show', ['admin' => $admin->id]) }}">Profil</a>
                     </h5>
                 </div>
-                <div class="border  border-gray-200 dark:border-gray-600  border-b-0 rounded-t ">
+                <div class="border border-gray-200 dark:border-gray-600  border-b-0 rounded-t ">
                     <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
                             href="{{ route('admin.edit', ['admin' => $admin->id]) }}">Edit Profile</a>
                     </h5>
