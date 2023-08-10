@@ -27,8 +27,6 @@
                 <button type="button"
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
-                    <span class="sr-only">Open user menu</span>
-
                     @if (Auth::user()->dosen)
                         @isset(Auth::user()->dosen->foto)
                             <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->dosen->foto) }}"
@@ -55,6 +53,7 @@
 
                 </button>
                 <!-- Mini iProfile Menu -->
+                {{-- w-52 --}}
                 <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded rounded-md divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                     id="dropdown">
                     <div class="py-3 px-4">
@@ -62,17 +61,23 @@
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
                             <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->dosen->user->username }}</span>
+                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->dosen->user->username }}</span>
+                            <span
+                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->dosen->user->role->nama_role }}</span>
                         @elseif (Auth::user()->mahasiswa)
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->nama }}</span>
                             <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->mahasiswa->user->username }}</span>
+                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->user->username }}</span>
+                            <span
+                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->user->role->nama_role }}</span>
                         @elseif (Auth::user()->admin)
                             <span
                                 class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->admin->nama }}</span>
                             <span
                                 class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->admin->user->username }}</span>
+                            <span
+                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->admin->user->role->nama_role }}</span>
                         @else
                             <span class="block text-sm font-semibold text-gray-900 dark:text-white">Super Admin</span>
                         @endif
@@ -81,7 +86,7 @@
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="{{ route('edit-profile') }}"
-                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"><i
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 hover:font-bold dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"><i
                                     class="fas fa-user mr-2"></i>
                                 Profile
                             </a>
@@ -90,20 +95,21 @@
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="/user/preferences"
-                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"><i
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 hover:font-bold dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"><i
                                     class="fas fa-cog mr-2"></i>
                                 Settings
                             </a>
                         </li>
                     </ul>
 
-                    <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                    <ul class="py-1 text-gray-700 dark:text-gray-300 hover:bg-red-500 hover:rounded-b-md"
+                        aria-labelledby="dropdown">
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
 
                                 <button
-                                    class="text-left w-full py-2 px-4 text-sm hover:text-red-500 hover:font-bold dark:hover:text-gray-100 dark:text-gray-400 dark:hover:text-white"
+                                    class="text-left w-full text-sm py-2 px-4 hover:text-white font-bold dark:hover:text-gray-100 dark:text-gray-400 dark:hover:text-white"
                                     type="submit"><i class="fas fa-sign-out-alt mr-2"></i>
                                     Logout</button>
 
