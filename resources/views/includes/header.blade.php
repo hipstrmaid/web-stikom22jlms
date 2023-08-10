@@ -78,6 +78,18 @@
                         @endif
                     </div>
 
+
+                    {{-- <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                        <li>
+                            <button id="theme-toggle" type="button"
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 hover:font-bold dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white focus:outline-none">
+                                <i id="theme-toggle-dark-icon" class="fas fa-moon hidden mr-2"></i>
+                                <i id="theme-toggle-light-icon" class="fas fa-sun hidden mr-2"></i>
+                                Toggle Dark Mode
+                            </button>
+                        </li>
+                    </ul> --}}
+
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="{{ route('edit-profile') }}"

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class Matkul extends Model
 {
     use HasFactory;
-    const EXCERPT_LENGTH = 80;
+    const EXCERPT_LENGTH = 75;
 
     protected $fillable = [
         'dosen_id',

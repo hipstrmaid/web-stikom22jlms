@@ -4,10 +4,15 @@
     <div class="flex flex-col flex-grow">
         <div class="content p-4 flex flex-col gap-2">
             <div class="card-category">
+                @if ($matkul->prodi->nama_prodi == 'Sistem Informasi')
+                    <span
+                        class="bg-blue-100 text-blue-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $matkul->prodi->nama_prodi }}</span>
+                @elseif ($matkul->prodi->nama_prodi == 'Teknik Komputer')
+                    <span
+                        class="bg-green-100 text-green-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $matkul->prodi->nama_prodi }}</span>
+                @endif
                 <span
-                    class="bg-blue-100 text-blue-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $matkul->prodi->nama_prodi }}</span>
-                <span
-                    class="bg-orange-100 text-orange-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-orang-900 dark:text-orange-800">{{ $matkul->semester->nama_semester }}</span>
+                    class="bg-orange-100 text-orange-800 dark:text-white dark:bg-gray-700 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-orang-900 dark:text-orange-800">{{ $matkul->semester->nama_semester }}</span>
                 {{-- <span
                 class="bg-yellow-100 text-yellow-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $matkul->hari }}</span> --}}
             </div>
@@ -24,9 +29,9 @@
         </div>
 
         <div class="card-footer border-t dark:border-gray-700">
-            <div class="flex p-2">
+            <div class="flex py-2 px-4">
                 <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full" src="{{ Storage::url($matkul->dosen->foto) }}"
+                    <img class="h-10 w-10 rounded-full object-cover" src="{{ Storage::url($matkul->dosen->foto) }}"
                         alt="Instructor Avatar">
                 </div>
                 <div class="ml-3">
