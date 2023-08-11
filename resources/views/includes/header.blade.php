@@ -7,16 +7,15 @@
                 class="p-3 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-yellow-900 focus:bg-yellow-900 dark:focus:bg-gray-700 focus:ring-2 focus:ring-yellow-900 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 <i class="fa-solid fa-bars text-gray-50"></i>
             </button>
-            <a href="#" class="flex items-center justify-between mr-4">
-                <img src="{{ asset('assets/img/stikom-logo.webp') }}" class="mr-3 sm:h-12 h-8 hidden sm:block"
-                    alt="STIKOM Logo" />
-                <span class="self-center text-1xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22
-                    Januari <br>
-                    <p
-                        class="self-center text-sm md:text-2xl md:hidden font-semibold whitespace-nowrap dark:text-white">
-                        Learning
-                        Management System</p>
-                </span>
+            <img src="{{ asset('assets/img/stikom-logo.webp') }}" class="mr-3 hidden sm:block" alt="STIKOM Logo"
+                width="48" height="48">
+
+            <span class="self-center text-1xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22
+                Januari <br>
+                <p class="self-center text-sm md:text-2xl md:hidden font-semibold whitespace-nowrap dark:text-white">
+                    Learning
+                    Management System</p>
+            </span>
 
             </a>
 
