@@ -8,7 +8,7 @@
                 <i class="fa-solid fa-bars text-gray-50"></i>
             </button>
             <a href="#" class="flex items-center justify-between mr-4">
-                <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 sm:h-12 h-8 hidden sm:block"
+                <img src="{{ asset('assets/img/stikom-logo.webp') }}" class="mr-3 sm:h-12 h-8 hidden sm:block"
                     alt="STIKOM Logo" />
                 <span class="self-center text-1xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22
                     Januari <br>
@@ -27,29 +27,21 @@
                 <button type="button"
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
-                    @if (Auth::user()->dosen)
-                        @isset(Auth::user()->dosen->foto)
-                            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->dosen->foto) }}"
-                                alt="Foto dosen">
-                        @else
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
-                        @endisset
-                    @elseif (Auth::user()->mahasiswa)
-                        @isset(Auth::user()->mahasiswa->foto)
-                            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->mahasiswa->foto) }}"
-                                alt="Foto mahasiswa">
-                        @else
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
-                        @endisset
-                    @elseif (Auth::user()->admin)
-                        @isset(Auth::user()->admin->foto)
-                            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->admin->foto) }}"
-                                alt="Foto admin">
-                        @else
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
-                        @endisset
-                    @endif
+                    @php
+                        $user = Auth::user();
+                        $profileTypes = ['dosen', 'mahasiswa', 'admin'];
+                        $fotoUrl = asset('assets/img/user.png'); // Default foto URL
+                        
+                        foreach ($profileTypes as $type) {
+                            $profile = $user->{$type};
+                            if ($profile && $profile->foto) {
+                                $fotoUrl = Storage::url($profile->foto);
+                                break; // Stop checking once a foto is found
+                            }
+                        }
+                    @endphp
 
+                    <img class="w-8 h-8 rounded-full object-cover" src="{{ $fotoUrl }}" alt="User Foto">
 
                 </button>
                 <!-- Mini iProfile Menu -->
