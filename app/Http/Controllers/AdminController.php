@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -78,11 +80,25 @@ class AdminController extends Controller
         // Membuat input menjadi lowercase lalu menguppercase first letter
         $admin->nama = ucwords(strtolower($request->input('nama')));
 
-        // Handle the file upload and update the "foto" field if a new file is uploaded
+        // // Handle the file upload and update the "foto" field if a new file is uploaded
+        // if ($request->hasFile('foto')) {
+        //     $foto = $request->file('foto');
+        //     $fotoPath = $foto->store('public/fotos');
+        //     $admin->foto = $fotoPath;
+        // }
+
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $fotoPath = $foto->store('public/fotos');
-            $admin->foto = $fotoPath;
+
+            // Convert the image to WebP format
+            $webpImage = Image::make($foto)->encode('webp', 90); // Adjust quality as needed
+            $webpPath = 'public/fotos/' . time() . '.webp';
+
+            // Save the WebP image to storage
+            Storage::put($webpPath, $webpImage->stream());
+
+            // Update the "foto" field with the WebP path
+            $admin->foto = $webpPath;
         }
 
         $admin->save();

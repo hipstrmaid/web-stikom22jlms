@@ -6,7 +6,9 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -96,11 +98,25 @@ class MahasiswaController extends Controller
         // Membuat input menjadi lowercase lalu menguppercase first letter
         $mahasiswa->nama = ucwords(strtolower($request->input('nama')));
 
-        // Handle the file upload and update the "foto" field if a new file is uploaded
+        // // Handle the file upload and update the "foto" field if a new file is uploaded
+        // if ($request->hasFile('foto')) {
+        //     $foto = $request->file('foto');
+        //     $fotoPath = $foto->store('public/fotos');
+        //     $mahasiswa->foto = $fotoPath;
+        // }
+
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $fotoPath = $foto->store('public/fotos');
-            $mahasiswa->foto = $fotoPath;
+
+            // Convert the image to WebP format
+            $webpImage = Image::make($foto)->encode('webp', 90); // Adjust quality as needed
+            $webpPath = 'public/fotos/' . time() . '.webp';
+
+            // Save the WebP image to storage
+            Storage::put($webpPath, $webpImage->stream());
+
+            // Update the "foto" field with the WebP path
+            $mahasiswa->foto = $webpPath;
         }
 
         $mahasiswa->save();

@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -82,11 +83,25 @@ class DosenController extends Controller
         // Membuat input menjadi lowercase lalu menguppercase first letter
         $dosen->nama = ucwords(strtolower($request->input('nama')));
 
-        // Handle the file upload and update the "foto" field if a new file is uploaded
+        // // Handle the file upload and update the "foto" field if a new file is uploaded Old version
+        // if ($request->hasFile('foto')) {
+        //     $foto = $request->file('foto');
+        //     $fotoPath = $foto->store('public/fotos');
+        //     $dosen->foto = $fotoPath;
+        // }
+
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
-            $fotoPath = $foto->store('public/fotos');
-            $dosen->foto = $fotoPath;
+
+            // Convert the image to WebP format
+            $webpImage = Image::make($foto)->encode('webp', 90); // Adjust quality as needed
+            $webpPath = 'public/fotos/' . time() . '.webp';
+
+            // Save the WebP image to storage
+            Storage::put($webpPath, $webpImage->stream());
+
+            // Update the "foto" field with the WebP path
+            $dosen->foto = $webpPath;
         }
 
         $dosen->save();

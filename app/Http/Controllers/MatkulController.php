@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Matkul;
 use Illuminate\Http\Request;
+
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -66,7 +68,11 @@ class MatkulController extends Controller
 
         $gambar = $request->file('gambar'); // Use file() instead of input()
 
-        $gambarPath = $gambar->store('public/fotos'); // Store the file
+        // Convert the image to WebP format
+        $webpImage = Image::make($gambar)->encode('webp', 90); // Adjust quality as needed
+        $webpPath = 'public/thumbnail/' . time() . '.webp';
+        // Save the WebP image to storage
+        Storage::put($webpPath, $webpImage->stream());
 
 
 
@@ -79,7 +85,7 @@ class MatkulController extends Controller
         $matkul->dosen_id = $userId;
         $matkul->video_url = $videoId;
         $matkul->deskripsi = $deskripsi;
-        $matkul->gambar = $gambarPath;
+        $matkul->gambar = $webpPath;
 
         // // Delete old photo if it exists and replace it with the new one
         // if ($matkul->gambar) {
