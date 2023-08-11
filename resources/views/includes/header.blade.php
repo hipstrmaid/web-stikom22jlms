@@ -31,14 +31,17 @@
                         $user = Auth::user();
                         $profileTypes = ['dosen', 'mahasiswa', 'admin'];
                         $fotoUrl = asset('assets/img/user.png'); // Default foto URL
-                        
                         foreach ($profileTypes as $type) {
                             $profile = $user->{$type};
                             if ($profile && $profile->foto) {
                                 $fotoUrl = Storage::url($profile->foto);
+                                $nama = $profile->nama;
+                                $username = $profile->user->username;
+                                $role = $profile->user->role->nama_role;
                                 break; // Stop checking once a foto is found
                             }
                         }
+                        
                     @endphp
 
                     <img class="w-8 h-8 rounded-full object-cover" src="{{ $fotoUrl }}" alt="User Foto">
@@ -49,30 +52,9 @@
                 <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded rounded-md divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                     id="dropdown">
                     <div class="py-3 px-4">
-                        @if (Auth::user()->dosen)
-                            <span
-                                class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->dosen->user->username }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->dosen->user->role->nama_role }}</span>
-                        @elseif (Auth::user()->mahasiswa)
-                            <span
-                                class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->nama }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->user->username }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->user->role->nama_role }}</span>
-                        @elseif (Auth::user()->admin)
-                            <span
-                                class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->admin->nama }}</span>
-                            <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->admin->user->username }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->admin->user->role->nama_role }}</span>
-                        @else
-                            <span class="block text-sm font-semibold text-gray-900 dark:text-white">Super Admin</span>
-                        @endif
+                        <span class="block text-sm font-semibold text-gray-900 dark:text-white">{{ $nama }}</span>
+                        <span class="block text-sm text-gray-900 dark:text-white">{{ $username }}</span>
+                        <span class="block text-sm text-gray-900 dark:text-white">{{ $role }}</span>
                     </div>
 
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
