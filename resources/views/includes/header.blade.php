@@ -8,7 +8,7 @@
                 <i class="fa-solid fa-bars text-gray-50"></i>
             </button>
             <a href="#" class="flex items-center justify-between mr-4">
-                <img src="{{ asset('assets/img/stikom-logo.png') }}" class="mr-3 sm:h-12 h-8 hidden sm:block"
+                <img src="{{ asset('assets/img/stikom-logo.webp') }}" class="mr-3 sm:h-12 h-8 hidden sm:block"
                     alt="STIKOM Logo" />
                 <span class="self-center text-1xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22
                     Januari <br>
@@ -27,29 +27,24 @@
                 <button type="button"
                     class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
-                    @if (Auth::user()->dosen)
-                        @isset(Auth::user()->dosen->foto)
-                            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->dosen->foto) }}"
-                                alt="Foto dosen">
-                        @else
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
-                        @endisset
-                    @elseif (Auth::user()->mahasiswa)
-                        @isset(Auth::user()->mahasiswa->foto)
-                            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->mahasiswa->foto) }}"
-                                alt="Foto mahasiswa">
-                        @else
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
-                        @endisset
-                    @elseif (Auth::user()->admin)
-                        @isset(Auth::user()->admin->foto)
-                            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->admin->foto) }}"
-                                alt="Foto admin">
-                        @else
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/img/user.png') }}" alt="Default Foto">
-                        @endisset
-                    @endif
+                    @php
+                        $user = Auth::user();
+                        $profileTypes = ['dosen', 'mahasiswa', 'admin'];
+                        $fotoUrl = asset('assets/img/user.png'); // Default foto URL
+                        foreach ($profileTypes as $type) {
+                            $profile = $user->{$type};
+                            if ($profile && $profile->foto) {
+                                $fotoUrl = Storage::url($profile->foto);
+                                $nama = $profile->nama;
+                                $username = $profile->user->username;
+                                $role = $profile->user->role->nama_role;
+                                break; // Stop checking once a foto is found
+                            }
+                        }
+                        
+                    @endphp
 
+                    <img class="w-8 h-8 rounded-full object-cover" src="{{ $fotoUrl }}" alt="User Foto">
 
                 </button>
                 <!-- Mini iProfile Menu -->
@@ -57,30 +52,9 @@
                 <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded rounded-md divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                     id="dropdown">
                     <div class="py-3 px-4">
-                        @if (Auth::user()->dosen)
-                            <span
-                                class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->dosen->nama }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->dosen->user->username }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->dosen->user->role->nama_role }}</span>
-                        @elseif (Auth::user()->mahasiswa)
-                            <span
-                                class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->nama }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->user->username }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->mahasiswa->user->role->nama_role }}</span>
-                        @elseif (Auth::user()->admin)
-                            <span
-                                class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->admin->nama }}</span>
-                            <span
-                                class="block text-sm text-gray-900 truncate dark:text-white">{{ Auth::user()->admin->user->username }}</span>
-                            <span
-                                class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->admin->user->role->nama_role }}</span>
-                        @else
-                            <span class="block text-sm font-semibold text-gray-900 dark:text-white">Super Admin</span>
-                        @endif
+                        <span class="block text-sm font-semibold text-gray-900 dark:text-white">{{ $nama }}</span>
+                        <span class="block text-sm text-gray-900 dark:text-white">{{ $username }}</span>
+                        <span class="block text-sm text-gray-900 dark:text-white">{{ $role }}</span>
                     </div>
 
 
