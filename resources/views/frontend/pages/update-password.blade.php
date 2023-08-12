@@ -65,6 +65,8 @@
                                     <p class="text-red-600"> {{ Str::ucfirst($message) }}</p>
                                 @enderror
                             </div>
+
+                            <input type="text" name="Status_akun" value="Aktif" hidden>
                             @if (session('success'))
                                 <div class="w-full p-4 mb-4 mt-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400"
                                     role="alert">

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            // $table->string('nim_mhs')->unique();
             $table->string('username')->unique();
             $table->string('password');
             $table->rememberToken();
             $table->unsignedBigInteger('role_id'); // Updated data type to unsigned big integer
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->enum('status', ['Aktif', 'Nonaktif'])->default('Nonaktif');
             $table->timestamps();
         });
     }

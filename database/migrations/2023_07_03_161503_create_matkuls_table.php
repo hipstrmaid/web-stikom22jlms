@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('matkuls', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dosen_id');
-            // $table->string('semester_id');
             $table->string('kode_matkul');
             $table->unsignedBigInteger('semester_id');
             $table->unsignedBigInteger('prodi_id');

@@ -38,6 +38,7 @@ class ProfileController extends Controller
         $request->validate([
             'current_password' => 'required|current_password',
             'password' => 'required|min:8',
+            'Status_akun'
         ]);
 
         // Check if the provided current password matches the user's actual password
@@ -52,6 +53,7 @@ class ProfileController extends Controller
         // $user->setAttribute('password', $password);
 
         $user->password = Hash::make($password);
+        $user->status = $request->input('Status_akun');
 
         // Save the updated user record to the database
         $user->save();
