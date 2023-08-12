@@ -30,6 +30,9 @@
                         $user = Auth::user();
                         $profileTypes = ['dosen', 'mahasiswa', 'admin'];
                         $fotoUrl = asset('assets/img/user.png'); // Default foto URL
+                        $nama = 'Akun belum aktif.';
+                        $username = '';
+                        $role = '';
                         foreach ($profileTypes as $type) {
                             $profile = $user->{$type};
                             if ($profile && $profile->foto) {
@@ -61,7 +64,7 @@
                             <a href="{{ route('edit-profile') }}"
                                 class="block py-2 px-4 text-sm hover:bg-gray-100 hover:font-bold dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"><i
                                     class="fas fa-user mr-2"></i>
-                                Profile
+                                Profil
                             </a>
                         </li>
                     </ul>
@@ -70,7 +73,7 @@
                             <a href="/user/preferences"
                                 class="block py-2 px-4 text-sm hover:bg-gray-100 hover:font-bold dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"><i
                                     class="fas fa-cog mr-2"></i>
-                                Settings
+                                Pengaturan
                             </a>
                         </li>
                     </ul>
@@ -82,7 +85,7 @@
                                 @csrf
 
                                 <button
-                                    class="text-left w-full text-sm py-2 px-4 hover:text-white font-bold dark:hover:text-gray-100 dark:text-gray-400 dark:hover:text-white"
+                                    class="text-left w-full text-sm py-2 px-4 hover:text-white hover:font-bold dark:hover:text-gray-100 dark:text-gray-400 dark:hover:text-white"
                                     type="submit"><i class="fas fa-sign-out-alt mr-2"></i>
                                     Logout</button>
 
