@@ -6,12 +6,18 @@
             <div class="overflow-y-auto py-4 h-full">
                 <ul class="space-y-1">
                     <li>
-                        <a href="{{ route('dashboard.index') }}"
-                            class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-900  dark:bg-gray-900 group">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span class="ml-3">Dashboard</span>
-                        </a>
-                    </li>
+                        @auth
+                            <a href="{{ route('dashboard.index') }}"
+                                class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-900  dark:bg-gray-900 group">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="ml-3">Dashboard</span>
+                            </a>
+                        @else
+                            <a href="/"
+                                class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-900  dark:bg-gray-900 group">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="ml-3">Dashboard</span>
+                        </a @endauth </li>
                     <li>
                         <a href="/calendar"
                             class="flex items-center p-2 px-4 text-base font-medium  hover:bg-gray-200 dark:hover:bg-gray-900  group">

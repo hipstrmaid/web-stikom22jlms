@@ -27,13 +27,13 @@ class DashboardController extends Controller
     public function index()
     {
 
-        if (Auth::user()->role_id == 2 || 1) {
+        if (Auth::user()->role_id != 4) {
             $matkuls = Matkul::all()->groupBy('semester_id')->sortBy(function ($items, $key) {
                 return $key;
             });
 
             return view('frontend.pages.dashboard', ['matkuls' => $matkuls]);
-        } elseif (Auth::user()->role_id == 4) {
+        } else {
             $mahasiswaTotal = User::where('role_id', 1)->count();
             $dosenTotal = User::where('role_id', 2)->count();
             $baakTotal = User::where('role_id', 3)->count();
