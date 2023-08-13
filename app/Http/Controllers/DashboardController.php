@@ -10,7 +10,19 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard after Authenticated.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
