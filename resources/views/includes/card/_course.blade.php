@@ -32,7 +32,7 @@
             @if (auth()->user()->role->nama_role == 'Dosen')
                 <div class="">
                     <div>
-                        <a href="{{ route('matkul.edit') }}"
+                        <a href="{{ route('matkul.edit', ['matkul' => $matkul->id]) }}"
                             class="w-full inline-flex justify-center items-center gap-2 rounded px-3 py-2 text-sm font-medium text-white bg-green-800 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                             <i class="fas fa-edit"></i> Edit
                         </a>

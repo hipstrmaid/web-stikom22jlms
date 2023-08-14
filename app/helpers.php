@@ -11,3 +11,10 @@ function extractVideo($url)
 
     return null;
 }
+
+function checkPermission($contentId, $userId)
+{
+    if ($contentId != $userId) {
+        abort(403, 'Tidak boleh mengintip');
+    }
+}

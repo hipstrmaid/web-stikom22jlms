@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use App\Models\Matkul;
-use Illuminate\Http\Request;
 
-use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -75,8 +76,6 @@ class MatkulController extends Controller
         Storage::put($webpPath, $webpImage->stream());
 
 
-
-
         $userId = Auth::user()->dosen->id;
         $videoId = extractVideo($video_url);
 
@@ -87,11 +86,6 @@ class MatkulController extends Controller
         $matkul->deskripsi = $deskripsi;
         $matkul->gambar = $webpPath;
 
-        // // Delete old photo if it exists and replace it with the new one
-        // if ($matkul->gambar) {
-        //     Storage::delete($matkul->gambar); // Delete old photo
-        // }
-
         $matkul->semester_id = $semester_id;
         $matkul->prodi_id = $prodi_id;
         $matkul->hari = $hari;
@@ -101,7 +95,6 @@ class MatkulController extends Controller
 
         Session::flash('success');
 
-        // return redirect(route('dashboard.index'));
         return redirect('/matkul');
     }
 
@@ -118,9 +111,12 @@ class MatkulController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        // Find the Matkul model by ID
+        $matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
+        checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
+        return view('frontend.pages.dosen.matkul.edit-matkul', compact('matkul'));
     }
 
     /**
@@ -128,7 +124,43 @@ class MatkulController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $matkul = Matkul::findOrFail($id);
+
+        // Check permission before updating
+        checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
+
+        $request->validate([
+            'nama_matkul' => 'required',
+            'video_url' => 'required',
+            'deskripsi' => 'required|min:100',
+            'gambar' => 'file', // You can update the file or leave it as is
+            'semester_id' => 'required',
+            'hari' => 'required',
+            'prodi' => 'required',
+        ]);
+
+        $matkul->nama_matkul = $request->input('nama_matkul');
+        $matkul->video_url = extractVideo($request->input('video_url'));
+        $matkul->deskripsi = $request->input('deskripsi');
+        $matkul->semester_id = $request->input('semester_id');
+        $matkul->hari = $request->input('hari');
+        $matkul->prodi_id = $request->input('prodi');
+        $matkul->kode_matkul = $request->input('kode_matkul');
+
+        // If a new image file is uploaded, update the image
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $webpImage = Image::make($gambar)->encode('webp', 90);
+            $webpPath = 'public/thumbnail/' . time() . '.webp';
+            Storage::put($webpPath, $webpImage->stream());
+            $matkul->gambar = $webpPath;
+        }
+
+        $matkul->save();
+
+        Session::flash('success');
+
+        return redirect('/matkul');
     }
 
     /**
