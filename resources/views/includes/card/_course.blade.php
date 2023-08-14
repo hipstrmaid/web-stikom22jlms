@@ -28,17 +28,29 @@
             </div>
         </div>
 
-        <div class="card-footer border-t dark:border-gray-700">
-            <div class="flex py-2 px-4">
-                <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full object-cover" src="{{ Storage::url($matkul->dosen->foto) }}"
-                        alt="Instructor Avatar">
+        <div class="card-footer border-t dark:border-gray-700 p-2">
+            @if (auth()->user()->role->nama_role == 'Dosen')
+                <div class="">
+                    <div>
+                        <a href="{{ route('matkul.edit') }}"
+                            class="w-full inline-flex justify-center items-center gap-2 rounded px-3 py-2 text-sm font-medium text-white bg-green-800 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                    </div>
                 </div>
-                <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $matkul->dosen->nama }}</p>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $matkul->dosen->user->role->nama_role }}</p>
+            @else
+                <div class="flex py-2 px-4">
+                    <div class="flex-shrink-0">
+                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Storage::url($matkul->dosen->foto) }}"
+                            alt="Instructor Avatar">
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $matkul->dosen->nama }}</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ $matkul->dosen->user->role->nama_role }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 </div>

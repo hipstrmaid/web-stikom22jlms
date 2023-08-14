@@ -8,6 +8,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulController;
+use App\Http\Controllers\PertemuanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Models\Matkul;
@@ -42,6 +43,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/calendar', function () {
     return view('frontend.pages.calendar');
 });
+
+// Route::get('/belajar', function () {
+//     return view('frontend.pages.mahasiswa.pertemuan.mahasiswa-pertemuan');
+// });
+
+Route::resource('pertemuan', PertemuanController::class);
 
 // Laravel authentication routes
 Auth::routes();
