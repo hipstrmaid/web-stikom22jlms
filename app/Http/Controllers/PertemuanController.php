@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Matkul;
+use App\Models\Pertemuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PertemuanController extends Controller
 {
@@ -11,7 +14,13 @@ class PertemuanController extends Controller
      */
     public function index()
     {
-        return view('frontend.pertemuan');
+        $id = Auth::user()->dosen->id;
+        $matkuls = Matkul::where('dosen_id', $id)->get();
+        //Cari matkul
+        $matkul = Matkul::with('semester', 'prodi')->first();
+
+        $pertemuan = Pertemuan::where('matkul_id', $matkuls)->get();
+        return view('frontend/pages/dosen/pertemuan/view-pertemuan', ['matkul' => $matkul], ['pertemuans' => $pertemuan]);
     }
 
     /**
@@ -28,7 +37,15 @@ class PertemuanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_matkul' => 'required',
+            'video_url' => 'required',
+            'deskripsi' => 'required|min:100',
+            'gambar' => 'required|file',
+            'semester_id' => 'required',
+            'hari' => 'required',
+            'prodi' => 'required',
+        ]);
     }
 
     /**
