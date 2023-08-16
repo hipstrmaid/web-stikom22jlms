@@ -44,9 +44,9 @@ Route::get('/calendar', function () {
     return view('frontend.pages.calendar');
 });
 
-// Route::get('/belajar', function () {
-//     return view('frontend.pages.mahasiswa.pertemuan.mahasiswa-pertemuan');
-// });
+Route::get('/belajar', function () {
+    return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar');
+});
 
 
 

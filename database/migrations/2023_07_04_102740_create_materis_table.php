@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('materis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pertemuan_id');
-            $table->string('nama_file');
-            $table->string('path_file');
-            $table->string('tipe_file');
-            $table->foreign('pertemuan_id')->references('id')->on('materis');
+            $table->string('instruksi');
+            $table->string('file_id')->nullable();
+            $table->string('tugas_id')->nullable();
+            $table->foreign('pertemuan_id')->references('id')->on('pertemuans');
+            $table->foreign('tugas_id')->references('id')->on('tugas');
             $table->timestamps();
         });
     }

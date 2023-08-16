@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pertemuans', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('matkul_id');
+            $table->unsignedBigInteger('materis_id');
+            $table->string('file_path');
+            $table->string('jenis_file');
             $table->foreign('matkul_id')->references('id')->on('matkuls');
-            $table->string('judul_pertemuan');
-            $table->string('video_url')->nullable();
-            $table->string('gambar');
-            $table->string('deskripsi');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pertemuans');
+        Schema::dropIfExists('files');
     }
 };
