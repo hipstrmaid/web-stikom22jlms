@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('matkul', MatkulController::class);
+    Route::get('matkul/{id}/matkul-preview', [MatkulController::class, 'indexPertemuan'])->name('matkul.indexPertemuan');
     Route::resource('pertemuan', PertemuanController::class);
     Route::get('matkul/{id}/pertemuan', [PertemuanController::class, 'indexPertemuan'])->name('pertemuan.indexPertemuan');
 

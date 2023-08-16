@@ -35,6 +35,18 @@ Breadcrumbs::for('editMatkul', function (BreadcrumbTrail $trail, $matkul) {
     $trail->push($matkul->nama_matkul, route('matkul.edit', $matkul));
 });
 
+// Dashboard > Mata Kuliah > Pertemuan
+Breadcrumbs::for('viewPertemuan', function (BreadcrumbTrail $trail, $pertemuan) {
+    $trail->parent('matkul');
+    $trail->push('Belajar', route('pertemuan.show', ['pertemuan' => $pertemuan->id]));
+});
+
+// Dashboard > Mata Kuliah >  Pertemuan > {Pertemuan}
+Breadcrumbs::for('previewMatkul', function (BreadcrumbTrail $trail, $matkul) {
+    $trail->parent('matkul');
+    $trail->push('Pertemuan', route('pertemuan.indexPertemuan', ['id' => $matkul->id]));
+});
+
 // Dashboard > Mata Kuliah > {Nama Matkul} > Pertemuan
 Breadcrumbs::for('indexPertemuan', function (BreadcrumbTrail $trail, $matkul) {
     $trail->parent('editMatkul', $matkul);

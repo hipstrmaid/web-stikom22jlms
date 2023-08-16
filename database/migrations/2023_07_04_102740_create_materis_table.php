@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pertemuan_id');
             $table->string('instruksi');
-            $table->string('file_id')->nullable();
-            $table->string('tugas_id')->nullable();
+            $table->unsignedBigInteger('file_id')->nullable();
+            // $table->string('tugas_id')->nullable();
             $table->foreign('pertemuan_id')->references('id')->on('pertemuans');
-            $table->foreign('tugas_id')->references('id')->on('tugas');
+            $table->foreign('file_id')->references('id')->on('files');
+            // $table->foreign('tugas_id')->references('id')->on('tugas');
             $table->timestamps();
         });
     }

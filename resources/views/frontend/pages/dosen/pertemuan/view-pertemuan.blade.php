@@ -41,11 +41,17 @@
 
             </div>
             <ul class="flex grid gap-2 mb-4 px-5">
+                @php
+                    $i = 0;
+                @endphp
                 @foreach ($pertemuans as $pertemuan)
+                    @php
+                        $i++;
+                    @endphp
                     <li class="flex">
-                        <a href="/matkul/pertemuan/belajar" class="w-full">
+                        <a href="{{ route('pertemuan.show', ['pertemuan' => $pertemuan->id]) }}" class="w-full">
                             <h1 class="bg-gray-200 border rounded-l-lg  border-gray-300 w-full py-2 px-3 text-bold">
-                                Pertemuan 1:{{ $pertemuan->nama_pertemuan }}</h1>
+                                Pertemuan {{ $i }} : {{ $pertemuan->judul_pertemuan }}</h1>
                         </a>
                         <a href="/dosen/edit-pertemuan"
                             class="flex items-center justify-center bg-blue-400 p-2 rounded-r-lg">

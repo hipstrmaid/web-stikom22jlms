@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('materis_id');
             $table->string('file_path');
+            $table->string('file_format');
             $table->string('jenis_file');
-            $table->foreign('matkul_id')->references('id')->on('matkuls');
+
             $table->timestamps();
         });
     }

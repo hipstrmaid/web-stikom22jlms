@@ -5,16 +5,18 @@
         <div class="col-span-6">
             <div class="content">
                 <article class="dark:text-white">
-                    <h1 class="text-4xl font-bold mb-4 pt-4 lg:pt-0">Installasi Photoshop</h1>
+                    <h1 class="text-4xl font-bold pt-4 lg:pt-0">{{ $pertemuan->judul_pertemuan }}</h1>
+                    {{ Breadcrumbs::render('viewPertemuan', $pertemuan) }}
                     <div class="video-player mt-2 mb-2">
-                        <iframe class="w-full max-w-full" height="300" src="https://www.youtube.com/embed/lPJVi797U"
-                            title="YouTube video player" frameborder="0"
+                        <iframe class="w-full max-w-full" height="300"
+                            src="https://www.youtube.com/embed/{{ $pertemuan->video_url }}" title="YouTube video player"
+                            frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
                     </div>
                     <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
-                        <p>Pada pertemuan kali ini kita akan menginstall photoshop.</p>
-                        <p>Video di atas akan menjelaskan tahap tahap penginstalan photoshop.</p>
+                        <p>{{ $pertemuan->deskripsi }}</p>
+
                     </div>
 
                     <div id="accordion-collapse" class="bg-white dark:bg-gray-800 shadow" data-accordion="collapse">
@@ -29,7 +31,7 @@
 
 
         <div class="col-span-2">
-            <div class="content-title flex items-center dark:text-white">
+            <div class="content-title flex items-center dark:text-white mt-3">
                 <i class="fa-solid fa-book mr-2" style="color: #4287ff;"></i>
                 <h1 class="text-xl font-bold my-2 ">General</h1>
             </div>
@@ -58,8 +60,7 @@
 
                         <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">Nonton video kemudian Kerjakan tugas di
-                                    bawah.</p>
+                                <p class="mb-2 text-gray-500 dark:text-gray-400">{{ $pertemuan->deskripsi }}</p>
                             </div>
                         </div>
 

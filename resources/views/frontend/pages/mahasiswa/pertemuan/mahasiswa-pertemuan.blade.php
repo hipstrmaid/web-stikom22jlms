@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="row">
-        <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-4 mb-4 h-46">
+        <div class="grid grid-cols-1 lg:grid-cols-8 gap-4 mb-4 h-46">
 
-            <div class="col-span-1">
+            <div class="lg:col-span-2">
                 <div class="bg-white border border-gray-200 rounded-t shadow dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-gray-900 dark:text-white py-2 px-4 font-bold">Detail Mata Kuliah</h5>
                 </div>
@@ -12,16 +12,16 @@
 
                         <li class="flex items-center">
                             <i class="fa-solid fa-user ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">Dosen : Etika Purnamasari</p>
+                            <p class="dark:text-white px-2">{{ $matkul->dosen->nama }}</p>
                         </li>
 
                         <li class="flex items-center">
                             <i class="fa-solid fa-calendar ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">Selasa</p>
+                            <p class="dark:text-white px-2">{{ $matkul->hari }}</p>
                         </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-clock ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">14:55</p>
+                            <p class="dark:text-white px-2">{{ $matkul->jam }}</p>
                         </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-users ml-4 dark:text-white"></i>
@@ -32,29 +32,26 @@
 
                 </div>
                 <div class="bg-white border border-gray-200 rounded-b shadow dark:border-gray-900 dark:bg-gray-800">
-                    <div class="p-2">
-                        <a href="/matkul/pertemuan/belajar"
-                            class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                            Pertemuan 16 <i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
-                        </a>
-
-                    </div>
+                    @isset($lastPertemuan)
+                        <div class="p-2">
+                            <a href="{{ route('pertemuan.show', ['pertemuan' => $lastPertemuan->id]) }}"
+                                class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                Pertemuan {{ $pertemuans->count() }}<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
+                            </a>
+                        </div>
+                    @endisset
                 </div>
             </div>
 
-            <div class="col-span-3">
+            <div class="lg:col-span-6">
                 <div class="content-heading mt-2 lg:mt-0">
                     <h1
                         class="text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-                        Pemrograman Berorientasi Objek
+                        {{ $matkul->nama_matkul }}
                     </h1>
-                    <p class="py-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Voluptate aliquid suscipit, officia at quasi ex tenetur earum id perferendis
-                        corrupti,
-                        modi eos quam rerum voluptatum dolorem nam ullam aliquam incidunt praesentium atque repudiandae
-                        pariatur
-                        accusantium sapiente voluptates? Culpa, dicta suscipit, mollitia facilis reiciendis cum illo,
-                        reprehenderit sapiente architecto veritatis natus?</p>
+                    {{ Breadcrumbs::render('previewMatkul', $matkul) }}
+                    {{-- <img class="w-80 object-cover" src="{{ Storage::url($matkul->gambar) }}" alt="gambar-matkul"> --}}
+                    <p class="py-3 font-normal text-gray-700 dark:text-gray-400">{{ $matkul->deskripsi }}</p>
                 </div>
 
                 <div class="content-data">
@@ -130,36 +127,32 @@
                             </h2>
                             <div id="accordion-collapse-body-2" class="hidden"
                                 aria-labelledby="accordion-collapse-heading-2">
-
                                 <div class="p-5 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
 
                                     <ul
                                         class="w-full text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-800 dark:text-white">
-                                        <li>
-                                            <a href="#" aria-current="true"
-                                                class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
-                                                <p>Pertemuan 1</p>
-                                                <i class="w-auto fa-solid fa-lock-open dark:text-white"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" aria-current="true"
-                                                class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
-                                                <p>Pertemuan 2</p>
-                                                <i class="w-auto fa-solid fa-lock dark:text-white"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" aria-current="true"
-                                                class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
-                                                <p>Pertemuan 3</p>
-                                                <i class="w-auto fa-solid fa-lock dark:text-white"></i>
-                                            </a>
-                                        </li>
-
+                                        @php
+                                            $i = 0;
+                                        @endphp
+                                        @foreach ($pertemuans as $pertemuan)
+                                            @php
+                                                $i++;
+                                            @endphp
+                                            <li>
+                                                <a href="{{ route('pertemuan.show', ['pertemuan' => $pertemuan->id]) }}"
+                                                    aria-current="true"
+                                                    class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                                    <p>Pertemuan {{ $i }} : <span class="text-blue-500">
+                                                            {{ $pertemuan->judul_pertemuan }}</span>
+                                                    </p>
+                                                    <i class="w-auto fa-solid fa-lock-open dark:text-white"></i>
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
 
                                 </div>
+
                             </div>
                         </li>
 

@@ -102,3 +102,19 @@ var player;
       var seconds = Math.floor(time % 60);
       return minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
     }
+
+    document.getElementById("jam").addEventListener("input", function(e) {
+        var input = e.target;
+        var value = input.value;
+
+        // Remove any non-digit characters
+        var digitsOnly = value.replace(/\D/g, "");
+
+        // Format as HH:MM
+        if (digitsOnly.length > 2) {
+            digitsOnly = digitsOnly.slice(0, 2) + ":" + digitsOnly.slice(2);
+        }
+
+        // Update the input value
+        input.value = digitsOnly;
+    });

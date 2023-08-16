@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use App\Models\Matkul;
 
+use App\Models\Pertemuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
-use Diglactic\Breadcrumbs\Breadcrumbs;
-use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,6 +23,17 @@ class MatkulController extends Controller
         $matkuls = Matkul::where('dosen_id', $id)->get();
 
         return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
+    }
+
+    public function indexPertemuan($id)
+    {
+        $matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
+        $pertemuans = Pertemuan::where('matkul_id', $id)->get();
+        $lastPertemuan = Pertemuan::where('matkul_id', $id)->latest()->first();
+
+        // @dd($pertemuans);
+        checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
+        return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan'));
     }
 
     /**
@@ -43,16 +53,16 @@ class MatkulController extends Controller
 
         $request->validate([
             'nama_matkul' => 'required',
-            'video_url' => 'required',
             'deskripsi' => 'required|min:100',
             'gambar' => 'required|file',
             'semester_id' => 'required',
             'hari' => 'required',
+            'jam' => 'required',
             'prodi' => 'required',
         ]);
 
         $nama_matkul = $request->input('nama_matkul');
-        $video_url = $request->input('video_url');
+        $jam = $request->input('jam');
         $deskripsi = $request->input('deskripsi');
         $semester_id = $request->input('semester_id');
         $hari = $request->input('hari');
@@ -69,15 +79,13 @@ class MatkulController extends Controller
 
 
         $userId = Auth::user()->dosen->id;
-        $videoId = extractVideo($video_url);
 
         $matkul = new Matkul;
         $matkul->nama_matkul = $nama_matkul;
         $matkul->dosen_id = $userId;
-        $matkul->video_url = $videoId;
         $matkul->deskripsi = $deskripsi;
         $matkul->gambar = $webpPath;
-
+        $matkul->jam = $jam;
         $matkul->semester_id = $semester_id;
         $matkul->prodi_id = $prodi_id;
         $matkul->hari = $hari;

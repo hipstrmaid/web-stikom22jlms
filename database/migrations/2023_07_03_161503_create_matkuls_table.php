@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('dosen_id');
             $table->string('kode_matkul');
-            $table->unsignedBigInteger('semester_id');
-            $table->unsignedBigInteger('prodi_id');
             $table->string('nama_matkul');
-            $table->string('video_url')->nullable();
             $table->string('deskripsi');
             $table->string('gambar');
             $table->string('hari');
+            $table->string('jam');
+            $table->unsignedBigInteger('semester_id');
+            $table->unsignedBigInteger('prodi_id');
             $table->foreign('dosen_id')->references('id')->on('dosens');
             $table->foreign('semester_id')->references('id')->on('semesters');
             $table->foreign('prodi_id')->references('id')->on('prodis');
