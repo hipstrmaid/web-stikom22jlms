@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class Matkul extends Model
 {
     use HasFactory;
-    const EXCERPT_LENGTH = 75;
+    const EXCERPT_LENGTH = 100;
 
     protected $fillable = [
         'dosen_id',
@@ -28,7 +28,6 @@ class Matkul extends Model
     {
         return Str::limit($this->deskripsi, Matkul::EXCERPT_LENGTH);
     }
-
 
     public function dosen()
     {

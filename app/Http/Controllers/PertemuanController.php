@@ -12,15 +12,22 @@ class PertemuanController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        $id = Auth::user()->dosen->id;
-        $matkuls = Matkul::where('dosen_id', $id)->get();
-        //Cari matkul
-        $matkul = Matkul::with('semester', 'prodi')->first();
+        //
+    }
 
-        $pertemuan = Pertemuan::where('matkul_id', $matkuls)->get();
-        return view('frontend/pages/dosen/pertemuan/view-pertemuan', ['matkul' => $matkul], ['pertemuans' => $pertemuan]);
+
+    public function indexPertemuan($id)
+    {
+        //$id di dapat dari route {{ route('pertemuan.indexPertemuan', ['id' => $matkul->id]) }} yang ada di Edit matkul
+        // Find the Matkul model by ID di pass ke view untuk kembali ke Edit matkul page
+        $id_matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
+        // Index semua pertemuan berdasarkan id yang di dapat dari page Edit matkul
+        $pertemuans = Pertemuan::where('matkul_id', $id)->get();
+        checkPermission($id_matkul->dosen_id, Auth::user()->dosen->id);
+        return view('frontend/pages/dosen/pertemuan/view-pertemuan', compact('pertemuans', 'id_matkul'));
     }
 
     /**

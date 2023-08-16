@@ -48,7 +48,7 @@ Route::get('/calendar', function () {
 //     return view('frontend.pages.mahasiswa.pertemuan.mahasiswa-pertemuan');
 // });
 
-Route::resource('pertemuan', PertemuanController::class);
+
 
 // Laravel authentication routes
 Auth::routes();
@@ -56,15 +56,18 @@ Auth::routes();
 // Routes accessible by authenticated users only
 Route::middleware('auth')->group(function () {
     Route::resource('dashboard', DashboardController::class);
+
+
     Route::resource('matkul', MatkulController::class);
+    Route::resource('pertemuan', PertemuanController::class);
+    Route::get('matkul/{id}/pertemuan', [PertemuanController::class, 'indexPertemuan'])->name('pertemuan.indexPertemuan');
+
 
     Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
     Route::get('user/{user}/editPassword', [ProfileController::class, 'editPassword'])->name('user.editPassword');
     Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');
 
 
-
-    Route::get('/matkul/{matkul}/saya', [MatkulController::class, 'indexmatkul'])->name('matkul.indexmatkul');
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
 

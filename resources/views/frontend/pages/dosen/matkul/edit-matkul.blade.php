@@ -2,23 +2,23 @@
 @section('content')
     <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
         Edit Mata Kuliah</h1>
-    <x-breadcrumbs></x-breadcrumbs>
+    {{ Breadcrumbs::render('editMatkul', $matkul) }}
     <div class="grid grid-cols-1 mb-5">
         <ul class="flex bg-gray-200 dark:bg-gray-900">
-            <div
-                class="flex items-center bg-white border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
-                <i class="fa-solid fa-pen-to-square ml-4"></i>
+            <div class="bg-white dark:bg-gray-800 flex items-center dark:border-gray-900">
+                <i class="fa-solid fa-lock ml-4 dark:text-white"></i>
+                <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold">
+                    <a href="{{ route('matkul.edit', ['matkul' => $matkul->id]) }}">Mata
+                        Kuliah</a>
+                </h5>
+            </div>
+            <div class="flex items-center border border-gray-200 border-b-0 rounded-t dark:border-gray-900  ">
+                <i class="fa-solid fa-address-card ml-4 dark:text-white"></i>
                 <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold"><a
-                        href="{{ route('matkul.edit', ['matkul' => $matkul->id]) }}">Mata
-                        Kuliah</a></h5>
+                        href="{{ route('pertemuan.indexPertemuan', ['id' => $matkul->id]) }}">Pertemuan</a></h5>
             </div>
             <div class="flex items-center dark:border-gray-900 dark:bg-gray-900">
-                <i class="fa-solid fa-pen-to-square ml-4"></i>
-                <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold"><a
-                        href="{{ route('pertemuan.index') }}">Pertemuan</a></h5>
-            </div>
-            <div class="flex items-center dark:border-gray-900 dark:bg-gray-900">
-                <i class="fa-solid fa-pen-to-square ml-4"></i>
+                <i class="fa-solid fa-users ml-4 dark:text-white"></i>
                 <h5 class="text-sm text-gray-900 dark:text-white py-2 ml-2 mr-4 font-bold">Peserta</h5>
             </div>
         </ul>
@@ -30,8 +30,8 @@
                     @method('PUT')
                     @csrf
                     <div class="mb-6">
-                        <label for="email"
-                            class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Judul</label>
+                        <label for="email" class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Nama Mata
+                            Kuliah</label>
                         <input type="text" id="email" name="nama_matkul" value="{{ $matkul->nama_matkul }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm font-medium rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="cth. Pemrograman Database II" required>

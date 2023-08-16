@@ -8,6 +8,8 @@ use App\Models\Matkul;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Diglactic\Breadcrumbs\Breadcrumbs;
+use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,16 +25,6 @@ class MatkulController extends Controller
 
         return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
     }
-
-    // public function indexmatkul(string $id)
-    // {
-
-    //     $matkuls = Matkul::where('dosen_id', $id)->get();
-    //     @dd($matkuls);
-
-    //     return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
-    // }
-
 
     /**
      * Show the form for creating a new resource.
@@ -115,9 +107,11 @@ class MatkulController extends Controller
     {
         // Find the Matkul model by ID
         $matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
+
         checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
         return view('frontend.pages.dosen.matkul.edit-matkul', compact('matkul'));
     }
+
 
     /**
      * Update the specified resource in storage.

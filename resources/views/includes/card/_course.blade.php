@@ -2,7 +2,7 @@
     <img class="w-full h-48 object-cover border border-b dark:border-gray-800" src="{{ Storage::url($matkul->gambar) }}"
         alt="Course Image">
     <div class="flex flex-col flex-grow">
-        <div class="content p-4 flex flex-col gap-2">
+        <div class="content px-4 py-2 flex flex-col gap-1">
             <div class="card-category">
                 @if ($matkul->prodi->nama_prodi == 'Sistem Informasi')
                     <span
@@ -22,8 +22,7 @@
                         {{ $matkul->nama_matkul }}</p>
                 </a>
             </div>
-            <div class="card-text">
-
+            <div class="card-description">
                 <p class="text-sm leading-normal text-gray-600 dark:text-gray-400">{{ $matkul->excerpt() }}</p>
             </div>
         </div>
