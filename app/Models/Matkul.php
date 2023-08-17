@@ -48,4 +48,9 @@ class Matkul extends Model
     {
         return $this->hasMany(Pertemuan::class);
     }
+
+    public function enroll()
+    {
+        return $this->hasMany(Enroll::class);
+    }
 }

@@ -56,30 +56,22 @@ class UserController extends Controller
         if ($user->exists) {
             if ($user->role_id == 1) {
                 $mahasiswa = new Mahasiswa();
-                // $mahasiswa->nama = 'Belum diisi';
-                // $mahasiswa->foto = 'Foto anda';
                 $mahasiswa->nim = $nim;
                 $mahasiswa->prodi_id = $prodi_id;
                 $mahasiswa->user_id = $user->id;
                 $mahasiswa->save();
             } elseif ($user->role_id == 2) {
                 $dosen = new Dosen();
-                // $dosen->nama = 'Belum diisi';
-                // $dosen->foto = 'Foto anda';
                 $dosen->nidn = $nim;
                 $dosen->user_id = $user->id;
                 $dosen->save();
             } elseif ($user->role_id == 3) {
                 $dosen = new Dosen();
-                // $dosen->nama = 'Belum diisi';
-                // $dosen->foto = 'Foto anda';
                 $dosen->nidn = $nim;
                 $dosen->user_id = $user->id;
                 $dosen->save();
             } elseif ($user->role_id == 4) {
                 $admin = new Admin();
-                // $admin->nama = 'Belum diisi';
-                // $admin->foto = 'Foto anda';
                 $admin->nidn = $nim;
                 $admin->user_id = $user->id;
                 $admin->save();

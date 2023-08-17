@@ -17,7 +17,9 @@
                                 class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-900  dark:bg-gray-900 group">
                                 <i class="fas fa-tachometer-alt"></i>
                                 <span class="ml-3">Dashboard</span>
-                        </a @endauth </li>
+                            </a>
+                        @endauth
+                    </li>
                     <li>
                         <a href="/calendar"
                             class="flex items-center p-2 px-4 text-base font-medium  hover:bg-gray-200 dark:hover:bg-gray-900  group">
@@ -28,10 +30,20 @@
                     @auth
                         @if (in_array(Auth::user()->role_id, [1, 2]))
                             <li>
-                                <a href="{{ route('matkul.index') }}"
-                                    class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900 rounded-lg  group"><i
-                                        class="fas fa-book"></i><span class="ml-3">Mata
-                                        Kuliah</span></a>
+                                @if (Auth::user()->role_id == 1)
+                                    <a href="{{ route('matkul.index') }}"
+                                        class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900 rounded-lg  group">
+                                        <i class="fas fa-book"></i>
+                                        <span class="ml-3">Mata Kuliah</span>
+                                    </a>
+                                @else
+                                    <a href="{{ route('matkul.index') }}"
+                                        class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900 rounded-lg  group">
+                                        <i class="fas fa-book"></i>
+                                        <span class="ml-3">Mata Kuliah</span>
+                                    </a>
+                                @endif
+
                             </li>
 
                             <li>

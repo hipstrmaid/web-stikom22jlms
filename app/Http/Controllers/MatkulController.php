@@ -19,11 +19,27 @@ class MatkulController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->dosen->id;
-        $matkuls = Matkul::where('dosen_id', $id)->get();
+        if (Auth::user()->dosen) {
+            $id_dosen = Auth::user()->dosen->id;
+            $matkuls = Matkul::with('semester', 'prodi')->where('dosen_id', $id_dosen)->get();
 
-        return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
+            return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
+        } else {
+            // Retrieve Mahasiswa that logged in Collection
+            $mahasiswa = Auth::user()->mahasiswa;
+            // Retrieve the enrolled Matkul courses for the Mahasiswa
+            $matkuls = $mahasiswa->enroll()->with('matkul.prodi', 'matkul.semester')->get();
+            return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
+        }
     }
+
+    // public function indexMatkulMhs()
+    // {
+    //     $id = Auth::user()->mahasiswa->id;
+    //     $matkuls = Matkul::where('dosen_id', $id)->get();
+
+    //     return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
+    // }
 
     public function indexPertemuan($id)
     {
@@ -31,9 +47,14 @@ class MatkulController extends Controller
         $pertemuans = Pertemuan::where('matkul_id', $id)->get();
         $lastPertemuan = Pertemuan::where('matkul_id', $id)->latest()->first();
 
-        // @dd($pertemuans);
-        checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
-        return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan'));
+        // @dd($mahasiswa);
+        if (Auth::user()->dosen) {
+            checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
+            return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan'));
+        } else {
+            checkPermission($matkul->id, Auth::user()->mahasiswa->id);
+            return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan'));
+        }
     }
 
     /**

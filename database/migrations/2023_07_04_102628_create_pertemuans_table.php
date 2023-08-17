@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('matkul_id');
             $table->foreign('matkul_id')->references('id')->on('matkuls');
             $table->string('judul_pertemuan');
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->string('video_url')->nullable();
             $table->string('gambar');
             $table->string('instruksi');

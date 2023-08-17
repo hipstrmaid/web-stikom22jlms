@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enroll;
 use App\Models\Matkul;
 use App\Models\Pertemuan;
 use Illuminate\Http\Request;
@@ -83,10 +84,17 @@ class PertemuanController extends Controller
      */
     public function show(string $id)
     {
-        $id_matkul = Matkul::where('dosen_id', Auth::user()->dosen->id)->first();
+
+        $mhs_matkul = Enroll::where('id', Auth::user()->mahasiswa->id)->first();
         $pertemuan = Pertemuan::findOrFail($id); // Assuming Resource is your model
-        checkPermission($pertemuan->matkul_id, $id_matkul->id);
-        return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan'));
+        if (Auth::user()->dosen) {
+            $id_matkul = Matkul::where('dosen_id', Auth::user()->dosen->id)->first();
+            checkPermission($pertemuan->matkul_id, $id_matkul->id);
+            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan'));
+        } else {
+            checkPermission($pertemuan->matkul_id, $mhs_matkul->id);
+            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan'));
+        }
     }
 
     /**

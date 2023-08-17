@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('enrolls', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mhs_id');
+            $table->unsignedBigInteger('mahasiswa_id');
             $table->unsignedBigInteger('matkul_id');
-            $table->foreign('mhs_id')->references('id')->on('mahasiswas');
+            $table->string('kode_matkul');
+            $table->foreign('mahasiswa_id')->references('id')->on('mahasiswas');
             $table->foreign('matkul_id')->references('id')->on('matkuls');
             $table->timestamps();
         });
