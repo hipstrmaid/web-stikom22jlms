@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Enroll;
 use App\Models\Matkul;
 
 use App\Models\Pertemuan;
@@ -22,13 +23,10 @@ class MatkulController extends Controller
         if (Auth::user()->dosen) {
             $id_dosen = Auth::user()->dosen->id;
             $matkuls = Matkul::with('semester', 'prodi')->where('dosen_id', $id_dosen)->get();
-
             return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
         } else {
-            // Retrieve Mahasiswa that logged in Collection
-            $mahasiswa = Auth::user()->mahasiswa;
-            // Retrieve the enrolled Matkul courses for the Mahasiswa
-            $matkuls = $mahasiswa->enroll()->with('matkul.prodi', 'matkul.semester')->get();
+            $mahasiswa_id = Auth::user()->mahasiswa->id;
+            $matkuls = Enroll::where('mahasiswa_id', $mahasiswa_id)->get();
             return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
         }
     }
@@ -41,19 +39,33 @@ class MatkulController extends Controller
     //     return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
     // }
 
-    public function indexPertemuan($id)
+    public function pertemuanPreview($id)
     {
+        //Ambil 1 record yang punya id di $id
         $matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
         $pertemuans = Pertemuan::where('matkul_id', $id)->get();
         $lastPertemuan = Pertemuan::where('matkul_id', $id)->latest()->first();
 
-        // @dd($mahasiswa);
+
+        // dd($matkul);
         if (Auth::user()->dosen) {
             checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
-            return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan'));
+            return view('frontend/pages/dosen/pertemuan/dosen-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan'));
         } else {
-            checkPermission($matkul->id, Auth::user()->mahasiswa->id);
-            return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan'));
+            // $mahasiswa = Auth::user()->mahasiswa;
+            // // Ambil semua record yang mahasiswa Enroll
+            // $matkul_mahasiswa = $mahasiswa->enroll()->get();
+            // // Ambil 1 record yang matkul_id nya sama dengan Matkul yang di click;
+            // $enroll_id = $matkul_mahasiswa->where('matkul_id', $matkul->id)->first();
+
+            $enroll_id = Matkul::where('id', $id)->first();
+
+            // dd($enroll_id->id);
+            // if ($enroll_id == null) {
+            //     abort(403, 'Anda tidak terdaftar pada mata kuliah ini.');
+            // }
+            // checkPermission($matkul->id, $enroll_id->matkul_id);
+            return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'enroll_id', 'lastPertemuan'));
         }
     }
 
@@ -80,6 +92,7 @@ class MatkulController extends Controller
             'hari' => 'required',
             'jam' => 'required',
             'prodi' => 'required',
+            'kode_matkul' => 'unique:matkuls,kode_matkul',
         ]);
 
         $nama_matkul = $request->input('nama_matkul');

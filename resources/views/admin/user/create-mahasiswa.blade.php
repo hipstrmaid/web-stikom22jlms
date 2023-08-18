@@ -60,6 +60,7 @@
                                                         placeholder="cth. 1920557xx" required>
                                                     <input type="hidden" name="role_id" value="1">
                                                     <input type="hidden" name="prodi_id" value="1">
+                                                    <input type="hidden" name="semester_id" value="1">
                                                 </div>
                                                 <button type="submit"
                                                     class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Daftarkan</button>
@@ -106,6 +107,7 @@
                                                         placeholder="cth. 1920557xx" required>
                                                     <input type="hidden" name="role_id" value="1">
                                                     <input type="hidden" name="prodi_id" value="2">
+                                                    <input type="hidden" name="semester_id" value="1">
                                                 </div>
                                                 <button type="submit"
                                                     class="w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Daftarkan</button>
@@ -142,9 +144,6 @@
                                         Id
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        FOTO
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
                                         NIM
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -153,9 +152,12 @@
                                     <th scope="col" class="px-6 py-3">
                                         PRODI
                                     </th>
-                                    {{-- <th scope="col" class="px-6 py-3">
-                                        USER_ID
-                                    </th> --}}
+                                    <th scope="col" class="px-6 py-3">
+                                        SEMESTER
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        FOTO
+                                    </th>
                                     <th scope="col" class="px-6 py-3">
                                         AKSI
                                     </th>
@@ -171,24 +173,21 @@
                                             {{ $mhs->id }}
                                         </td>
                                         <td class="px-6 py-2">
-                                            <img src="{{ Storage::url($mhs->foto) }}" class="rounded-full w-8 h-8"
-                                                alt="foto-mhs">
-                                        </td>
-
-                                        <td class="px-6 py-2">
                                             {{ $mhs->nim }}
                                         </td>
-
                                         <td class="px-6 py-2">
                                             {{ $mhs->nama }}
                                         </td>
-
                                         <td class="px-6 py-2">
                                             {{ $mhs->prodi->nama_prodi }}
                                         </td>
-                                        {{-- <td class="px-6 py-4">
-                                            {{ $mhs->user_id }}
-                                        </td> --}}
+                                        <td class="px-6 py-4">
+                                            {{ $mhs->semester_id }}
+                                        </td>
+                                        <td class="px-6 py-2">
+                                            <img src="{{ Storage::url($mhs->foto) }}" class="rounded-full w-8 h-8"
+                                                alt="foto-mhs">
+                                        </td>
                                         <td class="px-6 py-2 text-left">
                                             <a href="#"
                                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

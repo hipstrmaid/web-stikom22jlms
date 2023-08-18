@@ -44,6 +44,7 @@ class UserController extends Controller
         $password = 'password123';
         $roleId = $request->input('role_id');
         $prodi_id = $request->input('prodi_id');
+        $semester_id = $request->input('semester_id');
 
         $user = new User;
         // $user->nim_mhs = $nim;
@@ -59,6 +60,7 @@ class UserController extends Controller
                 $mahasiswa->nim = $nim;
                 $mahasiswa->prodi_id = $prodi_id;
                 $mahasiswa->user_id = $user->id;
+                $mahasiswa->semester_id = $semester_id;
                 $mahasiswa->save();
             } elseif ($user->role_id == 2) {
                 $dosen = new Dosen();

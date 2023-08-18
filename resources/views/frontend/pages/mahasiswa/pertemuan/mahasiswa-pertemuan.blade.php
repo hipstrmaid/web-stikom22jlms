@@ -17,11 +17,15 @@
 
                         <li class="flex items-center">
                             <i class="fa-solid fa-calendar ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->hari }}</p>
+                            <p class="dark:text-white px-2">{{ $matkul->hari }}, {{ $matkul->jam }}</p>
                         </li>
-                        <li class="flex items-center">
+                        {{-- <li class="flex items-center">
                             <i class="fa-solid fa-clock ml-4 dark:text-white"></i>
                             <p class="dark:text-white px-2">{{ $matkul->jam }}</p>
+                        </li> --}}
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-key ml-4 dark:text-white"></i>
+                            <p class="dark:text-white px-2">{{ $matkul->kode_matkul }}</p>
                         </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-users ml-4 dark:text-white"></i>
@@ -38,6 +42,31 @@
                                 class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 Pertemuan {{ $pertemuans->count() }}<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
                             </a>
+                        </div>
+                    @elseif ($matkul->id != $enroll_id->matkul_id)
+                        <div class="p-2">
+                            <form action="{{ route('enroll.store', $matkul->id) }}" method="POST">
+                                @csrf
+                                <div class="flex">
+                                    <span
+                                        class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                        <i class="fa-solid fa-key dark:text-white"></i>
+                                    </span>
+                                    <input type="text" name="kode_matkul"
+                                        class="rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Kode">
+                                </div>
+                                <button
+                                    class="w-full inline-flex items-center mt-2 justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                    Daftar<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
+                                </button>
+                            </form>
+                            @error('error')
+                                <div class="alert alert-danger">
+                                    <strong>Error!</strong> {{ $message }}
+                                </div>
+                            @enderror
+
                         </div>
                     @endisset
                 </div>

@@ -46,7 +46,7 @@ Route::get('/calendar', function () {
 });
 
 Route::get('/belajar', function () {
-    return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar');
+    return view('frontend.pages.mahasiswa.mahasiswa-preview');
 });
 
 
@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('matkul', MatkulController::class);
-    Route::get('matkul/{id}/matkul-preview', [MatkulController::class, 'indexPertemuan'])->name('matkul.indexPertemuan');
+    Route::get('matkul/{id}/matkul-preview', [MatkulController::class, 'pertemuanPreview'])->name('matkul.pertemuanPreview');
     Route::resource('pertemuan', PertemuanController::class);
     Route::get('matkul/{id}/pertemuan', [PertemuanController::class, 'indexPertemuan'])->name('pertemuan.indexPertemuan');
 
@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/enroll', [EnrollController::class, 'index'])->name('enroll.index');
+    Route::post('/enroll/{id}', [EnrollController::class, 'store'])->name('enroll.store');
 
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);

@@ -21,6 +21,11 @@ class Mahasiswa extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class);
+    }
+
     public function enroll()
     {
         return $this->hasMany(Enroll::class);

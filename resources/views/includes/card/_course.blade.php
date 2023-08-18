@@ -17,7 +17,10 @@
                 class="bg-yellow-100 text-yellow-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $matkul->hari }}</span> --}}
             </div>
             <div class="card-title">
-                <a href="{{ route('matkul.indexPertemuan', ['id' => $matkul->id]) }}">
+                <a href="{{ route('matkul.pertemuanPreview', ['id' => $matkul->id]) }}">
+                    @php
+                        echo $matkul->id;
+                    @endphp
                     <p class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">
                         {{ $matkul->nama_matkul }}</p>
                 </a>

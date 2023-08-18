@@ -9,8 +9,13 @@ class Semester extends Model
 {
     use HasFactory;
 
-    // public function matkuls()
-    // {
-    //     return $this->hasMany(Matkul::class);
-    // }
+    public function matkul()
+    {
+        return $this->hasMany(Matkul::class);
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class);
+    }
 }
