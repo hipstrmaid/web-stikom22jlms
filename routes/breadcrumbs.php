@@ -29,13 +29,19 @@ Breadcrumbs::for('matkul', function (BreadcrumbTrail $trail) {
     $trail->push('Mata kuliah', route('matkul.index'));
 });
 
+// Dashboard > Mata Kuliah
+Breadcrumbs::for('enrollMatkul', function (BreadcrumbTrail $trail) {
+    $trail->parent('matkul'); // Parent routes (Pilih salah solo route)
+    $trail->push('Enroll', route('enroll.index'));
+});
+
 // Dashboard > Mata Kuliah > Edit Matkul
 Breadcrumbs::for('editMatkul', function (BreadcrumbTrail $trail, $matkul) {
     $trail->parent('matkul'); // Parent routes (Pilih salah solo route)
     $trail->push($matkul->nama_matkul, route('matkul.edit', $matkul));
 });
 
-// Dashboard > Mata Kuliah > Pertemuan
+// Dashboard > Mata Kuliah > Belajar
 Breadcrumbs::for('viewPertemuan', function (BreadcrumbTrail $trail, $pertemuan) {
     $trail->parent('matkul');
     $trail->push('Belajar', route('pertemuan.show', ['pertemuan' => $pertemuan->id]));

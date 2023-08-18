@@ -38,3 +38,12 @@ themeToggleBtn.addEventListener('click', function() {
     }
 
 });
+
+const tabs = document.querySelectorAll('.tab-button');
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('bg-white', 'dark:bg-gray-800'));
+        tab.classList.add('bg-white', 'dark:bg-gray-800');
+    });
+});

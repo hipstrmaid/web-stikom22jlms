@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        {{-- <div class="card-footer border-t dark:border-gray-700 p-2">
+        <div class="card-footer border-t dark:border-gray-700">
             <div class="flex py-2 px-4">
                 <div class="flex-shrink-0">
                     <img class="h-10 w-10 rounded-full object-cover"
@@ -41,7 +41,7 @@
                     </p>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
     </div>
 </div>

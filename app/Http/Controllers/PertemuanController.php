@@ -29,6 +29,7 @@ class PertemuanController extends Controller
         $id_matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
         // Index semua pertemuan berdasarkan id yang di dapat dari page Edit matkul
         $pertemuans = Pertemuan::where('matkul_id', $id)->get();
+
         checkPermission($id_matkul->dosen_id, Auth::user()->dosen->id);
         return view('frontend/pages/dosen/pertemuan/view-pertemuan', compact('pertemuans', 'id_matkul'));
     }
@@ -84,14 +85,14 @@ class PertemuanController extends Controller
      */
     public function show(string $id)
     {
-
-        $mhs_matkul = Enroll::where('id', Auth::user()->mahasiswa->id)->first();
         $pertemuan = Pertemuan::findOrFail($id); // Assuming Resource is your model
-        if (Auth::user()->dosen) {
-            $id_matkul = Matkul::where('dosen_id', Auth::user()->dosen->id)->first();
-            checkPermission($pertemuan->matkul_id, $id_matkul->id);
+        $user = Auth::user();
+        if ($user->dosen) {
+            $dosen_matkul = Matkul::where('dosen_id', $user->dosen->id)->first();
+            checkPermission($pertemuan->matkul_id, $dosen_matkul->id);
             return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan'));
         } else {
+            $mhs_matkul = Enroll::where('id', $user->mahasiswa->id)->first();
             checkPermission($pertemuan->matkul_id, $mhs_matkul->id);
             return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan'));
         }

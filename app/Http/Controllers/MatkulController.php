@@ -26,18 +26,10 @@ class MatkulController extends Controller
             return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
         } else {
             $mahasiswa_id = Auth::user()->mahasiswa->id;
-            $matkuls = Enroll::where('mahasiswa_id', $mahasiswa_id)->get();
+            $matkuls = Enroll::where('mahasiswa_id', $mahasiswa_id)->with('matkul.dosen')->get();
             return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
         }
     }
-
-    // public function indexMatkulMhs()
-    // {
-    //     $id = Auth::user()->mahasiswa->id;
-    //     $matkuls = Matkul::where('dosen_id', $id)->get();
-
-    //     return view('frontend.pages.matkul', ['matkuls' => $matkuls]);
-    // }
 
     public function pertemuanPreview($id)
     {
@@ -45,27 +37,22 @@ class MatkulController extends Controller
         $matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
         $pertemuans = Pertemuan::where('matkul_id', $id)->get();
         $lastPertemuan = Pertemuan::where('matkul_id', $id)->latest()->first();
+        $totalUser = Enroll::where('matkul_id', $matkul->id)->get();
 
-
-        // dd($matkul);
         if (Auth::user()->dosen) {
             checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
-            return view('frontend/pages/dosen/pertemuan/dosen-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan'));
+            return view('frontend/pages/dosen/pertemuan/dosen-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan', 'totalUser'));
         } else {
-            // $mahasiswa = Auth::user()->mahasiswa;
-            // // Ambil semua record yang mahasiswa Enroll
-            // $matkul_mahasiswa = $mahasiswa->enroll()->get();
-            // // Ambil 1 record yang matkul_id nya sama dengan Matkul yang di click;
-            // $enroll_id = $matkul_mahasiswa->where('matkul_id', $matkul->id)->first();
 
             $enroll_id = Matkul::where('id', $id)->first();
+            $mahasiswa = Auth::user()->mahasiswa;
+            $sudahEnroll = $mahasiswa->enroll()->where('matkul_id', $enroll_id->id)->exists();
 
-            // dd($enroll_id->id);
-            // if ($enroll_id == null) {
-            //     abort(403, 'Anda tidak terdaftar pada mata kuliah ini.');
-            // }
-            // checkPermission($matkul->id, $enroll_id->matkul_id);
-            return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'enroll_id', 'lastPertemuan'));
+            if (!$sudahEnroll) {
+                abort(403, 'Tidak terdaftar pada mata kuliah ini');
+            }
+
+            return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'enroll_id', 'lastPertemuan', 'sudahEnroll', 'totalUser'));
         }
     }
 

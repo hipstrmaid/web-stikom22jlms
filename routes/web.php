@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/enroll', [EnrollController::class, 'index'])->name('enroll.index');
     Route::post('/enroll/{id}', [EnrollController::class, 'store'])->name('enroll.store');
+    Route::get('/enroll/{id}/matkul-preview', [EnrollController::class, 'previewMatkul'])->name('enroll.previewMatkul');
 
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);

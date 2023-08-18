@@ -18,9 +18,6 @@
             </div>
             <div class="card-title">
                 <a href="{{ route('matkul.pertemuanPreview', ['id' => $matkul->id]) }}">
-                    @php
-                        echo $matkul->id;
-                    @endphp
                     <p class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">
                         {{ $matkul->nama_matkul }}</p>
                 </a>

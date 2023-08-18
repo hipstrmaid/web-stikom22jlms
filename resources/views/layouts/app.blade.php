@@ -22,8 +22,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Passion+One&family=Poppins:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="https://www.youtube.com/player_api"></script>
-    <link rel="stylesheet" href="{{ asset('css/video.css') }}">
+    {{-- <script src="https://www.youtube.com/player_api"></script>
+    <link rel="stylesheet" href="{{ asset('css/video.css') }}"> --}}
 
 
 

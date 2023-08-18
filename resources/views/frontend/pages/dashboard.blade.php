@@ -4,7 +4,7 @@
         <x-content-title>Selamat datang, {{ Auth::user()->role->nama_role }}.</x-content-title>
         <x-breadcrumbs></x-breadcrumbs>
     </div>
-    <div class="list-matkul">
+    {{-- <div class="list-matkul">
         <div id="accordion-collapse" class="flex flex-col gap-2" data-accordion="collapse">
             @foreach ($matkuls as $semesterId => $matkulGroup)
                 <h2 id="accordion-collapse-heading-{{ $semesterId }}">
@@ -30,5 +30,5 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </div> --}}
 @endsection
