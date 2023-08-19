@@ -6,12 +6,18 @@
             <div class="content">
                 <article class="dark:text-white">
                     <h1 class="text-4xl font-bold pt-4 lg:pt-0">{{ $pertemuan->judul_pertemuan }}</h1>
-                    {{ Breadcrumbs::render('viewPertemuan', $pertemuan) }}
-                    <div class="video-player mt-2 mb-2">
-                        <iframe class="w-full max-w-full" height="300"
-                            src="https://www.youtube.com/embed/{{ $pertemuan->video_url }}" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    {{-- @if (Auth::user()->dosen)
+                        {{ Breadcrumbs::render('belajar', $dosen_matkul, $pertemuan) }}
+                    @else
+                        {{ Breadcrumbs::render('belajar', $mhs_matkul, $pertemuan) }}
+                    @endif --}}
+
+                    {{ Breadcrumbs::render('belajar', $pertemuan) }}
+
+                    <div class="mt-2 mb-2">
+                        <iframe class="w-full rounded-sm sm:h-96 shadow-xl" height="300" src="https://www.youtube.com/embed/"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
                     <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
@@ -30,10 +36,10 @@
         </div>
 
 
-        <div class="col-span-2">
+        <div class="col-span-2 lg:mt-5">
             <div class="content-title flex items-center dark:text-white mt-3">
-                <i class="fa-solid fa-book mr-2" style="color: #4287ff;"></i>
-                <h1 class="text-xl font-bold my-2 ">General</h1>
+                <i class="fa-solid fa-book mr-2 ml-1" style="color: #4287ff;"></i>
+                <h1 class="text-xl font-bold my-2">General</h1>
             </div>
             <div class="grid lg:grid-cols-1">
 
@@ -43,7 +49,7 @@
                         <h2 id="accordion-collapse-heading-1">
                             <button type="button"
                                 class="flex items-center bg-gray justify-between w-full p-3 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-800"
-                                data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
+                                data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
                                 aria-controls="accordion-collapse-body-1">
                                 <div class="flex items-center">
                                     <i class="fa-solid fa-circle-question mr-2" style="color: #4287ff;"></i>
@@ -60,7 +66,7 @@
 
                         <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                                <p class="mb-2 text-gray-500 dark:text-gray-400">{{ $pertemuan->deskripsi }}</p>
+                                <p class="mb-2 text-gray-800 dark:text-gray-400">{{ $pertemuan->deskripsi }}</p>
                             </div>
                         </div>
 

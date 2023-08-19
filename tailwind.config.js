@@ -16,7 +16,8 @@ module.exports = {
             10: '#133B60'
         },
         gray: {
-            10: '#263238'
+            10: '#263238',
+            "vanilla": '#EFEFEF'
         }
         ,
         brown: {

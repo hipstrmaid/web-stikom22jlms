@@ -73,7 +73,7 @@ class MatkulController extends Controller
 
         $request->validate([
             'nama_matkul' => 'required',
-            'deskripsi' => 'required|min:100',
+            'deskripsi' => 'required|min:20',
             'gambar' => 'required|file',
             'semester_id' => 'required',
             'hari' => 'required',
@@ -89,7 +89,6 @@ class MatkulController extends Controller
         $hari = $request->input('hari');
         $prodi_id = $request->input('prodi');
         $kode_mk = $request->input('kode_matkul');
-
         $gambar = $request->file('gambar'); // Use file() instead of input()
 
         // Convert the image to WebP format
@@ -148,27 +147,21 @@ class MatkulController extends Controller
     public function update(Request $request, string $id)
     {
         $matkul = Matkul::findOrFail($id);
+        $dosen_id = Auth::user()->dosen->id;
 
         // Check permission before updating
-        checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
+        checkPermission($matkul->dosen_id, $dosen_id);
 
         $request->validate([
             'nama_matkul' => 'required',
-            'video_url' => 'required',
-            'deskripsi' => 'required|min:100',
-            'gambar' => 'file', // You can update the file or leave it as is
+            'deskripsi' => 'required|min:20',
+            'gambar' => 'required',
             'semester_id' => 'required',
             'hari' => 'required',
+            'jam' => 'required',
             'prodi' => 'required',
+            'kode_matkul' => 'unique:matkuls,kode_matkul',
         ]);
-
-        $matkul->nama_matkul = $request->input('nama_matkul');
-        $matkul->video_url = extractVideo($request->input('video_url'));
-        $matkul->deskripsi = $request->input('deskripsi');
-        $matkul->semester_id = $request->input('semester_id');
-        $matkul->hari = $request->input('hari');
-        $matkul->prodi_id = $request->input('prodi');
-        $matkul->kode_matkul = $request->input('kode_matkul');
 
         // If a new image file is uploaded, update the image
         if ($request->hasFile('gambar')) {
@@ -177,9 +170,33 @@ class MatkulController extends Controller
             $webpPath = 'public/thumbnail/' . time() . '.webp';
             Storage::put($webpPath, $webpImage->stream());
             $matkul->gambar = $webpPath;
+        } else {
+            $gambar = $request->input('gambar'); // Use file() instead of input()
+            $matkul->gambar = $gambar;
         }
 
-        $matkul->save();
+        $nama_matkul = $request->input('nama_matkul');
+        $jam = $request->input('jam');
+        $deskripsi = $request->input('deskripsi');
+        $semester_id = $request->input('semester_id');
+        $hari = $request->input('hari');
+        $prodi_id = $request->input('prodi');
+        $kode_mk = $request->input('kode_matkul');
+
+
+
+
+        $matkul->nama_matkul = $nama_matkul;
+        $matkul->jam = $jam;
+        $matkul->dosen_id = $dosen_id;
+        $matkul->deskripsi = $deskripsi;
+        $matkul->semester_id = $semester_id;
+        $matkul->hari = $hari;
+        $matkul->prodi_id = $prodi_id;
+        $matkul->kode_matkul = $kode_mk;
+
+
+        $matkul->update();
 
         Session::flash('success');
 

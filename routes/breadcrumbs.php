@@ -38,25 +38,37 @@ Breadcrumbs::for('enrollMatkul', function (BreadcrumbTrail $trail) {
 // Dashboard > Mata Kuliah > Edit Matkul
 Breadcrumbs::for('editMatkul', function (BreadcrumbTrail $trail, $matkul) {
     $trail->parent('matkul'); // Parent routes (Pilih salah solo route)
-    $trail->push($matkul->nama_matkul, route('matkul.edit', $matkul));
-});
-
-// Dashboard > Mata Kuliah > Belajar
-Breadcrumbs::for('viewPertemuan', function (BreadcrumbTrail $trail, $pertemuan) {
-    $trail->parent('matkul');
-    $trail->push('Belajar', route('pertemuan.show', ['pertemuan' => $pertemuan->id]));
+    $trail->push('Edit Matkul', route('matkul.edit', $matkul));
 });
 
 // Dashboard > Mata Kuliah >  Pertemuan > {Pertemuan}
 Breadcrumbs::for('previewMatkul', function (BreadcrumbTrail $trail, $matkul) {
     $trail->parent('matkul');
-    $trail->push('Pertemuan', route('pertemuan.indexPertemuan', ['id' => $matkul->id]));
+    $trail->push('Pertemuan', route('matkul.pertemuanPreview', ['id' => $matkul->id]));
 });
+
+// Dashboard > Mata Kuliah > Belajar
+Breadcrumbs::for('belajar', function (BreadcrumbTrail $trail, $pertemuan) {
+    $trail->parent('matkul'); // Pass the $matkul parameter here
+    $trail->push('Belajar', route('pertemuan.show', ['pertemuan' => $pertemuan->id]));
+});
+
+// Dashboard > Mata Kuliah > Belajar
+// Breadcrumbs::for('belajar', function (BreadcrumbTrail $trail, $matkul, $pertemuan) {
+//     $trail->parent('previewMatkul', $matkul); // Pass the $matkul parameter here
+//     $trail->push('Belajar', route('pertemuan.show', ['pertemuan' => $pertemuan->id]));
+// });
 
 // Dashboard > Mata Kuliah > {Nama Matkul} > Pertemuan
 Breadcrumbs::for('indexPertemuan', function (BreadcrumbTrail $trail, $matkul) {
     $trail->parent('editMatkul', $matkul);
     $trail->push('Pertemuan', route('pertemuan.indexPertemuan', ['id' => $matkul->id]));
+});
+
+// // Dashboard > Mata Kuliah > Belajar
+Breadcrumbs::for('createPertemuan', function (BreadcrumbTrail $trail, $matkul_id) {
+    $trail->parent('editMatkul', $matkul_id);
+    $trail->push('Create', route('pertemuan.create', $matkul_id));
 });
 
 

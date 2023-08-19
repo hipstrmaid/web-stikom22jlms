@@ -47,3 +47,4 @@ tabs.forEach(tab => {
         tab.classList.add('bg-white', 'dark:bg-gray-800');
     });
 });
+

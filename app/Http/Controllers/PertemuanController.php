@@ -37,10 +37,11 @@ class PertemuanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id_matkul)
     {
-
-        return view('frontend/pages/dosen/pertemuan/tambah-pertemuan');
+        $matkul_id = $id_matkul;
+        $matkul = Matkul::where('id', $matkul_id)->firstOrFail();
+        return view('frontend/pages/dosen/pertemuan/tambah-pertemuan', compact('matkul_id', 'matkul'));
     }
 
     /**
@@ -53,7 +54,8 @@ class PertemuanController extends Controller
             'video_url' => 'required',
             'deskripsi' => 'required',
             'instruksi' => 'required',
-            'gambar' => 'required|file'
+            'gambar' => 'required|file',
+            'id_matkul' => 'required'
         ]);
 
         $gambar = $request->file('gambar'); // Use file() instead of input()
@@ -64,11 +66,9 @@ class PertemuanController extends Controller
 
         $urlVideo = $request->input('video_url');
 
-
-        $id = Auth::user()->dosen->id;
-        $matkul_id = Matkul::where('dosen_id', $id)->firstOrFail();
+        $matkul_id = $request->input('id_matkul');
         $pertemuan = new Pertemuan;
-        $pertemuan->matkul_id = $matkul_id->id;
+        $pertemuan->matkul_id = $matkul_id;
         $pertemuan->judul_pertemuan = $request->input('Judul_pertemuan');
         $pertemuan->deskripsi = $request->input('deskripsi');
         $pertemuan->video_url = extractVideo($urlVideo);
@@ -77,7 +77,7 @@ class PertemuanController extends Controller
 
         $pertemuan->save();
 
-        return redirect()->route('pertemuan.indexPertemuan', ['id' => $matkul_id->id]);
+        return redirect()->route('pertemuan.indexPertemuan', ['id' => $matkul_id]);
     }
 
     /**
@@ -89,12 +89,14 @@ class PertemuanController extends Controller
         $user = Auth::user();
         if ($user->dosen) {
             $dosen_matkul = Matkul::where('dosen_id', $user->dosen->id)->first();
-            checkPermission($pertemuan->matkul_id, $dosen_matkul->id);
-            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan'));
+            // checkPermission($pertemuan->matkul_id, $dosen_matkul->id);
+            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'dosen_matkul'));
         } else {
-            $mhs_matkul = Enroll::where('id', $user->mahasiswa->id)->first();
-            checkPermission($pertemuan->matkul_id, $mhs_matkul->id);
-            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan'));
+            //Ambil semua Enroll yang
+
+            $mhs_matkul = Enroll::where('matkul_id', $pertemuan->matkul_id)->first();
+            // checkPermission($mhs_matkul, $pertemuan);
+            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'mhs_matkul'));
         }
     }
 

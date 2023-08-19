@@ -22,14 +22,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Passion+One&family=Poppins:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    {{-- <script src="https://www.youtube.com/player_api"></script>
-    <link rel="stylesheet" href="{{ asset('css/video.css') }}"> --}}
+    <script src="https://www.youtube.com/player_api"></script>
+    <link rel="stylesheet" href="{{ asset('css/video.css') }}">
 
 
 
 </head>
 
-<body class="font-poppins bg-gray-100 dark:bg-gray-900">
+{{-- default: bg-gray-50 --}}
+
+<body class="font-poppins bg-gray-vanilla dark:bg-gray-900">
     <div class="antialiased">
         @include('includes.header')
         @include('includes.sidebar')

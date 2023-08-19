@@ -17,9 +17,9 @@ class EnrollController extends Controller
         $matkuls = Matkul::all()->where('semester_id', $mahasiswa_semester)->groupBy('semester_id')->sortBy(function ($items, $key) {
             return $key;
         });
+        $matkulExist = Matkul::where('semester_id', $mahasiswa_semester)->exists();
 
-
-        return view('frontend.pages.enroll', compact('matkuls'));
+        return view('frontend.pages.enroll', compact('matkuls', 'matkulExist'));
     }
 
     public function store(Request $request, $id)

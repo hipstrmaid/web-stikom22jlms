@@ -23,8 +23,8 @@
             <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
                 <div class="w-full px-4">
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded-lg mt-5">
-                        <div class="px-6 dark:bg-gray-800 dark:text-white flex items-center">
-                            <div class="flex flex-wrap justify-center ">
+                        <div class="grid grid-sm-8 px-6 dark:bg-gray-800 dark:text-white flex items-center">
+                            <div class="flex flex-wrap justify-center col-span-6 ">
                                 <div class="w-full px-4">
                                     <div class="py-5 px-5">
                                         <div class="img-profile">
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-left mt-2 pb-4">
+                            <div class="text-left mt-2 pb-4 col-span-6">
                                 <h3 class="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                                     {{ $mahasiswa->nama ?? 'Nama' }}
                                 </h3>
@@ -52,6 +52,9 @@
                                 </div>
                                 <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                                     {{ $mahasiswa->user->role->nama_role ?? 'Role' }}
+                                </div>
+                                <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                                    {{ $mahasiswa->semester->nama_semester ?? 'Semester 1' }}
                                 </div>
 
                             </div>
