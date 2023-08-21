@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('mtr_videos', function (Blueprint $table) {
             $table->id();
-            // $table->string('pertemuan');
-            // $table->string('file_format');
-            // $table->string('jenis_file');
-
+            $table->unsignedBigInteger('pertemuan_id');
+            $table->foreign('pertemuan_id')->references('id')->on('pertemuans');
+            $table->string('url_video');
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('mtr_videos');
     }
 };

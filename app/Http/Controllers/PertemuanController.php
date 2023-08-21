@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Enroll;
 use App\Models\Matkul;
+use App\Models\Mtr_video;
 use App\Models\Pertemuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,30 +52,15 @@ class PertemuanController extends Controller
     {
         $request->validate([
             'Judul_pertemuan' => 'required',
-            'video_url' => 'required',
-            'deskripsi' => 'required',
             'instruksi' => 'required',
-            'gambar' => 'required|file',
             'id_matkul' => 'required'
         ]);
-
-        $gambar = $request->file('gambar'); // Use file() instead of input()
-        $webpImage = Image::make($gambar)->encode('webp', 90); // Adjust quality as needed
-        $gambar_path = 'public/files/' . time() . '.webp';
-        // Save the WebP image to storage
-        Storage::put($gambar_path, $webpImage->stream());
-
-        $urlVideo = $request->input('video_url');
 
         $matkul_id = $request->input('id_matkul');
         $pertemuan = new Pertemuan;
         $pertemuan->matkul_id = $matkul_id;
         $pertemuan->judul_pertemuan = $request->input('Judul_pertemuan');
-        $pertemuan->deskripsi = $request->input('deskripsi');
-        $pertemuan->video_url = extractVideo($urlVideo);
         $pertemuan->instruksi = $request->input('instruksi');
-        $pertemuan->gambar = $gambar_path;
-
         $pertemuan->save();
 
         return redirect()->route('pertemuan.indexPertemuan', ['id' => $matkul_id]);
@@ -87,16 +73,15 @@ class PertemuanController extends Controller
     {
         $pertemuan = Pertemuan::findOrFail($id); // Assuming Resource is your model
         $user = Auth::user();
+        $materi = Mtr_video::where('pertemuan_id', $pertemuan->id)->get();
         if ($user->dosen) {
             $dosen_matkul = Matkul::where('dosen_id', $user->dosen->id)->first();
             // checkPermission($pertemuan->matkul_id, $dosen_matkul->id);
-            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'dosen_matkul'));
+            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'dosen_matkul', 'materi'));
         } else {
-            //Ambil semua Enroll yang
-
             $mhs_matkul = Enroll::where('matkul_id', $pertemuan->matkul_id)->first();
             // checkPermission($mhs_matkul, $pertemuan);
-            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'mhs_matkul'));
+            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'mhs_matkul', 'materi'));
         }
     }
 

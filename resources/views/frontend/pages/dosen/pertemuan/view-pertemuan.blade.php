@@ -29,17 +29,15 @@
         <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
             <div class="px-5 py-4 header-nav flex justify-between items-center">
                 <a href="{{ route('pertemuan.create', $id_matkul) }}"
-                    class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    class="inline-flex rounded-sm items-center px-2 py-2 bg-gray-600 border border-transparent font-semibold text-white hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         class="w-5 h-5 mr-2">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
-                    Tambah Pertemuan
-
+                    Tambah
                 </a>
                 <span class="ml-1 text-dark dark:text-white text-lg font-bold">Pertemuan {{ $pertemuans->count() }}</span>
-
             </div>
             <ul class="flex grid gap-2 mb-4 px-5">
                 @php
@@ -51,11 +49,10 @@
                     @endphp
                     <li class="flex">
                         <a href="{{ route('pertemuan.show', ['pertemuan' => $pertemuan->id]) }}" class="w-full">
-                            <h1 class="bg-gray-200 border rounded-l-lg  border-gray-300 w-full py-2 px-3 text-bold">
+                            <h1 class="bg-gray-200 border border-gray-300 w-full py-2 px-3 text-bold">
                                 Pertemuan {{ $i }} : {{ $pertemuan->judul_pertemuan }}</h1>
                         </a>
-                        <a href="/dosen/edit-pertemuan"
-                            class="flex items-center justify-center bg-blue-400 p-2 rounded-r-lg">
+                        <a href="/dosen/edit-pertemuan" class="flex items-center justify-center bg-blue-400 p-2">
                             <i class="fa-solid fa-pen-to-square"></i>
                             <h1 class="ml-1 text-sm font-bold">Edit</h1>
                         </a>

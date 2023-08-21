@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('matkul_id');
             $table->foreign('matkul_id')->references('id')->on('matkuls');
             $table->string('judul_pertemuan');
-            $table->text('deskripsi');
-            $table->string('video_url')->nullable();
-            $table->string('gambar');
-            $table->string('instruksi');
+            $table->text('instruksi');
+            // $table->string('video_url')->nullable();
+            // $table->string('gambar');
+            // $table->string('instruksi');
             // $table->unsignedBigInteger('file_id');
             // $table->foreign('file_id')->references('id')->on('files');
             $table->timestamps();

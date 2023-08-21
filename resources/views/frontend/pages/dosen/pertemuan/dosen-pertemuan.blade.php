@@ -3,49 +3,7 @@
     <div class="row">
         <div class="grid grid-cols-1 lg:grid-cols-8 gap-4 mb-4 h-46">
 
-            <div class="lg:col-span-2">
-                <div class="bg-white border border-gray-200 rounded-t shadow dark:border-gray-900 dark:bg-gray-800">
-                    <h5 class="text-gray-900 dark:text-white py-2 px-4 font-bold">Detail Mata Kuliah</h5>
-                </div>
-                <div class="bg-white text-sm border border-gray-200 dark:border-gray-900 dark:bg-gray-800">
-                    <ul class="grid w-full gap-2 mt-4 mb-4">
 
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-user ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->dosen->nama }}</p>
-                        </li>
-
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-calendar ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->hari }}, {{ $matkul->jam }}</p>
-                        </li>
-                        {{-- <li class="flex items-center">
-                            <i class="fa-solid fa-clock ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->jam }}</p>
-                        </li> --}}
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-key ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->kode_matkul }}</p>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-users ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $totalUser->count() }}</p>
-                        </li>
-
-                    </ul>
-
-                </div>
-                <div class="bg-white border border-gray-200 rounded-b shadow dark:border-gray-900 dark:bg-gray-800">
-                    @isset($lastPertemuan)
-                        <div class="p-2">
-                            <a href="{{ route('pertemuan.show', ['pertemuan' => $lastPertemuan->id]) }}"
-                                class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                Pertemuan {{ $pertemuans->count() }}<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
-                            </a>
-                        </div>
-                    @endisset
-                </div>
-            </div>
 
             <div class="lg:col-span-6">
                 <div class="content-heading mt-2 lg:mt-0">
@@ -54,8 +12,7 @@
                         {{ $matkul->nama_matkul }}
                     </h1>
                     {{ Breadcrumbs::render('previewMatkul', $matkul) }}
-                    {{-- <img class="w-80 object-cover" src="{{ Storage::url($matkul->gambar) }}" alt="gambar-matkul"> --}}
-                    <p class="py-3 font-normal text-gray-700 dark:text-gray-400">{{ $matkul->deskripsi }}</p>
+                    <p class="pt-3 font-normal text-gray-800 dark:text-gray-400">{{ $matkul->deskripsi }}</p>
                 </div>
 
                 <div class="content-data">
@@ -87,7 +44,7 @@
                             <div id="accordion-collapse-body-1" class="hidden"
                                 aria-labelledby="accordion-collapse-heading-1">
                                 <div class="p-5 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                                    <ol class="relative border-l border-gray-200 dark:border-gray-700 ml-10">
+                                    <ol class="relative border-gray-200 dark:border-gray-700 ml-10">
                                         <li class="ml-6">
                                             <span
                                                 class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
@@ -99,15 +56,14 @@
                                                         clip-rule="evenodd"></path>
                                                 </svg>
                                             </span>
-                                            <h3
+                                            {{-- <h3
                                                 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-                                                Keluar Kota
-                                            </h3>
+                                                Pemberitahuan
+                                            </h3> --}}
                                             <time
-                                                class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Januari
-                                                13, 2022</time>
-                                            <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Hari ini
-                                                tidak ada mata kuliah jadi belajar sendiri.</p>
+                                                class="block mb-2 pt-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $matkul->updated_at }}</time>
+                                            <p class="mb-4 text-base font-normal text-gray-800 dark:text-gray-400">
+                                                {{ $matkul->pemberitahuan ?? 'Tidak ada pemberitahuan.' }}</p>
                                         </li>
                                     </ol>
                                 </div>
@@ -132,29 +88,35 @@
                             <div id="accordion-collapse-body-2" class="hidden"
                                 aria-labelledby="accordion-collapse-heading-2">
                                 <div class="p-5 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                                    @if (Auth::user()->dosen)
+                                        <a href="{{ route('pertemuan.create', $matkul->id) }}"
+                                            class="inline-flex items-center rounded-sm text-sm p-1 bg-gray-600 mb-2 border border-transparent text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                            <i class="fas fa-plus mr-2"></i>Tambah
+                                        </a>
+                                    @endif
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                    @foreach ($pertemuans as $pertemuan)
+                                        <ul
+                                            class="w-full text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-800 dark:text-white">
 
-                                    <ul
-                                        class="w-full text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-800 dark:text-white">
-                                        @php
-                                            $i = 0;
-                                        @endphp
-                                        @foreach ($pertemuans as $pertemuan)
                                             @php
                                                 $i++;
                                             @endphp
                                             <li>
                                                 <a href="{{ route('pertemuan.show', ['pertemuan' => $pertemuan->id]) }}"
                                                     aria-current="true"
-                                                    class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                                    class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
                                                     <p>Pertemuan {{ $i }} : <span class="text-blue-500">
                                                             {{ $pertemuan->judul_pertemuan }}</span>
                                                     </p>
                                                     <i class="w-auto fa-solid fa-lock-open dark:text-white"></i>
                                                 </a>
                                             </li>
-                                        @endforeach
-                                    </ul>
 
+                                        </ul>
+                                    @endforeach
                                 </div>
 
                             </div>
@@ -164,6 +126,46 @@
                 </div>
 
 
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="bg-white border border-gray-200 rounded-t shadow dark:border-gray-900 dark:bg-gray-800">
+                    <h5 class="text-gray-900 dark:text-white py-2 px-4 font-bold">Detail Mata Kuliah</h5>
+                </div>
+                <div class="bg-white text-sm border border-gray-200 dark:border-gray-900 dark:bg-gray-800">
+                    <ul class="grid w-full gap-2 mt-4 mb-4">
+
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-user ml-4 dark:text-white"></i>
+                            <p class="dark:text-white px-2">{{ $matkul->dosen->nama }}</p>
+                        </li>
+
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-calendar ml-4 dark:text-white"></i>
+                            <p class="dark:text-white px-2">{{ $matkul->hari }}, {{ $matkul->jam }}</p>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-key ml-4 dark:text-white"></i>
+                            <p class="dark:text-white px-2">{{ $matkul->kode_enroll }}</p>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-users ml-3  dark:text-white"></i>
+                            <p class="dark:text-white px-2">{{ $totalUser->count() }}</p>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="bg-white border border-gray-200 rounded-b shadow dark:border-gray-900 dark:bg-gray-800">
+                    @isset($lastPertemuan)
+                        <div class="p-2">
+                            <a href="{{ route('pertemuan.show', ['pertemuan' => $lastPertemuan->id]) }}"
+                                class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                Pertemuan {{ $pertemuans->count() }}<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
+                            </a>
+                        </div>
+                    @endisset
+                </div>
             </div>
 
 

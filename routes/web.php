@@ -8,6 +8,7 @@ use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MateriController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\PertemuanController;
 use App\Http\Controllers\ProfileController;
@@ -46,7 +47,7 @@ Route::get('/calendar', function () {
 });
 
 Route::get('/belajar', function () {
-    return view('frontend.pages.mahasiswa.mahasiswa-preview');
+    return view('frontend.pages.materi.video-form');
 });
 
 
@@ -68,6 +69,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
     Route::get('user/{user}/editPassword', [ProfileController::class, 'editPassword'])->name('user.editPassword');
     Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');
+
+    Route::get('/materi/{id}/youtube', [MateriController::class, 'createVideo'])->name('materi.createVideo');
+    Route::post('/materi', [MateriController::class, 'storeVideo'])->name('materi.storeVideo');
 
 
     Route::get('/enroll', [EnrollController::class, 'index'])->name('enroll.index');

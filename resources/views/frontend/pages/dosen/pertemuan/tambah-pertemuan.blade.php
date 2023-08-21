@@ -5,17 +5,19 @@
     {{ Breadcrumbs::render('createPertemuan', $matkul_id) }}
 
 
-    <div class="grid grid-cols-1 mb-5">
-        {{-- <ul class="flex bg-gray-200 dark:bg-gray-900">
+    <div class="grid grid-cols-1 mb-5 mt-2">
+        <ul class="flex bg-gray-200 dark:bg-gray-900">
             <div class="bg-white border border-gray-200 border-b-0 rounded-t dark:border-gray-900 dark:bg-gray-800">
-                <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold"><a
-                        href="/matkul/edit-pertemuan">Tambah</a></h5>
+                <h5 class="text-sm text-gray-900 dark:text-white py-2 px-4 font-bold">
+                    <i class="fas fa-archive"></i>
+                    <a href="/matkul/edit-pertemuan">Pertemuan</a>
+                </h5>
             </div>
-        </ul> --}}
+        </ul>
 
 
 
-        <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800 mt-3">
+        <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
             <ul class="grid w-full gap-2 mb-4 p-5">
                 <li>
                     <form action="{{ route('pertemuan.store') }}" method="POST" enctype="multipart/form-data">
@@ -28,29 +30,23 @@
                                 placeholder="cth. Pengenalan Adobe Photoshop" required>
                         </div>
 
-                        <div class="mb-6">
+                        {{-- <div class="mb-6">
                             <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Link
                                 Youtube</label>
                             <input type="text" name="video_url"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="cth. https://youtu.be/dQw4w9WgXcQ" required>
-                        </div>
+                        </div> --}}
 
-                        <div class="mb-6">
+                        {{-- <div class="mb-6">
                             <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Gambar</label>
                             <input name="gambar"
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 aria-describedby="file_input_help" id="file_input" type="file">
-                        </div>
+                        </div> --}}
 
-                        <div class="mb-6">
-
+                        {{-- <div class="mb-6">
                             <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Deskripsi</label>
-                            {{-- <textarea id="message" rows="4" name="deskripsi" maxlength="254"
-                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder=""></textarea> --}}
-
-
                             <div
                                 class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
                                 <div class="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
@@ -120,8 +116,9 @@
                                             </button>
                                             <button type="button"
                                                 class="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="currentColor" viewBox="0 0 20 20">
+                                                <svg class="w-4 h-4" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                    viewBox="0 0 20 20">
                                                     <path
                                                         d="M18 7.5h-.423l-.452-1.09.3-.3a1.5 1.5 0 0 0 0-2.121L16.01 2.575a1.5 1.5 0 0 0-2.121 0l-.3.3-1.089-.452V2A1.5 1.5 0 0 0 11 .5H9A1.5 1.5 0 0 0 7.5 2v.423l-1.09.452-.3-.3a1.5 1.5 0 0 0-2.121 0L2.576 3.99a1.5 1.5 0 0 0 0 2.121l.3.3L2.423 7.5H2A1.5 1.5 0 0 0 .5 9v2A1.5 1.5 0 0 0 2 12.5h.423l.452 1.09-.3.3a1.5 1.5 0 0 0 0 2.121l1.415 1.413a1.5 1.5 0 0 0 2.121 0l.3-.3 1.09.452V18A1.5 1.5 0 0 0 9 19.5h2a1.5 1.5 0 0 0 1.5-1.5v-.423l1.09-.452.3.3a1.5 1.5 0 0 0 2.121 0l1.415-1.414a1.5 1.5 0 0 0 0-2.121l-.3-.3.452-1.09H18a1.5 1.5 0 0 0 1.5-1.5V9A1.5 1.5 0 0 0 18 7.5Zm-8 6a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z" />
                                                 </svg>
@@ -176,9 +173,7 @@
                                         placeholder="Write an article..." required></textarea>
                                 </div>
                             </div>
-
-
-                        </div>
+                        </div> --}}
 
 
                         <div class="mb-6">
@@ -190,16 +185,6 @@
                                 placeholder="cth. Nonton video di sebelah lalu kerjakan tugas tertera..."></textarea>
 
                         </div>
-
-                        {{-- <div class="mb-6">
-                            <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Upload
-                                File</label>
-                            <input
-                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                aria-describedby="file_input_help" id="file_input" type="file">
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">DOC, PPT, EXCEL.
-                            </p>
-                        </div> --}}
 
                         <input type="text" id="email" name="id_matkul" value="{{ $matkul_id }}" hidden>
                         <div class="flex gap-2">

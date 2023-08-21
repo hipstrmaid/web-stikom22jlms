@@ -18,4 +18,9 @@ class Pertemuan extends Model
     {
         $this->belongsTo(Matkul::class, 'matkul_id');
     }
+
+    public function mtr_video()
+    {
+        return $this->hasMany(Mtr_video::class);
+    }
 }

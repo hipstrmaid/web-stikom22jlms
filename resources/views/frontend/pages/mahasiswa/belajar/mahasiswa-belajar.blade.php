@@ -1,11 +1,25 @@
 @extends('layouts.app')
 @section('content')
+    <div class="flex w-full justify-between items-center">
+        <h1 class="text-4xl font-bold pt-4 lg:pt-0 text-dark dark:text-white">{{ $pertemuan->judul_pertemuan }}</h1>
+        @if (Auth::user()->dosen)
+            <!-- Modal toggle -->
+            <button data-modal-target="defaultModal" data-modal-toggle="defaultModal"
+                class="flex items-center flex-shrink-0 p-1 rounded-sm bg-blue-600 dark:bg-green-600 border border-transparent font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+                    </path>
+                </svg>
+                <p class="mr-2">Materi</p>
+            </button>
+            @include('frontend.pages.mahasiswa.belajar.__modul-modal')
+        @endif
+    </div>
     <div class="grid grid-cols-1 lg:grid-cols-8 mb-4 lg:gap-4">
-
         <div class="col-span-6">
             <div class="content">
                 <article class="dark:text-white">
-                    <h1 class="text-4xl font-bold pt-4 lg:pt-0">{{ $pertemuan->judul_pertemuan }}</h1>
                     {{-- @if (Auth::user()->dosen)
                         {{ Breadcrumbs::render('belajar', $dosen_matkul, $pertemuan) }}
                     @else
@@ -14,21 +28,22 @@
 
                     {{ Breadcrumbs::render('belajar', $pertemuan) }}
 
-                    <div class="mt-2 mb-2">
-                        <iframe class="w-full rounded-sm sm:h-96 shadow-xl" height="300" src="https://www.youtube.com/embed/"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    </div>
-                    <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
-                        <p>{{ $pertemuan->deskripsi }}</p>
+                    @foreach ($materi as $video)
+                        <div class="mt-2 mb-2">
+                            <iframe class="w-full rounded-sm sm:h-96 shadow-xl" height="300"
+                                src="https://www.youtube.com/embed/{{ $video->url_video }}" title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
+                            <p>{{ $video->deskripsi }}</p>
+                        </div>
+                    @endforeach
+                    {{-- <div id="accordion-collapse" class="bg-white dark:bg-gray-800 shadow" data-accordion="collapse">
 
-                    </div>
-
-                    <div id="accordion-collapse" class="bg-white dark:bg-gray-800 shadow" data-accordion="collapse">
-
-                    </div>
-
+                    </div> --}}
                 </article>
 
 
@@ -39,7 +54,7 @@
         <div class="col-span-2 lg:mt-5">
             <div class="content-title flex items-center dark:text-white mt-3">
                 <i class="fa-solid fa-book mr-2 ml-1" style="color: #4287ff;"></i>
-                <h1 class="text-xl font-bold my-2">General</h1>
+                <h1 class="text-xl font-bold">General</h1>
             </div>
             <div class="grid lg:grid-cols-1">
 
@@ -65,8 +80,8 @@
                         </h2>
 
                         <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
-                            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                                <p class="mb-2 text-gray-800 dark:text-gray-400">{{ $pertemuan->deskripsi }}</p>
+                            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                                <p class="text-sm mb-2 text-gray-800 dark:text-gray-400">{{ $pertemuan->instruksi }}</p>
                             </div>
                         </div>
 

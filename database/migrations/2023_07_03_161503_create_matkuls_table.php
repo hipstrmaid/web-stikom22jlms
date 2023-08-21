@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('matkuls', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dosen_id');
-            $table->string('kode_matkul')->unique();
+            $table->string('kode_enroll');
             $table->string('nama_matkul');
             $table->text('deskripsi');
+            $table->text('pemberitahuan')->nullable();
             $table->string('gambar');
             $table->string('hari');
             $table->string('jam');

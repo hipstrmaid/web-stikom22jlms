@@ -157,13 +157,12 @@
                             <div id="accordion-collapse-body-2" class="hidden"
                                 aria-labelledby="accordion-collapse-heading-2">
                                 <div class="p-5 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-
-                                    <ul
-                                        class="w-full text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-800 dark:text-white">
-                                        @php
-                                            $i = 0;
-                                        @endphp
-                                        @foreach ($pertemuans as $pertemuan)
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                    @foreach ($pertemuans as $pertemuan)
+                                        <ul
+                                            class="w-full text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 dark:bg-gray-800 dark:border-gray-800 dark:text-white">
                                             @php
                                                 $i++;
                                             @endphp
@@ -177,9 +176,8 @@
                                                     <i class="w-auto fa-solid fa-lock-open dark:text-white"></i>
                                                 </a>
                                             </li>
-                                        @endforeach
-                                    </ul>
-
+                                        </ul>
+                                    @endforeach
                                 </div>
 
                             </div>

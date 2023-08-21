@@ -50,8 +50,9 @@
                             </div>
 
                             <div class="col-span-1 xl:col-span-1">
-                                <label class="block text-sm font-medium text-blue-600 dark:text-white xl:text-right">Ganti
-                                    Password</label>
+                                <label
+                                    class="block text-sm font-medium text-blue-600 dark:text-white xl:text-right">Password
+                                    baru</label>
                             </div>
 
                             <div class="col-span-1 xl:col-span-7 relative z-0 w-full group ">
@@ -64,15 +65,14 @@
                                 @error('password')
                                     <p class="text-red-600"> {{ Str::ucfirst($message) }}</p>
                                 @enderror
+                                @if (session('success'))
+                                    <div class="w-full p-4 mb-4 mt-4 text-sm text-green-900 rounded-lg bg-green-100 dark:bg-green-800 dark:text-green-400"
+                                        role="alert">
+                                        <span class="font-medium">Berhasil!</span> Password berhasil di ubah.
+                                    </div>
+                                @endif
+                                <input type="text" name="Status_akun" value="Aktif" hidden>
                             </div>
-
-                            <input type="text" name="Status_akun" value="Aktif" hidden>
-                            @if (session('success'))
-                                <div class="w-full p-4 mb-4 mt-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400"
-                                    role="alert">
-                                    <span class="font-medium">Berhasil!</span> Password berhasil di ubah.
-                                </div>
-                            @endif
                             <div class="col-span-1 xl:col-span-1">
                                 <label class="block"></label>
                             </div>
