@@ -37,7 +37,7 @@
         @include('includes.sidebar')
 
         <main class="md:ml-64 w-auto h-auto pt-20">
-            <div class="px-3">
+            <div class="px-5">
                 @yield('content')
             </div>
         </main>

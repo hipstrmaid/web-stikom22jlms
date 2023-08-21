@@ -42,7 +42,7 @@ class MatkulController extends Controller
         if (Auth::user()->dosen) {
             checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
             return view('frontend/pages/dosen/pertemuan/dosen-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan', 'totalUser'));
-        } else {
+        } elseif (Auth::user()->mahasiswa) {
 
             $enroll_id = Matkul::where('id', $id)->first();
             $mahasiswa = Auth::user()->mahasiswa;

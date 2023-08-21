@@ -20,14 +20,11 @@
         <div class="col-span-6">
             <div class="content">
                 <article class="dark:text-white">
-                    {{-- @if (Auth::user()->dosen)
-                        {{ Breadcrumbs::render('belajar', $dosen_matkul, $pertemuan) }}
+                    @if (Auth::user()->dosen)
+                        {{ Breadcrumbs::render('mhsBelajar', $dosen_matkul, $pertemuan) }}
                     @else
-                        {{ Breadcrumbs::render('belajar', $mhs_matkul, $pertemuan) }}
-                    @endif --}}
-
-                    {{ Breadcrumbs::render('belajar', $pertemuan) }}
-
+                        {{ Breadcrumbs::render('mhsBelajar', $mhs_matkul, $pertemuan) }}
+                    @endif
                     @foreach ($materi as $video)
                         <div class="mt-2 mb-2">
                             <iframe class="w-full rounded-sm sm:h-96 shadow-xl" height="300"
@@ -41,9 +38,6 @@
                             <p>{{ $video->deskripsi }}</p>
                         </div>
                     @endforeach
-                    {{-- <div id="accordion-collapse" class="bg-white dark:bg-gray-800 shadow" data-accordion="collapse">
-
-                    </div> --}}
                 </article>
 
 

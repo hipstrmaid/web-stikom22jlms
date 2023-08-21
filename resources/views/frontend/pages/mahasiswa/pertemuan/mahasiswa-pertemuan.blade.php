@@ -23,10 +23,6 @@
                             <i class="fa-solid fa-clock ml-4 dark:text-white"></i>
                             <p class="dark:text-white px-2">{{ $matkul->jam }}</p>
                         </li>
-                        {{-- <li class="flex items-center">
-                            <i class="fa-solid fa-key ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->kode_matkul }}</p>
-                        </li> --}}
                         <li class="flex items-center">
                             <i class="fa-solid fa-users ml-4 dark:text-white"></i>
                             <p class="dark:text-white px-2">{{ $totalUser->count() }}</p>
@@ -36,14 +32,7 @@
 
                 </div>
                 <div class="bg-white border border-gray-200 rounded-b shadow dark:border-gray-900 dark:bg-gray-800">
-                    @isset($lastPertemuan)
-                        <div class="p-2">
-                            <a href="{{ route('pertemuan.show', ['pertemuan' => $lastPertemuan->id]) }}"
-                                class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                Pertemuan {{ $pertemuans->count() }}<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
-                            </a>
-                        </div>
-                    @elseif (!$sudahEnroll)
+                    @if (!$sudahEnroll)
                         <div class="p-2">
                             <form action="{{ route('enroll.store', $matkul->id) }}" method="POST">
                                 @csrf
@@ -60,15 +49,26 @@
                                     class="w-full inline-flex items-center mt-2 justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Daftar<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
                                 </button>
+                                @error('error')
+                                    <div class="alert alert-danger">
+                                        <strong>Error!</strong> {{ $message }}
+                                    </div>
+                                @enderror
                             </form>
-                            @error('error')
-                                <div class="alert alert-danger">
-                                    <strong>Error!</strong> {{ $message }}
-                                </div>
-                            @enderror
-
                         </div>
-                    @endisset
+                    @else
+                        <div class="p-2">
+                            <a href="{{ route('pertemuan.show', ['pertemuan' => $lastPertemuan->id]) }}"
+                                class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                Pertemuan {{ $pertemuans->count() }}<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
+                            </a>
+                        </div>
+                    @endif
+                    @error('success')
+                        <div class="alert alert-danger">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
 
@@ -112,7 +112,7 @@
                             <div id="accordion-collapse-body-1" class="hidden"
                                 aria-labelledby="accordion-collapse-heading-1">
                                 <div class="p-5 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                                    <ol class="relative border-l border-gray-200 dark:border-gray-700 ml-10">
+                                    <ol class="relative border-gray-200 dark:border-gray-700 ml-10">
                                         <li class="ml-6">
                                             <span
                                                 class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
@@ -126,13 +126,12 @@
                                             </span>
                                             <h3
                                                 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-                                                Keluar Kota
+                                                {{ $matkul->pemberitahuan ?? 'Tidak ada pemberitahuan.' }}
                                             </h3>
                                             <time
-                                                class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Januari
-                                                13, 2022</time>
-                                            <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Hari ini
-                                                tidak ada mata kuliah jadi belajar sendiri.</p>
+                                                class="block mb-2 pt-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $matkul->updated_at }}</time>
+                                            {{-- <p class="mb-1 text-base font-normal text-gray-800 dark:text-gray-400">
+                                                {{ $matkul->pemberitahuan ?? 'Tidak ada pemberitahuan.' }}</p> --}}
                                         </li>
                                     </ol>
                                 </div>

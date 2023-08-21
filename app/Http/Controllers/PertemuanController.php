@@ -71,17 +71,20 @@ class PertemuanController extends Controller
      */
     public function show(string $id)
     {
-        $pertemuan = Pertemuan::findOrFail($id); // Assuming Resource is your model
+        $pertemuan = Pertemuan::findOrFail($id); // Assuming Resource is your model=
+        $matkul_id = $pertemuan->matkul_id;
         $user = Auth::user();
         $materi = Mtr_video::where('pertemuan_id', $pertemuan->id)->get();
         if ($user->dosen) {
-            $dosen_matkul = Matkul::where('dosen_id', $user->dosen->id)->first();
-            // checkPermission($pertemuan->matkul_id, $dosen_matkul->id);
+            $dosen_matkul = Matkul::where('id', $matkul_id)->first();
             return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'dosen_matkul', 'materi'));
         } else {
             $mhs_matkul = Enroll::where('matkul_id', $pertemuan->matkul_id)->first();
-            // checkPermission($mhs_matkul, $pertemuan);
-            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'mhs_matkul', 'materi'));
+            if ($mhs_matkul) {
+                return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'mhs_matkul', 'materi'));
+            } else {
+                abort(403, 'Anda belum terdaftar pada mata kuliah ini');
+            }
         }
     }
 

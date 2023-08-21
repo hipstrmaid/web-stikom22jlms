@@ -25,41 +25,44 @@
                 <ul class="flex flex-col gap-4">
                     <li class="flex">
                         <a href="#"
-                            class="flex items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
-                            <div class="bg-blue-500 w-16 h-16 inline-flex justify-center items-center">
+                            class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+                            <div class="bg-blue-400 w-16 h-16 inline-flex justify-center items-center">
                                 <i class="fa-solid fa-file fa-xl text-white"></i>
                             </div>
                             <div class="flex flex-col">
-                                <p class="text-md text-dark dark:text-white">File</p>
+                                <p class="text-md font-bold text-dark dark:text-white">File</p>
                                 <p class="text-xs text-dark dark:text-white">Word, Excel, PPT, Gambar/Video.</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="flex">
-                        <a href="#"
-                            class="flex items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
-                            <div class="bg-yellow-500 w-16 h-16 inline-flex justify-center items-center">
-                                <i class="fa-solid fa-file-arrow-up fa-xl text-white"></i>
-                            </div>
-                            <div class="flex flex-col">
-                                <p class="text-md text-dark dark:text-white">Tugas</p>
-                                <p class="text-xs text-dark dark:text-white">Beri tugas kepada mahasiswa.</p>
                             </div>
                         </a>
                     </li>
 
                     <li class="flex">
                         <a href="{{ route('materi.createVideo', ['id' => $pertemuan->id]) }}"
-                            class="flex items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
-                            <div class="bg-red-500 w-16 h-16 inline-flex justify-center items-center">
+                            class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+                            <div class="bg-red-400 dark:bg-red-500 w-16 h-16 inline-flex justify-center items-center">
                                 <i class="fa-brands fa-youtube fa-xl text-white"></i>
                             </div>
                             <div class="flex flex-col">
-                                <p class="text-md text-dark dark:text-white">Youtube</p>
+                                <p class="text-md font-bold text-dark dark:text-white">Youtube</p>
                                 <p class="text-xs text-dark dark:text-white">Url video youtube.</p>
                             </div>
                         </a>
                     </li>
+
+                    <li class="flex">
+                        <a href="#"
+                            class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+                            <div class="bg-yellow-400 w-16 h-16 inline-flex justify-center items-center">
+                                <i class="fa-solid fa-file-arrow-up fa-xl text-white"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-md font-bold text-dark dark:text-white">Tugas</p>
+                                <p class="text-xs text-dark dark:text-white">Beri tugas kepada mahasiswa.</p>
+                            </div>
+                        </a>
+                    </li>
+
+
 
 
 
