@@ -62,26 +62,27 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('matkul', MatkulController::class);
     Route::get('matkul/{id}/pertemuan', [MatkulController::class, 'pertemuanPreview'])->name('matkul.pertemuanPreview');
+
     Route::resource('pertemuan', PertemuanController::class);
     Route::get('pertemuan/{id}/index', [PertemuanController::class, 'indexPertemuan'])->name('pertemuan.indexPertemuan');
     Route::get('pertemuan/{id_matkul}/create', [PertemuanController::class, 'create'])->name('pertemuan.create');
 
-    Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
+    Route::get('user/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
     Route::get('user/{user}/editPassword', [ProfileController::class, 'editPassword'])->name('user.editPassword');
     Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');
 
-    Route::get('/materi/{id}/youtube', [MateriController::class, 'createVideo'])->name('materi.createVideo');
-    Route::post('/materi', [MateriController::class, 'storeVideo'])->name('materi.storeVideo');
+    Route::get('materi/{id}/youtube', [MateriController::class, 'createVideo'])->name('materi.createVideo');
+    Route::post('materi', [MateriController::class, 'storeVideo'])->name('materi.storeVideo');
 
 
-    Route::get('/enroll', [EnrollController::class, 'index'])->name('enroll.index');
-    Route::post('/enroll/{id}', [EnrollController::class, 'store'])->name('enroll.store');
-    Route::get('/enroll/{id}/matkul-preview', [EnrollController::class, 'previewMatkul'])->name('enroll.previewMatkul');
+    Route::get('enroll', [EnrollController::class, 'index'])->name('enroll.index');
+    Route::post('enroll/{id}', [EnrollController::class, 'store'])->name('enroll.store');
+    Route::get('enroll/{id}/matkul-preview', [EnrollController::class, 'previewMatkul'])->name('enroll.previewMatkul');
 
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('dosen', DosenController::class);
 
-    Route::get('/user/preferences', function () {
+    Route::get('user/preferences', function () {
         return view('frontend.pages.preferences');
     })->name('user.preferences');
 

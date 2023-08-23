@@ -11,15 +11,14 @@
                 <div class="ml-3 text-sm font-normal">{{ $message }}</div>
             </x-user-create-warning>
         @enderror
-        <div class="bg-white text-sm rounded-t dark:border-gray-900 dark:bg-gray-800">
-            <div class="w-full panel-head flex items-center p-4">
+        <div class="text-sm rounded-t dark:border-gray-900 ">
+
+
+            <div class="w-full bg-white dark:bg-gray-800 panel-head flex items-center p-2">
                 <div class="flex flex-col w-full  dark:text-gray-50 dark:text-gray-400">
-                    <h1 class="text-2xl font-bold">Tabel Dosen</h1>
+                    <h1 class="text-2xl font-bold">Tabel BAAK</h1>
                 </div>
-
-
-
-                <button class="flex items-center p-2 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <div class="flex items-center p-2 dark:text-gray-50">
                     <div class="row">
                         <div class="w-full flex justify-content-end">
                             <!-- Modal Tekom toggle -->
@@ -34,7 +33,7 @@
                                 <div class="relative w-full max-w-md max-h-full">
                                     <!-- Modal content -->
                                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                        <button type="button"
+                                        <button title="Toggleclosemodal" type="button"
                                             class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
                                             data-modal-hide="authentication-modal">
                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -59,7 +58,7 @@
                                                         class="@error('nim') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                         placeholder="cth. 1920557xx" required>
                                                     <label for="role"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                                        class="block py-4 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
                                                     <select id="role" name="role_id"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         <option selected value="2">Dosen</option>
@@ -77,12 +76,12 @@
 
                         </div>
                     </div>
-                </button>
+                </div>
             </div>
+
             <hr class="bg-gray-200 h-0.5 border-0 dark:bg-gray-700">
             <div class="relative overflow-x-auto shadow-md">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -98,7 +97,70 @@
                                 NAMA
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                ROLE
+                                AKSI
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @php
+                            $index = 1;
+                        @endphp
+                        @foreach ($users->where('role_id', 3) as $user)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $index++ }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    @isset($user->dosen->foto)
+                                        <img src="{{ Storage::url($user->dosen->foto) }}"
+                                            class="rounded-full w-8 h-8 object-cover" alt="foto-user">
+                                    @else
+                                        <img src="{{ asset('assets/img/user.webp') }}" class="rounded-full w-8 h-8"
+                                            alt="foto-user">
+                                    @endisset
+
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $user->dosen->nidn }}
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    {{ $user->dosen->nama }}
+                                </td>
+                                <td class="px-6 py-4 text-left">
+                                    <a href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="w-full bg-white dark:bg-gray-800 panel-head flex items-center p-4 mt-2">
+                <div class="flex flex-col w-full  dark:text-gray-50 dark:text-gray-400">
+                    <h1 class="text-2xl font-bold">Tabel Dosen</h1>
+                </div>
+            </div>
+
+            <hr class="bg-gray-200 h-0.5 border-0 dark:bg-gray-700">
+            <div class="relative overflow-x-auto shadow-md">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                FOTO
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                NIDN
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                NAMA
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 AKSI
@@ -107,39 +169,44 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($dosens as $dosen)
+                        @php
+                            $index = 1;
+                        @endphp
+                        @foreach ($users->where('role_id', 2) as $user)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-
                                 <td scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $dosen->id }}
+                                    {{ $index++ }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <img src="{{ Storage::url($dosen->foto) }}" class="rounded-full w-8 h-8"
-                                        alt="foto-dosen">
+                                    @isset($user->dosen->foto)
+                                        <img src="{{ Storage::url($user->dosen->foto) }}"
+                                            class="rounded-full w-8 h-8 object-cover" alt="foto-user">
+                                    @else
+                                        <img src="{{ asset('assets/img/user.webp') }}" class="rounded-full w-8 h-8"
+                                            alt="foto-user">
+                                    @endisset
+
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $user->dosen->nidn }}
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    {{ $dosen->nidn }}
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    {{ $dosen->nama }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $dosen->user->role->nama_role }}
+                                    {{ $user->dosen->nama }}
                                 </td>
                                 <td class="px-6 py-4 text-left">
                                     <a href="#"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                 </td>
+
+                            </tr>
                         @endforeach
-                        </tr>
-
-
                     </tbody>
                 </table>
             </div>
+
+
         </div>
     </div>
 @endsection

@@ -138,6 +138,9 @@ class MatkulController extends Controller
         // Find the Matkul model by ID
         $matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
 
+        if (!$matkul) {
+            abort('403', 'Anda bukan dosen');
+        }
         checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
         return view('frontend.pages.dosen.matkul.edit-matkul', compact('matkul'));
     }

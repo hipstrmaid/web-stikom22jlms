@@ -23,7 +23,8 @@
                 </a>
             </div>
             <div class="card-description">
-                <p class="text-sm leading-normal text-gray-600 dark:text-gray-400">{{ $matkul->excerpt() }}</p>
+                <p class="text-sm text-justify text-gray-600 dark:text-gray-400">{{ $matkul->excerpt() }}
+                </p>
             </div>
         </div>
 

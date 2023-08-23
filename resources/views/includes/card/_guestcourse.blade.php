@@ -15,9 +15,9 @@
                     aria-labelledby="accordion-collapse-heading-{{ $semesterId }}">
                     <div class="dark:bg-gray-900">
                         <div class="row">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-2">
+                            <div class="flex flex-col">
                                 @foreach ($matkulGroup as $matkul)
-                                    <div
+                                    {{-- <div
                                         class="bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden">
                                         <img class="w-full h-48 object-cover border border-b dark:border-gray-800"
                                             src="{{ Storage::url($matkul->gambar) }}" alt="Course Image">
@@ -35,7 +35,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
+
+                                    <a href="{{ route('enroll.previewMatkul', ['id' => $matkul->id]) }}"
+                                        class="flex justify-between items-center border border-gray-200 w-full mb-2 py-2 px-2  bg-white dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 hover:bg-gray-300">
+                                        <div class="flex flex-col">
+                                            <p class="text-base font-bold text-blue-500">{{ $matkul->nama_matkul }}</p>
+                                            <p class="text-xs">Dosen: {{ $matkul->dosen->nama }}</p>
+                                        </div>
+                                        <i class="fa-solid fa-key"></i>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>
@@ -45,3 +54,4 @@
         </div>
     </div>
 @endisset
+{{-- grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-2 --}}

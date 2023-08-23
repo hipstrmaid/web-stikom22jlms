@@ -49,10 +49,11 @@
                     @endphp
                     <li class="flex">
                         <a href="{{ route('pertemuan.show', ['pertemuan' => $pertemuan->id]) }}" class="w-full">
-                            <h1 class="bg-gray-200 border border-gray-300 w-full py-2 px-3 text-bold">
+                            <h1 class="bg-blue-500 rounded-sm dark:bg-green-700 text-white w-full py-2 px-3 text-bold">
                                 Pertemuan {{ $i }} : {{ $pertemuan->judul_pertemuan }}</h1>
                         </a>
-                        <a href="/dosen/edit-pertemuan" class="flex items-center justify-center bg-blue-400 p-2">
+                        <a href="/dosen/edit-pertemuan"
+                            class="flex items-center justify-center bg-gray-600 border-gray-500 text-white p-2">
                             <i class="fa-solid fa-pen-to-square"></i>
                             <h1 class="ml-1 text-sm font-bold">Edit</h1>
                         </a>

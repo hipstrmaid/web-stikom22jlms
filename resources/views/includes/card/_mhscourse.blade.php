@@ -1,6 +1,8 @@
 <div class="bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden">
-    <img class="w-full h-48 object-cover border border-b dark:border-gray-800"
-        src="{{ Storage::url($matkul->matkul->gambar) }}" alt="Course Image">
+    <a href="{{ route('matkul.pertemuanPreview', ['id' => $matkul->matkul->id]) }}">
+        <img class="w-full h-48 object-cover border border-b dark:border-gray-800"
+            src="{{ Storage::url($matkul->matkul->gambar) }}" alt="Course Image">
+    </a>
     <div class="flex flex-col flex-grow">
         <div class="content px-4 py-2 flex flex-col gap-1">
             <div class="card-category">
@@ -13,8 +15,6 @@
                 @endif
                 <span
                     class="bg-orange-100 text-orange-800 dark:text-white dark:bg-gray-700 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-orang-900 dark:text-orange-800">{{ $matkul->matkul->semester->nama_semester }}</span>
-                {{-- <span
-                class="bg-yellow-100 text-yellow-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $matkul->hari }}</span> --}}
             </div>
             <div class="card-title">
                 <a href="{{ route('matkul.pertemuanPreview', ['id' => $matkul->matkul->id]) }}">
@@ -23,7 +23,8 @@
                 </a>
             </div>
             <div class="card-description">
-                <p class="text-sm leading-normal text-gray-600 dark:text-gray-400">{{ $matkul->matkul->excerpt() }}</p>
+                <p class="text-sm text-justify text-gray-600 dark:text-gray-400">
+                    {{ $matkul->matkul->excerpt() }}</p>
             </div>
         </div>
 

@@ -36,7 +36,13 @@ class UserController extends Controller
     public function store(Request $request, User $user)
     {
         $request->validate([
-            'nim' => ['required', 'unique:admins,nidn', 'unique:dosens,nidn', 'unique:mahasiswas,nim', 'numeric'],
+            'nim' => [
+                'required',
+                'unique:admins,nidn',
+                'unique:dosens,nidn',
+                'unique:mahasiswas,nim',
+                'numeric'
+            ]
         ]);
 
         $nim = $request->input('nim');
@@ -47,7 +53,6 @@ class UserController extends Controller
         $semester_id = $request->input('semester_id');
 
         $user = new User;
-        // $user->nim_mhs = $nim;
         $user->username = $username;
         $user->password = Hash::make($password);
         $user->role_id = $roleId;
@@ -123,8 +128,8 @@ class UserController extends Controller
 
     public function indexDosen()
     {
-        $dosen = Dosen::all();
-        return view('admin.user.create-dosen', ['dosens' => $dosen]);
+        $user = User::whereIn('role_id', [2, 3])->with('role', 'dosen')->get();
+        return view('admin.user.create-dosen', ['users' => $user]);
     }
 
     public function indexAdmin()

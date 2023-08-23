@@ -28,8 +28,8 @@
                     @foreach ($materi as $video)
                         <div class="mt-2 mb-2">
                             <iframe class="w-full rounded-sm sm:h-96 shadow-xl" height="300"
-                                src="https://www.youtube.com/embed/{{ $video->url_video }}" title="YouTube video player"
-                                frameborder="0"
+                                src="https://www.youtube.com/embed/{{ $video->url_video }}?modestbranding=1&rel=0"
+                                title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                             </iframe>
