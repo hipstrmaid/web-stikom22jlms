@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pertemuan_id');
             $table->foreign('pertemuan_id')->references('id')->on('pertemuans');
-            $table->string('deksripsi')->nullable();
             $table->string('nama_file');
+            $table->text('deskripsi')->nullable();
             $table->string('path_file')->nullable();
             $table->string('extensi')->nullable();
             $table->timestamps();

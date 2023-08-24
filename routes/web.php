@@ -72,7 +72,11 @@ Route::middleware('auth')->group(function () {
     Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');
 
     Route::get('materi/{id}/youtube', [MateriController::class, 'createVideo'])->name('materi.createVideo');
-    Route::post('materi', [MateriController::class, 'storeVideo'])->name('materi.storeVideo');
+    Route::post('materi/video', [MateriController::class, 'storeVideo'])->name('materi.storeVideo');
+
+    Route::get('materi/{id}/file', [MateriController::class, 'createFile'])->name('materi.createFile');
+    Route::delete('materi/{id}/delete', [MateriController::class, 'destroyFile'])->name('materi.destroyfile');
+    Route::post('materi/file', [MateriController::class, 'storeFile'])->name('materi.storeFile');
 
 
     Route::get('enroll', [EnrollController::class, 'index'])->name('enroll.index');

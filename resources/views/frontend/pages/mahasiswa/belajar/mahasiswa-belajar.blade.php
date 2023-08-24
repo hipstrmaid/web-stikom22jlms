@@ -25,15 +25,27 @@
                     @else
                         {{ Breadcrumbs::render('mhsBelajar', $mhs_matkul, $pertemuan) }}
                     @endif
-                    @foreach ($materi as $video)
+                    {{-- @foreach ($youtubes as $youtube)
                         <div class="mt-2 mb-2">
                             <iframe class="w-full rounded-sm sm:h-96 shadow-xl" height="300"
-                                src="https://www.youtube.com/embed/{{ $video->url_video }}?modestbranding=1&rel=0"
+                                src="https://www.youtube.com/embed/{{ $youtube->url_video }}?modestbranding=1&rel=0"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                             </iframe>
                         </div>
+                        <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
+                            <p>{{ $youtube->deskripsi }}</p>
+                        </div>
+                    @endforeach --}}
+
+
+                    @foreach ($videos as $video)
+                        <video class="w-full h-auto max-w-full border border-gray-200 rounded-lg dark:border-gray-700"
+                            controls>
+                            <source src="{{ Storage::url($video->path_file) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                         <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
                             <p>{{ $video->deskripsi }}</p>
                         </div>
@@ -100,29 +112,39 @@
                         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
 
-                                <ol class="relative border-l border-gray-200 dark:border-gray-700">
-                                    <li class="ml-6">
-                                        <span
-                                            class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                                            <i class="fa-solid fa-file-doc w-3 h-3 text-blue-800 dark:text-blue-300"></i>
-                                        </span>
-                                        <h3
-                                            class="flex items-center mb-1 text-base font-semibold text-gray-900 dark:text-white">
-                                            File docs<span
-                                                class="bg-blue-100 text-blue-800 text-sm font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3">Latest</span>
-                                        </h3>
-                                        <time
-                                            class="block mb-2 text-sm font-base leading-none text-gray-400 dark:text-gray-500">January
-                                            13th, 2022</time>
-                                        <a href="#"
-                                            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
-                                                class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg> Download File</a>
-                                    </li>
+                                <ol class="relative border-l border-gray-200 dark:border-gray-700 flex-col gap-4">
+                                    @foreach ($files as $file)
+                                        <li class="mb-5 ml-4 flex md:flex-col justify-between">
+                                            <div class="content">
+
+
+                                                <div
+                                                    class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                                                </div>
+                                                <time
+                                                    class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $file->created_at }}</time>
+                                                <a href="#">
+                                                    <h3
+                                                        class="text-md font-semibold hover:text-blue-600 text-gray-900 dark:text-white mb-1">
+                                                        {{ $file->nama_file }}</h3>
+                                                </a>
+                                            </div>
+
+
+                                            <div class="inline-flex py-2">
+                                                <a href="#"
+                                                    class="inline-flex items-center text-center px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                                                        class="w-3.5 h-3.5 mr-2.5" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path
+                                                            d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
+                                                        <path
+                                                            d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                                                    </svg> Download</a>
+                                            </div>
+                                        </li>
+                                    @endforeach
                                 </ol>
 
                             </div>

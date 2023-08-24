@@ -21,53 +21,105 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6">
-                <ul class="flex flex-col gap-4">
-                    <li class="flex">
-                        <a href="#"
-                            class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
-                            <div class="bg-blue-400 w-16 h-16 inline-flex justify-center items-center">
-                                <i class="fa-solid fa-file fa-xl text-white"></i>
-                            </div>
-                            <div class="flex flex-col">
-                                <p class="text-md font-bold text-dark dark:text-white">File</p>
-                                <p class="text-xs text-dark dark:text-white">Word, Excel, PPT, Gambar/Video.</p>
-                            </div>
-                        </a>
-                    </li>
+            <div class="p-2">
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
+                        data-tabs-toggle="#myTabContent" role="tablist">
+                        <li class="mr-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
+                                data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                aria-selected="false">Modul</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
+                                aria-controls="dashboard" aria-selected="false">List Modul</button>
+                        </li>
+                    </ul>
+                </div>
+                <div id="myTabContent">
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
+                        aria-labelledby="profile-tab">
+                        <ul class="flex flex-col gap-4">
+                            <li class="flex">
+                                <a href="{{ route('materi.createFile', ['id' => $pertemuan->id]) }}"
+                                    class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+                                    <div class="bg-blue-400 w-16 h-16 inline-flex justify-center items-center">
+                                        <i class="fa-solid fa-file fa-xl text-white"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <p class="text-md font-bold text-dark dark:text-white">File</p>
+                                        <p class="text-xs text-dark dark:text-white">Word, Excel, PPT, Gambar/Video.</p>
+                                    </div>
+                                </a>
+                            </li>
 
-                    <li class="flex">
-                        <a href="{{ route('materi.createVideo', ['id' => $pertemuan->id]) }}"
-                            class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
-                            <div class="bg-red-400 dark:bg-red-500 w-16 h-16 inline-flex justify-center items-center">
-                                <i class="fa-brands fa-youtube fa-xl text-white"></i>
-                            </div>
-                            <div class="flex flex-col">
-                                <p class="text-md font-bold text-dark dark:text-white">Youtube</p>
-                                <p class="text-xs text-dark dark:text-white">Url video youtube.</p>
-                            </div>
-                        </a>
-                    </li>
+                            <li class="flex">
+                                <a href="{{ route('materi.createVideo', ['id' => $pertemuan->id]) }}"
+                                    class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+                                    <div
+                                        class="bg-red-400 dark:bg-red-500 w-16 h-16 inline-flex justify-center items-center">
+                                        <i class="fa-brands fa-youtube fa-xl text-white"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <p class="text-md font-bold text-dark dark:text-white">Youtube</p>
+                                        <p class="text-xs text-dark dark:text-white">Url video youtube.</p>
+                                    </div>
+                                </a>
+                            </li>
 
-                    <li class="flex">
-                        <a href="#"
-                            class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
-                            <div class="bg-yellow-400 w-16 h-16 inline-flex justify-center items-center">
-                                <i class="fa-solid fa-file-arrow-up fa-xl text-white"></i>
-                            </div>
-                            <div class="flex flex-col">
-                                <p class="text-md font-bold text-dark dark:text-white">Tugas</p>
-                                <p class="text-xs text-dark dark:text-white">Beri tugas kepada mahasiswa.</p>
-                            </div>
-                        </a>
-                    </li>
+                            <li class="flex">
+                                <a href="#"
+                                    class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+                                    <div class="bg-yellow-400 w-16 h-16 inline-flex justify-center items-center">
+                                        <i class="fa-solid fa-file-arrow-up fa-xl text-white"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <p class="text-md font-bold text-dark dark:text-white">Tugas</p>
+                                        <p class="text-xs text-dark dark:text-white">Beri tugas kepada mahasiswa.</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
+                        aria-labelledby="dashboard-tab">
+                        <div
+                            class="w-full text-sm font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            @foreach ($files as $file)
+                                <form action="{{ route('materi.destroyfile', ['id' => $file->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div
+                                        class="flex items-center justify-between w-full dark:bg-gray-800 dark:border-gray-600 text-dark border-b border-gray-200">
+                                        <a href="#" aria-current="true"
+                                            class="block w-full mb-1 px-4 py-2 cursor-pointer">
+                                            {{ $file->nama_file }}
+                                        </a>
+                                        <div class="flex">
+                                            {{-- <button class="px-2 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none">
+                                            Edit
+                                        </button> --}}
+                                            <button
+                                                class="ml-2 px-2 py-1 text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                            @endforeach
+                            </form>
+                        </div>
+                    </div>
 
 
 
 
 
+                </div>
 
-                </ul>
 
 
             </div>

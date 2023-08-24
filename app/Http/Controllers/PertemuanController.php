@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Enroll;
 use App\Models\Matkul;
+use App\Models\Mtr_file;
 use App\Models\Mtr_video;
 use App\Models\Pertemuan;
 use Illuminate\Http\Request;
@@ -74,14 +75,16 @@ class PertemuanController extends Controller
         $pertemuan = Pertemuan::findOrFail($id); // Assuming Resource is your model=
         $matkul_id = $pertemuan->matkul_id;
         $user = Auth::user();
-        $materi = Mtr_video::where('pertemuan_id', $pertemuan->id)->get();
+        $youtubes = Mtr_video::where('pertemuan_id', $pertemuan->id)->get();
+        $files = Mtr_file::where('pertemuan_id', $pertemuan->id)->get();
+        $videos = Mtr_file::where('pertemuan_id', $pertemuan->id)->where('extensi', ['mp4', 'avi', 'mov', 'mkv'])->get();
         if ($user->dosen) {
             $dosen_matkul = Matkul::where('id', $matkul_id)->first();
-            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'dosen_matkul', 'materi'));
+            return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'dosen_matkul', 'youtubes', 'files', 'videos'));
         } else {
             $mhs_matkul = Enroll::where('matkul_id', $pertemuan->matkul_id)->first();
             if ($mhs_matkul) {
-                return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'mhs_matkul', 'materi'));
+                return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'mhs_matkul', 'youtubes', 'files', 'videos'));
             } else {
                 abort(403, 'Anda belum terdaftar pada mata kuliah ini');
             }

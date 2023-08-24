@@ -163,6 +163,7 @@ class MatkulController extends Controller
         $kode_mk = $request->input('kode_matkul');
         // If a new image file is uploaded, update the image
         if ($request->hasFile('gambar')) {
+
             $gambar = $request->file('gambar');
             $webpImage = Image::make($gambar)->encode('webp', 90);
             $webpPath = 'public/thumbnail/' . time() . '.webp';

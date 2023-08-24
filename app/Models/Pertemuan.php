@@ -23,4 +23,9 @@ class Pertemuan extends Model
     {
         return $this->hasMany(Mtr_video::class);
     }
+
+    public function mtr_file()
+    {
+        return $this->hasMany(Mtr_file::class);
+    }
 }

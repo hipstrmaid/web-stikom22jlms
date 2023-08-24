@@ -95,11 +95,13 @@
                             <h2 id="accordion-collapse-heading-1">
                                 <button type="button"
                                     class="flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
-                                    data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
+                                    data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
                                     aria-controls="accordion-collapse-body-1">
                                     <span><i class="fa-solid fa-circle-exclamation mr-2"
-                                            style="color: #ffbf0f;"></i>Pemberitahuan <span
-                                            class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Baru</span></span>
+                                            style="color: #ffbf0f;"></i>Pemberitahuan
+                                        {{-- <span
+                                            class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Baru</span> --}}
+                                    </span>
 
                                     <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor"
                                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +127,7 @@
                                                 </svg>
                                             </span>
                                             <h3
-                                                class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+                                                class="flex items-center mb-1 text-base font-semibold text-gray-900 dark:text-white">
                                                 {{ $matkul->pemberitahuan ?? 'Tidak ada pemberitahuan.' }}
                                             </h3>
                                             <time
@@ -142,7 +144,7 @@
                             <h2 id="accordion-collapse-heading-2">
                                 <button type="button"
                                     class="flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
-                                    data-accordion-target="#accordion-collapse-body-2" aria-expanded="true"
+                                    data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                                     aria-controls="accordion-collapse-body-2">
                                     <span><i class="fa-solid fa-list-ul mr-2"></i>List Pertemuan</span>
                                     <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor"
@@ -168,7 +170,7 @@
                                             <li>
                                                 <a href="{{ route('pertemuan.show', ['pertemuan' => $pertemuan->id]) }}"
                                                     aria-current="true"
-                                                    class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                                    class="flex justify-between items-center block w-full px-4 py-2 border border-gray-200 cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
                                                     <p>Pertemuan {{ $i }} : <span class="text-blue-500">
                                                             {{ $pertemuan->judul_pertemuan }}</span>
                                                     </p>
@@ -181,7 +183,6 @@
 
                             </div>
                         </li>
-
                     </ul>
                 </div>
 
