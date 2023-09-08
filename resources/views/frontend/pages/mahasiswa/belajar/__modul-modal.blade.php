@@ -88,16 +88,17 @@
                     <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
                         aria-labelledby="dashboard-tab">
                         <div
-                            class="w-full text-sm font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            class="w-full text-sm font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+                            <h1 class="font-bold">File</h1>
+                            <hr class="mb-2">
                             @foreach ($files as $file)
                                 <form action="{{ route('materi.destroyfile', ['id' => $file->id]) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <div
-                                        class="flex items-center justify-between w-full dark:bg-gray-800 dark:border-gray-600 text-dark border-b border-gray-200">
-                                        <a href="#" aria-current="true"
-                                            class="block w-full mb-1 px-4 py-2 cursor-pointer">
-                                            {{ $file->nama_file }}
+                                        class="flex items-center mb-2 justify-between p-2 rounded-md w-full dark:bg-gray-600 dark:border-gray-600 text-dark border border-gray-200">
+                                        <a href="#" aria-current="true" class="block w-full cursor-pointer">
+                                            {{ $file->nama_file }}.{{ $file->extensi }}
                                         </a>
                                         <div class="flex">
                                             {{-- <button class="px-2 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none">
@@ -109,8 +110,33 @@
                                             </button>
                                         </div>
                                     </div>
+                                </form>
                             @endforeach
-                            </form>
+                            <h1 class="font-bold mt-2">Youtube</h1>
+                            <hr class="mb-2">
+                            @foreach ($youtubes as $youtube)
+                                <form action="{{ route('materi.destroyYoutube', ['id' => $youtube->id]) }}"
+                                    method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div
+                                        class="flex items-center mb-2 justify-between p-1 rounded-sm w-full dark:bg-gray-600 dark:border-gray-600 text-dark border border-gray-200">
+                                        <a href="#" aria-current="true" class="block w-full cursor-pointer">
+                                            {{ $youtube->deskripsi }}
+                                        </a>
+                                        <div class="flex">
+                                            {{-- <button class="px-2 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none">
+                                        Edit
+                                    </button> --}}
+                                            <button
+                                                class="ml-2 px-2 py-1 text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            @endforeach
+
                         </div>
                     </div>
 

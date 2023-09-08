@@ -13,11 +13,8 @@ use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\PertemuanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
-use App\Models\Matkul;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +43,8 @@ Route::get('/calendar', function () {
     return view('frontend.pages.calendar');
 });
 
-Route::get('/belajar', function () {
-    return view('frontend.pages.materi.video-form');
+Route::get('/tugas', function () {
+    return view('frontend/pages/materi/tugas-page');
 });
 
 
@@ -58,7 +55,6 @@ Auth::routes();
 // Routes accessible by authenticated users only
 Route::middleware('auth')->group(function () {
     Route::resource('dashboard', DashboardController::class);
-
 
     Route::resource('matkul', MatkulController::class);
     Route::get('matkul/{id}/pertemuan', [MatkulController::class, 'pertemuanPreview'])->name('matkul.pertemuanPreview');
@@ -72,10 +68,11 @@ Route::middleware('auth')->group(function () {
     Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');
 
     Route::get('materi/{id}/youtube', [MateriController::class, 'createVideo'])->name('materi.createVideo');
+    Route::delete('materi/{id}/delete-video', [MateriController::class, 'destroyYoutube'])->name('materi.destroyYoutube');
     Route::post('materi/video', [MateriController::class, 'storeVideo'])->name('materi.storeVideo');
 
     Route::get('materi/{id}/file', [MateriController::class, 'createFile'])->name('materi.createFile');
-    Route::delete('materi/{id}/delete', [MateriController::class, 'destroyFile'])->name('materi.destroyfile');
+    Route::delete('materi/{id}/delete-file', [MateriController::class, 'destroyFile'])->name('materi.destroyfile');
     Route::post('materi/file', [MateriController::class, 'storeFile'])->name('materi.storeFile');
 
 

@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="flex w-full justify-between items-center">
-        <h1 class="text-4xl font-bold pt-4 lg:pt-0 text-dark dark:text-white">{{ $pertemuan->judul_pertemuan }}</h1>
+        <h1 class="lg:text-4xl text-xl font-bold pt-4 lg:pt-0 text-dark dark:text-white">
+            {{ $pertemuan->judul_pertemuan }}
+        </h1>
         @if (Auth::user()->dosen)
             <!-- Modal toggle -->
             <button data-modal-target="defaultModal" data-modal-toggle="defaultModal"
@@ -19,37 +21,50 @@
     <div class="grid grid-cols-1 lg:grid-cols-8 mb-4 lg:gap-4">
         <div class="col-span-6">
             <div class="content">
-                <article class="dark:text-white">
-                    @if (Auth::user()->dosen)
-                        {{ Breadcrumbs::render('mhsBelajar', $dosen_matkul, $pertemuan) }}
-                    @else
-                        {{ Breadcrumbs::render('mhsBelajar', $mhs_matkul, $pertemuan) }}
-                    @endif
-                    {{-- @foreach ($youtubes as $youtube)
-                        <div class="mt-2 mb-2">
-                            <iframe class="w-full rounded-sm sm:h-96 shadow-xl" height="300"
-                                src="https://www.youtube.com/embed/{{ $youtube->url_video }}?modestbranding=1&rel=0"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
-                            <p>{{ $youtube->deskripsi }}</p>
-                        </div>
-                    @endforeach --}}
+                @if (Auth::user()->dosen)
+                    {{ Breadcrumbs::render('mhsBelajar', $dosen_matkul, $pertemuan) }}
+                @else
+                    {{ Breadcrumbs::render('mhsBelajar', $mhs_matkul, $pertemuan) }}
+                @endif
+                <article class="dark:text-white flex flex-col">
+                    <div class="flex flex-col gap-2">
+                        @foreach ($youtubes as $youtube)
+                            <div class="mt-2 mb-2">
+                                <iframe class="w-full rounded-lg sm:h-96 shadow-xl" height="300"
+                                    src="https://www.youtube.com/embed/{{ $youtube->url_video }}?modestbranding=1&rel=0"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="content-text tracking-normal mb-5 text-gray-900 dark:text-gray-400">
+                                <p>{{ $youtube->deskripsi }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        @foreach ($videos as $video)
+                            <video class="w-full h-auto max-w-full border border-gray-200 rounded-lg dark:border-gray-700"
+                                controls>
+                                <source src="{{ Storage::url($video->path_file) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="content-text mb-5 tracking-normal text-gray-900 dark:text-gray-400">
+                                <p>{{ $video->deskripsi }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        @foreach ($images as $image)
+                            <img class="h-auto max-w-md" src="{{ Storage::url($image->path_file) }}"
+                                alt="image description">
+                            <div class="content-text mb-5 tracking-normal text-gray-900 dark:text-gray-400">
+                                <p>{{ $image->deskripsi }}</p>
+                            </div>
+                        @endforeach
+                    </div>
 
 
-                    @foreach ($videos as $video)
-                        <video class="w-full h-auto max-w-full border border-gray-200 rounded-lg dark:border-gray-700"
-                            controls>
-                            <source src="{{ Storage::url($video->path_file) }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="content-text tracking-normal text-gray-900 dark:text-gray-400">
-                            <p>{{ $video->deskripsi }}</p>
-                        </div>
-                    @endforeach
                 </article>
 
 
@@ -58,12 +73,12 @@
 
 
         <div class="col-span-2 lg:mt-5">
+
             <div class="content-title flex items-center dark:text-white mt-3">
                 <i class="fa-solid fa-book mr-2 ml-1" style="color: #4287ff;"></i>
                 <h1 class="text-xl font-bold">General</h1>
             </div>
             <div class="grid lg:grid-cols-1">
-
                 <div id="accordion-collapse" class="bg-white dark:bg-gray-800 shadow" data-accordion="collapse">
 
                     <div class="menu-general">
@@ -87,7 +102,7 @@
 
                         <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
                             <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-                                <p class="text-sm mb-2 text-gray-800 dark:text-gray-400">{{ $pertemuan->instruksi }}</p>
+                                <p class="text-sm text-gray-800 dark:text-gray-400">{{ $pertemuan->instruksi }}</p>
                             </div>
                         </div>
 
@@ -116,24 +131,23 @@
                                     @foreach ($files as $file)
                                         <li class="mb-5 ml-4 flex md:flex-col justify-between">
                                             <div class="content">
-
-
                                                 <div
                                                     class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
                                                 </div>
                                                 <time
-                                                    class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $file->created_at }}</time>
+                                                    class="mb-1 text-xs leading-none text-gray-400 dark:text-gray-500">{{ $file->created_at }}</time>
                                                 <a href="#">
                                                     <h3
                                                         class="text-md font-semibold hover:text-blue-600 text-gray-900 dark:text-white mb-1">
-                                                        {{ $file->nama_file }}</h3>
+                                                        {{ $file->nama_file }}
+                                                    </h3>
                                                 </a>
                                             </div>
 
 
-                                            <div class="inline-flex py-2">
+                                            <div class="inline-flex">
                                                 <a href="#"
-                                                    class="inline-flex items-center text-center px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                                                    class="inline-flex items-center text-center px-2 py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
                                                         class="w-3.5 h-3.5 mr-2.5" aria-hidden="true"
                                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                         viewBox="0 0 20 20">

@@ -6,7 +6,6 @@ use App\Models\Mtr_file;
 use App\Models\Mtr_video;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 class MateriController extends Controller
@@ -101,15 +100,26 @@ class MateriController extends Controller
     {
         // Find the record by its ID
         $file = Mtr_file::find($id);
-
         // Check if the record exists
         if (!$file) {
             return redirect()->back()->with('error', 'File not found.');
         }
-
         // Delete the actual file from the storage
         Storage::delete($file->path_file);
+        // Delete the record from the database
+        $file->delete();
 
+        return redirect()->back()->with('success', 'File has been deleted.');
+    }
+
+    public function destroyYoutube($id)
+    {
+        // Find the record by its ID
+        $file = Mtr_video::find($id);
+        // Check if the record exists
+        if (!$file) {
+            return redirect()->back()->with('error', 'File not found.');
+        }
         // Delete the record from the database
         $file->delete();
 

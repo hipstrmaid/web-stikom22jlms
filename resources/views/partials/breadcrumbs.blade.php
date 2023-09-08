@@ -1,5 +1,5 @@
 {{-- Custom Breadcrumb style using Flowbite breadcrumbs coded by Ray --}}
-<nav class="py-2 flex rounded" aria-label="Breadcrumb">
+<nav class="py-2 flex rounded text-sm" aria-label="Breadcrumb">
     <x-home-svg></x-home-svg>
     <ol class="inline-flex items-center">
         @unless ($breadcrumbs->isEmpty())
