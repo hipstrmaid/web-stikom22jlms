@@ -32,6 +32,21 @@ footer {
 }
 
 .card-description {
-    height: 3.8em; /* Adjust this value to set the desired fixed height */
+    height: 2.5em; /* Adjust this value to set the desired fixed height default 3.8em */
     overflow: hidden; /* Hide overflowing content */
+}
+
+@keyframes slide-down-from-top {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-down-from-top {
+    animation: slide-down-from-top 0.3s ease-out;
 }

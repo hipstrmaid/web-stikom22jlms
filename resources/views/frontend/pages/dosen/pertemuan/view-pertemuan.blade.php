@@ -2,7 +2,6 @@
 @section('content')
     <h1 class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
         List Pertemuan</h1>
-    {{-- {{ Breadcrumbs::render('indexPertemuan', $id_matkul) }} --}}
     {{ Breadcrumbs::render('editMatkul', $id_matkul) }}
 
     <div class="grid grid-cols-1 mb-5">
@@ -29,7 +28,7 @@
         <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
             <div class="px-5 py-4 header-nav flex justify-between items-center">
                 <a href="{{ route('pertemuan.create', $id_matkul) }}"
-                    class="inline-flex rounded-sm items-center px-2 py-2 bg-blue-600 border border-transparent font-semibold text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    class="inline-flex rounded-sm items-center px-1 py-1 bg-blue-600 border border-transparent font-semibold text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         class="w-5 h-5 mr-2">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -47,10 +46,10 @@
                     @php
                         $i++;
                     @endphp
-                    <li class="flex shadow-md">
-                        <a href="{{ route('pertemuan.show', ['pertemuan' => $pertemuan->id]) }}" class="w-full">
+                    <li class="flex shadow-sm">
+                        <a href="{{ route('pertemuan.show', ['pertemuan' => $pertemuan]) }}" class="w-full">
                             <h1
-                                class="bg-gray-100 border border-gray-300 rounded-sm dark:bg-green-700 text-dark dark:text-white w-full py-2 px-3 text-bold">
+                                class="bg-gray-100 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-dark dark:text-white w-full py-2 px-3 text-bold">
                                 Pertemuan {{ $i }} : {{ $pertemuan->judul_pertemuan }}</h1>
                         </a>
                         <a href="/dosen/edit-pertemuan"

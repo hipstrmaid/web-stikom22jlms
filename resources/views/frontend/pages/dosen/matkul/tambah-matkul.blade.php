@@ -193,13 +193,27 @@
                             <option value="8">Semester 8</option>
                         </select>
                     </div>
-                    <div>
-                        <label for="jam"
-                            class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Jam</label>
-                        <input type="text" id="jam" name="jam" maxlength="5"
-                            class="rounded-lg w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                            required placeholder="cth: 14:20">
+
+                    <div class="flex gap-4">
+                        <div>
+                            <label for="jam"
+                                class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Jam</label>
+                            <input type="text" id="jam" name="jam_mulai" maxlength="5"
+                                class="rounded-lg w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                                required placeholder="cth: 14:20">
+                        </div>
+                        <div>
+                            <label for="jam"
+                                class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Jam</label>
+                            <input type="text" id="jam" name="jam_selesai" maxlength="5"
+                                class="rounded-lg w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                                required placeholder="cth: 14:20">
+                        </div>
                     </div>
+
+
+
+
                     <div>
                         <label for="prodi"
                             class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Prodi</label>

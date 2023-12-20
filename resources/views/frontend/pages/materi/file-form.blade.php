@@ -3,7 +3,7 @@
     <div class="flex w-full justify-between items-center">
         <h1 class="text-4xl font-bold pt-4 lg:pt-0 text-dark dark:text-white">Tambah File</h1>
     </div>
-    <form action="{{ route('materi.storeFile') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('materi.storeFile', ['id' => $pertemuan]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="flex flex-col mb-5">
 
@@ -48,12 +48,18 @@
                         aria-describedby="file_input_help" id="file_input" type="file" name="file">
                 </div>
             </div>
-
-            <input type="text" name="pertemuan_id" value="{{ $pertemuan }}" hidden>
             @if (session('success'))
-                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                <div id="alert"
+                    class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
                     role="alert">
                     <span class="font-medium">{{ session('success') }}</span>
+                </div>
+            @endif
+            @if (session('error'))
+                <div id="alert"
+                    class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-green-400"
+                    role="alert">
+                    <span class="font-medium">{{ session('error') }}</span>
                 </div>
             @endif
 

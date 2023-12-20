@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="flex w-full justify-between items-center">
-        <h1 class="lg:text-4xl text-xl font-bold pt-4 lg:pt-0 text-dark dark:text-white">
+        <h1 class="md:text-4xl text-xl font-bold text-dark dark:text-white">
             {{ $pertemuan->judul_pertemuan }}
         </h1>
         @if (Auth::user()->dosen)
@@ -24,45 +24,16 @@
                 @if (Auth::user()->dosen)
                     {{ Breadcrumbs::render('mhsBelajar', $dosen_matkul, $pertemuan) }}
                 @else
-                    {{ Breadcrumbs::render('mhsBelajar', $mhs_matkul, $pertemuan) }}
+                    {{ Breadcrumbs::render('mhsBelajar', $matkulId, $pertemuan) }}
                 @endif
                 <article class="dark:text-white flex flex-col">
-                    <div class="flex flex-col gap-2">
-                        @foreach ($youtubes as $youtube)
-                            <div class="mt-2 mb-2">
-                                <iframe class="w-full rounded-lg sm:h-96 shadow-xl" height="300"
-                                    src="https://www.youtube.com/embed/{{ $youtube->url_video }}?modestbranding=1&rel=0"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="content-text tracking-normal mb-5 text-gray-900 dark:text-gray-400">
-                                <p>{{ $youtube->deskripsi }}</p>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        @foreach ($videos as $video)
-                            <video class="w-full h-auto max-w-full border border-gray-200 rounded-lg dark:border-gray-700"
-                                controls>
-                                <source src="{{ Storage::url($video->path_file) }}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="content-text mb-5 tracking-normal text-gray-900 dark:text-gray-400">
-                                <p>{{ $video->deskripsi }}</p>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        @foreach ($images as $image)
-                            <img class="h-auto max-w-md" src="{{ Storage::url($image->path_file) }}"
-                                alt="image description">
-                            <div class="content-text mb-5 tracking-normal text-gray-900 dark:text-gray-400">
-                                <p>{{ $image->deskripsi }}</p>
-                            </div>
-                        @endforeach
-                    </div>
+                    @include('frontend.pages.mahasiswa.belajar.section._youtube-section')
+                    @include('frontend.pages.mahasiswa.belajar.section._video-section')
+                    @include('frontend.pages.mahasiswa.belajar.section._image-section')
+
+
+
+
 
 
                 </article>
@@ -136,27 +107,61 @@
                                                 </div>
                                                 <time
                                                     class="mb-1 text-xs leading-none text-gray-400 dark:text-gray-500">{{ $file->created_at }}</time>
-                                                <a href="#">
+                                                <a href="#" class="flex">
                                                     <h3
                                                         class="text-md font-semibold hover:text-blue-600 text-gray-900 dark:text-white mb-1">
-                                                        {{ $file->nama_file }}
+                                                        {{ $file->nama_file }}.{{ $file->extensi }}
                                                     </h3>
+                                                    <div class="inline-flex">
+                                                        <a href="{{ Storage::url($file->path_file) }}" target="_blank"
+                                                            class="inline-flex items-center text-center px-2 py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                                                                class="w-3.5 h-3.5 mr-2.5" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                                viewBox="0 0 20 20">
+                                                                <path
+                                                                    d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
+                                                                <path
+                                                                    d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                                                            </svg> Download</a>
+                                                    </div>
                                                 </a>
                                             </div>
 
 
-                                            <div class="inline-flex">
-                                                <a href="#"
-                                                    class="inline-flex items-center text-center px-2 py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
-                                                        class="w-3.5 h-3.5 mr-2.5" aria-hidden="true"
-                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
-                                                        <path
-                                                            d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-                                                    </svg> Download</a>
+
+                                        </li>
+                                    @endforeach
+
+                                    @foreach ($images as $image)
+                                        <li class="mb-5 ml-4 flex md:flex-col justify-between">
+                                            <div class="content">
+                                                <div
+                                                    class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                                                </div>
+                                                <time
+                                                    class="mb-1 text-xs leading-none text-gray-400 dark:text-gray-500">{{ $file->created_at }}</time>
+                                                <a href="#" class="flex">
+                                                    <h3
+                                                        class="text-md font-semibold hover:text-blue-600 text-gray-900 dark:text-white mb-1">
+                                                        {{ $image->nama_file }}.{{ $image->extensi }}
+                                                    </h3>
+                                                    <div class="inline-flex">
+                                                        <a href="{{ Storage::url($image->path_file) }}" target="_blank"
+                                                            class="inline-flex items-center text-center px-2 py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                                                                class="w-3.5 h-3.5 mr-2.5" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                                viewBox="0 0 20 20">
+                                                                <path
+                                                                    d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
+                                                                <path
+                                                                    d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                                                            </svg> Download</a>
+                                                    </div>
+                                                </a>
                                             </div>
+
+
+
                                         </li>
                                     @endforeach
                                 </ol>
@@ -189,23 +194,21 @@
                             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
 
                                 <ol class="relative border-l border-gray-200 dark:border-gray-700">
-                                    <li class="mb-5 mt-2 ml-4 flex flex-col">
-                                        <div
-                                            class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                                        </div>
-                                        {{-- <time
-                                            class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Diberikan:
-                                            Senin, 20 Juli 2023</time> --}}
-                                        <div class="tenggat mb-2">
-                                            <span
-                                                class="w-40 bg-red-100 text-red-800 text-xs font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">Senin,
-                                                20 Juli 2023</span>
-                                        </div>
-                                        <a href="#"
-                                            class="text-sm font-semibold text-gray-900 dark:text-white dark:hover:text-blue-400 hover:text-blue-600">Buat
-                                            Makalah
-                                            minimal 15 Halaman</a>
-                                    </li>
+                                    @foreach ($tugas as $tgs)
+                                        <li class="mb-2 mt-2 ml-4 flex flex-col">
+                                            <div
+                                                class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                                            </div>
+                                            <div class="tenggat mb-2">
+                                                <span
+                                                    class="w-40 bg-red-100 text-red-800 text-xs mr-2 px-2.5 rounded dark:bg-gray-900 dark:text-red-400 border border-red-400">
+                                                    {{ Carbon\Carbon::parse($tgs->tgl_tenggat)->translatedFormat('l, Y-m-d') }}
+                                                </span>
+                                            </div>
+                                            <a href="{{ route('tugas.show', ['tuga' => $tgs->id]) }}"
+                                                class="text-sm font-semibold text-gray-900 dark:text-white dark:hover:text-blue-400 hover:text-blue-600">{{ $tgs->judul_tugas }}</a>
+                                        </li>
+                                    @endforeach
                                 </ol>
 
                             </div>

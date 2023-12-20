@@ -91,12 +91,21 @@
                                 <option value="Sabtu">Sabtu</option>
                             </select>
                         </div>
-                        <div class="mb-6">
-                            <label for="jam"
-                                class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Jam</label>
-                            <input type="text" id="jam" name="jam" maxlength="5"
-                                class="rounded-lg w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                                required placeholder="cth: 14:20" value="{{ $matkul->jam }}">
+                        <div class="flex gap-4">
+                            <div>
+                                <label for="jam"
+                                    class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Jam</label>
+                                <input type="text" id="jam" name="jam_mulai" maxlength="5"
+                                    class="rounded-lg w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                                    required placeholder="cth: 14:20" value="{{ substr($matkul->jam_mulai, 0, -3) }}">
+                            </div>
+                            <div>
+                                <label for="jam"
+                                    class="block mb-2 text-sm font-medium text-blue-600 dark:text-white">Jam</label>
+                                <input type="text" id="jam" name="jam_selesai" maxlength="5"
+                                    class="rounded-lg w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                                    required placeholder="cth: 14:20" value="{{ substr($matkul->jam_selesai, 0, -3) }}">
+                            </div>
                         </div>
 
                         <div class="mb-6">

@@ -69,51 +69,7 @@ class MatkulController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->validate([
-            'nama_matkul' => 'required',
-            'deskripsi' => 'required|min:20',
-            'gambar' => 'required|file',
-            'semester_id' => 'required',
-            'hari' => 'required',
-            'jam' => 'required',
-            'prodi' => 'required',
-            'kode_matkul' => 'unique:matkuls,kode_enroll',
-        ]);
-
-        $nama_matkul = $request->input('nama_matkul');
-        $jam = $request->input('jam');
-        $deskripsi = $request->input('deskripsi');
-        $pemberitahuan = $request->input('pemberitahuan');
-        $semester_id = $request->input('semester_id');
-        $hari = $request->input('hari');
-        $prodi_id = $request->input('prodi');
-        $kode_mk = $request->input('kode_matkul');
-        $gambar = $request->file('gambar'); // Use file() instead of input()
-
-        // Convert the image to WebP format
-        $webpImage = Image::make($gambar)->encode('webp', 90); // Adjust quality as needed
-        $webpPath = 'public/thumbnail/' . time() . '.webp';
-        // Save the WebP image to storage
-        Storage::put($webpPath, $webpImage->stream());
-
-
-        $userId = Auth::user()->dosen->id;
-
-        $matkul = new Matkul;
-        $matkul->nama_matkul = $nama_matkul;
-        $matkul->dosen_id = $userId;
-        $matkul->deskripsi = $deskripsi;
-        $matkul->gambar = $webpPath;
-        $matkul->jam = $jam;
-        $matkul->semester_id = $semester_id;
-        $matkul->prodi_id = $prodi_id;
-        $matkul->hari = $hari;
-        $matkul->pemberitahuan = $pemberitahuan;
-
-        $matkul->kode_enroll = $kode_mk;
-        $matkul->save();
-
+        Matkul::CreateMatkul($request);
         Session::flash('success');
 
         return redirect('/matkul');
@@ -150,41 +106,8 @@ class MatkulController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $matkul = Matkul::findOrFail($id);
-        $dosen_id = Auth::user()->dosen->id;
 
-        $nama_matkul = $request->input('nama_matkul');
-        $jam = $request->input('jam');
-        $deskripsi = $request->input('deskripsi');
-        $semester_id = $request->input('semester_id');
-        $hari = $request->input('hari');
-        $prodi_id = $request->input('prodi');
-        $kode_mk = $request->input('kode_matkul');
-        // If a new image file is uploaded, update the image
-        if ($request->hasFile('gambar')) {
-
-            $gambar = $request->file('gambar');
-            $webpImage = Image::make($gambar)->encode('webp', 90);
-            $webpPath = 'public/thumbnail/' . time() . '.webp';
-            Storage::put($webpPath, $webpImage->stream());
-            $matkul->gambar = $webpPath;
-        }
-
-
-
-
-
-        $matkul->nama_matkul = $nama_matkul;
-        $matkul->jam = $jam;
-        $matkul->dosen_id = $dosen_id;
-        $matkul->deskripsi = $deskripsi;
-        $matkul->semester_id = $semester_id;
-        $matkul->hari = $hari;
-        $matkul->prodi_id = $prodi_id;
-        $matkul->kode_enroll = $kode_mk;
-
-        $matkul->save();
-
+        Matkul::UpdateMatkul($request, $id);
         Session::flash('success');
 
         return redirect('/matkul');

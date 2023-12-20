@@ -11,6 +11,17 @@
         </div>
     @endif
 
+
+    <div class="col-span-1 xl:col-span-1">
+        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right"></label>
+    </div>
+
+    <div class="col-span-1 xl:col-span-7">
+        <input name="foto"
+            class="block text-xs text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            aria-describedby="file_input_help" id="file_input" type="file">
+    </div>
+
     <div class="col-span-1 xl:col-span-1">
         <label
             class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right hidden md:block">NIM</label>
@@ -68,18 +79,6 @@
         @endisset
 
 
-    </div>
-
-
-    <div class="col-span-1 xl:col-span-1">
-        <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white xl:text-right">Upload
-            Foto</label>
-    </div>
-
-    <div class="col-span-1 xl:col-span-7">
-        <input name="foto"
-            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            aria-describedby="file_input_help" id="file_input" type="file">
     </div>
 
     <div class="col-span-1 xl:col-span-1">

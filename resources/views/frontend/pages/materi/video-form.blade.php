@@ -3,11 +3,9 @@
     <div class="flex w-full justify-between items-center">
         <h1 class="text-4xl font-bold pt-4 lg:pt-0 text-dark dark:text-white">Tambah video Youtube</h1>
     </div>
-    <form action="{{ route('materi.storeVideo') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('materi.storeVideo', ['id' => $pertemuan]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="flex flex-col mb-5">
-
-
             <div class="flex gap-4 mt-4">
                 <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white w-24"><span>URL</span></label>
                 <div class="mb-6 w-full">
@@ -88,14 +86,8 @@
                     </div>
                 </div>
             </div>
-
-            <input type="text" name="pertemuan_id" value="{{ $pertemuan }}" hidden>
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
+            <x-success-alert></x-success-alert>
+            <x-error-alert></x-error-alert>
             <div class="flex gap-2">
                 <div class="w-24"></div>
                 <div class="button">

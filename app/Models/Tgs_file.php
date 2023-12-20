@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mtr_file extends Model
+class Tgs_file extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    function pertemuan()
+    function tugas()
     {
-        $this->belongsTo(Pertemuan::class);
+        $this->belongsTo(Tugas::class);
     }
 }

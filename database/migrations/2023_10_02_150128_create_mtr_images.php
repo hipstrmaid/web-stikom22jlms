@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tugas', function (Blueprint $table) {
+        Schema::create('mtr_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pertemuan_id');
             $table->foreign('pertemuan_id')->references('id')->on('pertemuans');
-            $table->string('judul_tugas');
-            $table->text('deskripsi');
-            $table->text('instruksi');
-            $table->date('tgl_tenggat');
-            $table->time('waktu_tenggat');
+            $table->string('nama_file');
+            $table->text('deskripsi')->nullable();
+            $table->string('path_file')->nullable();
+            $table->string('extensi')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tugas');
+        Schema::dropIfExists('mtr_images');
     }
 };

@@ -6,15 +6,8 @@
     </div>
     {{ Breadcrumbs::render('enrollMatkul') }}
 
-    {{-- @if ($matkulExist)
-        @include('includes.card._guestcourse')
-    @else
-        <p class="text-dark dark:text-white my-4 font-bold">Belum ada mata.</p>
-    @endif --}}
-
-
-    <div class="p-2">
-        <form action="" method="POST">
+    <div class="py-2">
+        <form method="POST">
             @csrf
             <div class="flex">
                 <span
@@ -29,16 +22,8 @@
                 class="w-full inline-flex items-center mt-2 justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 Daftar<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
             </button>
-            @error('error')
-                <div class="alert alert-danger">
-                    <strong>Error!</strong> {{ $message }}
-                </div>
-            @enderror
-            @error('success')
-                <div class="alert alert-danger">
-                    <strong>{{ $message }}</strong>
-                </div>
-            @enderror
+            <x-error-alert></x-error-alert>
+            <x-success-alert></x-success-alert>
         </form>
     </div>
 @endsection

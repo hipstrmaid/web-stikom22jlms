@@ -1,7 +1,7 @@
 {{-- Custom Breadcrumb style using Flowbite breadcrumbs coded by Ray --}}
-<nav class="py-2 flex rounded text-sm" aria-label="Breadcrumb">
+<nav class="pb-2 flex rounded" aria-label="Breadcrumb">
     <x-home-svg></x-home-svg>
-    <ol class="inline-flex items-center">
+    <ol class="inline-flex items-center text-sm">
         @unless ($breadcrumbs->isEmpty())
             @foreach ($breadcrumbs as $breadcrumb)
                 <li class="inline-flex items-center text-xs2">

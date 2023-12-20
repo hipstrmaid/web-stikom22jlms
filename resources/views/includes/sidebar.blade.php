@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 <aside
-    class="fixed text-gray-900 dark:text-white top-0 left-0 bg-white dark:bg-gray-800 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed text-gray-900 dark:text-white top-0 left-0 bg-white dark:bg-gray-800 z-40 w-60 h-screen pt-14 transition-transform -translate-x-full border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidenav" id="drawer-navigation">
 
     <div class="overflow-y-auto py-4 h-full">
@@ -32,13 +32,13 @@
                     <li>
                         @if (Auth::user()->role_id == 1)
                             <a href="{{ route('matkul.index') }}"
-                                class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900 rounded-lg  group">
+                                class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900  group">
                                 <i class="fas fa-book"></i>
                                 <span class="ml-3">Mata Kuliah</span>
                             </a>
                         @else
                             <a href="{{ route('matkul.index') }}"
-                                class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900 rounded-lg  group">
+                                class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900 group">
                                 <i class="fas fa-book"></i>
                                 <span class="ml-3">Mata Kuliah</span>
                             </a>
@@ -48,13 +48,13 @@
 
                     <li>
                         <a href="/tugas"
-                            class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900 rounded-lg  group"><i
+                            class="flex items-center p-2 px-4 text-base font-medium hover:bg-gray-200  dark:hover:bg-gray-900  group"><i
                                 class="fas fa-book"></i><span class="ml-3">Tugas</span></a>
                     </li>
                     <li>
                         <a href="/forum">
                             <button type="button"
-                                class="flex items-center p-2 px-4 w-full text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">
+                                class="flex items-center p-2 px-4 w-full text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-900 transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">
                                 <i class="fas fa-comments"></i>
                                 <span class="flex-1 ml-2 text-left whitespace-nowrap">Forum</span>
                             </button>
@@ -79,18 +79,18 @@
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="{{ route('user.tambahDosen') }}"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Dosen</a>
+                                    class="p-2 w-full text-base font-medium   transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Dosen</a>
                             </li>
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="{{ route('user.tambahMahasiswa') }}"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Mahasiswa</a>
+                                    class="p-2 w-full text-base font-medium  transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Mahasiswa</a>
                             </li>
 
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="{{ route('user.tambahAdmin') }}"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Admin</a>
+                                    class="p-2 w-full text-base font-medium  transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Admin</a>
                             </li>
                         </ul>
                     </li>
@@ -107,34 +107,34 @@
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="#"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Mata
+                                    class="p-2 w-full text-base font-medium transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Mata
                                     Kuliah</a>
                             </li>
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="#"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Pertemuan</a>
+                                    class="p-2 w-full text-base font-medium transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Pertemuan</a>
                             </li>
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="#"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Semester</a>
+                                    class="p-2 w-full text-base font-medium transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Semester</a>
                             </li>
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="#"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Materi</a>
+                                    class="p-2 w-full text-base font-medium transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Materi</a>
                             </li>
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="#"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Prodi</a>
+                                    class="p-2 w-full text-base font-medium transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Prodi</a>
                             </li>
 
                             <li class="flex items-center pl-10">
                                 <span class="dot"></span>
                                 <a href="{{ route('role.index') }}"
-                                    class="p-2 w-full text-base font-medium  rounded-lg transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Role</a>
+                                    class="p-2 w-full text-base font-medium transition duration-75 group hover:bg-gray-100  dark:hover:bg-gray-700">Role</a>
                             </li>
 
                         </ul>

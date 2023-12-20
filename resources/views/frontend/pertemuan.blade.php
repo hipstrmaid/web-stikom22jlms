@@ -175,3 +175,26 @@
         </div>
     </div>
 @endsection
+
+
+
+<!--Instruksi-->
+<div class="deskripsi mt-4">
+    <h1 class="font-bold">Instruksi</h1>
+    <hr class="h-px mb-2 bg-gray-200 border-0 dark:bg-gray-700">
+    <p class="text-sm tracking-normal">{{ $tugas->instruksi }}.</p>
+    @foreach ($tugas->tgs_file as $file)
+        <div class="flex items-center">
+            <div class="mx-2 mt-3">
+                <i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i>
+            </div>
+            <div class="p-2 bg-blue-500 text-white dark:bg-blue-600 rounded w-24 mt-4">
+                <a class="flex" href="{{ Storage::url($file->path_file) }}">
+                    <i class="fas fa-download text-xs"></i>
+                    <span class="text-xs ml-2">Download</span>
+                </a>
+            </div>
+        </div>
+    @endforeach
+</div>
+<!--Instruksi End-->

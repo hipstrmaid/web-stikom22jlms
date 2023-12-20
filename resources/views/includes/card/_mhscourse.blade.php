@@ -4,7 +4,7 @@
             src="{{ Storage::url($matkul->matkul->gambar) }}" alt="Course Image">
     </a>
     <div class="flex flex-col flex-grow">
-        <div class="content px-4 py-2 flex flex-col gap-1">
+        <div class="content px-4 py-2 flex flex-col">
             <div class="card-category">
                 @if ($matkul->matkul->prodi->nama_prodi == 'Sistem Informasi')
                     <span
@@ -16,7 +16,7 @@
                 <span
                     class="bg-orange-100 text-orange-800 dark:text-white dark:bg-gray-700 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-orang-900 dark:text-orange-800">{{ $matkul->matkul->semester->nama_semester }}</span>
             </div>
-            <div class="card-title">
+            <div class="card-title pt-2">
                 <a href="{{ route('matkul.pertemuanPreview', ['id' => $matkul->matkul->id]) }}">
                     <p class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">
                         {{ $matkul->matkul->nama_matkul }}</p>

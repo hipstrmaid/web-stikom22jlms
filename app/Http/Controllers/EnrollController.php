@@ -10,40 +10,64 @@ use Illuminate\Support\Facades\Auth;
 
 class EnrollController extends Controller
 {
+    // public function index()
+    // {
+    //     $mahasiswa_semester = Auth::user()->mahasiswa->semester_id;
+
+    //     $matkuls = Matkul::all()->where('semester_id', $mahasiswa_semester)->groupBy('semester_id')->sortBy(function ($items, $key) {
+    //         return $key;
+    //     });
+    //     $matkulExist = Matkul::where('semester_id', $mahasiswa_semester)->exists();
+    //     return view('frontend.pages.enroll', compact('matkuls', 'matkulExist'));
+    // }
+
+
     public function index()
     {
+        // Get the current user's semester ID (assuming you have set up relationships correctly).
         $mahasiswa_semester = Auth::user()->mahasiswa->semester_id;
 
-        $matkuls = Matkul::all()->where('semester_id', $mahasiswa_semester)->groupBy('semester_id')->sortBy(function ($items, $key) {
-            return $key;
-        });
-        $matkulExist = Matkul::where('semester_id', $mahasiswa_semester)->exists();
+        // Retrieve matkuls for the specified semester.
+        $matkuls = Matkul::where('semester_id', $mahasiswa_semester)->get();
+
+        // Check if any subjects (matkuls) exist for the specified semester.
+        $matkulExist = $matkuls->isNotEmpty();
+
 
         return view('frontend.pages.enroll', compact('matkuls', 'matkulExist'));
     }
 
-    public function store(Request $request, $id)
+
+    public function store(Request $request)
     {
         $request->validate([
             'kode_matkul' => 'required'
         ]);
 
-        $matkul_id = Matkul::where('id', $id)->first();
         $kode_matkul = $request->input('kode_matkul');
-        if ($kode_matkul == $matkul_id->kode_enroll) {
-            $id_mhs = Auth::user()->mahasiswa->id;
-            $enroll = new Enroll;
-            $enroll->mahasiswa_id = $id_mhs;
-            $enroll->matkul_id = $matkul_id->id;
-            $enroll->kode_matkul = $kode_matkul;
-            $enroll->save();
-            session()->flash('success', 'Berhasil mendaftar.');
-            return redirect()->back();
-        } else {
+        $matkul = Matkul::where('kode_enroll', $kode_matkul)->first();
 
-            session()->flash('error', 'Kode yang anda masukkan salah.');
-            return redirect()->back();
+        // Make sure to properly retrieve the user's Mahasiswa ID
+        $mahasiswaId = Auth::user()->mahasiswa->id;
+
+        $enrolled = Enroll::where('kode_matkul', $kode_matkul)->exists();
+
+        if (!$matkul) {
+            return redirect()->back()->with('error', 'Tidak ada mata kuliah dengan kode ini.');
         }
+
+        if ($matkul && !$enrolled) {
+            $enrolls = [
+                "mahasiswa_id" => $mahasiswaId, // Set the Mahasiswa ID correctly
+                "matkul_id" => $matkul->id,
+                "kode_matkul" => $kode_matkul
+            ];
+            Enroll::create($enrolls);
+
+            return redirect()->back()->with('success', $matkul->nama_matkul . ' berhasil di tambahkan.');
+        }
+
+        return redirect()->back()->with('error', 'Mata Kuliah sudah terdaftar.');
     }
 
     public function previewMatkul($id)

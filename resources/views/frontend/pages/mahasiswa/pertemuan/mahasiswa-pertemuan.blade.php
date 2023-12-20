@@ -3,6 +3,17 @@
     <div class="row">
         <div class="grid grid-cols-1 lg:grid-cols-8 gap-4 mb-4 h-46">
 
+            <div class="lg:col-span-8">
+                <div class="content-heading mt-2 lg:mt-0">
+                    <h1
+                        class="text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+                        {{ $matkul->nama_matkul }}
+                    </h1>
+                    {{ Breadcrumbs::render('previewMatkul', $matkul) }}
+                    {{-- <img class="w-80 object-cover" src="{{ Storage::url($matkul->gambar) }}" alt="gambar-matkul"> --}}
+                    <p class="py-3 font-normal text-gray-700 dark:text-gray-400">{{ $matkul->deskripsi }}</p>
+                </div>
+            </div>
             <div class="lg:col-span-2">
                 <div class="bg-white border border-gray-200 rounded-t shadow dark:border-gray-900 dark:bg-gray-800">
                     <h5 class="text-gray-900 dark:text-white py-2 px-4 font-bold">Detail Mata Kuliah</h5>
@@ -14,15 +25,16 @@
                             <i class="fa-solid fa-user ml-4 dark:text-white"></i>
                             <p class="dark:text-white px-2">{{ $matkul->dosen->nama }}</p>
                         </li>
-
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-clock ml-4 dark:text-white"></i>
+                            <p class="dark:text-white px-2">{{ substr($matkul->jam_mulai, 0, -3) }} -
+                                {{ substr($matkul->jam_selesai, 0, -3) }}</p>
+                        </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-calendar ml-4 dark:text-white"></i>
                             <p class="dark:text-white px-2">{{ $matkul->hari }}</p>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-clock ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->jam }}</p>
-                        </li>
+
                         <li class="flex items-center">
                             <i class="fa-solid fa-users ml-4 dark:text-white"></i>
                             <p class="dark:text-white px-2">{{ $totalUser->count() }}</p>
@@ -66,28 +78,17 @@
                             <div class="p-2">
                                 <a href="{{ route('pertemuan.show', ['pertemuan' => $lastPertemuan->id]) }}"
                                     class="w-full inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                    Pertemuan {{ $pertemuans->count() }}<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
+                                    Pertemuan {{ $pertemuans->count() }}<i
+                                        class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
                                 </a>
                             </div>
                         @endif
                     @endif
                 </div>
             </div>
-
             <div class="lg:col-span-6">
-                <div class="content-heading mt-2 lg:mt-0">
-                    <h1
-                        class="text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-                        {{ $matkul->nama_matkul }}
-                    </h1>
-                    {{ Breadcrumbs::render('previewMatkul', $matkul) }}
-                    {{-- <img class="w-80 object-cover" src="{{ Storage::url($matkul->gambar) }}" alt="gambar-matkul"> --}}
-                    <p class="py-3 font-normal text-gray-700 dark:text-gray-400">{{ $matkul->deskripsi }}</p>
-                </div>
-
                 <div class="content-data">
-                    <hr class="mt-3 border-gray-200 sm:mx-auto dark:border-gray-700" />
-                    <div class="content-title flex items-center dark:text-white mt-2">
+                    <div class="content-title flex items-center dark:text-white">
                         <i class="fa-solid fa-circle-question mr-2" style="color: #4287ff;"></i>
                         <h1 class="text-xl font-bold my-2 ">Informasi</h1>
                     </div>
@@ -96,7 +97,7 @@
                         <li>
                             <h2 id="accordion-collapse-heading-1">
                                 <button type="button"
-                                    class="flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    class="flex shadow items-center justify-between w-full p-3 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                     data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
                                     aria-controls="accordion-collapse-body-1">
                                     <span><i class="fa-solid fa-circle-exclamation mr-2"
@@ -115,11 +116,11 @@
                             </h2>
                             <div id="accordion-collapse-body-1" class="hidden"
                                 aria-labelledby="accordion-collapse-heading-1">
-                                <div class="p-5 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                                <div class="py-5 px-1 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                     <ol class="relative border-gray-200 dark:border-gray-700 ml-10">
                                         <li class="ml-6">
                                             <span
-                                                class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                                                class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-5 ring-white dark:ring-gray-900 dark:bg-blue-900">
                                                 <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300"
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -134,8 +135,6 @@
                                             </h3>
                                             <time
                                                 class="block mb-2 pt-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $matkul->updated_at }}</time>
-                                            {{-- <p class="mb-1 text-base font-normal text-gray-800 dark:text-gray-400">
-                                                {{ $matkul->pemberitahuan ?? 'Tidak ada pemberitahuan.' }}</p> --}}
                                         </li>
                                     </ol>
                                 </div>
@@ -145,7 +144,7 @@
                         <li>
                             <h2 id="accordion-collapse-heading-2">
                                 <button type="button"
-                                    class="flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
+                                    class="flex shadow items-center justify-between w-full p-3 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
                                     data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                                     aria-controls="accordion-collapse-body-2">
                                     <span><i class="fa-solid fa-list-ul mr-2"></i>List Pertemuan</span>
@@ -190,8 +189,6 @@
 
 
             </div>
-
-
 
 
         </div>

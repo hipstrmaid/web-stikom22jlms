@@ -70,7 +70,7 @@
                             </li>
 
                             <li class="flex">
-                                <a href="#"
+                                <a href="{{ route('materi.createTugas', ['pertemuanId' => $pertemuan->id]) }}"
                                     class="flex shadow-md items-center gap-4 rounded-sm w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
                                     <div class="bg-yellow-400 w-16 h-16 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-file-arrow-up fa-xl text-white"></i>
@@ -104,6 +104,27 @@
                                             {{-- <button class="px-2 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none">
                                             Edit
                                         </button> --}}
+                                            <button
+                                                class="ml-2 px-2 py-1 text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            @endforeach
+                            @foreach ($images as $image)
+                                <form action="{{ route('materi.destroyImage', ['id' => $image->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div
+                                        class="flex items-center mb-2 justify-between p-2 rounded-md w-full dark:bg-gray-600 dark:border-gray-600 text-dark border border-gray-200">
+                                        <a href="#" aria-current="true" class="block w-full cursor-pointer">
+                                            {{ $image->nama_file }}.{{ $image->extensi }}
+                                        </a>
+                                        <div class="flex">
+                                            {{-- <button class="px-2 py-1 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none">
+                                        Edit
+                                    </button> --}}
                                             <button
                                                 class="ml-2 px-2 py-1 text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none">
                                                 Delete

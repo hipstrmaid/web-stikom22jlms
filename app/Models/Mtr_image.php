@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mtr_video extends Model
+class Mtr_image extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'url_video',
-        'pertemuan_id',
-        'deskripsi',
-    ];
+
+    protected $guarded = ['id'];
 
     function pertemuan()
     {
         $this->belongsTo(Pertemuan::class);
+    }
+
+    public static function storeImage($extension)
+    {
+        return 'public/images/' . time() . '.' . $extension;
     }
 }

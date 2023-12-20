@@ -58,6 +58,6 @@ class ProfileController extends Controller
         // Save the updated user record to the database
         $user->save();
 
-        return redirect()->route('user.editPassword', $user->id)->with('success', 'Password updated successfully.');
+        return redirect()->route('user.editPassword', $user->id)->with('success', 'Password berhasil di ubah.');
     }
 }

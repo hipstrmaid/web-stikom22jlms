@@ -30,13 +30,14 @@
 </head>
 
 {{-- default: bg-gray-50 --}}
+{{-- custom: bg-gray-vanilla --}}
 
 <body class="font-poppins bg-gray-vanilla dark:bg-gray-900">
     <div class="antialiased">
         @include('includes.header')
         @include('includes.sidebar')
 
-        <main class="md:ml-64 w-auto h-auto pt-20">
+        <main class="md:ml-60 w-auto h-auto pt-20">
             <div class="px-5">
                 @yield('content')
             </div>
@@ -44,6 +45,8 @@
     </div>
     @include('includes.footer')
     <script src="{{ asset('js/darkmode.js') }}"></script>
+    <script src="{{ asset('js/alert.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </body>
 
 </html>

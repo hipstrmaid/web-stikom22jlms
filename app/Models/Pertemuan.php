@@ -9,14 +9,11 @@ class Pertemuan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'matkul_id',
-        'nama_pertemuan',
-    ];
+    protected $guarded = ['id'];
 
     function matkul()
     {
-        $this->belongsTo(Matkul::class, 'matkul_id');
+        $this->belongsTo(Matkul::class);
     }
 
     public function mtr_video()
@@ -27,5 +24,15 @@ class Pertemuan extends Model
     public function mtr_file()
     {
         return $this->hasMany(Mtr_file::class);
+    }
+
+    public function mtr_image()
+    {
+        return $this->hasMany(Mtr_image::class);
+    }
+
+    public function tugas()
+    {
+        return $this->hasMany(Tugas::class);
     }
 }

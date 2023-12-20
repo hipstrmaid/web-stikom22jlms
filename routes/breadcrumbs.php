@@ -26,7 +26,7 @@ Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
 // Dashboard > Mata Kuliah
 Breadcrumbs::for('matkul', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard.index'); // Parent routes (Pilih salah solo route)
-    $trail->push('Mata kuliah', route('matkul.index'));
+    $trail->push('Matkul', route('matkul.index'));
 });
 
 // Dashboard > Mata Kuliah
@@ -44,13 +44,20 @@ Breadcrumbs::for('editMatkul', function (BreadcrumbTrail $trail, $matkul) {
 // Dashboard > Mata Kuliah >  Pertemuan
 Breadcrumbs::for('previewMatkul', function (BreadcrumbTrail $trail, $matkul) {
     $trail->parent('matkul');
-    $trail->push('Pertemuan', route('matkul.pertemuanPreview', ['id' => $matkul->id]));
+    $trail->push('Pertemuan', route('matkul.pertemuanPreview', ['id' => $matkul]));
 });
 
 // Dashboard > Mata Kuliah > Pertemuan > Belajar
 Breadcrumbs::for('mhsBelajar', function (BreadcrumbTrail $trail, $matkul, $pertemuan) {
     $trail->parent('previewMatkul', $matkul); // Pass the $matkul parameter here
-    $trail->push('Belajar', route('pertemuan.show', ['pertemuan' => $pertemuan->id]));
+    $trail->push('Belajar', route('pertemuan.show', ['pertemuan' => $pertemuan]));
+});
+
+
+// Dashboard > Mata Kuliah > Pertemuan > Belajar > Tugas
+Breadcrumbs::for('mhsTugas', function (BreadcrumbTrail $trail, $matkul, $pertemuan, $tgs) {
+    $trail->parent('mhsBelajar', $matkul, $pertemuan); // Pass the $matkul parameter here
+    $trail->push('Tugas', route('tugas.show', ['tuga' => $tgs]));
 });
 
 
