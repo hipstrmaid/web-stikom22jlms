@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
+
 // Public route
 Route::get('/login', function () {
     return view('auth.login');
@@ -39,6 +40,9 @@ Route::get('/login', function () {
 Route::middleware('guest')->group(function () {
     Route::resource('guest', GuestController::class);
 });
+
+// Laravel authentication routes
+Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/calendar', function () {
@@ -51,8 +55,7 @@ Route::get('/tugas', function () {
 
 
 
-// Laravel authentication routes
-Auth::routes();
+
 
 // Routes accessible by authenticated users only
 Route::middleware('auth')->group(function () {
@@ -86,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::post('materi/{id}/store-tugas', [MateriController::class, 'storeTugas'])->name('materi.storeTugas');
     Route::delete('materi/{id}/delete-tugas', [MateriController::class, 'destroyTugas'])->name('materi.destroytugas');
 
+    Route::get('tugas/{tugasId}/mengumpul', [TugasController::class, 'createTugas'])->name('materi.createTugas');
 
 
     Route::get('enroll', [EnrollController::class, 'index'])->name('enroll.index');

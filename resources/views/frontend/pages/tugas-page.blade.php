@@ -91,15 +91,6 @@
                     </div>
 
 
-
-
-
-
-
-
-
-
-
                     <ul
                         class="flex text-xs mt-5 md:text-sm font-medium text-gray-900 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <div class="w-64">
@@ -116,6 +107,7 @@
                         </div>
                     </ul>
                 </div>
+                {{-- Mengumpul tab --}}
                 <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
                     aria-labelledby="dashboard-tab">
                     <ul
@@ -133,9 +125,21 @@
                             <div class="w-full px-4 py-2 dark:border-gray-600" id="countdown"></div>
 
                         </div>
+
+
                     </ul>
+                    <div class="text-white dark:bg-blue-600 mt-4">
+                        <a class="d-flex p-2 rounded bg-green-500" href="#">
+                            <i class="fas fa-check text-xs"></i>
+                            <span class="ml-2">Setor Tugas</span>
+                        </a>
+                    </div>
                 </div>
+
             </div>
+
+
+
 
         </article>
 
@@ -158,7 +162,7 @@
 
                 countdownElement.innerHTML = `${days} Hari, ${hours} Jam, ${minutes} Menit, ${seconds} Detik`;
             } else {
-                countdownElement.innerHTML = "Countdown expired!";
+                countdownElement.innerHTML = "Waktu pengumpulan telah habis!";
             }
         }
 

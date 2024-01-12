@@ -10,7 +10,8 @@
             <img src="{{ asset('assets/img/stikom-logo.webp') }}" class="mr-3 hidden sm:block" alt="STIKOM Logo"
                 width="48" height="48">
 
-            <span class="self-center text-1xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22
+            <span class="self-center text-1xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM
+                22
                 Januari <br>
                 <p class="self-center text-sm md:text-2xl md:hidden font-semibold whitespace-nowrap dark:text-white">
                     Learning
@@ -43,7 +44,7 @@
                                 break; // Stop checking once a foto is found
                             }
                         }
-                        
+
                     @endphp
 
                     <img class="w-8 h-8 rounded-full object-cover" src="{{ $fotoUrl }}" alt="User Foto">
