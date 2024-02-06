@@ -90,7 +90,7 @@
                 <div class="content-data">
                     <div class="content-title flex items-center dark:text-white">
                         <i class="fa-solid fa-circle-question mr-2" style="color: #4287ff;"></i>
-                        <h1 class="text-xl font-bold my-2 ">Informasi</h1>
+                        <h1 class="text-xl font-bold my-1 ">Informasi</h1>
                     </div>
 
                     <ul class="grid w-full gap-4 mb-4  dark:text-white" id="accordion-collapse" data-accordion="collapse">

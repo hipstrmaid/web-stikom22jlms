@@ -2,13 +2,13 @@
 @section('content')
     <article class="bg-gray-50 dark:bg-gray-800 p-5 mb-5">
         <div class="flex gap-2 items-center">
-            <div class="bg-blue-500 border dark:border-gray-800 rounded-md px-4 py-6 inline-flex items-center"
-                style="height: 100%; width: 50px;">
+            <div class="bg-blue-500 border dark:border-gray-800 rounded-md px-4 py-6 inline-flex items-center h-full">
                 <i class="fa-solid fa-file-arrow-up fa-lg text-white"></i>
             </div>
 
+
             <div>
-                <h1 class="text-xl lg:text-3xl font-bold text-dark dark:text-white">
+                <h1 class="text-xl lg:text-2xl font-bold text-dark dark:text-white">
                     Tugas: {{ $tugas->pertemuan->judul_pertemuan }}</h1>
                 <div class="hidden md:block">
                     {{ Breadcrumbs::render('mhsTugas', $matkulId, $pertemuanId, $tugas) }}
@@ -64,7 +64,7 @@
                             </button>
                         </h2>
                         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
-                            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                            <div class="p-5 border border-gray-200 dark:border-gray-700">
 
                                 <!--Instruksi-->
                                 <div class="deskripsi">
@@ -90,9 +90,9 @@
                         </div>
                     </div>
 
-
+                    <p class="mt-5 font-bold">Submission Status</p>
                     <ul
-                        class="flex text-xs mt-5 md:text-sm font-medium text-gray-900 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        class="flex text-xs mt-1 md:text-sm font-medium text-gray-900 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <div class="w-64">
                             <li class="w-full py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                 <p class="ml-2">Diberikan</p>
@@ -106,6 +106,45 @@
                                 {{ Carbon\Carbon::parse($tugas->tgl_tenggat)->translatedFormat('l, d-m-Y') }}</li>
                         </div>
                     </ul>
+
+                    <x-error-alert></x-error-alert>
+                    <x-success-alert></x-success-alert>
+
+
+                    @if (Auth::user()->mahasiswa)
+                        <div class="text-white dark:bg-dark-600 mt-4">
+                            @if ($mengumpul == false)
+                                <a class="d-flex p-2 rounded bg-red-500"
+                                    href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
+                                    <i class="fas fa-xmark text-xs"></i>
+                                    <span class="ml-2">Belum mengumpul</span>
+                                </a>
+                            @else
+                                <a class="d-flex p-2 rounded bg-green-500"
+                                    href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
+                                    <i class="fas fa-check text-xs"></i>
+                                    <span class="ml-2">Telah mengumpul</span>
+                                </a>
+                            @endif
+                        </div>
+                    @else
+                        <div class="text-white dark:bg-dark-600 mt-4 flex gap-2">
+                            <a class="d-flex p-2 rounded bg-blue-500"
+                                href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
+                                <i class="fas fa-paperclip"></i>
+                                <span class="ml-2">Daftar telah megumpul</span>
+                            </a>
+
+                            <a class="d-flex p-2 rounded bg-green-500"
+                                href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
+                                <i class="fas fa-check"></i>
+                                <span class="ml-2">Nilai</span>
+                            </a>
+
+                        </div>
+                    @endif
+
+
                 </div>
                 {{-- Mengumpul tab --}}
                 <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
@@ -116,24 +155,15 @@
                             <li class="w-full ml-2 py-2 border-r dark:border-gray-600">Peserta</li>
                             <li class="w-full ml-2 py-2 border-y border-r dark:border-gray-600">Mengumpul</li>
                             <li class="w-full ml-2 py-2 border-r dark:border-gray-600">Waktu Tenggat</li>
-
                         </div>
                         <div class="w-full">
                             <li class="w-full px-4 py-2 border-gray-200 rounded-t-lg dark:border-gray-600">
                                 {{ $enrolled->count() }}</li>
-                            <li class="w-full px-4 py-2 border-y dark:border-gray-600">0 / {{ $enrolled->count() }} </li>
+                            <li class="w-full px-4 py-2 border-y dark:border-gray-600">
+                                {{ $enrolled->count() }} / {{ $submitted }}</li>
                             <div class="w-full px-4 py-2 dark:border-gray-600" id="countdown"></div>
-
                         </div>
-
-
                     </ul>
-                    <div class="text-white dark:bg-blue-600 mt-4">
-                        <a class="d-flex p-2 rounded bg-green-500" href="#">
-                            <i class="fas fa-check text-xs"></i>
-                            <span class="ml-2">Setor Tugas</span>
-                        </a>
-                    </div>
                 </div>
 
             </div>

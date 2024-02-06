@@ -35,3 +35,28 @@ function uploadFile($request, $file_path)
 
     return $path_file;
 }
+
+function uploadTugas($request, $file_path)
+{
+    $file = $request->file($file_path);
+    $OGextension = $file->getClientOriginalExtension();
+    $extension = Str::lower($OGextension);
+    $path_file = 'public/submission/files/' . time() . '.' . $extension;
+    if ($file) {
+        Storage::put($path_file, $file->get());
+    }
+
+    return $path_file;
+}
+
+function deleteTugasFile($path)
+{
+    // Check if the file exists
+    if (Storage::exists($path)) {
+        // Delete the file
+        Storage::delete($path);
+        return true; // Return true if deletion is successful
+    } else {
+        return false; // Return false if the file does not exist
+    }
+}

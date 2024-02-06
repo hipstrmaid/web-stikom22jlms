@@ -115,8 +115,6 @@ class MateriController extends Controller
         $data = new Tugas;
         $tugas = $data->CreateTugas($request, $id);
 
-
-
         $tugasId = $tugas->id;
         $path_file = uploadFile($request, 'Tugas_file');
         //then i can assign it to the tugas_id like below

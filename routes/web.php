@@ -14,6 +14,7 @@ use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\PertemuanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\TugasController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +73,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('tugas', TugasController::class);
+    Route::resource('submission', SubmissionController::class);
     Route::get('user/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
     Route::get('user/{user}/editPassword', [ProfileController::class, 'editPassword'])->name('user.editPassword');
     Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');
@@ -89,7 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::post('materi/{id}/store-tugas', [MateriController::class, 'storeTugas'])->name('materi.storeTugas');
     Route::delete('materi/{id}/delete-tugas', [MateriController::class, 'destroyTugas'])->name('materi.destroytugas');
 
-    Route::get('tugas/{tugasId}/mengumpul', [TugasController::class, 'createTugas'])->name('materi.createTugas');
+    // Route::get('tugas/{tugasId}/mengumpul', [TugasController::class, 'createTugas'])->name('materi.createTugas');
 
 
     Route::get('enroll', [EnrollController::class, 'index'])->name('enroll.index');

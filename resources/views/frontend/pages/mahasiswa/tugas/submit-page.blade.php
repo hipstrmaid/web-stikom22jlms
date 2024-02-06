@@ -1,4 +1,4 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 @section('content')
     <div class="flex w-full justify-between items-center">
         <h1 class="text-4xl mb-5 font-bold pt-4 lg:pt-0 text-dark dark:text-white">Submit Tugas</h1>
@@ -88,4 +88,4 @@
 
         setInterval(updateCountdown, 1000);
     </script>
-@endsection --}}
+@endsection

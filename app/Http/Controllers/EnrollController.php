@@ -41,33 +41,34 @@ class EnrollController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode_matkul' => 'required'
+            'kode_matkul' => 'required',
+            'matkul_id' => 'unique:enrolls,matkul_id,NULL,id,mahasiswa_id,' . Auth::user()->mahasiswa->id,
         ]);
 
         $kode_matkul = $request->input('kode_matkul');
         $matkul = Matkul::where('kode_enroll', $kode_matkul)->first();
-
-        // Make sure to properly retrieve the user's Mahasiswa ID
         $mahasiswaId = Auth::user()->mahasiswa->id;
-
-        $enrolled = Enroll::where('kode_matkul', $kode_matkul)->exists();
 
         if (!$matkul) {
             return redirect()->back()->with('error', 'Tidak ada mata kuliah dengan kode ini.');
         }
 
-        if ($matkul && !$enrolled) {
-            $enrolls = [
-                "mahasiswa_id" => $mahasiswaId, // Set the Mahasiswa ID correctly
-                "matkul_id" => $matkul->id,
-                "kode_matkul" => $kode_matkul
-            ];
-            Enroll::create($enrolls);
+        if ($matkul) {
+            // Check if the combination of mahasiswa_id and matkul_id already exists
+            $enrollExists = Enroll::where('mahasiswa_id', $mahasiswaId)->where('matkul_id', $matkul->id)->exists();
 
-            return redirect()->back()->with('success', $matkul->nama_matkul . ' berhasil di tambahkan.');
+            if (!$enrollExists) {
+                $enrolls = [
+                    "mahasiswa_id" => $mahasiswaId,
+                    "matkul_id" => $matkul->id,
+                    "kode_matkul" => $kode_matkul
+                ];
+                Enroll::create($enrolls);
+                return redirect()->back()->with('success', $matkul->nama_matkul . ' berhasil ditambahkan.');
+            } else {
+                return redirect()->back()->with('error', 'Mata Kuliah sudah terdaftar.');
+            }
         }
-
-        return redirect()->back()->with('error', 'Mata Kuliah sudah terdaftar.');
     }
 
     public function previewMatkul($id)
