@@ -30,4 +30,9 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(Enroll::class);
     }
+
+    public function pengumpulan()
+    {
+        return $this->hasMany(Pengumpulan::class);
+    }
 }

@@ -74,6 +74,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('tugas', TugasController::class);
     Route::resource('submission', SubmissionController::class);
+    Route::get('submissions/{id}', [SubmissionController::class, 'indexAll'])->name('tugas.index');
+    // Route::get('tugas/{tuga}/list', [SubmissionController::class, 'indexAll'])->name('index-all');
     Route::get('user/profile/edit', [ProfileController::class, 'editProfile'])->name('edit-profile');
     Route::get('user/{user}/editPassword', [ProfileController::class, 'editPassword'])->name('user.editPassword');
     Route::put('user/{user}/updatePassword', [ProfileController::class, 'updatePassword'])->name('user.updatePassword');

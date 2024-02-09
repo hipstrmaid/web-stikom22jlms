@@ -123,14 +123,14 @@
                                 <a class="d-flex p-2 rounded bg-green-500"
                                     href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
                                     <i class="fas fa-check text-xs"></i>
-                                    <span class="ml-2">Telah mengumpul</span>
+                                    <span class="ml-2">Anda Telah mengumpul tugas</span>
                                 </a>
                             @endif
                         </div>
                     @else
                         <div class="text-white dark:bg-dark-600 mt-4 flex gap-2">
                             <a class="d-flex p-2 rounded bg-blue-500"
-                                href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
+                                href="{{ route('tugas.index', ['id' => $tugas->id]) }}">
                                 <i class="fas fa-paperclip"></i>
                                 <span class="ml-2">Daftar telah megumpul</span>
                             </a>

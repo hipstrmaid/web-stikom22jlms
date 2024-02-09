@@ -22,6 +22,13 @@ class Tugas extends Model
         return $this->hasMany(Tgs_file::class);
     }
 
+    function pengumpulan()
+    {
+        return $this->hasMany(Pengumpulan::class);
+    }
+
+
+
 
     function CreateTugas($request, $id)
     {

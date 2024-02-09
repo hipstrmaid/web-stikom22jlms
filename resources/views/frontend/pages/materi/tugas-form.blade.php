@@ -40,8 +40,8 @@
             </div>
 
             <div class="flex gap-4 mt-4">
-                <label
-                    class="block mb-2 text-sm font-medium text-blue-600 dark:text-white w-24"><span>Instruksi</span></label>
+                <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white w-24"><span>Instruksi
+                        File</span></label>
                 <div class="mb-2 w-full shadow">
                     <div
                         class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
@@ -100,7 +100,7 @@
                             class="bg-gray-50 text-center border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <?php
                             // Menghasilkan pilihan jam dari 1 hingga 23 dengan dua digit
-                            for ($jam = 0; $jam <= 23; $jam++) {
+                            for ($jam = 0; $jam <= 59; $jam++) {
                                 $formatted_jam = str_pad($jam, 2, '0', STR_PAD_LEFT);
                                 echo "<option value=\"$formatted_jam\">$formatted_jam</option>";
                             }

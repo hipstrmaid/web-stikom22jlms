@@ -7,18 +7,28 @@ use App\Models\Enroll;
 use App\Models\Pengumpulan;
 use Illuminate\Http\Request;
 use App\Models\Pengumpulan_file;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class SubmissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    public function indexAll($id)
     {
-        //
+        $tugas = Pengumpulan::where('tugas_id', $id)->get();
+        $tugass = Tugas::ShowTugas($id);
+        $tgl = $tugass->tgl_tenggat;
+        $waktu = $tugass->waktu_tenggat;
+        $startDate = $tugass->created_at;
+        $dueDate = $tgl .= ' ' . $waktu;
+        $tugasID = $tugass->id;
+        $enrolled = Enroll::Enrolled($tugass->pertemuan_id);
+        $submitted = Pengumpulan::where('tugas_id', $tugasID)->count();
+        $countdown = Tugas::ShowCountdown($tugass);
+        return view('frontend/pages/dosen/tugas/pengumpulan-page', compact('tugas', 'tugass', 'dueDate', 'enrolled', 'submitted', 'startDate'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +42,6 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'file' => 'required|mimes:pdf,doc,docx,zip,rar,png,jpg,jpeg,mp3,wav|max:2048',
             'idTugas' => 'required'
@@ -40,51 +49,11 @@ class SubmissionController extends Controller
 
         $idTugas = $request->idTugas;
 
-        if (Auth::user()->role_id != 1) {
-            return redirect()->back()->with('error', 'Anda bukan mahasiswa!');
-        }
-
-        // Check if a submission record already exists for the given assignment and user
-        $pengumpulan = Pengumpulan::where('tugas_id', $idTugas)
-            ->where('mahasiswa_id', Auth::user()->mahasiswa->id)
-            ->first();
-
-        if ($pengumpulan) {
-            // Update the existing Pengumpulan record
-            $pengumpulan->update([
-                // Update any other fields as needed
-            ]);
-        } else {
-            // Create a new Pengumpulan record
-            $pengumpulan = Pengumpulan::create([
-                'tugas_id' => $idTugas,
-                'mahasiswa_id' => Auth::user()->mahasiswa->id,
-                // Add any other fields as needed
-            ]);
-        }
+        $pengumpulan = Pengumpulan::Kumpulandcheck($idTugas);
 
         $webpPath = uploadTugas($request, 'file');
 
-        // Check if a PengumpulanFile record already exists for the given Pengumpulan
-        $pengumpulanFile = Pengumpulan_file::where('pengumpulan_id', $pengumpulan->id)->first();
-
-        if ($pengumpulanFile) {
-            // Update the existing PengumpulanFile record
-            $oldPath = $pengumpulanFile->path_file;
-            deleteTugasFile($oldPath);
-            $pengumpulanFile->update([
-                'path_file' => $webpPath,
-                // Update any other fields as needed
-            ]);
-            return redirect()->route('tugas.show', ['tuga' => $idTugas])->with('success', 'Berhasil mengedit tugas!');
-        } else {
-            // Create a new PengumpulanFile record
-            Pengumpulan_file::create([
-                'pengumpulan_id' => $pengumpulan->id,
-                'path_file' => $webpPath,
-                // Add any other fields as needed
-            ]);
-        }
+        Pengumpulan_file::InsertPathandCheck($pengumpulan, $webpPath, $idTugas);
 
         return redirect()->route('tugas.show', ['tuga' => $idTugas])->with('success', 'Berhasil mengumpul tugas!');
     }
