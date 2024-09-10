@@ -6,13 +6,8 @@
     <div class="flex flex-col flex-grow">
         <div class="content px-4 py-2 flex flex-col">
             <div class="card-category">
-                @if ($matkul->matkul->prodi->nama_prodi == 'Sistem Informasi')
-                    <span
-                        class="bg-blue-100 text-blue-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $matkul->matkul->prodi->nama_prodi }}</span>
-                @elseif ($matkul->matkul->prodi->nama_prodi == 'Teknik Komputer')
-                    <span
-                        class="bg-green-100 text-green-800 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $matkul->matkul->prodi->nama_prodi }}</span>
-                @endif
+                <span
+                    class=" {{ $matkul->matkul->prodi->nama_prodi == 'Sistem Informasi' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800' }} text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $matkul->matkul->prodi->nama_prodi }}</span>
                 <span
                     class="bg-orange-100 text-orange-800 dark:text-white dark:bg-gray-700 text-xs font-medium font-sm mr-2 px-2.5 py-0.5 rounded dark:bg-orang-900 dark:text-orange-800">{{ $matkul->matkul->semester->nama_semester }}</span>
             </div>

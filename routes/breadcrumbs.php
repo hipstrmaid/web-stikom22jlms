@@ -29,6 +29,18 @@ Breadcrumbs::for('matkul', function (BreadcrumbTrail $trail) {
     $trail->push('Matkul', route('matkul.index'));
 });
 
+// Dashboard > Tugas
+Breadcrumbs::for('tugas', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard.index'); // Parent routes (Pilih salah solo route)
+    $trail->push('Tugas', route('tugas.index'));
+});
+
+// Dashboard > Forum
+Breadcrumbs::for('forum', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard.index'); // Parent routes (Pilih salah solo route)
+    $trail->push('Forum', route('forum.index'));
+});
+
 // Dashboard > Mata Kuliah
 Breadcrumbs::for('enrollMatkul', function (BreadcrumbTrail $trail) {
     $trail->parent('matkul'); // Parent routes (Pilih salah solo route)

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <article class="bg-gray-50 dark:bg-gray-800 p-5 mb-5">
+    <article class="bg-gray-50 dark:bg-gray-800 p-5">
         <div class="flex gap-2 items-center">
             <div class="bg-blue-500 border dark:border-gray-800 rounded-md px-4 py-6 inline-flex items-center h-full">
                 <i class="fa-solid fa-file-arrow-up fa-lg text-white"></i>
@@ -19,7 +19,7 @@
         </div>
 
 
-        <article class="dark:text-white flex flex-col gap-2 mt-4">
+        <article class="flex flex-col gap-2 mt-4 dark:text-white">
 
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
@@ -38,7 +38,7 @@
                 </ul>
             </div>
             <div id="myTabContent">
-                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="profile" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <h1 class="font-bold dark:text-white">{{ $tugas->judul_tugas }}</h1>
                     <p class="text-sm tracking-normal mb-5">{{ $tugas->deskripsi }}.</p>
@@ -47,7 +47,7 @@
                         <h2 id="accordion-collapse-heading-2">
                             <button type="button"
                                 class="flex items-center justify-between w-full p-2 font-medium text-left text-gray-800 border border-gray-300 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-                                data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
+                                data-accordion-target="#accordion-collapse-body-2" aria-expanded="true"
                                 aria-controls="accordion-collapse-body-2">
                                 <span class="font-bold flex items-center">
                                     <svg class="w-5 h-5 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
@@ -55,7 +55,7 @@
                                         <path fill-rule="evenodd"
                                             d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
                                             clip-rule="evenodd"></path>
-                                    </svg>Instruksi</span>
+                                    </svg>File & instruksi</span>
                                 <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -64,22 +64,25 @@
                             </button>
                         </h2>
                         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
-                            <div class="p-5 border border-gray-200 dark:border-gray-700">
+                            <div class="p-2 border border-gray-200 dark:border-gray-700">
 
                                 <!--Instruksi-->
-                                <div class="deskripsi">
+                                <div class="deskripsi bg-gray-200 dark:bg-gray-700 p-4">
                                     <p class="text-sm tracking-normal">{{ $tugas->instruksi }}.</p>
                                     @foreach ($tugas->tgs_file as $file)
-                                        <div class="flex items-center">
-                                            <div class="mx-2 mt-3">
+                                        <div class="flex items-center gap-2">
+                                            <div class="pt-1">
                                                 <i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i>
                                             </div>
-                                            <div class="p-2 bg-blue-500 text-white dark:bg-blue-600 rounded w-24 mt-4">
-                                                <a class="flex" href="{{ Storage::url($file->path_file) }}">
-                                                    <i class="fas fa-download text-xs"></i>
-                                                    <span class="text-xs ml-2">Download</span>
+                                            <div class="font-bold text-blue-600 hover:underline point">
+
+                                                <a class="flex text-sm" href="{{ Storage::url($file->path_file) }}">
+                                                    {{ str_replace('public/files/', '', $file->path_file) }}
+
                                                 </a>
+
                                             </div>
+
                                         </div>
                                     @endforeach
                                 </div>
@@ -97,13 +100,18 @@
                             <li class="w-full py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                 <p class="ml-2">Diberikan</p>
                             </li>
-                            <li class="w-full ml-2 py-2 dark:border-gray-600">Batas Pengumpulan</li>
+                            <li class="w-full py-2 border-b dark:border-gray-600">
+                                <p class="ml-2">Batas Pengumpulan</p>
+                            </li>
+                            <li class="w-full ml-2 py-2 dark:border-gray-600">Batas Waktu</li>
                         </div>
                         <div class="w-full">
                             <li class="w-full px-4 py-2 border-l border-b border-gray-200 dark:border-gray-600">
-                                {{ Carbon\Carbon::parse($tugas->created_at)->translatedFormat('l, d-m-Y') }}</li>
+                                {{ $startDate }}</li>
                             <li class="w-full px-4 py-2 border-l dark:border-gray-600">
-                                {{ Carbon\Carbon::parse($tugas->tgl_tenggat)->translatedFormat('l, d-m-Y') }}</li>
+                                {{ $batas }}</li>
+                            <div class="w-full px-4 py-2 border-l border-t dark:border-gray-600" id="countdown"></div>
+
                         </div>
                     </ul>
 
@@ -112,15 +120,15 @@
 
 
                     @if (Auth::user()->mahasiswa)
-                        <div class="text-white dark:bg-dark-600 mt-4">
+                        <div class="w-full flex justify-center text-white dark:bg-dark-600 py-4">
                             @if ($mengumpul == false)
-                                <a class="d-flex p-2 rounded bg-red-500"
+                                <a class="d-flex p-2 bg-red-500"
                                     href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
                                     <i class="fas fa-xmark text-xs"></i>
                                     <span class="ml-2">Belum mengumpul</span>
                                 </a>
                             @else
-                                <a class="d-flex p-2 rounded bg-green-500"
+                                <a class="d-flex p-2 bg-green-500"
                                     href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
                                     <i class="fas fa-check text-xs"></i>
                                     <span class="ml-2">Anda Telah mengumpul tugas</span>
@@ -128,49 +136,60 @@
                             @endif
                         </div>
                     @else
-                        <div class="text-white dark:bg-dark-600 mt-4 flex gap-2">
+                        <div class="flex justify-center text-white dark:bg-dark-600 mt-4 flex gap-2">
                             <a class="d-flex p-2 rounded bg-blue-500"
-                                href="{{ route('tugas.index', ['id' => $tugas->id]) }}">
+                                href="{{ route('submission.indexAll', ['id' => $tugas->id]) }}">
                                 <i class="fas fa-paperclip"></i>
-                                <span class="ml-2">Daftar telah megumpul</span>
+                                <span class="ml-2 lg:text-lg text-xs ">Daftar telah megumpul</span>
                             </a>
 
-                            <a class="d-flex p-2 rounded bg-green-500"
-                                href="{{ route('submission.show', ['submission' => $tugas->id]) }}">
-                                <i class="fas fa-check"></i>
-                                <span class="ml-2">Nilai</span>
+                            <a class="d-flex p-2 rounded bg-green-500 "
+                                href="{{ route('submission.nilaiExcel', ['id' => $tugas->id]) }}">
+                                <i class="fas fa-download"></i>
+                                <span class="ml-2 text-xs lg:text-lg">Export Excel</span>
                             </a>
 
                         </div>
                     @endif
 
-
                 </div>
                 {{-- Mengumpul tab --}}
+
                 <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
                     aria-labelledby="dashboard-tab">
+                    <p class="mt-5 font-bold">Submission Result</p>
                     <ul
                         class="flex text-xs md:text-sm font-medium text-gray-900 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <div class="w-64">
-                            <li class="w-full ml-2 py-2 border-r dark:border-gray-600">Peserta</li>
-                            <li class="w-full ml-2 py-2 border-y border-r dark:border-gray-600">Mengumpul</li>
-                            <li class="w-full ml-2 py-2 border-r dark:border-gray-600">Waktu Tenggat</li>
+                            <li class="w-full py-2 border-r dark:border-gray-600"><span class="ml-2">Peserta</span></li>
+                            <li class="w-full py-2 border-y border-r dark:border-gray-600"><span
+                                    class="ml-2">Mengumpul</span></li>
+                            @if (Auth::user()->mahasiswa)
+                                <li class="w-full py-2 border-r dark:border-gray-600"><span class="ml-2">Nilai</span>
+                                </li>
+                            @endif
                         </div>
                         <div class="w-full">
                             <li class="w-full px-4 py-2 border-gray-200 rounded-t-lg dark:border-gray-600">
                                 {{ $enrolled->count() }}</li>
                             <li class="w-full px-4 py-2 border-y dark:border-gray-600">
-                                {{ $enrolled->count() }} / {{ $submitted }}</li>
-                            <div class="w-full px-4 py-2 dark:border-gray-600" id="countdown"></div>
+                                {{ $submitted }} / {{ $enrolled->count() }} </li>
+                            @if (Auth::user()->mahasiswa)
+                                @isset($Nilai)
+                                    <li class="w-full px-4 py-2 dark:border-gray-600">
+                                        {{ $nilais->Nilai->first()->nilai }}</li>
+                                @else
+                                    <li class="w-full px-4 py-2 dark:border-gray-600">
+                                        Ungraded</li>
+                                @endisset
+                            @endif
+
+
                         </div>
                     </ul>
                 </div>
 
             </div>
-
-
-
-
         </article>
 
     </article>
@@ -182,6 +201,7 @@
         // Update the countdown timer every second
         function updateCountdown() {
             const currentDate = new Date().getTime();
+            let countdownString = "";
 
             if (currentDate < dueDate) {
                 const timeRemaining = dueDate - currentDate;
@@ -190,11 +210,20 @@
                 const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-                countdownElement.innerHTML = `${days} Hari, ${hours} Jam, ${minutes} Menit, ${seconds} Detik`;
+                if (days > 0) countdownString += `${days} Hari, `;
+                if (hours > 0) countdownString += `${hours} Jam, `;
+                if (minutes > 0) countdownString += `${minutes} Menit, `;
+                if (seconds > 0) countdownString += `${seconds} Detik`;
+
+                // Remove trailing comma and space if present
+                countdownString = countdownString.trim().replace(/,$/, "");
             } else {
-                countdownElement.innerHTML = "Waktu pengumpulan telah habis!";
+                countdownString = "Waktu pengumpulan telah habis!";
             }
+
+            countdownElement.innerHTML = countdownString;
         }
+
 
         setInterval(updateCountdown, 1000);
     </script>

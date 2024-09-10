@@ -35,4 +35,9 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(Pengumpulan::class);
     }
+
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
 }

@@ -23,7 +23,7 @@
 
                         <li class="flex items-center">
                             <i class="fa-solid fa-user ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->dosen->nama }}</p>
+                            <p class="dark:text-white px-2">{{ $matkul->dosen->nama }} (Dosen)</p>
                         </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-clock ml-4 dark:text-white"></i>
@@ -61,7 +61,7 @@
                                     class="w-full inline-flex items-center mt-2 justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Daftar<i class="fa-solid fa-arrow-right ml-2 bg-dark"></i>
                                 </button>
-                                @error('error')
+                                {{-- @error('error')
                                     <div class="alert alert-danger">
                                         <strong>Error!</strong> {{ $message }}
                                     </div>
@@ -70,7 +70,9 @@
                                     <div class="alert alert-danger">
                                         <strong>{{ $message }}</strong>
                                     </div>
-                                @enderror
+                                @enderror --}}
+                                <x-error-alert></x-error-alert>
+                                <x-success-alert></x-success-alert>
                             </form>
                         </div>
                     @else
@@ -97,7 +99,7 @@
                         <li>
                             <h2 id="accordion-collapse-heading-1">
                                 <button type="button"
-                                    class="flex shadow items-center justify-between w-full p-3 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    class="flex bg-white dark:bg-gray-900 shadow items-center justify-between w-full p-3 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                     data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
                                     aria-controls="accordion-collapse-body-1">
                                     <span><i class="fa-solid fa-circle-exclamation mr-2"
@@ -144,7 +146,7 @@
                         <li>
                             <h2 id="accordion-collapse-heading-2">
                                 <button type="button"
-                                    class="flex shadow items-center justify-between w-full p-3 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
+                                    class="flex bg-white dark:bg-gray-900 shadow items-center justify-between w-full p-3 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
                                     data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                                     aria-controls="accordion-collapse-body-2">
                                     <span><i class="fa-solid fa-list-ul mr-2"></i>List Pertemuan</span>
@@ -175,7 +177,11 @@
                                                     <p>Pertemuan {{ $i }} : <span class="text-blue-500">
                                                             {{ $pertemuan->judul_pertemuan }}</span>
                                                     </p>
-                                                    <i class="w-auto fa-solid fa-lock-open dark:text-white"></i>
+                                                    @if (auth()->user()->status == 'Aktif')
+                                                        <i class="w-auto fa-solid fa-lock-open dark:text-white"></i>
+                                                    @else
+                                                        <i class="w-auto fa-solid fa-lock-close dark:text-white"></i>
+                                                    @endif
                                                 </a>
                                             </li>
                                         </ul>

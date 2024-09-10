@@ -16,8 +16,10 @@ This repository contains a Laravel project integrated with Tailwind CSS. Follow 
 
     - composer install
     - npm install
+    - cp .env.example .env
     - php artisan key:generate
     - php artisan migrate --seed
+    - php artisan storage:link
 
 2. Jalankan:
     - php artisan serve

@@ -62,3 +62,34 @@
     </div>
 
 </div>
+
+
+{{-- @foreach ($peserta as $mahasiswa)
+                        <tr class="bg-white border dark:bg-gray-800 dark:border-gray-700 font-bold">
+                            <td scope="row"
+                                class="px-2 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $loop->iteration }}
+                            </td>
+                            <td class="px-6 py-3">
+                                {{ $mahasiswa->nama }}
+                            </td>
+                            <td class="px-6 py-3">
+                                {{ $mahasiswa->nim }}
+                            </td>
+                            <td class="px-6 py-3">
+                                @foreach ($mahasiswa->pengumpulan as $data)
+                                    @php
+                                        $nilais = json_decode($data->nilai, true);
+                                    @endphp
+
+                                    @if (!empty($nilais))
+                                        @foreach ($nilais as $nilai)
+                                            {{ $nilai['nilai'] }}
+                                        @endforeach
+                                    @else
+                                        0
+                                    @endif
+                                @endforeach
+                            </td>
+                        </tr>
+                    @endforeach --}}

@@ -1,56 +1,77 @@
 @extends('layouts.app')
 @section('content')
-    <div class="content-head flex justify-between">
-        <h1
-            class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-            Selamat Datang di Forum</h1>
-    </div>
 
-    <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-3">
-            <li class="inline-flex items-center">
-                <a href="#"
-                    class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                    <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
-                        </path>
-                    </svg>
-                    Home
-                </a>
-            </li>
-            <li aria-current="page">
-                <div class="flex items-center">
-                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Forum</span>
+    <div class="flex justify-between items-center w-full">
+        <x-content-title>Forum</x-content-title>
+        @if (Auth::user()->role_id == 2)
+            <x-modal-toggle>
+                <i class="fas fa-plus mr-2 items-center justify-center"></i>
+                <p>Buat Forum</p>
+            </x-modal-toggle>
+        @endif
+    </div>
+    {{ Breadcrumbs::render('forum') }}
+    <x-panel.panel-body>
+        <div class="h-auto">
+            @isset($matkuls)
+                <div class="row flex flex-col">
+                    <div class="card-header flex justify-end">
+                        <x-modal>
+                            <x-panel.panel-body>
+                                <form class="max-w-sm mx-auto" method="POST" action="{{ route('forum.store') }}">
+                                    @csrf
+                                    <label for="countries"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih
+                                        Mata Kuliah</label>
+                                    <div class="mb-5">
+                                        <select id="matkuls" name="matkul_id"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            @foreach ($matkuls as $matkul)
+                                                <option value="{{ $matkul->id }}">{{ $matkul->nama_matkul }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">
+                                        Finish
+                                    </button>
+                                </form>
+
+                            </x-panel.panel-body>
+                        </x-modal>
+                    </div>
+                    <div class="text-sm dark:text-gray-50">
+                        <ul class="grid w-full gap-2">
+                            @foreach ($forums as $forum)
+                                <li
+                                    class="flex bg-white items-center justify-between p-3 bg-gray-100 shadow-sm dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+                                    <div class="media-left mr-3">
+                                        <!-- Your media-left content -->
+                                        <i class="fa-solid fa-file-lines text-3xl text-yellow-200"></i>
+                                    </div>
+                                    <div class="media-body flex-1">
+                                        <!-- Your media-body content -->
+                                        <h4 class="text-1xl text-blue-500 hover:underline font-bold "><a
+                                                href="{{ route('forum.show', $forum->id) }}">{{ $forum->matkul->nama_matkul }}</a>
+                                        </h4>
+                                        <p class="text-xs">{{ $forum->created_at->diffForHumans() }}</p>
+                                    </div>
+                                    <div class="media-right ml-2">
+                                        <!-- Your media-right content -->
+                                        <a href="#"
+                                            class="flex items-center gap-2 p-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-800  hover:bg-gray-100 dark:hover:-bg-gray-200"><i
+                                                class="fa-regular fa-comment text-1xl"></i><span>{{ $forum->topic->count() }}</span></a>
+
+
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                    </div>
                 </div>
-            </li>
-        </ol>
-    </nav>
-
-
-    <div class="row flex flex-col gap-4">
-        <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
-            <p class="dark:text-gray-50 font-bold text-2xl bold p-4 "><i class="fa-solid fa-message"></i> Forum</p>
+            @endisset
+            <x-error-alert></x-error-alert>
+            <x-success-alert></x-success-alert>
         </div>
-
-        <div class="bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
-            <ul class="grid gap-2 mb-4 p-5">
-                <li>
-                    <button
-                        class="text-left w-full border border-gray-300 dark:border-gray-600 py-2 px-3 hover:bg-gray-50 dark:hover:bg-blue-600 dark:text-gray-50 text-bold">
-                        <a href="/forum/view">Pemrograman Web</a>
-                    </button>
-                </li>
-
-            </ul>
-
-        </div>
-    </div>
+    </x-panel.panel-body>
 @endsection

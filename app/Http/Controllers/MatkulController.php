@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Helpers\Helper;
 use App\Models\Enroll;
 use App\Models\Matkul;
 use App\Models\Pertemuan;
@@ -39,7 +39,7 @@ class MatkulController extends Controller
         $totalUser = Enroll::where('matkul_id', $matkul->id)->get();
 
         if (Auth::user()->dosen) {
-            checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
+            Helper::checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
             return view('frontend/pages/dosen/pertemuan/dosen-pertemuan', compact('pertemuans', 'matkul', 'lastPertemuan', 'totalUser'));
         } elseif (Auth::user()->mahasiswa) {
 
@@ -69,10 +69,12 @@ class MatkulController extends Controller
      */
     public function store(Request $request)
     {
-        Matkul::CreateMatkul($request);
-        Session::flash('success');
 
-        return redirect('/matkul');
+        if (Matkul::CreateMatkul($request)) {
+            return redirect('/matkul')->with('success', ' Mata Kuliah berhasil dibuat.');
+        } else {
+            return redirect('/matkul')->with('error', ' Terjadi Kesalahan.');;
+        }
     }
 
     /**
@@ -96,7 +98,7 @@ class MatkulController extends Controller
         if (!$matkul) {
             abort('403', 'Anda bukan dosen');
         }
-        checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
+        Helper::checkPermission($matkul->dosen_id, Auth::user()->dosen->id);
         return view('frontend.pages.dosen.matkul.edit-matkul', compact('matkul'));
     }
 
@@ -112,6 +114,7 @@ class MatkulController extends Controller
 
         return redirect('/matkul');
     }
+
 
     /**
      * Remove the specified resource from storage.

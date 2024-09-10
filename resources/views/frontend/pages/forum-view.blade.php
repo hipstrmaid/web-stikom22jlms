@@ -1,104 +1,89 @@
 @extends('layouts.app')
 @section('content')
-    <div class="content-head flex justify-between">
-        <h1
-            class="mb-1 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
-            Selamat Datang di Forum</h1>
-    </div>
-
-    <nav class="flex mb-4 rounded" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-3">
-            <li class="inline-flex items-center">
-                <a href="#"
-                    class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                    <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
-                        </path>
-                    </svg>
-                    Home
-                </a>
-            </li>
-            <li>
-                <div class="flex items-center">
-                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Forum</span>
-                </div>
-            </li>
-            <li aria-current="page">
-                <div class="flex items-center">
-                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Topik</span>
-                </div>
-            </li>
-        </ol>
-    </nav>
-
-
-    <div class="row flex flex-col gap-4">
-        <div class="grid mb-4 bg-white text-sm border border-gray-200 border-t-0 dark:border-gray-900 dark:bg-gray-800">
-            <div class="panel-head flex items-center gap-4 p-4">
-
-                <div class="flex flex-col w-full  dark:text-gray-50 dark:text-gray-400">
-                    <h1 class="text-2xl font-bold">Topik</h1>
-                    <p class="tracking-tight text-gray-500 ">Yang sedang dibicarakan saat
-                        ini.</p>
-                </div>
-
-                <button class="flex items-center p-2 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-600">
-                    <i class="fa-solid fa-plus"></i>
-                    <a href="#" class="text-bold">Tambah</a>
-                </button>
-            </div>
-            <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
-            <div class="panel-content p-4 flex">
-                <div class="logo-topik text-blue-400 dark:text-white p-2">
-                    <i class="fa-solid fa-file-lines fa-2xl"></i>
-                </div>
-                <div class="judul-topik">
-                    <a href="#" class="text-md text-base dark:text-gray-50">Bagaimana menurut kalian dengan materi
-                        tadi?</a>
-                    <div class="info-topik flex text-gray-500 text-sm gap-2">
-                        <p class="">oleh</p>
-                        <a href="" class="text-sm text-blue-400 dark:text-blue-400">Muhammad
-                            Rizky</a>
-                        <p>| 2 days ago</p>
-                    </div>
-                </div>
-
-            </div>
-            <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
-            <div class="panel-content p-4 flex">
-                <div class="logo-topik text-blue-400 dark:text-white p-2">
-                    <i class="fa-solid fa-file-lines fa-2xl"></i>
-                </div>
-                <div class="judul-topik">
-                    <a href="#" class="text-md text-base dark:text-gray-50">Bagaimana menurut kalian dengan materi
-                        tadi?</a>
-                    <div class="info-topik flex text-gray-500 text-sm gap-2">
-                        <p class="">oleh</p>
-                        <a href="" class="text-sm text-blue-400 dark:text-blue-400">Muhammad
-                            Rizky</a>
-                        <p>| 2 days ago</p>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center w-full">
+            <x-content-title>Topik Forum</x-content-title>
         </div>
+        {{ Breadcrumbs::render('forum') }}
+
+
+        <div class="row flex flex-col h-full gap-5">
+            <x-panel.panel-body>
+                <div class="panel-head items-center flex">
+                    <div class="flex flex-col w-full  dark:text-gray-50 dark:text-gray-400">
+                        <h1 class="md:text-2xl text-md font-bold">{{ $forum->matkul->nama_matkul }}</h1>
+                        <p class="lg:text-sm text-sm tracking-tight text-gray-500 ">Yang sedang dibicarakan saat
+                            ini.</p>
+                    </div>
+
+                    <x-modal-toggle> <i class="fa-solid fa-plus"></i>
+                        <p class="text-xs lg:text-md">TAMBAH</p>
+                    </x-modal-toggle>
+
+                    <x-modal>
+                        <x-panel.panel-body>
+                            <form class="w-full max-w-lg" action="{{ route('topic.store') }}" method="POST">
+                                @csrf
+                                <div class="flex flex-wrap px-3 mb-6">
+                                    <div class="w-full">
+                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                            for="grid-last-name">
+                                            Judul Topik
+                                        </label>
+                                        <input
+                                            class="appearance-none block w-full px-3 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                            id="grid-last-name" type="text" placeholder="" name="judul">
+                                        <input type="hidden" name="forum_id" value="{{ $forumId }}">
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-3">
+                                    Finish
+                                </button>
+                            </form>
+                        </x-panel.panel-body>
+                    </x-modal>
+                </div>
+            </x-panel.panel-body>
+
+            <x-panel.panel-body>
+                <div class="topics h-full">
+                    @foreach ($topics as $topic)
+                        <div
+                            class="flex justify-between p-2 items-center bg-white dark:bg-gray-800  text-sm border border-b-1 dark:border-gray-700">
+                            <div class="panel-content flex">
+                                <div class="logo-topik text-lg text-blue-400 dark:text-white p-2">
+                                    <i class="fa-solid fa-file-lines fa-2xl"></i>
+                                </div>
+                                <div class="judul-topik text-xs">
+                                    <a href="{{ route('comment.show', $topic->id) }}"
+                                        class="text-md text-base dark:text-gray-50 hover:underline">{{ $topic->judul }}</a>
+                                    <div class="info-topik flex text-gray-500 gap-1">
+                                        <p>oleh</p>
+                                        <p class="text-blue-400 dark:text-blue-400">
+                                            {{ optional($topic->user->dosen)->nama ?? optional($topic->user->mahasiswa)->nama }}
+                                        </p>
+                                        <p>| <i class="fa-regular fa-clock fa-xs"></i>
+                                            {{ $topic->created_at->diffForHumans() }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-right ml-2 text-xs font-bold dark:text-white">
+                                <!-- Your media-right content -->
+                                <a href="#"
+                                    class="flex items-center gap-2 p-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:hover:-bg-gray-200"><i
+                                        class="fa-regular fa-comment"></i><span>{{ $topic->comment->count() }}</span></a>
+
+
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </x-panel.panel-body>
+        </div>
+        <x-error-alert></x-error-alert>
+        <x-success-alert></x-success-alert>
     </div>
 @endsection

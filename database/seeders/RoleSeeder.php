@@ -15,7 +15,6 @@ class RoleSeeder extends Seeder
             ['nama_role' => 'Dosen', 'created_at' => now()],
             ['nama_role' => 'BAAK', 'created_at' => now()],
             ['nama_role' => 'Admin', 'created_at' => now()],
-            // Add more role records as needed
         ];
 
         Role::insert($roles);

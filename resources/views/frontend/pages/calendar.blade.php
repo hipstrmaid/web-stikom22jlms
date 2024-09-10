@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Calendar')
 @section('content')
     <div class="calendar flex flex-col gap-5">
         <h1

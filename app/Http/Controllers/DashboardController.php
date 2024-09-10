@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Prodi;
 use App\Models\Matkul;
+use App\Models\Mtr_file;
+use App\Models\Mtr_image;
+use App\Models\Mtr_video;
+use App\Models\Pertemuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +44,15 @@ class DashboardController extends Controller
             $baakTotal = User::where('role_id', 3)->count();
             $adminTotal = User::where('role_id', 4)->count();
 
-            return view('admin.admin-dashboard', compact('mahasiswaTotal', 'dosenTotal', 'baakTotal', 'adminTotal'));
+            $matkulTotal = Matkul::count();
+            $prodiTotal = Prodi::where('nama_prodi', '!=', 'Belum ada Prodi')->count();
+            $pertemuanTotal = Pertemuan::count();
+            $file = Mtr_file::count();
+            $img = Mtr_image::count();
+            $vid = Mtr_video::count();
+            $materiTotal = $file + $img + $vid;
+
+            return view('admin.admin-dashboard', compact('materiTotal', 'pertemuanTotal', 'prodiTotal', 'mahasiswaTotal', 'dosenTotal', 'baakTotal', 'adminTotal', 'matkulTotal'));
         }
     }
 

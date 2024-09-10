@@ -185,8 +185,8 @@
                                             {{ $mhs->semester_id }}
                                         </td>
                                         <td class="px-6 py-2">
-                                            <img src="{{ Storage::url($mhs->foto) }}" class="rounded-full w-8 h-8"
-                                                alt="foto-mhs">
+                                            <img src="{{ $mhs->foto ? Storage::url($mhs->foto) : asset('assets/img/user.png') }}"
+                                                class="rounded-full w-8 h-8" alt="foto-mhs">
                                         </td>
                                         <td class="px-6 py-2 text-left">
                                             <a href="#"

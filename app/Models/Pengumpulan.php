@@ -18,10 +18,15 @@ class Pengumpulan extends Model
         return $this->hasMany(Pengumpulan_file::class);
     }
 
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
+
 
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+        return $this->belongsTo(Mahasiswa::class);
     }
 
     public function tugas()
@@ -29,6 +34,8 @@ class Pengumpulan extends Model
         return $this->belongsTo(Tugas::class, 'tugas_id');
     }
 
+
+    // Method for Controller
     public static function Kumpulandcheck($id)
     {
 

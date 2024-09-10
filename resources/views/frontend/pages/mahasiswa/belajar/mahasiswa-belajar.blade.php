@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('youtube-api')
+    <script src="https://www.youtube.com/player_api"></script>
+@endsection
 @section('content')
     <div class="flex w-full justify-between items-center">
         <h1 class="md:text-4xl text-xl font-bold text-dark dark:text-white">
@@ -30,15 +33,7 @@
                     @include('frontend.pages.mahasiswa.belajar.section._youtube-section')
                     @include('frontend.pages.mahasiswa.belajar.section._video-section')
                     @include('frontend.pages.mahasiswa.belajar.section._image-section')
-
-
-
-
-
-
                 </article>
-
-
             </div>
         </div>
 
@@ -55,7 +50,7 @@
                     <div class="menu-general">
                         <h2 id="accordion-collapse-heading-1">
                             <button type="button"
-                                class="flex items-center bg-gray justify-between w-full p-3 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                class="flex items-center bg-gray justify-between w-full p-3 font-medium text-left text-gray-500 border border-b-0 border-gray-200 dark:border-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-800"
                                 data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
                                 aria-controls="accordion-collapse-body-1">
                                 <div class="flex items-center">
@@ -80,7 +75,7 @@
 
                         <h2 id="accordion-collapse-heading-2">
                             <button type="button"
-                                class="flex items-center justify-between w-full p-3 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                class="flex items-center justify-between w-full p-3 font-medium text-left text-gray-500 border border-b-0 border-gray-200  dark:border-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-800"
                                 data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                                 aria-controls="accordion-collapse-body-2">
                                 <div class="flex items-center">
@@ -101,20 +96,20 @@
                                 <ol class="relative border-l border-gray-200 dark:border-gray-700 flex-col gap-4">
                                     @foreach ($files as $file)
                                         <li class="mb-5 ml-4 flex md:flex-col justify-between">
-                                            <div class="content">
+                                            <div class="content w-full">
                                                 <div
                                                     class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
                                                 </div>
                                                 <time
                                                     class="mb-1 text-xs leading-none text-gray-400 dark:text-gray-500">{{ $file->created_at }}</time>
-                                                <a href="#" class="flex">
+                                                <a href="#" class="flex w-full">
                                                     <h3
-                                                        class="text-md font-semibold hover:text-blue-600 text-gray-900 dark:text-white mb-1">
+                                                        class="text-xs font-semibold hover:text-blue-600 text-gray-900 dark:text-white mb-1">
                                                         {{ $file->nama_file }}.{{ $file->extensi }}
                                                     </h3>
                                                     <div class="inline-flex">
                                                         <a href="{{ Storage::url($file->path_file) }}" target="_blank"
-                                                            class="inline-flex items-center text-center px-2 py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                                                            class="inline-flex items-center text-center px-2 py-1 text-xs font-sm text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
                                                                 class="w-3.5 h-3.5 mr-2.5" aria-hidden="true"
                                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                                 viewBox="0 0 20 20">
@@ -174,7 +169,7 @@
                     <div class="menu-tugas">
                         <h2 id="accordion-collapse-heading-3">
                             <button type="button"
-                                class="flex items-center justify-between w-full p-3 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                class="flex items-center justify-between w-full p-3 font-medium text-left text-gray-500 border border-gray-200  dark:border-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-800"
                                 data-accordion-target="#accordion-collapse-body-3" aria-expanded="false"
                                 aria-controls="accordion-collapse-body-3">
                                 <div class="flex items-center">
@@ -218,6 +213,8 @@
 
             </div>
         </div>
+        <x-success-alert></x-success-alert>
+        <x-error-alert></x-error-alert>
     </div>
     <script src="{{ asset('js/video.js') }}"></script>
 @endsection

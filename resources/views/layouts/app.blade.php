@@ -6,43 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>Dashboard</title>
-    <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
-                '(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
+    <title>STIKOM 22 J-LMS: @yield('title', 'Welcome')</title>
+    <link rel="icon" href="{{ asset('assets/img/favicon.ico') }}" type="image/x-icon">
+    <script src="{{ asset('js/autodarkmode.js') }}"></script>
     <script src="https://kit.fontawesome.com/6170d94faf.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Passion+One&family=Poppins:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="https://www.youtube.com/player_api"></script>
     <link rel="stylesheet" href="{{ asset('css/video.css') }}">
-
-
-
+    @yield('youtube-api')
 </head>
 
-{{-- default: bg-gray-50 --}}
-{{-- custom: bg-gray-vanilla --}}
+<body class="flex flex-col justify-between h-screen font-poppins bg-gray-vanilla dark:bg-gray-900">
+    @include('includes.header')
+    @include('includes.sidebar')
+    <main class="{{ isset($exclude_sidebar) && $exclude_sidebar ? 'ml-0 p-0' : 'md:ml-60 p-5' }}  overflow-auto grow">
+        @yield('content')
+    </main>
 
-<body class="font-poppins bg-gray-vanilla dark:bg-gray-900">
-    <div class="antialiased">
-        @include('includes.header')
-        @include('includes.sidebar')
-
-        <main class="md:ml-60 w-auto h-auto pt-20">
-            <div class="px-5">
-                @yield('content')
-            </div>
-        </main>
-    </div>
     @include('includes.footer')
     <script src="{{ asset('js/darkmode.js') }}"></script>
     <script src="{{ asset('js/alert.js') }}"></script>

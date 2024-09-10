@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Mata Kuliah')
 @section('content')
     @auth
         <div class="content-head flex justify-between items-center">
@@ -21,17 +22,14 @@
         </div>
         {{ Breadcrumbs::render('matkul') }}
 
-        <div class="row">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-4 h-46">
-                @foreach ($matkuls as $matkul)
-                    @if (Auth::user()->dosen)
-                        @include('includes.card._course')
-                    @else
-                        @include('includes.card._mhscourse')
-                    @endif
-                @endforeach
-            </div>
-
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-3">
+            @foreach ($matkuls as $matkul)
+                @if (Auth::user()->dosen)
+                    @include('includes.card._course')
+                @else
+                    @include('includes.card._mhscourse')
+                @endif
+            @endforeach
         </div>
     @endauth
 @endsection

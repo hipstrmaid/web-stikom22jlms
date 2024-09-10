@@ -25,7 +25,7 @@ class Matkul extends Model
 
     public function dosen()
     {
-        return $this->belongsTo(Dosen::class, 'dosen_id');
+        return $this->belongsTo(Dosen::class);
     }
 
     public function prodi()
@@ -48,13 +48,18 @@ class Matkul extends Model
         return $this->hasMany(Enroll::class);
     }
 
+    public function forum()
+    {
+        return $this->hasMany(Forum::class);
+    }
+
     public static function CreateMatkul($request)
     {
 
         $request->validate([
             'nama_matkul' => 'required',
             'deskripsi' => 'required|min:10',
-            'gambar' => 'required|file',
+            'File' => 'required|file|image',
             'semester_id' => 'required',
             'hari' => 'required',
             'jam_mulai' => 'required',
@@ -63,7 +68,7 @@ class Matkul extends Model
             'kode_matkul' => 'unique:matkuls,kode_enroll',
         ]);
 
-        $gambar = $request->file('gambar'); // Use file() instead of input()
+        $gambar = $request->file('File'); // Use file() instead of input()
         // Convert the image to WebP format
         $webpImage = Image::make($gambar)->encode('webp', 90); // Adjust quality as needed
         $webpPath = 'public/thumbnail/' . time() . '.webp';
@@ -106,9 +111,9 @@ class Matkul extends Model
         $prodi_id = $request->input('prodi');
         $kode_mk = $request->input('kode_matkul');
         // If a new image file is uploaded, update the image
-        if ($request->hasFile('gambar')) {
+        if ($request->hasFile('File')) {
 
-            $gambar = $request->file('gambar');
+            $gambar = $request->file('File');
             $webpImage = Image::make($gambar)->encode('webp', 90);
             $webpPath = 'public/thumbnail/' . time() . '.webp';
             Storage::put($webpPath, $webpImage->stream());
@@ -127,4 +132,18 @@ class Matkul extends Model
 
         return $matkul->save();
     }
+
+
+    public static function getMatkulByDosenId($dosen_id)
+    {
+        return Matkul::where('dosen_id', $dosen_id)->get();
+    }
+
+    // public static function getMatkulByMahasiswaId($mahasiswa_id)
+    // {
+    //     // return Enroll::whereHas('enrolls', function ($query) use ($mahasiswa_id) {
+    //     //     $query->where('mahasiswa_id', $mahasiswa_id);
+    //     // })->get();
+    //     return Enroll::where('mahasiswa_Id', $mahasiswa_id)->get();
+    // }
 }

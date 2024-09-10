@@ -9,7 +9,9 @@ class GuestController extends Controller
 {
     public function index()
     {
-        $matkuls = Matkul::all()->groupBy('semester_id');
+        $matkuls = Matkul::all()->groupBy('semester_id')->sortBy(function ($items, $key) {
+            return $key;
+        });
         return view('frontend.pages.guest.dashboard', ['matkuls' => $matkuls]);
     }
 }

@@ -13,7 +13,7 @@ class Pertemuan extends Model
 
     function matkul()
     {
-        $this->belongsTo(Matkul::class);
+        return $this->belongsTo(Matkul::class);
     }
 
     public function mtr_video()

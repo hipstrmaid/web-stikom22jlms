@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tugas;
 use App\Models\Enroll;
 use App\Models\Matkul;
+use App\Helpers\Helper;
 use App\Models\Mtr_file;
 use App\Models\Mtr_image;
 use App\Models\Mtr_video;
@@ -31,8 +32,8 @@ class PertemuanController extends Controller
         $id_matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
         // Index semua pertemuan berdasarkan id yang di dapat dari page Edit matkul
         $pertemuans = Pertemuan::where('matkul_id', $id)->get();
+        Helper::checkPermission($id_matkul->dosen_id, Auth::user()->dosen->id);
 
-        checkPermission($id_matkul->dosen_id, Auth::user()->dosen->id);
         return view('frontend/pages/dosen/pertemuan/view-pertemuan', compact('pertemuans', 'id_matkul'));
     }
 
@@ -79,18 +80,18 @@ class PertemuanController extends Controller
         $files = Mtr_file::where('pertemuan_id', $pertemuan->id)->get();
         $videos = Mtr_file::where('pertemuan_id', $pertemuan->id)->where('extensi', ['mp4', 'avi', 'mov', 'mkv'])->get();
         $images = Mtr_image::where('pertemuan_id', $pertemuan->id)->get();
-        // dd($images);
         $tugas = Tugas::where('pertemuan_id', $pertemuan->id)->get();
         if ($user->dosen) {
             $dosen_matkul = Matkul::where('id', $matkul_id)->first();
             return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'dosen_matkul', 'youtubes', 'files', 'videos', 'images', 'tugas'));
         } else {
+            $enrollCheck = Auth::user()->mahasiswa->enroll()->where('matkul_id', $pertemuan->matkul_id)->exists();
             $mhs_matkul = Enroll::where('matkul_id', $pertemuan->matkul_id)->first();
             $matkulId = $mhs_matkul->matkul_id;
-            if ($mhs_matkul) {
-                return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'matkulId', 'youtubes', 'files', 'videos', 'images', 'tugas'));
-            } else {
+            if (!$enrollCheck) {
                 abort(403, 'Anda belum terdaftar pada mata kuliah ini');
+            } else {
+                return view('frontend.pages.mahasiswa.belajar.mahasiswa-belajar', compact('pertemuan', 'matkulId', 'youtubes', 'files', 'videos', 'images', 'tugas'));
             }
         }
     }

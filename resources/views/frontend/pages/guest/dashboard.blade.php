@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-2">
                                     @foreach ($matkulGroup as $matkul)
-                                        {{-- <div
+                                        <div
                                             class="bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden">
                                             <img class="w-full h-48 object-cover border border-b dark:border-gray-800"
                                                 src="{{ Storage::url($matkul->gambar) }}" alt="Course Image">
@@ -39,8 +39,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
-
+                                        </div>
+                                        {{--
                                         <div
                                             class="bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 rounded-lg overflow-hidden">
                                             <img class="w-full h-48 object-cover border border-b dark:border-gray-800"
@@ -76,7 +76,7 @@
                                                 </div>
 
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     @endforeach
                                 </div>
                             </div>

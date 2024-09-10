@@ -17,19 +17,19 @@
 </head>
 
 <body class="font-poppins bg-brown-bg lg:bg-gray-100 dark:bg-gray-900 flex justify-center">
-    <section class="grid grid-cols-1 lg:grid-cols-8 flex w-full p-0">
+    <section class="grid grid-cols-1 lg:grid-cols-8 flex w-full h-screen p-0">
         <div class="col-span-5">
             <img class="h-0 w-0 lg:w-full lg:h-full object-cover" src="{{ asset('assets/img/wide-1.webp') }}"
                 alt="brand">
         </div>
         <div class="col-span-3">
             <div
-                class="flex flex-col justify-center items-center mx-auto sm:h-screen lg:py-0 pt-5 mx-5 my-5 shadow-lg rounded-lg lg:rounded-none sm:shadow-none bg-gray-100">
+                class="flex flex-col justify-center items-center sm:h-screen lg:py-0 pt-5 mx-5 my-5 shadow-lg rounded-lg lg:rounded-none sm:shadow-none bg-gray-100">
                 <img src="{{ asset('assets/img/stikom-logo.webp') }}" class="mr-3 h-24" alt="STIKOM Logo" />
                 <div class="w-full dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex flex-col justify-center items-center pt-4">
                         <a href="/" class="flex items-center justify-between mr-4">
-                            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">STIKOM 22
+                            <span class="w-full text-center text-2xl font-semibold dark:text-white">STIKOM 22
                                 Januari Kendari</span>
                         </a>
                         <p class="text-md font-bold">Learning Management System</p>
@@ -41,7 +41,6 @@
                         </h1>
                         <form class="space-y-4 md:space-y-6" action="{{ route('login') }}" method="POST">
                             @csrf
-
                             <div>
                                 <div class="relative z-0 w-full group ">
                                     <input type="text" id="username"
@@ -94,8 +93,6 @@
         </div>
 
     </section>
-
-    <script src="{{ asset('js/darkmode.js') }}"></script>
 </body>
 
 </html>

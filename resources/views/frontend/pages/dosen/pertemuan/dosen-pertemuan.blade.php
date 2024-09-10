@@ -8,11 +8,11 @@
             <div class="lg:col-span-6">
                 <div class="content-heading mt-2 lg:mt-0">
                     <h1
-                        class="text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+                        class="text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-xl lg:text-4xl dark:text-white">
                         {{ $matkul->nama_matkul }}
                     </h1>
                     {{ Breadcrumbs::render('previewMatkul', $matkul) }}
-                    <p class="pt-3 font-normal text-gray-800 dark:text-gray-400">{{ $matkul->deskripsi }}</p>
+                    <p class="pt-3 px-1 font-normal text-gray-800 dark:text-gray-400">{{ $matkul->deskripsi }}</p>
                 </div>
 
                 <div class="content-data">
@@ -26,7 +26,7 @@
                         <li>
                             <h2 id="accordion-collapse-heading-1">
                                 <button type="button"
-                                    class="flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    class="flex bg-white dark:bg-gray-900 shadow items-center justify-between w-full p-3 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                     data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
                                     aria-controls="accordion-collapse-body-1">
                                     <span><i class="fa-solid fa-circle-exclamation mr-2"
@@ -43,7 +43,8 @@
                             </h2>
                             <div id="accordion-collapse-body-1" class="hidden"
                                 aria-labelledby="accordion-collapse-heading-1">
-                                <div class="p-5 shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                                <div
+                                    class="p-5 bg-white shadow border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                     <ol class="relative border-gray-200 dark:border-gray-700 ml-10">
                                         <li class="ml-6">
                                             <span
@@ -73,7 +74,7 @@
                         <li>
                             <h2 id="accordion-collapse-heading-2">
                                 <button type="button"
-                                    class="flex shadow items-center justify-between w-full p-5 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
+                                    class="flex bg-white dark:bg-gray-900 shadow items-center justify-between w-full p-3 font-medium text-left text-gray-900 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-blue-800"
                                     data-accordion-target="#accordion-collapse-body-2" aria-expanded="true"
                                     aria-controls="accordion-collapse-body-2">
                                     <span><i class="fa-solid fa-list-ul mr-2"></i>List Pertemuan</span>
@@ -111,7 +112,11 @@
                                                     <p>Pertemuan {{ $i }} : <span class="text-blue-500">
                                                             {{ $pertemuan->judul_pertemuan }}</span>
                                                     </p>
-                                                    <i class="w-auto fa-solid fa-lock-open dark:text-white"></i>
+                                                    @if (auth()->user()->status == 'Aktif')
+                                                        <i class="w-auto fa-solid fa-lock-open dark:text-white"></i>
+                                                    @else
+                                                        <i class="w-auto fa-solid fa-lock dark:text-white"></i>
+                                                    @endif
                                                 </a>
                                             </li>
 
@@ -142,7 +147,8 @@
 
                         <li class="flex items-center">
                             <i class="fa-solid fa-calendar ml-4 dark:text-white"></i>
-                            <p class="dark:text-white px-2">{{ $matkul->hari }}, {{ $matkul->jam }}</p>
+                            <p class="dark:text-white px-2">{{ $matkul->hari }}, {{ substr($matkul->jam_mulai, 0, -3) }} -
+                                {{ substr($matkul->jam_selesai, 0, -3) }}</p>
                         </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-key ml-4 dark:text-white"></i>

@@ -74,17 +74,22 @@ class EnrollController extends Controller
     public function previewMatkul($id)
     {
 
-        //Ambil 1 record yang punya id di $id
-        $matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
-        $pertemuans = Pertemuan::where('matkul_id', $id)->get();
-        $lastPertemuan = Pertemuan::where('matkul_id', $id)->latest()->first();
 
-        $enroll_id = Matkul::where('id', $id)->first();
-        $mahasiswa = Auth::user()->mahasiswa;
-        $sudahEnroll = $mahasiswa->enroll()->where('matkul_id', $enroll_id->id)->exists();
 
-        $totalUser = Enroll::where('matkul_id', $matkul->id)->get();
+        if (Auth::user()->mahasiswa) {
+            //Ambil 1 record yang punya id di $id
+            $matkul = Matkul::with('semester', 'prodi')->findOrFail($id);
+            $pertemuans = Pertemuan::where('matkul_id', $id)->get();
+            $lastPertemuan = Pertemuan::where('matkul_id', $id)->latest()->first();
 
-        return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'enroll_id', 'lastPertemuan', 'sudahEnroll', 'totalUser'));
+            $enroll_id = Matkul::where('id', $id)->first();
+            $mahasiswa = Auth::user()->mahasiswa;
+            $sudahEnroll = $mahasiswa->enroll()->where('matkul_id', $enroll_id->id)->exists();
+
+            $totalUser = Enroll::where('matkul_id', $matkul->id)->get();
+            return view('frontend/pages/mahasiswa/pertemuan/mahasiswa-pertemuan', compact('pertemuans', 'matkul', 'enroll_id', 'lastPertemuan', 'sudahEnroll', 'totalUser'));
+        } else {
+            abort(404);
+        }
     }
 }

@@ -16,6 +16,11 @@ class Enroll extends Model
         return $this->belongsTo(Mahasiswa::class);
     }
 
+    public function pengumpulan()
+    {
+        return $this->hasMany(Pengumpulan::class, 'mahasiswa_id', 'mahasiswa_id');
+    }
+
     public function matkul()
     {
         return $this->belongsTo(Matkul::class);

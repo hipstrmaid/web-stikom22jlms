@@ -3,9 +3,8 @@
         <div class="mt-2 mb-2">
             <iframe class="w-full rounded-lg sm:h-96" height="300"
                 src="https://www.youtube.com/embed/{{ $youtube->url_video }}?modestbranding=1&rel=0"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
+                title="YouTube video player" frameborder="0" Set-Cookie: cookie-name=value; SameSite=None; Secure
+                allow="accelerometer; clipboard-write; encrypted-media;" allowfullscreen>
             </iframe>
         </div>
         <div class="content-text tracking-normal mb-5 text-gray-900 dark:text-gray-400">

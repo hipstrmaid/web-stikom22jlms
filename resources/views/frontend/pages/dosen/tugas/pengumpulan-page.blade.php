@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <article class="bg-gray-50 dark:bg-gray-800 p-5 mb-5">
+    <article class="bg-gray-50 dark:bg-gray-800 p-5">
 
         <div class="flex gap-2 items-center">
             <div class="bg-blue-500 border dark:border-gray-800 rounded-md px-4 py-6 inline-flex items-center h-full">
@@ -9,14 +9,14 @@
 
 
             <div>
-                <h1 class="text-xl lg:text-2xl font-bold text-dark dark:text-white">
+                <h1 class="text-xl lg:text-1xl font-bold text-dark dark:text-white">
                     Tugas: {{ $tugass->judul_tugas }} </h1>
                 <div class="md:block dark:text-white">
                     Pertemuan: {{ $tugass->pertemuan->judul_pertemuan }}
                 </div>
             </div>
         </div>
-        <hr>
+        <hr class="w-full h-1 mt-2 bg-gray-200 rounded dark:bg-gray-700">
         <p class="mt-5 ml-1 font-bold dark:text-white">Submission Status</p>
 
         <ul
@@ -39,7 +39,8 @@
 
 
             <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table
+                    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border dark:bg-gray-800 dark:border-gray-700">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -48,22 +49,25 @@
                             <th scope="col" class="px-2 py-3">
                                 Foto
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-5 py-3">
                                 Nama
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-5 py-3">
+                                Nim
+                            </th>
+                            <th scope="col" class="px-5 py-3">
                                 Status
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-5 py-3">
                                 Nilai
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-5 py-3">
                                 Opsi
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @isset($tugas)
+                        @if (isset($tugas) && !$tugas->isEmpty())
                             @php
                                 $i = 0;
                             @endphp
@@ -77,60 +81,63 @@
                                         {{ $i }}
                                     </th>
                                     <td class="px-2 py-4">
-                                        <img class="w-10 h-10 rounded-full" src="{{ Storage::url($data->mahasiswa->foto) }}"
+                                        <img class="w-10 h-10 rounded-full"
+                                            src="{{ isset($data->mahasiswa->foto) ? Storage::url($data->mahasiswa->foto) : asset('assets/img/user.png') }}"
                                             alt="Foto Mahasiswa">
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 text-xs md:text-sm">
                                         {{ $data->mahasiswa->nama }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 text-xs md:text-sm">
+                                        {{ $data->mahasiswa->nim }}
+                                    </td>
+                                    <td class="px-6 py-4 text-xs md:text-sm">
                                         @if ($data->updated_at < $dueDate)
                                             <div class="flex items-center text-green-500">
                                                 Tepat Waktu
                                             </div>
                                         @else
                                             <div class="flex items-center">
-                                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Telat
+                                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2 text-xs md:text-sm">
+                                                </div> Telat
                                             </div>
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4">
-                                        0 / 100
+                                    <td class="px-6 py-4 text-xs md:text-sm">
+                                        @php
+                                            $jsonData = json_decode($data->nilai, true); // Decode JSON string into an associative array
+                                            $nilaiValue = isset($jsonData[0]['nilai']) ? $jsonData[0]['nilai'] : 0; // Access the 'nilai' property or use 0 if it's null
+                                        @endphp
+                                        @if ($nilaiValue)
+                                            {{ $nilaiValue }}
+                                        @else
+                                            Belum dinilai
+                                        @endif
+
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-gray-50 dark:text-gray-50 bg-blue-600 dark:bg-blue-700 px-5 py-1 rounded">Nilai</a>
+                                        <a href="{{ route('nilai.show', ['id' => $data->id]) }}"
+                                            class="font-medium text-gray-50 dark:text-gray-50 bg-blue-600 dark:bg-blue-700 px-5 py-1 rounded">Periksa</a>
                                     </td>
                                 </tr>
                             @endforeach
                         @else
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-
-                                </th>
-                                <td class="px-2 py-4">
-
-                                </td>
-                                <td class="px-6 py-4">
-
-                                </td>
-                                <td class="px-2 py-4">
+                            <tr class="bg-white border dark:bg-gray-800 dark:border-gray-700">
+                                <td colspan="6" class="px-6 py-4 text-center">
                                     Belum ada data
                                 </td>
-                                <td class="px-6 py-4">
-
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"></a>
-                                </td>
                             </tr>
-                        @endisset
-
+                        @endif
                     </tbody>
                 </table>
             </div>
+            <div class="text-white dark:bg-dark-600 mt-4 flex justify-end">
+                <a class="d-flex p-2 rounded bg-green-500 text-sm" href="{{ route('tugas.show', ['tuga' => $tugass]) }}">
+                    {{-- <i class="fas fa-check mx-2"></i> --}}
+                    <span>Kembali</span>
+                </a>
 
+            </div>
         </ul>
 
     </article>

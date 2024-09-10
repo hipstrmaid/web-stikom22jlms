@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\Tugas;
 use App\Models\Mtr_file;
 use App\Models\Mtr_image;
@@ -44,16 +45,21 @@ class MateriController extends Controller
             'deskripsi' => 'required|min:5',
         ]);
 
-        $data = [
-            'url_video' => extractVideo($request->input('url_video')),
-            'deskripsi' => $request->input('deskripsi'),
-            'pertemuan_id' => $id,
-        ];
-        Mtr_video::create($data);
+        try {
+            $data = [
+                'url_video' => Helper::extractVideo($request->input('url_video')),
+                'deskripsi' => $request->input('deskripsi'),
+                'pertemuan_id' => $id,
+            ];
 
-        session()->flash('success', 'Video berhasil di tambahkan.');
+            Mtr_video::create($data);
 
-        return redirect()->back();
+            session()->flash('success', 'Video berhasil ditambahkan.');
+            return redirect()->route('pertemuan.show', ['pertemuan' => $id]);
+        } catch (\Exception $e) {
+            session()->flash('error', 'Gagal menambahkan video, URL Tidak Valid');
+            return redirect()->back();
+        }
     }
 
     public function storeFile(Request $request, $id)
@@ -112,19 +118,26 @@ class MateriController extends Controller
     public function storeTugas(Request $request, $id)
     {
 
-        $data = new Tugas;
-        $tugas = $data->CreateTugas($request, $id);
+        try {
+            $data = new Tugas;
+            $tugas = $data->CreateTugas($request, $id);
 
-        $tugasId = $tugas->id;
-        $path_file = uploadFile($request, 'Tugas_file');
-        //then i can assign it to the tugas_id like below
-        $file = [
-            'tugas_id' => $tugasId,
-            'path_file' => $path_file
-        ];
+            $tugasId = $tugas->id;
+            $path_file = Tugas::uploadFile($request, 'Tugas_file');
 
-        Tgs_file::create($file);
-        return redirect()->back()->with('success', 'Tugas berhasil di tambahkan.');
+            // Assign the file to the tugas_id
+            $file = [
+                'tugas_id' => $tugasId,
+                'path_file' => $path_file
+            ];
+
+            Tgs_file::create($file);
+
+            return redirect()->back()->with('success', 'Tugas berhasil di tambahkan.');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan. Coba lagi.');
+        }
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,7 @@ class Pengumpulan_file extends Model
 
     public function pengumpulan()
     {
-        return $this->belongsTo(Pengumpulan::class);
+        return $this->belongsTo(Pengumpulan::class, 'pengumpulan_id');
     }
 
     public static function InsertPathandCheck($pengumpulan, $webpPath, $idTugas)
@@ -24,7 +25,7 @@ class Pengumpulan_file extends Model
         if ($pengumpulanFile) {
             // Update the existing PengumpulanFile record
             $oldPath = $pengumpulanFile->path_file;
-            deleteTugasFile($oldPath);
+            Helper::deleteTugasFile($oldPath);
             $pengumpulanFile->update([
                 'path_file' => $webpPath,
                 // Update any other fields as needed
